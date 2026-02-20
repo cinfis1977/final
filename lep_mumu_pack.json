@@ -1,0 +1,22 @@
+{
+  "process": "e+e- -> mu+mu- (OPAL LEP2) angular distribution",
+  "source": {
+    "hepdata_record": "ins628491 (OPAL fermion-pair production 189-209 GeV)",
+    "table": "Table 13",
+    "json_source": "https://www.hepdata.net/record/ins628491?version=1&table=Table13 (downloaded via HEPData API)"
+  },
+  "observable": "d\u03c3/dcos\u03b8",
+  "units": "pb",
+  "notes": [
+    "Built from HEPData table JSON; long-form CSV has one row per (energy group, cos\u03b8 bin).",
+    "Covariance model: stat diagonal + 2 fully-correlated systematic sources (sys_1, sys_2) as outer products.",
+    "This is a transparent starting assumption; you can later refine correlation structure if OPAL specifies it."
+  ],
+  "data_csv": "lep_mumu_table13_clean.csv",
+  "cov_files": {
+    "stat": "lep_mumu_cov_stat.csv",
+    "sys_corr": "lep_mumu_cov_sys_corr.csv",
+    "total": "lep_mumu_cov_total.csv",
+    "diag_total": "lep_mumu_cov_diag_total.csv"
+  }
+}

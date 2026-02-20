@@ -1,0 +1,5 @@
+sqrts_GeV,rho,err,channel,experiment
+541.0,0.135,0.015,pbarp,UA4/2
+1800.0,0.14,0.069,pbarp,E710
+13000.0,0.09,0.01,pp,TOTEM
+13000.0,0.098,0.011,pp,ATLAS-ALFA

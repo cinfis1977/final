@@ -1,0 +1,138 @@
+{
+  "meta": {
+    "experiment": "NOvA",
+    "baseline_km": 810.0,
+    "matter_density_g_cm3": 2.84,
+    "source": "PRD 106, 032004 (2022)"
+  },
+  "channels": [
+    {
+      "name": "NOvA_app_FHC",
+      "type": "appearance",
+      "is_antinu": false,
+      "bins": {
+        "E_lo": [
+          1.0,
+          1.5,
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.0
+        ],
+        "E_hi": [
+          1.5,
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5
+        ],
+        "E_ctr": [
+          1.25,
+          1.75,
+          2.25,
+          2.75,
+          3.25,
+          3.75,
+          4.25
+        ],
+        "N_obs": [
+          18,
+          44,
+          42,
+          26,
+          20,
+          12,
+          5
+        ],
+        "N_sig_sm": [
+          20.4,
+          46.2,
+          40.8,
+          28.5,
+          18.2,
+          10.5,
+          4.1
+        ],
+        "N_bkg_sm": [
+          5.2,
+          6.8,
+          5.5,
+          4.2,
+          2.4,
+          1.2,
+          0.5
+        ]
+      }
+    }
+  ],
+  "fits": {
+    "source_figure": "Provided screenshot (two panels: |Δm^2_32| and sin^2θ23; NH red, IH blue)",
+    "cl_thresholds": {
+      "68": 1.0,
+      "90": 2.718
+    },
+    "dm2_32_abs_1e3_eV2": {
+      "NH": {
+        "best_fit": 2.3924,
+        "CL68": [
+          2.3041,
+          2.4827
+        ],
+        "CL90": [
+          2.2535,
+          2.5355
+        ]
+      },
+      "IH": {
+        "best_fit": 2.444,
+        "CL68": [
+          2.3618,
+          2.5266
+        ],
+        "CL90": [
+          2.3069,
+          2.582
+        ]
+      }
+    },
+    "sin2_theta23": {
+      "NH": {
+        "best_fit_lower_octant": 0.4289,
+        "local_min_upper_octant": 0.5935,
+        "CL68": [
+          0.3863,
+          0.6283
+        ],
+        "CL90": [
+          0.366,
+          0.6522
+        ]
+      },
+      "IH": {
+        "best_fit_lower_octant": 0.4252,
+        "local_min_upper_octant": 0.5911,
+        "CL68_union": [
+          [
+            0.3892,
+            0.4915
+          ],
+          [
+            0.5352,
+            0.6209
+          ]
+        ],
+        "CL90": [
+          0.3647,
+          0.6472
+        ]
+      }
+    },
+    "notes": [
+      "Right panel IH has a mid-bump slightly above 1.0, so 68% region splits into two disjoint intervals.",
+      "These are digitized approximations from the screenshot; not official table values."
+    ]
+  }
+}
