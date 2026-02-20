@@ -1,34 +1,76 @@
-# New Master Equation With Gauge Structure (Repro)
+# New Master Equation With Gauge Structure
 
-This repository is a reproducibility bundle for multi-sector prereg-style runs across:
+This repository is the reproducibility workspace for the model documented in `paper/master_equation.md`.
 
-- `EM` (LEP Bhabha/mumu)
-- `WEAK` (NOvA/MINOS/T2K-linked runs)
-- `STRONG` (sigma_tot, rho, and rho-from-dispersion checks)
-- `DM` (SPARC holdout CV runs)
-- `LIGO` (pattern-generation runs)
+## Source Of Truth
 
-It is organized to run command batches, capture logs, and generate summary/verdict reports under `repro/`.
+- Main model and physics narrative: `paper/master_equation.md`
+- Current draft tag in that file: `2026-02-12 (v4_30)`
+- Scope policy in that file: falsification-first prereg workflow
+
+## Model Snapshot
+
+The project implements one geometric modulation framework across:
+
+- `WEAK` (NOvA, MINOS, T2K-linked)
+- `STRONG` (sigma_tot, rho, dispersion bridge checks)
+- `EM` (LEP Bhabha and mumu channels)
+- `GW/LIGO` (pattern/basis generation in this repo snapshot)
+- `DM` (SPARC holdout CV)
+
+Core substrate summary from `paper/master_equation.md`:
+
+- Lattice: cubic cells with a central bubble node and threaded links
+- Fixed prereg geometry: `N_in=8`, `N_face=16`
+- Dual thread rule:
+  - `CT`: intra-cube, constant tension links
+  - `RT`: inter-cube, distance-dependent links
+- Junction plane stack roles:
+  - `LP` ordering/lock
+  - `RL` route/localization addressing
+  - `TT2` phase gate `g(phi)`
+  - `EM/QED` stiffness conditioning
+- Weak-sector one-line evolution:
+  - `d rho / dL = -i K(E)[H_vac + H_mat + H_geo, rho] + sum_j Gamma_j D[L_j] rho`
+- Cross-sector postulate:
+  - one shared kernel
+  - sector-specific bridge operators to observables
+
+## Locked Prereg Discipline
+
+- Run scan-free fixed points for verdict runs.
+- Use `A=0` as the NULL control when defined.
+- Interpret PASS as "not falsified under the prereg test definition", not proof of truth.
+
+One-for-all locked base from `paper/master_equation.md`:
+
+- `A_phys=-0.003`
+- `alpha_phys=0.001`
+- Fixed sector map:
+  - `STRONG`: `A=-0.003`
+  - `WEAK`: `A=-0.002`, `alpha=0.7`
+  - `DM`: `A=0.1778279410038923`, `alpha=0.001`
+  - `EM`: `A=+100000`, `alpha=7.5e-05` (with sign-flip control where applicable)
 
 ## Quickstart (Windows PowerShell)
 
-1. Create and activate a virtual environment (optional, but recommended):
+1. Optional environment setup:
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
-2. Install dependencies you need for your environment.
-`requirements.txt` is currently a placeholder, so install the packages required by your selected scripts.
+2. Install required packages for your chosen scripts.
+`requirements.txt` is currently a placeholder.
 
-3. Run the full verdict command set:
+3. Run prereg command batch:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\tools\run_verdict.ps1
 ```
 
-4. Generate reports and strong-sector figure:
+4. Build reports:
 
 ```powershell
 python .\tools\make_repro_report.py
@@ -36,7 +78,7 @@ python .\tools\verdict_group_eval.py
 python .\tools\make_fig_strong_deltachi2.py
 ```
 
-5. Review outputs:
+5. Check outputs:
 
 - `repro/run_summary.csv`
 - `repro/REPORT.md`
@@ -44,21 +86,21 @@ python .\tools\make_fig_strong_deltachi2.py
 - `repro/REPORT_VERDICT.md`
 - `repro/figs/strong_delta_chi2.png`
 
-## Useful Run Options
+## Useful Options
 
-Run only a subset of commands (by index from `tools/verdict_commands.txt`):
+Run a subset:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\tools\run_verdict.ps1 -StartIndex 1 -EndIndex 5
 ```
 
-Adjust per-command timeout (default is 1800s):
+Longer timeout:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\tools\run_verdict.ps1 -PerCommandTimeoutSec 3600
 ```
 
-Append to existing `repro/run_summary.csv` instead of overwriting:
+Append to existing summary:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\tools\run_verdict.ps1 -AppendSummary
@@ -66,35 +108,29 @@ powershell -ExecutionPolicy Bypass -File .\tools\run_verdict.ps1 -AppendSummary
 
 ## Data Sync Helper
 
-If you maintain a separate working tree and want to copy inputs/scripts into this repro repo, use:
-
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\tools\sync_repo.ps1 -WorkingRoot "<source-root>"
 ```
 
-This updates copied files and writes `repro/copied_manifest.txt`.
+This writes `repro/copied_manifest.txt` after syncing.
 
-## Repository Layout
+## Key Files
+
+- `tools/verdict_commands.txt`: command list executed by `run_verdict.ps1`
+- `tools/data_allowlist.txt`: allowlist used by data checks
+- `protocol/tolerances.json`: tolerance settings
+- `paper/master_equation.md`: full model document
+
+## Repo Layout
 
 ```text
-data/           Input datasets (HEPData, GW, SPARC, etc.)
-figs/           Project figures
-out/            Run outputs grouped by sector
-paper/          Paper-facing notes
-protocol/       Tolerance and protocol docs
-repro/          Generated run summaries, logs, reports, and repro figures
-runners/        Runner wrappers
-scripts/        Utility and figure scripts
-tools/          Main orchestration/report scripts (run_verdict, sync, eval)
+data/           datasets
+figs/           figures
+out/            produced outputs
+paper/          model and paper notes
+protocol/       run/test protocol docs
+repro/          generated logs and reports
+runners/        runner wrappers
+scripts/        utility scripts
+tools/          orchestration and report tools
 ```
-
-## Main Control Files
-
-- `tools/verdict_commands.txt`: batch commands executed by `run_verdict.ps1`
-- `tools/data_allowlist.txt`: allowlisted data paths used in data checks
-- `protocol/tolerances.json`: protocol tolerance configuration
-
-## Notes
-
-- This repo intentionally contains both inputs and generated outputs for reproducibility.
-- `.gitignore` is configured to ignore local caches/temp artifacts and helper clone folders.
