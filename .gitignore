@@ -1,2 +1,50 @@
+# Python bytecode and runtime caches
 __pycache__/
 *.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+.cache*/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Coverage / test artifacts
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Packaging artifacts
+build/
+dist/
+*.egg
+*.egg-info/
+pip-wheel-metadata/
+
+# IDE/editor settings
+.vscode/
+.idea/
+.vs/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# Local temp and runner scratch files
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*.swo
+repro/tmp_run_*.ps1
+
+# Local helper/reference clones
+_ref_master_equation/
