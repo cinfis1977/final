@@ -1,0 +1,247 @@
+py -3 .\nova_mastereq_forward_kernel_BREATH_THREAD_v2.py `
+--pack .\t2k_channels_real_approx.json `
+--kernel rt --k_rt 180 `
+--A -0.002 --alpha 0.7 --n 0 --E0 1 `
+--omega0_geom fixed --L0_km 295 `
+--phi 1.57079632679 --zeta 0.05 `
+--rho 2.6 --Ye 0.5 `
+--kappa_gate 0 `
+--breath_B -0.002 --breath_w0 0.0030311708 --breath_gamma 0.2 `
+--thread_C 1.0 --thread_w0 0.0030311708 --thread_gamma 0.2 `
+--out .\out\out_WEAK_T2K_oneforall.csv
+
+py -3 .\strong_sigma_tot_energy_scan_v2.py `
+--data .\data\hepdata\pdg_sigma_tot_clean_for_runner.csv `
+--A 0 `
+--env_mode none `
+--out .\out\out_sigma_tot_NULL.csv `
+--chi2_out .\out\out_sigma_tot_NULL_chi2.json
+
+py -3 .\strong_sigma_tot_energy_scan_v2.py `
+--data .\data\hepdata\pdg_sigma_tot_clean_for_runner.csv `
+--channel both `
+--A -0.003 `
+--env_mode eikonal --template cos --sqrts_ref_GeV 13000 `
+--delta_geo_ref -1.315523 --c1_abs 0.725147 `
+--out .\out\out_sigma_tot_GEO_eikonal_Aneg003.csv `
+--chi2_out .\out\out_sigma_tot_GEO_eikonal_Aneg003_chi2.json
+
+py -3 .\strong_rho_energy_scan_v3.py `
+--data .\data\hepdata\pdg_rho_clean_for_runner.csv `
+--channel both `
+--A 0 `
+--env_mode none `
+--out .\out\out_rho_NULL.csv `
+--chi2_out .\out\out_rho_NULL_chi2.json
+
+py -3 .\strong_rho_energy_scan_v3.py `
+--data .\data\hepdata\pdg_rho_clean_for_runner.csv `
+--channel both `
+--A -0.003 `
+--env_mode eikonal_amp --sqrts_ref_GeV 13000 `
+--delta_geo_ref -1.315523 --c1_abs 0.725147 `
+--template cos `
+--out .\out\out_rho_GEO_eikonalamp_Aneg003.csv `
+--chi2_out .\out\out_rho_GEO_eikonalamp_Aneg003_chi2.json
+
+py -3 .\strong_rho_from_sigmatot_dispersion_v1.py `
+--sigma_data .\data\hepdata\pdg_sigma_tot_clean_for_runner.csv `
+--rho_data .\data\hepdata\pdg_rho_clean_for_runner.csv `
+--A 0 `
+--env_mode none --template cos `
+--out .\out\out_rho_from_sig_disp_NULL.csv `
+--chi2_out .\out\out_rho_from_sig_disp_NULL_chi2.json
+
+py -3 .\strong_rho_from_sigmatot_dispersion_v1.py `
+--sigma_data .\data\hepdata\pdg_sigma_tot_clean_for_runner.csv `
+--rho_data .\data\hepdata\pdg_rho_clean_for_runner.csv `
+--A -0.003 `
+--env_mode eikonal --template cos `
+--sqrts_ref_GeV 13000 --delta_geo_ref -1.315523 --c1_abs 0.725147 `
+--out .\out\out_rho_from_sig_disp_GEO_Aneg003.csv `
+--chi2_out .\out\out_rho_from_sig_disp_GEO_Aneg003_chi2.json
+
+py -3 .\dm_holdout_cv_thread.py `
+--points_csv .\data\sparc\sparc_points.csv `
+--model geo_add_const --g0 1.2e-10 `
+--env_model none `
+--A_min 0.1778279410 --A_max 0.1778279410 --nA 1 `
+--alpha_min 0.001 --alpha_max 0.001 --nAlpha 1 `
+--kfold 5 --seed 2026 `
+--out_csv .\out\dm_cv_NONE_FIXED_A01778_a0001_seed2026_k5.csv
+
+py -3 .\dm_holdout_cv_thread_STIFFGATE.py `
+--points_csv .\data\sparc\sparc_points.csv `
+--model geo_add_const --g0 1.2e-10 `
+--env_model thread `
+--thread_mode down --thread_q 0.6 --thread_xi 0.5 --thread_norm median `
+--thread_gate_p 4 --thread_k2 1.0 `
+--thread_calibrate_from_galaxy --gal_hi_p 99.9 --gal_gate_eps 1e-6 --thread_Sc_factor 10 `
+--A_min 0.1778279410 --A_max 0.1778279410 --nA 1 `
+--alpha_min 0.001 --alpha_max 0.001 --nAlpha 1 `
+--kfold 5 --seed 2026 `
+--out_csv .\out\dm_cv_THREAD_STIFFGATE_FIXED_A01778_a0001_seed2026_k5.csv
+
+py -3 .\improved_simulation_STABLE_v17_xy_quadrupole_drive_ANISO_PHYS_TENSOR_PHYS_FIXED4.py `
+--nx 6 --ny 6 --nz 1 `
+--target_inner_f_hz 320 `
+--k_out 140000 --c_out 40 `
+--k_diag 140000,110000,140000 --c_diag 40,35,40 `
+--k_rot_deg 22.5,0,0 --c_rot_deg 22.5,0,0 `
+--tensor_mode full --readout_split x `
+--drive_pattern quad_plus_xy `
+--out_csv .\out\gate0_split\PLUS.csv
+
+py -3 .\improved_simulation_STABLE_v17_xy_quadrupole_drive_ANISO_PHYS_TENSOR_PHYS_FIXED4.py `
+--nx 6 --ny 6 --nz 1 `
+--target_inner_f_hz 320 `
+--k_out 140000 --c_out 40 `
+--k_diag 140000,110000,140000 --c_diag 40,35,40 `
+--k_rot_deg 22.5,0,0 --c_rot_deg 22.5,0,0 `
+--tensor_mode full --readout_split x `
+--drive_pattern quad_cross_xy `
+--out_csv .\out\gate0_split\CROSS.csv
+
+py -3 .\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
+--pack .\lep_bhabha_pack.json `
+--cov total `
+--baseline_csv .\bhagen_cos09_v4_baseline_L0_Sp1.csv `
+--baseline_col sm_pred_pb --baseline_group_col group_id `
+--A 0 --alpha 7.5e-05 --phi 1.57079632679 `
+--geo_structure offdiag --geo_gen lam2 `
+--omega0_geom fixed --L0_km 810 `
+--zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
+--shape_only --freeze_betas --beta_nonneg `
+--out .\out\out_EM_bhabha_total_A0.csv
+
+py -3 .\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
+--pack .\lep_bhabha_pack.json `
+--cov total `
+--baseline_csv .\bhagen_cos09_v4_baseline_L0_Sp1.csv `
+--baseline_col sm_pred_pb --baseline_group_col group_id `
+--A 100000 --alpha 7.5e-05 --phi 1.57079632679 `
+--geo_structure offdiag --geo_gen lam2 `
+--omega0_geom fixed --L0_km 810 `
+--zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
+--shape_only --freeze_betas --beta_nonneg `
+--out .\out\out_EM_bhabha_total_A1e5.csv
+
+py -3 .\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
+--pack .\lep_bhabha_pack.json `
+--cov total `
+--A -100000 --alpha 7.5e-05 --phi 1.57079632679 `
+--geo_structure offdiag --geo_gen lam2 `
+--omega0_geom fixed --L0_km 810 `
+--zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
+--shape_only --freeze_betas --beta_nonneg `
+--out .\out\out_EM_bhabha_total_Aneg1e5.csv
+
+py -3 .\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
+--pack .\lep_bhabha_pack.json `
+--cov diag_total `
+--baseline_csv .\bhagen_cos09_v4_baseline_L0_Sp1.csv `
+--baseline_col sm_pred_pb --baseline_group_col group_id `
+--A 0 --alpha 7.5e-05 --phi 1.57079632679 `
+--geo_structure offdiag --geo_gen lam2 `
+--omega0_geom fixed --L0_km 810 `
+--zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
+--out .\out\out_EM_bhabha_diag_A0.csv
+
+py -3 .\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
+--pack .\lep_bhabha_pack.json `
+--cov diag_total `
+--baseline_csv .\bhagen_cos09_v4_baseline_L0_Sp1.csv `
+--baseline_col sm_pred_pb --baseline_group_col group_id `
+--A 100000 --alpha 7.5e-05 --phi 1.57079632679 `
+--geo_structure offdiag --geo_gen lam2 `
+--omega0_geom fixed --L0_km 810 `
+--zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
+--out .\out\out_EM_bhabha_diag_A1e5.csv
+
+py -3 .\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
+--pack .\lep_bhabha_pack.json `
+--cov diag_total `
+--A -100000 --alpha 7.5e-05 --phi 1.57079632679 `
+--geo_structure offdiag --geo_gen lam2 `
+--omega0_geom fixed --L0_km 810 `
+--zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
+--shape_only --freeze_betas --beta_nonneg `
+--out .\out\out_EM_bhabha_diag_Aneg1e5.csv
+
+py -3 .\em_mumu_forward.py `
+--pack .\lep_mumu_pack.json `
+--cov total `
+--A 0 --alpha 7.5e-05 --phi 1.57079632679 `
+--geo_structure offdiag --geo_gen lam2 `
+--zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
+--out .\out\out_EM_mumu_total_A0.csv
+
+py -3 .\em_mumu_forward.py `
+--pack .\lep_mumu_pack.json `
+--cov total `
+--A 100000 --alpha 7.5e-05 --phi 1.57079632679 `
+--geo_structure offdiag --geo_gen lam2 `
+--omega0_geom fixed --L0_km 810 `
+--zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
+--out .\out\out_EM_mumu_total_A1e5.csv
+
+py -3 .\em_mumu_forward.py `
+--pack .\lep_mumu_pack.json `
+--cov total `
+--A -100000 --alpha 7.5e-05 --phi 1.57079632679 `
+--geo_structure offdiag --geo_gen lam2 `
+--omega0_geom fixed --L0_km 810 `
+--zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
+--out .\out\out_EM_mumu_total_Aneg1e5.csv
+
+py -3 .\em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
+--pack .\lep_mumu_pack.json --cov total `
+--A 0 --alpha 7.5e-05 --phi 1.57079632679 `
+--geo_structure offdiag --geo_gen lam2 --omega0_geom fixed --L0_km 810 `
+--shape_only --freeze_betas --beta_nonneg --require_positive `
+--out .\out\out_EM_mumu_shapeonly_total_A0.csv
+
+py -3 .\em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
+--pack .\lep_mumu_pack.json --cov total `
+--A 100000 --alpha 7.5e-05 --phi 1.57079632679 `
+--geo_structure offdiag --geo_gen lam2 --omega0_geom fixed --L0_km 810 `
+--zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
+--shape_only --freeze_betas --beta_nonneg --require_positive `
+--out .\out\out_EM_mumu_shapeonly_total_A1e5.csv
+
+py -3 .\em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
+--pack .\lep_mumu_pack.json --cov total `
+--A -100000 --alpha 7.5e-05 --phi 1.57079632679 `
+--geo_structure offdiag --geo_gen lam2 --omega0_geom fixed --L0_km 810 `
+--zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
+--shape_only --freeze_betas --beta_nonneg --require_positive `
+--out .\out\out_EM_mumu_shapeonly_total_Aneg1e5.csv
+
+py -3 .\em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
+--pack .\lep_mumu_pack.json `
+--cov diag_total `
+--A 0 --alpha 7.5e-05 --phi 1.57079632679 `
+--geo_structure offdiag --geo_gen lam2 `
+--omega0_geom fixed --L0_km 810 `
+--zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
+--shape_only --freeze_betas --beta_nonneg --require_positive `
+--out .\out\out_EM_mumu_shapeonly_diag_A0.csv
+
+py -3 .\em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
+--pack .\lep_mumu_pack.json `
+--cov diag_total `
+--A 100000 --alpha 7.5e-05 --phi 1.57079632679 `
+--geo_structure offdiag --geo_gen lam2 `
+--omega0_geom fixed --L0_km 810 `
+--zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
+--shape_only --freeze_betas --beta_nonneg --require_positive `
+--out .\out\out_EM_mumu_shapeonly_diag_A1e5.csv
+
+py -3 .\em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
+--pack .\lep_mumu_pack.json `
+--cov diag_total `
+--A -100000 --alpha 7.5e-05 --phi 1.57079632679 `
+--omega0_geom fixed --L0_km 810 `
+--zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
+--shape_only --freeze_betas --beta_nonneg --require_positive `
+--out .\out\out_EM_mumu_shapeonly_diag_Aneg1e5.csv

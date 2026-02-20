@@ -1,0 +1,9 @@
+data/nist_raw_03_43/*.zip filter=lfs diff=lfs merge=lfs -text
+data/nist/*.hdf5 filter=lfs diff=lfs merge=lfs -text
+INTEGRITY_CLOSURE_EVIDENCE_20260304.zip filter=lfs diff=lfs merge=lfs -text
+INTEGRITY_CLOSURE_EVIDENCE_20260304/INPUTS/MS/particle_specific_cytofull_A1_B2/*.csv filter=lfs diff=lfs merge=lfs -text
+INTEGRITY_CLOSURE_EVIDENCE_20260304/INPUTS/MS/particle_specific_cytofull_A1_B2_direct/*.csv filter=lfs diff=lfs merge=lfs -text
+INTEGRITY_CLOSURE_EVIDENCE_20260304/INPUTS/MS/particle_specific_cytofull_A2_B3/*.csv filter=lfs diff=lfs merge=lfs -text
+PERFORMANCE_PASSES_20260304_extracted/PERFORMANCE_PASSES_20260304/INPUTS/MS/particle_specific_cytofull_A1_B2/*.csv filter=lfs diff=lfs merge=lfs -text
+PERFORMANCE_PASSES_20260304_extracted/PERFORMANCE_PASSES_20260304/INPUTS/MS/particle_specific_cytofull_A1_B2_direct/*.csv filter=lfs diff=lfs merge=lfs -text
+PERFORMANCE_PASSES_20260304_extracted/PERFORMANCE_PASSES_20260304/INPUTS/MS/particle_specific_cytofull_A2_B3/*.csv filter=lfs diff=lfs merge=lfs -text

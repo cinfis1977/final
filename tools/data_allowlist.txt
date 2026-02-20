@@ -1,0 +1,13 @@
+# DATA_OK allowlist (repo-relative paths or wildcards).
+# Keep this strict: include only datasets that are acceptable for evidence/protocol runs.
+
+minos_channels.json
+data\hepdata\pdg_sigma_tot_clean_for_runner.csv
+data\hepdata\pdg_rho_clean_for_runner.csv
+data\hepdata\atlas13_pp_elastic_pack.json
+data\hepdata\totem13_rho_cni\elastic_pack.json
+data\hepdata\lep_mumu_pack.json
+data\hepdata\em_bhabha_pack\*
+data\sparc\sparc_points.csv
+data\gw\*.hdf5
+out\bh_network_response_SIM_QXY_T0AUTO250_v17.csv

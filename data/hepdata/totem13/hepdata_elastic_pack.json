@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "source": "hepdata",
+    "record": "128828",
+    "table": null,
+    "record_url": "https://www.hepdata.net/record/128828",
+    "t_header_name": "$|t|$",
+    "t_header_units": "GeV$^2$",
+    "dsdt_header_name": "d$\\sigma$/d$t$",
+    "dsdt_header_units": "mb/GeV$^2$",
+    "unit_factor_to_mb_per_GeV2": 1.0
+  },
+  "paths": {
+    "dsdt_csv": "hepdata_elastic_dsdt_table_clean.csv",
+    "cov_stat_csv": "hepdata_elastic_cov_stat_diag.csv",
+    "cov_sys_csv": "hepdata_elastic_cov_sys_diag.csv",
+    "cov_total_csv": "hepdata_elastic_cov_total_diag.csv"
+  }
+}

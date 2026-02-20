@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "source": "HEPData CSV export",
+    "inspire_record": "ins628491",
+    "table": "Table 18",
+    "process": "e+ e- -> e+ e- (Bhabha), differential cross section vs cos(theta)",
+    "observable": "d(sigma)/dcos(theta)",
+    "units": {
+      "y": "pb"
+    },
+    "notes": [
+      "sys_1 and sys_2 treated as independent fully-correlated sources across bins (outer-product).",
+      "stat errors treated as diagonal (symmetrized from +/-).",
+      "cov_total = cov_stat + cov_sys."
+    ]
+  },
+  "paths": {
+    "data_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauge_structure_test\\data\\hepdata\\em_bhabha_pack\\holdout\\data_holdout_g2_test.csv",
+    "cov_stat_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauge_structure_test\\data\\hepdata\\em_bhabha_pack\\holdout\\cov_stat_csv_holdout_g2_test.csv",
+    "cov_sys_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauge_structure_test\\data\\hepdata\\em_bhabha_pack\\holdout\\cov_sys_csv_holdout_g2_test.csv",
+    "cov_total_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauge_structure_test\\data\\hepdata\\em_bhabha_pack\\holdout\\cov_total_csv_holdout_g2_test.csv",
+    "cov_diag_total_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauge_structure_test\\data\\hepdata\\em_bhabha_pack\\holdout\\cov_diag_total_csv_holdout_g2_test.csv"
+  },
+  "columns": {
+    "x_lo": "cos_lo",
+    "x_ctr": "cos_ctr",
+    "x_hi": "cos_hi",
+    "y": "obs_pb",
+    "stat_plus": "stat_plus",
+    "stat_minus": "stat_minus",
+    "sys1_rel": "sys1_rel",
+    "sys2_rel": "sys2_rel"
+  }
+}

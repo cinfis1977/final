@@ -1,0 +1,15 @@
+{
+  "name": "hepdata_elastic_pack_from_archive",
+  "version": 2,
+  "note": "Auto-built from HEPData archive (zip/tar.gz). Diagonal cov from reported stat/sys errors.",
+  "paths": {
+    "dsdt_csv": "elastic_dsdt_table_clean.csv",
+    "cov_stat_csv": "elastic_cov_stat_diag.csv",
+    "cov_sys_csv": "elastic_cov_sys_diag.csv",
+    "cov_total_csv": "elastic_cov_total_diag.csv"
+  },
+  "n_bins": 290,
+  "source_archive": "data\\hepdata\\totem13_dsdt_ins1710340_csv.zip",
+  "chosen_table": "data\\hepdata\\totem13_dsdt\\_tmp_unpack\\HEPData-ins1710340-v1-csv\\Table1.csv",
+  "y_column": "d$\\sigma$/d$t$ [mb/GeV$^2$]"
+}

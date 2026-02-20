@@ -1,0 +1,5 @@
+channel,sqrt_s,sigma_tot,err,experiment
+pp,13000.0,110.5,2.4,TOTEM
+pp,8000.0,101.7,2.9,TOTEM
+pp,7000.0,98.0,2.5,TOTEM
+pp,2760.0,84.7,3.3,TOTEM
