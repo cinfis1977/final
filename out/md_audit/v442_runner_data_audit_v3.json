@@ -1,0 +1,354 @@
+{
+  "counts": {
+    "py_mentions_total": 15,
+    "commands_total": 20,
+    "runners_unique_total": 15,
+    "runners_missing_total": 6,
+    "commands_ok_total": 18,
+    "commands_problem_total": 2,
+    "cmd_input_files_unique_total": 11,
+    "cmd_input_missing_total": 2
+  },
+  "runner_status": [
+    {
+      "path": "dm_holdout_cv_thread.py",
+      "exists": true,
+      "found": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\dm_holdout_cv_thread.py"
+    },
+    {
+      "path": "dm_holdout_cv_thread_STIFFGATE.py",
+      "exists": true,
+      "found": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\dm_holdout_cv_thread_STIFFGATE.py"
+    },
+    {
+      "path": "em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py",
+      "exists": true,
+      "found": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py"
+    },
+    {
+      "path": "em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py",
+      "exists": true,
+      "found": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py"
+    },
+    {
+      "path": "eval_massspec_blind_theta_poly_v1.py",
+      "exists": false,
+      "found": ""
+    },
+    {
+      "path": "improved_simulation_STABLE_v17_xy_quadrupole_drive_ANISO_PHYS_TENSOR_PHYS_FIXED4.py",
+      "exists": true,
+      "found": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\improved_simulation_STABLE_v17_xy_quadrupole_drive_ANISO_PHYS_TENSOR_PHYS_FIXED4.py"
+    },
+    {
+      "path": "nova_mastereq_forward_kernel_BREATH_THREAD_fixedbyclaude.py",
+      "exists": true,
+      "found": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\nova_mastereq_forward_kernel_BREATH_THREAD_fixedbyclaude.py"
+    },
+    {
+      "path": "nova_mastereq_forward_kernel_BREATH_THREAD_v2.py",
+      "exists": true,
+      "found": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\nova_mastereq_forward_kernel_BREATH_THREAD_v2.py"
+    },
+    {
+      "path": "run_curvedcube_predict_dcp_v6.py",
+      "exists": false,
+      "found": ""
+    },
+    {
+      "path": "strong_elastic_cni_rho_bridge_v1_ENV_AIAR_FIX2.py",
+      "exists": false,
+      "found": ""
+    },
+    {
+      "path": "strong_rho_energy_scan_v3.py",
+      "exists": true,
+      "found": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\strong_rho_energy_scan_v3.py"
+    },
+    {
+      "path": "strong_rho_energy_scan_v3_AIAR_FIX2.py",
+      "exists": false,
+      "found": ""
+    },
+    {
+      "path": "strong_rho_from_sigmatot_dispersion_v1_AIAR_FIX2.py",
+      "exists": false,
+      "found": ""
+    },
+    {
+      "path": "strong_sigma_tot_energy_scan_v2.py",
+      "exists": true,
+      "found": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\strong_sigma_tot_energy_scan_v2.py"
+    },
+    {
+      "path": "strong_sigma_tot_energy_scan_v2_AIAR_FIX2.py",
+      "exists": false,
+      "found": ""
+    }
+  ],
+  "input_status": [
+    {
+      "path": "bhagen_cos09_v4_baseline_L0_Sp1.csv",
+      "exists": true,
+      "found": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\bhagen_cos09_v4_baseline_L0_Sp1.csv"
+    },
+    {
+      "path": "data/hepdata/pdg_rho_clean_for_runner.csv",
+      "exists": true,
+      "found": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\data\\hepdata\\pdg_rho_clean_for_runner.csv"
+    },
+    {
+      "path": "data/hepdata/pdg_sigma_tot_clean_for_runner.csv",
+      "exists": true,
+      "found": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\data\\hepdata\\pdg_sigma_tot_clean_for_runner.csv"
+    },
+    {
+      "path": "data/sparc/sparc_points.csv",
+      "exists": true,
+      "found": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\data\\sparc\\sparc_points.csv"
+    },
+    {
+      "path": "lep_bhabha_pack.json",
+      "exists": true,
+      "found": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\lep_bhabha_pack.json"
+    },
+    {
+      "path": "lep_mumu_pack.json",
+      "exists": true,
+      "found": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\lep_mumu_pack.json"
+    },
+    {
+      "path": "minos_channels.json",
+      "exists": true,
+      "found": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\minos_channels.json"
+    },
+    {
+      "path": "nova_channels.json",
+      "exists": true,
+      "found": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\nova_channels.json"
+    },
+    {
+      "path": "out/planeTheta_v6_4b_FAST_passfilter_peaks_INDEP_NOPLL_BINSCAN.csv",
+      "exists": false,
+      "found": ""
+    },
+    {
+      "path": "out/planeTheta_v6_4b_FAST_passfilter_peaks_INDEP_NOPLL_BINSCAN_sintest.csv",
+      "exists": false,
+      "found": ""
+    },
+    {
+      "path": "t2k_channels_real_approx.json",
+      "exists": true,
+      "found": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\t2k_channels_real_approx.json"
+    }
+  ],
+  "commands": [
+    {
+      "command": "py -3 -X utf8 .\\eval_massspec_blind_theta_poly_v1.py .\\out\\planeTheta_v6_4b_FAST_passfilter_peaks_INDEP_NOPLL_BINSCAN.csv MU_p21_q13 --cal_thetas 0 30 60 --test_thetas 45 90 --poly_deg 1",
+      "runner": "eval_massspec_blind_theta_poly_v1.py",
+      "runner_exists": false,
+      "inputs": [
+        "out/planeTheta_v6_4b_FAST_passfilter_peaks_INDEP_NOPLL_BINSCAN.csv"
+      ],
+      "missing_inputs": [
+        "out/planeTheta_v6_4b_FAST_passfilter_peaks_INDEP_NOPLL_BINSCAN.csv"
+      ],
+      "ok": false
+    },
+    {
+      "command": "py -3 -X utf8 .\\eval_massspec_blind_theta_poly_v1.py .\\out\\planeTheta_v6_4b_FAST_passfilter_peaks_INDEP_NOPLL_BINSCAN_sintest.csv MU_p21_q13 --cal_thetas 0 30 60 --test_thetas 10 20 --poly_deg 1",
+      "runner": "eval_massspec_blind_theta_poly_v1.py",
+      "runner_exists": false,
+      "inputs": [
+        "out/planeTheta_v6_4b_FAST_passfilter_peaks_INDEP_NOPLL_BINSCAN_sintest.csv"
+      ],
+      "missing_inputs": [
+        "out/planeTheta_v6_4b_FAST_passfilter_peaks_INDEP_NOPLL_BINSCAN_sintest.csv"
+      ],
+      "ok": false
+    },
+    {
+      "command": "py -3 .\\nova_mastereq_forward_kernel_BREATH_THREAD_fixedbyclaude.py --pack .\\nova_channels.json --kernel rt --k_rt 180 --A $A_WEAK --alpha $alpha_WEAK --n 0 --E0 1 --omega0_geom fixed --L0_km 810 --phi 1.57079632679 --zeta 0.05 --rho 2.8 --kappa_gate 0 --T0 1 --mu 0 --eta 0 --bin_shift_app 2 --bin_shift_dis 0 --breath_B 0.3 --breath_w0 0.0038785094488762877 --breath_gamma 0.2 --thread_C 1.0 --thread_w0 -1 --thread_gamma 0.2 --thread_weight_app 0 --thread_weight_dis 1 --out .\\out\\WEAK\\nova_BREATH_THREAD_test.csv",
+      "runner": "nova_mastereq_forward_kernel_BREATH_THREAD_fixedbyclaude.py",
+      "runner_exists": true,
+      "inputs": [
+        "nova_channels.json"
+      ],
+      "missing_inputs": [],
+      "ok": true
+    },
+    {
+      "command": "py -3 .\\nova_mastereq_forward_kernel_BREATH_THREAD_fixedbyclaude.py --pack .\\t2k_channels_real_approx.json --kernel rt --k_rt 180 --A $A_WEAK --alpha $alpha_WEAK --n 0 --E0 1 --omega0_geom fixed --L0_km 295 --phi 1.57079632679 --zeta 0.05 --rho 2.6 --kappa_gate 0 --T0 1 --mu 0 --eta 0 --bin_shift_app 0 --bin_shift_dis 0 --breath_B 0.3 --breath_w0 0.00387850944887629 --breath_gamma 0.2 --thread_C 1.0 --thread_w0 0.00387850944887629 --thread_gamma 0.2 --thread_weight_app 0 --thread_weight_dis 1 --out .\\out\\WEAK\\t2k_BREATH_THREAD_validation_APPROXREAL.csv",
+      "runner": "nova_mastereq_forward_kernel_BREATH_THREAD_fixedbyclaude.py",
+      "runner_exists": true,
+      "inputs": [
+        "t2k_channels_real_approx.json"
+      ],
+      "missing_inputs": [],
+      "ok": true
+    },
+    {
+      "command": "py -3 .\\nova_mastereq_forward_kernel_BREATH_THREAD_v2.py --pack .\\minos_channels.json --out NUL --kernel rt --k_rt 180 --A $A_WEAK --alpha $alpha_WEAK --n 0 --E0 1 --omega0_geom fixed --L0_km 810 --phi 1.57079632679 --zeta 0.05 --rho 2.6 --kappa_gate 0 --T0 1 --mu 0 --eta 0 --breath_B 0.3 --breath_w0 0.0038785 --breath_gamma 0.2 --thread_C 1.5 --thread_w0 -1 --thread_gamma 0.1 --thread_weight_app 0 --thread_weight_dis 1",
+      "runner": "nova_mastereq_forward_kernel_BREATH_THREAD_v2.py",
+      "runner_exists": true,
+      "inputs": [
+        "minos_channels.json"
+      ],
+      "missing_inputs": [],
+      "ok": true
+    },
+    {
+      "command": "py -3 .\\strong_sigma_tot_energy_scan_v2.py --data .\\data\\hepdata\\pdg_sigma_tot_clean_for_runner.csv --A $A_STRONG --env_mode eikonal --sqrts_ref_GeV 13000 --delta_geo_ref -1.315523 --c1_abs 0.725147 --template cos --out .\\out_sigmatot_GEO_Aneg003.csv --chi2_out .\\out_sigmatot_GEO_Aneg003_chi2.json",
+      "runner": "strong_sigma_tot_energy_scan_v2.py",
+      "runner_exists": true,
+      "inputs": [
+        "data/hepdata/pdg_sigma_tot_clean_for_runner.csv"
+      ],
+      "missing_inputs": [],
+      "ok": true
+    },
+    {
+      "command": "py -3 .\\strong_rho_energy_scan_v3.py --data .\\data\\hepdata\\pdg_rho_clean_for_runner.csv --channel both --A $A_STRONG --env_mode eikonal --sqrts_ref_GeV 13000 --delta_geo_ref -1.315523 --c1_abs 0.725147 --template cos --out .\\out_rho_GEO_eikonal_Aneg003.csv --chi2_out .\\out_rho_GEO_eikonal_Aneg003_chi2.json",
+      "runner": "strong_rho_energy_scan_v3.py",
+      "runner_exists": true,
+      "inputs": [
+        "data/hepdata/pdg_rho_clean_for_runner.csv"
+      ],
+      "missing_inputs": [],
+      "ok": true
+    },
+    {
+      "command": "py -3 .\\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py --pack .\\lep_bhabha_pack.json --cov total --baseline_csv .\\bhagen_cos09_v4_baseline_L0_Sp1.csv --baseline_col sm_pred_pb --baseline_group_col group_id --A 0 --alpha $alpha_EM --phi 1.57079632679 --geo_structure offdiag --geo_gen lam2 --omega0_geom fixed --L0_km 810 --zeta 0.05 --R_max 10 --t_ref_GeV 0.02 --shape_only --freeze_betas --beta_nonneg --out .\\out\\EM\\bhabha_total_A0.csv",
+      "runner": "em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py",
+      "runner_exists": true,
+      "inputs": [
+        "bhagen_cos09_v4_baseline_L0_Sp1.csv",
+        "lep_bhabha_pack.json"
+      ],
+      "missing_inputs": [],
+      "ok": true
+    },
+    {
+      "command": "py -3 .\\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py --pack .\\lep_bhabha_pack.json --cov total --baseline_csv .\\bhagen_cos09_v4_baseline_L0_Sp1.csv --baseline_col sm_pred_pb --baseline_group_col group_id --A $A_EM --alpha $alpha_EM --phi 1.57079632679 --geo_structure offdiag --geo_gen lam2 --omega0_geom fixed --L0_km 810 --zeta 0.05 --R_max 10 --t_ref_GeV 0.02 --shape_only --freeze_betas --beta_nonneg --out .\\out\\EM\\bhabha_total_A1e5.csv",
+      "runner": "em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py",
+      "runner_exists": true,
+      "inputs": [
+        "bhagen_cos09_v4_baseline_L0_Sp1.csv",
+        "lep_bhabha_pack.json"
+      ],
+      "missing_inputs": [],
+      "ok": true
+    },
+    {
+      "command": "py -3 .\\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py --pack .\\lep_bhabha_pack.json --cov total --baseline_csv .\\bhagen_cos09_v4_baseline_L0_Sp1.csv --baseline_col sm_pred_pb --baseline_group_col group_id --A $A_EM_NEG --alpha $alpha_EM --phi 1.57079632679 --geo_structure offdiag --geo_gen lam2 --omega0_geom fixed --L0_km 810 --zeta 0.05 --R_max 10 --t_ref_GeV 0.02 --shape_only --freeze_betas --beta_nonneg --out .\\out\\EM\\bhabha_total_Aneg1e5.csv",
+      "runner": "em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py",
+      "runner_exists": true,
+      "inputs": [
+        "bhagen_cos09_v4_baseline_L0_Sp1.csv",
+        "lep_bhabha_pack.json"
+      ],
+      "missing_inputs": [],
+      "ok": true
+    },
+    {
+      "command": "py -3 .\\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py --pack .\\lep_bhabha_pack.json --cov diag_total --baseline_csv .\\bhagen_cos09_v4_baseline_L0_Sp1.csv --baseline_col sm_pred_pb --baseline_group_col group_id --A 0 --alpha $alpha_EM --phi 1.57079632679 --geo_structure offdiag --geo_gen lam2 --omega0_geom fixed --L0_km 810 --zeta 0.05 --R_max 10 --t_ref_GeV 0.02 --shape_only --freeze_betas --beta_nonneg --out .\\out\\EM\\bhabha_diag_A0.csv",
+      "runner": "em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py",
+      "runner_exists": true,
+      "inputs": [
+        "bhagen_cos09_v4_baseline_L0_Sp1.csv",
+        "lep_bhabha_pack.json"
+      ],
+      "missing_inputs": [],
+      "ok": true
+    },
+    {
+      "command": "py -3 .\\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py --pack .\\lep_bhabha_pack.json --cov diag_total --baseline_csv .\\bhagen_cos09_v4_baseline_L0_Sp1.csv --baseline_col sm_pred_pb --baseline_group_col group_id --A $A_EM --alpha $alpha_EM --phi 1.57079632679 --geo_structure offdiag --geo_gen lam2 --omega0_geom fixed --L0_km 810 --zeta 0.05 --R_max 10 --t_ref_GeV 0.02 --shape_only --freeze_betas --beta_nonneg --out .\\out\\EM\\bhabha_diag_A1e5.csv",
+      "runner": "em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py",
+      "runner_exists": true,
+      "inputs": [
+        "bhagen_cos09_v4_baseline_L0_Sp1.csv",
+        "lep_bhabha_pack.json"
+      ],
+      "missing_inputs": [],
+      "ok": true
+    },
+    {
+      "command": "py -3 .\\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py --pack .\\lep_bhabha_pack.json --cov diag_total --baseline_csv .\\bhagen_cos09_v4_baseline_L0_Sp1.csv --baseline_col sm_pred_pb --baseline_group_col group_id --A $A_EM_NEG --alpha $alpha_EM --phi 1.57079632679 --geo_structure offdiag --geo_gen lam2 --omega0_geom fixed --L0_km 810 --zeta 0.05 --R_max 10 --t_ref_GeV 0.02 --shape_only --freeze_betas --beta_nonneg --out .\\out\\EM\\bhabha_diag_Aneg1e5.csv",
+      "runner": "em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py",
+      "runner_exists": true,
+      "inputs": [
+        "bhagen_cos09_v4_baseline_L0_Sp1.csv",
+        "lep_bhabha_pack.json"
+      ],
+      "missing_inputs": [],
+      "ok": true
+    },
+    {
+      "command": "py -3 .\\em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py --pack .\\lep_mumu_pack.json --cov total --A 0 --alpha $alpha_EM --phi 1.57079632679 --geo_structure offdiag --geo_gen lam2 --omega0_geom fixed --L0_km 810 --zeta 0.05 --R_max 10 --t_ref_GeV 0.02 --shape_only --freeze_betas --beta_nonneg --require_positive --out .\\out\\EM\\mumu_total_A0.csv",
+      "runner": "em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py",
+      "runner_exists": true,
+      "inputs": [
+        "lep_mumu_pack.json"
+      ],
+      "missing_inputs": [],
+      "ok": true
+    },
+    {
+      "command": "py -3 .\\em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py --pack .\\lep_mumu_pack.json --cov total --A $A_EM --alpha $alpha_EM --phi 1.57079632679 --geo_structure offdiag --geo_gen lam2 --omega0_geom fixed --L0_km 810 --zeta 0.05 --R_max 10 --t_ref_GeV 0.02 --shape_only --freeze_betas --beta_nonneg --require_positive --out .\\out\\EM\\mumu_total_A1e5.csv",
+      "runner": "em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py",
+      "runner_exists": true,
+      "inputs": [
+        "lep_mumu_pack.json"
+      ],
+      "missing_inputs": [],
+      "ok": true
+    },
+    {
+      "command": "py -3 .\\em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py --pack .\\lep_mumu_pack.json --cov diag_total --A $A_EM --alpha $alpha_EM --phi 1.57079632679 --geo_structure offdiag --geo_gen lam2 --omega0_geom fixed --L0_km 810 --zeta 0.05 --R_max 10 --t_ref_GeV 0.02 --shape_only --freeze_betas --beta_nonneg --require_positive --out .\\out\\EM\\mumu_diag_A1e5.csv",
+      "runner": "em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py",
+      "runner_exists": true,
+      "inputs": [
+        "lep_mumu_pack.json"
+      ],
+      "missing_inputs": [],
+      "ok": true
+    },
+    {
+      "command": "py -3 .\\improved_simulation_STABLE_v17_xy_quadrupole_drive_ANISO_PHYS_TENSOR_PHYS_FIXED4.py --out_csv out\\gate0_split\\PLUS.csv --nx 6 --dt 0.00005 --duration 0.2 --drive_pattern quad_plus_xy --readout_split x",
+      "runner": "improved_simulation_STABLE_v17_xy_quadrupole_drive_ANISO_PHYS_TENSOR_PHYS_FIXED4.py",
+      "runner_exists": true,
+      "inputs": [],
+      "missing_inputs": [],
+      "ok": true
+    },
+    {
+      "command": "py -3 .\\improved_simulation_STABLE_v17_xy_quadrupole_drive_ANISO_PHYS_TENSOR_PHYS_FIXED4.py --out_csv out\\gate0_split\\CROSS.csv --nx 6 --dt 0.00005 --duration 0.2 --drive_pattern quad_cross_xy --readout_split x",
+      "runner": "improved_simulation_STABLE_v17_xy_quadrupole_drive_ANISO_PHYS_TENSOR_PHYS_FIXED4.py",
+      "runner_exists": true,
+      "inputs": [],
+      "missing_inputs": [],
+      "ok": true
+    },
+    {
+      "command": "py -3 dm_holdout_cv_thread_STIFFGATE.py --points_csv .\\data\\sparc\\sparc_points.csv --model geo_add_const --g0 1.2e-10 --env_model thread --thread_mode down --thread_q 0.6 --thread_xi 0.5 --thread_norm median --thread_gate_p 4 --thread_k2 1.0 --thread_calibrate_from_galaxy --gal_hi_p 99.9 --gal_gate_eps 1e-6 --thread_Sc_factor 10 --A_min $A_DM --A_max $A_DM --nA 1 --alpha_min $alpha_DM --alpha_max $alpha_DM --nAlpha 1 --kfold 5 --seed 2026 --out_csv .\\out\\dm_cv_thread_STIFFGATE_FIXED_A01778_a0001_seed2026_k5.csv",
+      "runner": "dm_holdout_cv_thread_STIFFGATE.py",
+      "runner_exists": true,
+      "inputs": [
+        "data/sparc/sparc_points.csv"
+      ],
+      "missing_inputs": [],
+      "ok": true
+    },
+    {
+      "command": "py -3 dm_holdout_cv_thread.py --points_csv .\\data\\sparc\\sparc_points.csv --model geo_add_const --g0 1.2e-10 --env_model none --A_min $A_DM --A_max $A_DM --nA 1 --alpha_min $alpha_DM --alpha_max $alpha_DM --nAlpha 1 --kfold 5 --seed 2026 --out_csv .\\out\\dm_cv_NONE_FIXED_A01778_a0001_seed2026_k5.csv",
+      "runner": "dm_holdout_cv_thread.py",
+      "runner_exists": true,
+      "inputs": [
+        "data/sparc/sparc_points.csv"
+      ],
+      "missing_inputs": [],
+      "ok": true
+    }
+  ]
+}

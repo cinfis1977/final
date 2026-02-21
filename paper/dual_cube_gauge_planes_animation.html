@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wire-Based Geometric Model — Dual Cube with Gauge Plane Stack</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #f0f2f5;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+  }
+  #canvas-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+  }
+  canvas { display: block; }
+
+  .title-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    padding: 18px 28px;
+    background: linear-gradient(180deg, rgba(240,242,245,0.97) 0%, rgba(240,242,245,0) 100%);
+    pointer-events: none;
+    z-index: 10;
+  }
+  .title-bar h1 {
+    font-size: 19px;
+    font-weight: 700;
+    color: #1a2332;
+    letter-spacing: -0.3px;
+  }
+  .title-bar p {
+    font-size: 12.5px;
+    color: #5a6a7a;
+    margin-top: 4px;
+    max-width: 700px;
+    line-height: 1.5;
+  }
+
+  .legend {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(14px);
+    border-radius: 12px;
+    padding: 14px 18px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.1);
+    z-index: 10;
+    pointer-events: none;
+    max-width: 310px;
+  }
+  .legend h3 {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #1a2332;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .legend-section {
+    margin-bottom: 10px;
+  }
+  .legend-section:last-child { margin-bottom: 0; }
+  .legend-section-title {
+    font-size: 10px;
+    font-weight: 600;
+    color: #8a96a4;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 5px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 5px;
+    font-size: 11.5px;
+    color: #2a3a4a;
+    line-height: 1.35;
+  }
+  .legend-item:last-child { margin-bottom: 0; }
+  .legend-swatch {
+    width: 22px;
+    height: 5px;
+    border-radius: 2.5px;
+    flex-shrink: 0;
+  }
+  .legend-plane {
+    width: 22px;
+    height: 12px;
+    border-radius: 2px;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.12);
+  }
+  .legend-circle {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .legend-divider {
+    height: 1px;
+    background: #e2e6ec;
+    margin: 8px 0;
+  }
+
+  .controls-hint {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(14px);
+    border-radius: 10px;
+    padding: 10px 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    z-index: 10;
+    pointer-events: none;
+    font-size: 11px;
+    color: #6a7a8a;
+    line-height: 1.7;
+  }
+
+  .equation-box {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(14px);
+    border-radius: 10px;
+    padding: 10px 18px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    z-index: 10;
+    pointer-events: none;
+    font-size: 13px;
+    color: #2a3a4a;
+    font-style: italic;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+  }
+  .equation-box .eq-label {
+    font-size: 9.5px;
+    color: #8a96a4;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 3px;
+  }
+</style>
+</head>
+<body>
+
+<div id="canvas-container">
+  <div class="title-bar">
+    <h1>Wire-Based Geometric Model — Dual Cube with Gauge-Plane Stack</h1>
+    <p>Two adjacent unit cells connected by 16 junction threads, with 4 conditioning gauge planes at the interface: Lock/Ordering (LP), Routing/Localization (RL), φ-gate (TT2), and κ-conditioning (EM/QED).</p>
+  </div>
+
+  <div class="legend">
+    <h3>Legend</h3>
+    <div class="legend-section">
+      <div class="legend-section-title">Structure</div>
+      <div class="legend-item">
+        <div class="legend-swatch" style="background: #5a7a9a;"></div>
+        <span>Threaded Cube Edges</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-swatch" style="background: #7a8fa5;"></div>
+        <span>Inner Connecting Threads</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-swatch" style="background: #b06040;"></div>
+        <span>Inter-Cube Junction Threads (×16)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-circle" style="background: radial-gradient(circle at 35% 35%, #fff, #c8daea, #8aacca);"></div>
+        <span>Central Amorphous Bubble</span>
+      </div>
+    </div>
+    <div class="legend-divider"></div>
+    <div class="legend-section">
+      <div class="legend-section-title">Gauge-Plane Stack</div>
+      <div class="legend-item">
+        <div class="legend-plane" style="background: rgba(80,160,255,0.35);"></div>
+        <span><b>LP</b> (τ) &nbsp;ordering / reference</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-plane" style="background: rgba(60,200,140,0.35);"></div>
+        <span><b>RL</b> (u,v) &nbsp;addressed plane cell</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-plane" style="background: rgba(220,160,50,0.35);"></div>
+        <span><b>TT2</b> (φ) &nbsp;gate factor g(φ<sub>cell</sub>)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-plane" style="background: rgba(200,70,100,0.35);"></div>
+        <span><b>EM/QED</b> (κ) &nbsp;stiffness / conditioning</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="equation-box">
+    <span class="eq-label">Junction effective operator</span>
+    U<sub>eff</sub> = J<sub>κ</sub>(c) · e<sup>−ΓΔt</sup> e<sup>iΩΔt</sup> · g(φ<sub>c</sub>) · U
+  </div>
+
+  <div class="controls-hint">
+    🖱 Drag to rotate<br>
+    Scroll to zoom<br>
+    Right-drag to pan
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ─── Scene Setup ───
+const container = document.getElementById('canvas-container');
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf0f2f5);
+
+const camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 100);
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.shadowMap.enabled = true;
+container.appendChild(renderer.domElement);
+
+// ─── Lights ───
+scene.add(new THREE.AmbientLight(0xc8d8e8, 0.65));
+const dirLight = new THREE.DirectionalLight(0xffffff, 0.85);
+dirLight.position.set(5, 8, 6);
+scene.add(dirLight);
+const dirLight2 = new THREE.DirectionalLight(0x8aaace, 0.35);
+dirLight2.position.set(-4, 3, -5);
+scene.add(dirLight2);
+const dirLight3 = new THREE.DirectionalLight(0xffeedd, 0.2);
+dirLight3.position.set(0, -3, 4);
+scene.add(dirLight3);
+
+// ─── Materials ───
+const edgeMat = new THREE.MeshStandardMaterial({ color: 0x5a7a9a, roughness: 0.45, metalness: 0.5 });
+const innerThreadMat = new THREE.MeshStandardMaterial({ color: 0x7a8fa5, roughness: 0.5, metalness: 0.4 });
+const interCubeMat = new THREE.MeshStandardMaterial({ color: 0xb06040, roughness: 0.45, metalness: 0.45 });
+const bubbleMat = new THREE.MeshPhysicalMaterial({
+  color: 0xc8daea, roughness: 0.1, metalness: 0.0,
+  transmission: 0.55, thickness: 0.8,
+  clearcoat: 1.0, clearcoatRoughness: 0.05,
+  transparent: true, opacity: 0.72
+});
+
+// Gauge plane materials
+function makeGaugePlaneMat(color, opacity) {
+  return new THREE.MeshPhysicalMaterial({
+    color: color,
+    transparent: true,
+    opacity: opacity,
+    side: THREE.DoubleSide,
+    roughness: 0.15,
+    metalness: 0.0,
+    depthWrite: false,
+  });
+}
+
+const lpMat = makeGaugePlaneMat(0x50a0ff, 0.18);
+const rlMat = makeGaugePlaneMat(0x3cc88c, 0.20);
+const tt2Mat = makeGaugePlaneMat(0xdca032, 0.18);
+const kapMat = makeGaugePlaneMat(0xc84664, 0.20);
+
+// Grid line materials
+function makeGridLineMat(color) {
+  return new THREE.LineBasicMaterial({ color: color, transparent: true, opacity: 0.35, depthWrite: false });
+}
+
+// ─── Helpers ───
+function createTwistedTube(start, end, radius, segments, twistFactor) {
+  const dir = new THREE.Vector3().subVectors(end, start);
+  const len = dir.length();
+  const points = [];
+  const numPts = segments || 32;
+  for (let i = 0; i <= numPts; i++) {
+    const t = i / numPts;
+    const p = new THREE.Vector3().lerpVectors(start, end, t);
+    const twist = twistFactor || 0.015;
+    const angle = t * Math.PI * 8;
+    const perp1 = new THREE.Vector3(-dir.y, dir.x, 0).normalize();
+    if (perp1.length() < 0.01) perp1.set(0, 0, 1);
+    const perp2 = new THREE.Vector3().crossVectors(dir, perp1).normalize();
+    p.addScaledVector(perp1, Math.sin(angle) * twist * len);
+    p.addScaledVector(perp2, Math.cos(angle) * twist * len);
+    points.push(p);
+  }
+  const curve = new THREE.CatmullRomCurve3(points);
+  return new THREE.TubeGeometry(curve, numPts, radius, 8, false);
+}
+
+function createRopeEdge(start, end, radius, mat) {
+  const group = new THREE.Group();
+  const dir = new THREE.Vector3().subVectors(end, start);
+  const perp1 = new THREE.Vector3();
+  if (Math.abs(dir.x) < 0.9) perp1.crossVectors(dir, new THREE.Vector3(1,0,0)).normalize();
+  else perp1.crossVectors(dir, new THREE.Vector3(0,1,0)).normalize();
+  const perp2 = new THREE.Vector3().crossVectors(dir, perp1).normalize();
+  const strandOffset = radius * 0.35;
+  for (let s = 0; s < 3; s++) {
+    const angle = (s / 3) * Math.PI * 2;
+    const offsetVec = new THREE.Vector3()
+      .addScaledVector(perp1, Math.cos(angle) * strandOffset)
+      .addScaledVector(perp2, Math.sin(angle) * strandOffset);
+    const s1 = new THREE.Vector3().addVectors(start, offsetVec);
+    const s2 = new THREE.Vector3().addVectors(end, offsetVec);
+    const geom = createTwistedTube(s1, s2, radius * 0.35, 40, 0.02);
+    group.add(new THREE.Mesh(geom, mat));
+  }
+  return group;
+}
+
+function createThread(start, end, radius, mat) {
+  const geom = createTwistedTube(start, end, radius, 28, 0.012);
+  return new THREE.Mesh(geom, mat);
+}
+
+function createBubble(center, radius) {
+  const geom = new THREE.SphereGeometry(radius, 32, 32);
+  const pos = geom.attributes.position;
+  for (let i = 0; i < pos.count; i++) {
+    const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
+    const noise = 1.0 + 0.15 * Math.sin(x*5) * Math.cos(y*4) * Math.sin(z*6)
+                + 0.08 * Math.cos(x*8 + y*3) * Math.sin(z*7);
+    pos.setXYZ(i, x * noise, y * noise, z * noise);
+  }
+  geom.computeVertexNormals();
+  const mesh = new THREE.Mesh(geom, bubbleMat);
+  mesh.position.copy(center);
+  return mesh;
+}
+
+// ─── Cube vertices ───
+const S = 1.2;
+function cubeVertices(cx, cy, cz) {
+  return [
+    new THREE.Vector3(cx-S, cy-S, cz-S), new THREE.Vector3(cx+S, cy-S, cz-S),
+    new THREE.Vector3(cx+S, cy+S, cz-S), new THREE.Vector3(cx-S, cy+S, cz-S),
+    new THREE.Vector3(cx-S, cy-S, cz+S), new THREE.Vector3(cx+S, cy-S, cz+S),
+    new THREE.Vector3(cx+S, cy+S, cz+S), new THREE.Vector3(cx-S, cy+S, cz+S),
+  ];
+}
+
+const cubeEdgeIndices = [
+  [0,1],[1,2],[2,3],[3,0],
+  [4,5],[5,6],[6,7],[7,4],
+  [0,4],[1,5],[2,6],[3,7],
+];
+
+function buildCube(cx, cy, cz) {
+  const group = new THREE.Group();
+  const verts = cubeVertices(cx, cy, cz);
+  const center = new THREE.Vector3(cx, cy, cz);
+  for (const [i, j] of cubeEdgeIndices) {
+    group.add(createRopeEdge(verts[i], verts[j], 0.045, edgeMat));
+  }
+  for (let i = 0; i < 8; i++) {
+    group.add(createThread(verts[i], center, 0.018, innerThreadMat));
+  }
+  group.add(createBubble(center, 0.32));
+  group.userData.vertices = verts;
+  group.userData.center = center;
+  return group;
+}
+
+// ─── Place two cubes ───
+const gap = 1.0;
+const leftCX = -(S + gap / 2);
+const rightCX = (S + gap / 2);
+
+const leftCube = buildCube(leftCX, 0, 0);
+const rightCube = buildCube(rightCX, 0, 0);
+scene.add(leftCube);
+scene.add(rightCube);
+
+// ─── 16 Inter-cube junction threads ───
+const leftVerts = leftCube.userData.vertices;
+const rightVerts = rightCube.userData.vertices;
+const leftFaceIndices = [1, 2, 5, 6];
+const rightFaceIndices = [0, 3, 4, 7];
+
+const interGroup = new THREE.Group();
+for (const li of leftFaceIndices) {
+  for (const ri of rightFaceIndices) {
+    interGroup.add(createThread(leftVerts[li], rightVerts[ri], 0.014, interCubeMat));
+  }
+}
+scene.add(interGroup);
+
+// ─── GAUGE PLANE STACK ───
+const gaugeGroup = new THREE.Group();
+const planeSpacing = 0.12;
+const planeWidth = S * 2.5;  // extend beyond cube outlines
+const planeHeight = S * 2.5;
+const junctionX = 0; // midpoint between cubes
+
+// Plane configs: [material, xOffset, name, gridColor]
+const planeConfigs = [
+  { mat: lpMat, offset: -1.5 * planeSpacing, name: 'LP', gridColor: 0x50a0ff, type: 'lp' },
+  { mat: rlMat, offset: -0.5 * planeSpacing, name: 'RL', gridColor: 0x3cc88c, type: 'rl' },
+  { mat: tt2Mat, offset: 0.5 * planeSpacing, name: 'TT2', gridColor: 0xdca032, type: 'tt2' },
+  { mat: kapMat, offset: 1.5 * planeSpacing, name: 'KAP', gridColor: 0xc84664, type: 'kap' },
+];
+
+// Create grid lines on a plane
+function createGridOnPlane(xPos, width, height, divisions, color, type) {
+  const group = new THREE.Group();
+  const mat = makeGridLineMat(color);
+  const halfW = width / 2;
+  const halfH = height / 2;
+
+  // Horizontal lines (along Z at different Y)
+  for (let i = 0; i <= divisions; i++) {
+    const t = -halfH + (height / divisions) * i;
+    const pts = [new THREE.Vector3(xPos, t, -halfW), new THREE.Vector3(xPos, t, halfW)];
+    const geom = new THREE.BufferGeometry().setFromPoints(pts);
+    group.add(new THREE.Line(geom, mat));
+  }
+  // Vertical lines (along Y at different Z)
+  for (let i = 0; i <= divisions; i++) {
+    const t = -halfW + (width / divisions) * i;
+    const pts = [new THREE.Vector3(xPos, -halfH, t), new THREE.Vector3(xPos, halfH, t)];
+    const geom = new THREE.BufferGeometry().setFromPoints(pts);
+    group.add(new THREE.Line(geom, mat));
+  }
+
+  // RL plane: highlight one cell
+  if (type === 'rl') {
+    const cellSize = width / divisions;
+    // Highlight cell at (u=2, v=2) for example
+    const cellU = 2, cellV = 2;
+    const cy = -halfH + cellV * cellSize;
+    const cz = -halfW + cellU * cellSize;
+    const highlightMat = new THREE.MeshBasicMaterial({
+      color: 0x3cc88c, transparent: true, opacity: 0.35, side: THREE.DoubleSide, depthWrite: false
+    });
+    const hlGeom = new THREE.PlaneGeometry(cellSize * 0.95, cellSize * 0.95);
+    const hlMesh = new THREE.Mesh(hlGeom, highlightMat);
+    hlMesh.rotation.y = Math.PI / 2;
+    hlMesh.position.set(xPos + 0.001, cy + cellSize/2, cz + cellSize/2);
+    group.add(hlMesh);
+
+    // Small "(u,v)" text indicator - use a bright border instead
+    const borderMat = new THREE.LineBasicMaterial({ color: 0x28b070, linewidth: 2 });
+    const bpts = [
+      new THREE.Vector3(xPos + 0.002, cy, cz),
+      new THREE.Vector3(xPos + 0.002, cy + cellSize, cz),
+      new THREE.Vector3(xPos + 0.002, cy + cellSize, cz + cellSize),
+      new THREE.Vector3(xPos + 0.002, cy, cz + cellSize),
+      new THREE.Vector3(xPos + 0.002, cy, cz),
+    ];
+    const borderGeom = new THREE.BufferGeometry().setFromPoints(bpts);
+    group.add(new THREE.Line(borderGeom, borderMat));
+  }
+
+  return group;
+}
+
+// Create small symbol on plane (circle for TT2/phi, tau for LP, kappa for KAP)
+function createPlaneSymbol(xPos, type, color) {
+  const group = new THREE.Group();
+
+  if (type === 'tt2') {
+    // Phasor circle
+    const circlePoints = [];
+    const r = 0.25;
+    for (let i = 0; i <= 64; i++) {
+      const ang = (i / 64) * Math.PI * 2;
+      circlePoints.push(new THREE.Vector3(xPos + 0.003, Math.sin(ang) * r, Math.cos(ang) * r));
+    }
+    const circGeom = new THREE.BufferGeometry().setFromPoints(circlePoints);
+    const circMat = new THREE.LineBasicMaterial({ color: color, transparent: true, opacity: 0.5 });
+    group.add(new THREE.Line(circGeom, circMat));
+
+    // Phasor arrow (line from center at angle)
+    const arrowPts = [
+      new THREE.Vector3(xPos + 0.003, 0, 0),
+      new THREE.Vector3(xPos + 0.003, r * 0.85 * Math.sin(Math.PI/4), r * 0.85 * Math.cos(Math.PI/4)),
+    ];
+    const arrGeom = new THREE.BufferGeometry().setFromPoints(arrowPts);
+    group.add(new THREE.Line(arrGeom, circMat));
+  }
+
+  if (type === 'kap') {
+    // Thicker border frame on the plane
+    const borderR = 0.6;
+    const bMat = new THREE.LineBasicMaterial({ color: color, transparent: true, opacity: 0.4 });
+    const bpts = [
+      new THREE.Vector3(xPos + 0.003, -borderR, -borderR),
+      new THREE.Vector3(xPos + 0.003, borderR, -borderR),
+      new THREE.Vector3(xPos + 0.003, borderR, borderR),
+      new THREE.Vector3(xPos + 0.003, -borderR, borderR),
+      new THREE.Vector3(xPos + 0.003, -borderR, -borderR),
+    ];
+    const bGeom = new THREE.BufferGeometry().setFromPoints(bpts);
+    group.add(new THREE.Line(bGeom, bMat));
+    // Inner border
+    const innerR = 0.55;
+    const ipts = [
+      new THREE.Vector3(xPos + 0.004, -innerR, -innerR),
+      new THREE.Vector3(xPos + 0.004, innerR, -innerR),
+      new THREE.Vector3(xPos + 0.004, innerR, innerR),
+      new THREE.Vector3(xPos + 0.004, -innerR, innerR),
+      new THREE.Vector3(xPos + 0.004, -innerR, -innerR),
+    ];
+    const iGeom = new THREE.BufferGeometry().setFromPoints(ipts);
+    group.add(new THREE.Line(iGeom, bMat));
+  }
+
+  return group;
+}
+
+// Build each gauge plane
+planeConfigs.forEach(cfg => {
+  const xPos = junctionX + cfg.offset;
+
+  // Translucent plane
+  const planeGeom = new THREE.PlaneGeometry(planeHeight, planeWidth);
+  const planeMesh = new THREE.Mesh(planeGeom, cfg.mat);
+  planeMesh.rotation.y = Math.PI / 2;
+  planeMesh.position.set(xPos, 0, 0);
+  gaugeGroup.add(planeMesh);
+
+  // Subtle edge border
+  const edgeBorderMat = new THREE.LineBasicMaterial({
+    color: cfg.gridColor, transparent: true, opacity: 0.3
+  });
+  const hw = planeWidth / 2;
+  const hh = planeHeight / 2;
+  const borderPts = [
+    new THREE.Vector3(xPos, -hh, -hw),
+    new THREE.Vector3(xPos, hh, -hw),
+    new THREE.Vector3(xPos, hh, hw),
+    new THREE.Vector3(xPos, -hh, hw),
+    new THREE.Vector3(xPos, -hh, -hw),
+  ];
+  const borderGeom = new THREE.BufferGeometry().setFromPoints(borderPts);
+  gaugeGroup.add(new THREE.Line(borderGeom, edgeBorderMat));
+
+  // Grid
+  const divisions = cfg.type === 'lp' ? 8 : cfg.type === 'rl' ? 6 : 0;
+  if (divisions > 0) {
+    gaugeGroup.add(createGridOnPlane(xPos, planeWidth, planeHeight, divisions, cfg.gridColor, cfg.type));
+  }
+
+  // Symbols
+  gaugeGroup.add(createPlaneSymbol(xPos, cfg.type, cfg.gridColor));
+});
+
+scene.add(gaugeGroup);
+
+// ─── CSS2D Labels (using canvas-based sprite labels) ───
+function createTextSprite(text, color, fontSize, bgColor) {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  const dpr = 2;
+  canvas.width = 512 * dpr;
+  canvas.height = 64 * dpr;
+  ctx.scale(dpr, dpr);
+
+  ctx.font = `500 ${fontSize || 13}px 'Segoe UI', system-ui, sans-serif`;
+
+  const metrics = ctx.measureText(text);
+  const textW = metrics.width;
+  const padding = 8;
+
+  if (bgColor) {
+    ctx.fillStyle = bgColor;
+    const rx = 256 - textW/2 - padding;
+    const ry = 16;
+    const rw = textW + padding * 2;
+    const rh = 28;
+    const rad = 4;
+    ctx.beginPath();
+    ctx.moveTo(rx + rad, ry);
+    ctx.lineTo(rx + rw - rad, ry);
+    ctx.quadraticCurveTo(rx + rw, ry, rx + rw, ry + rad);
+    ctx.lineTo(rx + rw, ry + rh - rad);
+    ctx.quadraticCurveTo(rx + rw, ry + rh, rx + rw - rad, ry + rh);
+    ctx.lineTo(rx + rad, ry + rh);
+    ctx.quadraticCurveTo(rx, ry + rh, rx, ry + rh - rad);
+    ctx.lineTo(rx, ry + rad);
+    ctx.quadraticCurveTo(rx, ry, rx + rad, ry);
+    ctx.fill();
+  }
+
+  ctx.fillStyle = color || '#2a3a4a';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(text, 256, 32);
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.minFilter = THREE.LinearFilter;
+  const spriteMat = new THREE.SpriteMaterial({
+    map: texture, transparent: true, depthWrite: false, depthTest: false
+  });
+  const sprite = new THREE.Sprite(spriteMat);
+  sprite.scale.set(3.2, 0.4, 1);
+  return sprite;
+}
+
+// Create leader line from label to plane edge
+function createLeaderLine(start, end, color) {
+  const mat = new THREE.LineBasicMaterial({
+    color: color, transparent: true, opacity: 0.5, depthWrite: false
+  });
+  const pts = [start.clone(), end.clone()];
+  const geom = new THREE.BufferGeometry().setFromPoints(pts);
+  return new THREE.Line(geom, mat);
+}
+
+// Label configs
+const labelOffset = S * 1.65;
+const labels = [
+  {
+    text: 'LP: global lock / ordering (τ)',
+    color: '#3a80d0',
+    planeIdx: 0,
+    side: 'top',
+    y: labelOffset,
+    z: -0.8,
+    bgColor: 'rgba(80,160,255,0.12)'
+  },
+  {
+    text: 'RL: plane-cell addressing (u,v)',
+    color: '#28a068',
+    planeIdx: 1,
+    side: 'top',
+    y: labelOffset,
+    z: 0.5,
+    bgColor: 'rgba(60,200,140,0.12)'
+  },
+  {
+    text: 'TT2: φ-gate  g(φ_cell)',
+    color: '#b88020',
+    planeIdx: 2,
+    side: 'bottom',
+    y: -labelOffset,
+    z: -0.5,
+    bgColor: 'rgba(220,160,50,0.12)'
+  },
+  {
+    text: 'EM/QED: κ-conditioning (junction stiffness)',
+    color: '#a03850',
+    planeIdx: 3,
+    side: 'bottom',
+    y: -labelOffset,
+    z: 0.8,
+    bgColor: 'rgba(200,70,100,0.12)'
+  },
+];
+
+const labelsGroup = new THREE.Group();
+
+labels.forEach(cfg => {
+  const pc = planeConfigs[cfg.planeIdx];
+  const planeX = junctionX + pc.offset;
+
+  // Label sprite
+  const sprite = createTextSprite(cfg.text, cfg.color, 12.5, cfg.bgColor);
+  const labelPos = new THREE.Vector3(planeX, cfg.y, cfg.z);
+  sprite.position.copy(labelPos);
+  labelsGroup.add(sprite);
+
+  // Leader line from label to plane edge
+  const planeEdgeY = cfg.side === 'top' ? S * 1.2 : -S * 1.2;
+  const endPt = new THREE.Vector3(planeX, planeEdgeY, cfg.z * 0.3);
+  labelsGroup.add(createLeaderLine(labelPos, endPt, pc.gridColor));
+
+  // Small dot at plane edge
+  const dotGeom = new THREE.SphereGeometry(0.025, 8, 8);
+  const dotMat = new THREE.MeshBasicMaterial({ color: pc.gridColor });
+  const dot = new THREE.Mesh(dotGeom, dotMat);
+  dot.position.copy(endPt);
+  labelsGroup.add(dot);
+});
+
+scene.add(labelsGroup);
+
+// ─── Small vertex dots at junction face vertices ───
+const vertexDotGroup = new THREE.Group();
+const dotGeo = new THREE.SphereGeometry(0.04, 12, 12);
+const dotMatL = new THREE.MeshStandardMaterial({ color: 0x5a7a9a, roughness: 0.3, metalness: 0.6 });
+const dotMatR = new THREE.MeshStandardMaterial({ color: 0x5a7a9a, roughness: 0.3, metalness: 0.6 });
+
+for (const li of leftFaceIndices) {
+  const m = new THREE.Mesh(dotGeo, dotMatL);
+  m.position.copy(leftVerts[li]);
+  vertexDotGroup.add(m);
+}
+for (const ri of rightFaceIndices) {
+  const m = new THREE.Mesh(dotGeo, dotMatR);
+  m.position.copy(rightVerts[ri]);
+  vertexDotGroup.add(m);
+}
+scene.add(vertexDotGroup);
+
+// ─── Orbit Controls ───
+let isDragging = false, isPanning = false;
+let prevMouse = { x: 0, y: 0 };
+let spherical = { theta: -0.3, phi: Math.PI / 2.8, radius: 8.5 };
+let panOffset = new THREE.Vector3(0, 0.2, 0);
+const target = new THREE.Vector3(0, 0, 0);
+
+function updateCamera() {
+  const x = spherical.radius * Math.sin(spherical.phi) * Math.sin(spherical.theta);
+  const y = spherical.radius * Math.cos(spherical.phi);
+  const z = spherical.radius * Math.sin(spherical.phi) * Math.cos(spherical.theta);
+  camera.position.set(x + panOffset.x, y + panOffset.y, z + panOffset.z);
+  camera.lookAt(target.x + panOffset.x, target.y + panOffset.y, target.z + panOffset.z);
+}
+updateCamera();
+
+renderer.domElement.addEventListener('mousedown', (e) => {
+  if (e.button === 0) isDragging = true;
+  if (e.button === 2) isPanning = true;
+  prevMouse = { x: e.clientX, y: e.clientY };
+  autoRotate = false;
+});
+renderer.domElement.addEventListener('mousemove', (e) => {
+  const dx = e.clientX - prevMouse.x;
+  const dy = e.clientY - prevMouse.y;
+  if (isDragging) {
+    spherical.theta -= dx * 0.005;
+    spherical.phi = Math.max(0.1, Math.min(Math.PI - 0.1, spherical.phi + dy * 0.005));
+    updateCamera();
+  }
+  if (isPanning) {
+    const right = new THREE.Vector3();
+    camera.getWorldDirection(new THREE.Vector3());
+    right.crossVectors(camera.up, new THREE.Vector3().subVectors(camera.position, target)).normalize();
+    panOffset.addScaledVector(right, -dx * 0.005);
+    panOffset.addScaledVector(camera.up, dy * 0.005);
+    updateCamera();
+  }
+  prevMouse = { x: e.clientX, y: e.clientY };
+});
+window.addEventListener('mouseup', () => { isDragging = false; isPanning = false; });
+renderer.domElement.addEventListener('contextmenu', (e) => e.preventDefault());
+renderer.domElement.addEventListener('wheel', (e) => {
+  spherical.radius = Math.max(3, Math.min(20, spherical.radius + e.deltaY * 0.005));
+  updateCamera();
+});
+
+// Touch
+let touchStartDist = 0;
+renderer.domElement.addEventListener('touchstart', (e) => {
+  autoRotate = false;
+  if (e.touches.length === 1) {
+    isDragging = true;
+    prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  } else if (e.touches.length === 2) {
+    touchStartDist = Math.hypot(
+      e.touches[0].clientX - e.touches[1].clientX,
+      e.touches[0].clientY - e.touches[1].clientY
+    );
+  }
+});
+renderer.domElement.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+  if (e.touches.length === 1 && isDragging) {
+    const dx = e.touches[0].clientX - prevMouse.x;
+    const dy = e.touches[0].clientY - prevMouse.y;
+    spherical.theta -= dx * 0.005;
+    spherical.phi = Math.max(0.1, Math.min(Math.PI - 0.1, spherical.phi + dy * 0.005));
+    updateCamera();
+    prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  } else if (e.touches.length === 2) {
+    const dist = Math.hypot(
+      e.touches[0].clientX - e.touches[1].clientX,
+      e.touches[0].clientY - e.touches[1].clientY
+    );
+    spherical.radius = Math.max(3, Math.min(20, spherical.radius - (dist - touchStartDist) * 0.02));
+    touchStartDist = dist;
+    updateCamera();
+  }
+}, { passive: false });
+renderer.domElement.addEventListener('touchend', () => { isDragging = false; });
+
+// ─── Slow auto-rotation ───
+let autoRotate = true;
+
+// ─── Render Loop ───
+function animate() {
+  requestAnimationFrame(animate);
+  if (autoRotate) {
+    spherical.theta += 0.0015;
+    updateCamera();
+  }
+
+  // Make labels always face camera
+  labelsGroup.children.forEach(child => {
+    if (child.isSprite) {
+      // Sprites auto-face camera
+    }
+  });
+
+  renderer.render(scene, camera);
+}
+animate();
+
+// ─── Resize ───
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
+</body>
+</html>
