@@ -122,3 +122,30 @@ References
   - If the sector produces rapidly varying spatial structure (large $\omega$), ensure integrator step size is small enough to resolve the modulation or prefer an adaptive integrator.
 
 - Addendum: the current toy implementation in `integration_artifacts/mastereq/dm_sector.py` follows these conventions exactly — see `dm_density_to_amplitude`, `make_dm_mass_modulation`, and `make_dm_scattering_damping` for the concrete code mapping.
+
+**LIGO / Gravitational sector (added)**
+
+- Motivation: gravitational waves or local variations in the metric can be represented in toy models as tiny, spatially dependent modifications to the effective neutrino mass-squared matrix. The code provides a minimal mapping so that gravitational-sector contributions can be registered as mass-basis or flavor-basis terms.
+
+- Toy mass-basis modulation (eV^2 units):
+  $$\delta M^2_{\rm LIGO,mass}(L,E)=A_{\rm LIGO}(E)\,\cos(\omega_g L+\phi)\;\sigma_z^{(\rm mass)}$$
+  where $A_{\rm LIGO}(E)$ is the small amplitude (eV^2), $\omega_g$ is spatial frequency (1/km), and $\sigma_z^{(\rm mass)}=\mathrm{diag}(1,-1)$.
+
+- Flavor-basis Hamiltonian (1/km units):
+  $$H_{\rm LIGO}^{\rm flav}(L,E)=K\frac{1}{2E_{\rm GeV}}\,U\,\delta M^2_{\rm LIGO,mass}(L,E)\,U^{\dagger},\qquad K=1.267.$$ 
+
+- Example mapping guidance:
+  - Choose $A_{\rm LIGO}$ many orders of magnitude below vacuum splittings for conservative tests (e.g. $A_{\rm LIGO}\lesssim10^{-12}\text{--}10^{-6}\,$eV^2 depending on physics assumptions).
+  - If a strain-based model supplies a dimensionless strain $h(L)$ and a coupling $g_h$, a simple model is
+    $$A_{\rm LIGO}(E)\sim g_h\,h(L)\,M_0^2,$$
+    where $M_0^2$ is a characteristic model mass-squared scale; document these choices when registering a sector.
+
+- Toy dissipator: population relaxation at rate $\gamma_g$ (1/km)
+  $$\mathcal{D}_{\rm LIGO}[\rho]_{ii}=-\gamma_g\big(\rho_{ii}-\tfrac12\mathrm{Tr}(\rho)\big),\qquad \mathcal{D}_{\rm LIGO}[\rho]_{i\ne j}=0.$$ 
+
+- Implementation notes:
+  - Return mass-basis matrices in eV^2 via the `add_mass_sector(...)` API; `UnifiedGKSL` handles conversion to 1/km and rotation.
+  - If the model naturally provides flavor-basis Hamiltonians in physical units, register them with `add_flavor_sector(...)` already in 1/km.
+  - For rapid spatial variation use smaller integrator steps or an adaptive integrator.
+
+This LIGO subsection is intentionally minimal and mirrors the DM toy approach; extend with model-specific derivations and Lindblad jump operators when available.
