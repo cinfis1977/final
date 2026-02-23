@@ -30,12 +30,26 @@ def make_msw_flavor_H_fn(rho_gcm3: float, Ye: float = 0.5) -> Callable[[float, f
 
 
 def make_msw_damping_fn(gamma: float = 1e-4) -> Callable[[float, float, np.ndarray], np.ndarray]:
-    """Simple decoherence acting to damp off-diagonal coherences in flavor basis."""
+    """Return a GKSL Lindblad dissipator implementing pure dephasing in flavor basis.
+
+    We implement the dissipator via a single Hermitian jump operator
+    $L=\sqrt{\gamma/2}\,\sigma_z$ (with $\sigma_z=\mathrm{diag}(1,-1)$).
+
+    The GKSL term for a single operator is
+    $\mathcal{D}[\rho]=L\rho L^\dagger-\tfrac12\{L^\dagger L,\rho\}$.
+
+    For this Hermitian choice the result simplifies to
+    $\mathcal{D}[\rho]=(\gamma/2)(\sigma_z\rho\sigma_z-\rho)$,
+    which preserves trace and damps off-diagonal coherences with rate $\gamma$.
+    """
     def Dfn(L_km: float, E_GeV: float, rho: np.ndarray) -> np.ndarray:
-        D = np.zeros_like(rho, dtype=complex)
-        D[0, 1] = -gamma * rho[0, 1]
-        D[1, 0] = -gamma * rho[1, 0]
-        return D
+        sz = np.array([[1.0, 0.0], [0.0, -1.0]], dtype=complex)
+        Lmat = np.sqrt(float(gamma) / 2.0) * sz
+        # GKSL: L rho L^dag - 0.5 * (L^dag L rho + rho L^dag L)
+        term1 = Lmat @ rho @ Lmat.conj().T
+        LdagL = Lmat.conj().T @ Lmat
+        term2 = 0.5 * (LdagL @ rho + rho @ LdagL)
+        return term1 - term2
 
     return Dfn
 
