@@ -1,3 +1,16 @@
+# Byte-compiled / cache
+__pycache__/
+
+# Output data
+out/*.csv
+out/*.png
+
+# VSCode
+.vscode/
+
+# Python virtual env
+venv/
+.venv/
 # Python bytecode and runtime caches
 __pycache__/
 *.py[cod]
