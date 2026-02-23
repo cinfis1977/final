@@ -13,6 +13,14 @@ Key features:
     SCORE    = SUM - T2K_dchi2(delta_geo)   (net-score; higher better)
 """
 import argparse, json, math, os, subprocess, sys
+import numpy as np
+from typing import Dict, Any, Tuple
+from mastereq.gk_sl_solver import (
+    build_Hfn_2flavor,
+    build_Dfn_simple,
+    integrate_rho,
+    geometric_delta_m2_2flavor,
+)
 from typing import Dict, Any, Tuple
 
 def _wrap_pi(x: float) -> float:
@@ -67,6 +75,41 @@ def _run_runner(runner: str, pack: str, delta_cp: float, args: argparse.Namespac
         dchi2 = chi2_SM - chi2_GEO?  No: your outputs elsewhere used dchi2 = chi2_SM - chi2_GEO?? Actually logs show dchi2 = chi2_SM(BF) - chi2_GEO(geo) negative when GEO worse.
     We'll compute dchi2 = chi2_SM - chi2_GEO so positive means GEO improves.
     """
+    # If requested, use the internal GKSL solver in-process to compute probabilities
+    # This avoids subprocess calls and temporary files and returns probabilities
+    # directly: (P_sm, P_geo, delta=P_sm-P_geo).
+    if getattr(args, 'use_gksl', False):
+        # local kernel as used in demo runner
+        def base_dphi_dL_kernel(L_km: float, E_GeV: float, A: float, omega: float, phi: float, zeta: float) -> float:
+            damp = math.exp(-zeta * abs(omega) * L_km)
+            return A * damp * math.sin(omega * L_km + phi)
+
+        dm2 = 2.5e-3
+        theta = math.radians(45.0)
+        E = float(args.E0)
+        L = float(args.baseline_km)
+
+        def make_extra_dm2_fn(A_val):
+            def extra_dm2_fn(L_km, E_GeV):
+                base = base_dphi_dL_kernel(L_km, E_GeV, A_val, args.gksl_omega, args.phi, args.zeta)
+                return geometric_delta_m2_2flavor(base, E_GeV, scale_factor=1.0)
+            return extra_dm2_fn
+
+        # SM (A=0)
+        Hfn_sm = build_Hfn_2flavor(dm2, theta, make_extra_dm2_fn(0.0))
+        Dfn_sm = build_Dfn_simple(args.gksl_gamma, lambda L_km, E_GeV: 1.0)
+        rho_sm = integrate_rho(L, E, Hfn_sm, Dfn_sm, steps=getattr(args, 'gksl_steps', 400))
+        P_sm = float(np.real(rho_sm[0, 0]))
+
+        # GEO (A=args.A)
+        Hfn_geo = build_Hfn_2flavor(dm2, theta, make_extra_dm2_fn(args.A))
+        Dfn_geo = build_Dfn_simple(args.gksl_gamma, lambda L_km, E_GeV: 1.0)
+        rho_geo = integrate_rho(L, E, Hfn_geo, Dfn_geo, steps=getattr(args, 'gksl_steps', 400))
+        P_geo = float(np.real(rho_geo[0, 0]))
+
+        return P_sm, P_geo, (P_sm - P_geo)
+
+    # otherwise fall back to existing external-runner invocation
     base = [
         sys.executable, runner,
         "--pack", pack,
@@ -142,7 +185,10 @@ def _predict_delta_cp_geo(args: argparse.Namespace) -> float:
     Uses weak_prob_engine_LAYERED_CURVED_v1.py helper (already in project) to compute a geometry-derived phase.
     We import dynamically so this script stays lightweight.
     """
-    from weak_prob_engine_LAYERED_CURVED_v1 import _curvedcube_u_profile
+    try:
+        from weak_prob_engine_LAYERED_CURVED_v1 import _curvedcube_u_profile
+    except ModuleNotFoundError:
+        _curvedcube_u_profile = None
     import numpy as np
 
     # generate u(s) samples along the baseline (normalized s in [0,1])
@@ -156,29 +202,38 @@ def _predict_delta_cp_geo(args: argparse.Namespace) -> float:
     zeta = float(args.zeta)
     Nin = int(args.Nin)
     Nface = int(args.Nface)
-    sig = inspect.signature(_curvedcube_u_profile)
-    params = sig.parameters
-    kwargs = {}
-    # Baseline / reference-length parameters
-    if 'L_km' in params: kwargs['L_km'] = baseline
-    if 'baseline_km' in params: kwargs['baseline_km'] = baseline
-    if 'L0_km' in params: kwargs['L0_km'] = L0
-    if 'phi' in params: kwargs['phi'] = phi
-    if 'zeta' in params: kwargs['zeta'] = zeta
-    # Geometry thread-count parameters
-    if 'Nin' in params: kwargs['Nin'] = Nin
-    if 'Nface' in params: kwargs['Nface'] = Nface
-    if 'N_in' in params: kwargs['N_in'] = Nin
-    if 'N_face' in params: kwargs['N_face'] = Nface
-    try:
-        u = _curvedcube_u_profile(N, **kwargs)
-    except TypeError:
-        # Fallback: common positional conventions (kept deterministic).
+
+    if _curvedcube_u_profile is not None:
+        sig = inspect.signature(_curvedcube_u_profile)
+        params = sig.parameters
+        kwargs = {}
+        # Baseline / reference-length parameters
+        if 'L_km' in params: kwargs['L_km'] = baseline
+        if 'baseline_km' in params: kwargs['baseline_km'] = baseline
+        if 'L0_km' in params: kwargs['L0_km'] = L0
+        if 'phi' in params: kwargs['phi'] = phi
+        if 'zeta' in params: kwargs['zeta'] = zeta
+        # Geometry thread-count parameters
+        if 'Nin' in params: kwargs['Nin'] = Nin
+        if 'Nface' in params: kwargs['Nface'] = Nface
+        if 'N_in' in params: kwargs['N_in'] = Nin
+        if 'N_face' in params: kwargs['N_face'] = Nface
         try:
-            u = _curvedcube_u_profile(N, baseline, L0, phi, zeta)
+            u = _curvedcube_u_profile(N, **kwargs)
         except TypeError:
-            u = _curvedcube_u_profile(N, L0, baseline, phi, zeta)
-    u = np.asarray(u, dtype=float)
+            # Fallback: common positional conventions (kept deterministic).
+            try:
+                u = _curvedcube_u_profile(N, baseline, L0, phi, zeta)
+            except TypeError:
+                u = _curvedcube_u_profile(N, L0, baseline, phi, zeta)
+        u = np.asarray(u, dtype=float)
+    else:
+        # Fallback proxy if the weak_prob_engine module is not available:
+        # construct a simple damped sinusoidal u(s) along the baseline.
+        s = np.linspace(0.0, 1.0, N)
+        Lk = baseline
+        u = (np.exp(-float(args.zeta) * s * Lk) * np.sin(2.0 * math.pi * s + float(args.phi)))
+        u = np.asarray(u, dtype=float)
 
     # Use mode to derive complex "holonomy-like" phasor
     if args.geo_dcp_mode == "u_phase":
@@ -226,6 +281,12 @@ def main():
 
     ap.add_argument("--pull_sig", type=float, default=0.0)
     ap.add_argument("--pull_bkg", type=float, default=0.0)
+    
+    # GKSL integration options
+    ap.add_argument("--use_gksl", action="store_true", help="Use internal GKSL demo runner for comparisons (probabilities returned).")
+    ap.add_argument("--gksl_omega", type=float, default=0.00388, help="Driver omega for GKSL demo runner (1/km).")
+    ap.add_argument("--gksl_gamma", type=float, default=0.0, help="Dephasing gamma for GKSL demo runner.")
+    ap.add_argument("--gksl_steps", type=int, default=400, help="Integration steps for GKSL demo runner.")
 
     ap.add_argument("--no_profile", action="store_true", help="Skip T2K profile lookup entirely.")
     ap.add_argument("--L0_km", type=float, default=295.0, help="Reference baseline for geometric omega scaling in engine (kept for compatibility).")
@@ -235,7 +296,10 @@ def main():
 
     print("\n==== CURVEDCUBE: PREDICT delta_CP from geometry (no scan) ====\n")
 
-    profiles = _load_profiles(args.profiles)
+    if not args.no_profile:
+        profiles = _load_profiles(args.profiles)
+    else:
+        profiles = {}
 
     if args.dcp_key.strip():
         key = args.dcp_key.strip()
@@ -277,20 +341,37 @@ def main():
     chi2_sm_minos, chi2_geo_minos, dchi2_minos = _run_runner(args.runner, args.minos_pack, dcp_geo, args)
     chi2_sm_nova,  chi2_geo_nova,  dchi2_nova  = _run_runner(args.runner, args.nova_pack,  dcp_geo, args)
 
-    print(f"MINOS: chi2_SM(geo)={chi2_sm_minos:.3f}  chi2_GEO(geo)={chi2_geo_minos:.3f}  dchi2={dchi2_minos:+.3f}")
-    print(f"NOvA : chi2_SM(geo)={chi2_sm_nova:.3f}  chi2_GEO(geo)={chi2_geo_nova:.3f}  dchi2={dchi2_nova:+.3f}")
-    if not args.no_profile:
-        print(f"T2K  : dchi2(delta_geo)={t2k_pen:.3f}")
+    if getattr(args, 'use_gksl', False):
+        print(f"MINOS: P_SM={chi2_sm_minos:.6f}  P_GEO={chi2_geo_minos:.6f}  dP={dchi2_minos:+.6f}")
+        print(f"NOvA : P_SM={chi2_sm_nova:.6f}  P_GEO={chi2_geo_nova:.6f}  dP={dchi2_nova:+.6f}")
+        if not args.no_profile:
+            print(f"T2K  : dchi2(delta_geo)={t2k_pen:.3f}")
+        else:
+            print("T2K  : (skipped)")
+
+        dsum = dchi2_minos + dchi2_nova
+        # interpret plus_pen/score in mixed-prob/chi2 context with caution
+        plus_pen = dsum + t2k_pen
+        score = dsum - t2k_pen
+
+        print("\nSUM      = dP_MINOS + dP_NOVA = {:+.6f}".format(dsum))
+        print("PLUS_PEN = SUM + T2K_pen      = {:+.6f}   (mixed units; interpret carefully)".format(plus_pen))
+        print("SCORE    = SUM - T2K_pen      = {:+.6f}   (mixed units; interpret carefully)".format(score))
     else:
-        print("T2K  : (skipped)")
+        print(f"MINOS: chi2_SM(geo)={chi2_sm_minos:.3f}  chi2_GEO(geo)={chi2_geo_minos:.3f}  dchi2={dchi2_minos:+.3f}")
+        print(f"NOvA : chi2_SM(geo)={chi2_sm_nova:.3f}  chi2_GEO(geo)={chi2_geo_nova:.3f}  dchi2={dchi2_nova:+.3f}")
+        if not args.no_profile:
+            print(f"T2K  : dchi2(delta_geo)={t2k_pen:.3f}")
+        else:
+            print("T2K  : (skipped)")
 
-    dsum = dchi2_minos + dchi2_nova
-    plus_pen = dsum + t2k_pen
-    score = dsum - t2k_pen
+        dsum = dchi2_minos + dchi2_nova
+        plus_pen = dsum + t2k_pen
+        score = dsum - t2k_pen
 
-    print("\nSUM      = dchi2_MINOS + dchi2_NOVA = {:+.3f}".format(dsum))
-    print("PLUS_PEN = SUM + T2K_pen            = {:+.3f}   (chi2-like; lower better)".format(plus_pen))
-    print("SCORE    = SUM - T2K_pen            = {:+.3f}   (net-score; higher better)".format(score))
+        print("\nSUM      = dchi2_MINOS + dchi2_NOVA = {:+.3f}".format(dsum))
+        print("PLUS_PEN = SUM + T2K_pen            = {:+.3f}   (chi2-like; lower better)".format(plus_pen))
+        print("SCORE    = SUM - T2K_pen            = {:+.3f}   (net-score; higher better)".format(score))
     print("--------------------------------------------------\n")
 
 if __name__ == "__main__":
