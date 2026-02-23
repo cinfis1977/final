@@ -29,17 +29,29 @@ def make_ligo_mass_modulation(amplitude_eV2: float, omega_km_inv: float = 0.0, p
 
 
 def make_ligo_damping(gamma_g: float) -> Callable[[float, float, np.ndarray], np.ndarray]:
-    """Return a trivial damping function for LIGO-sector scattering/relaxation.
+    """Return a GKSL dissipator implementing population exchange via two jump operators.
 
-    The toy model applies population relaxation toward equal-split at rate gamma_g.
+    We construct two jump operators
+      L1 = sqrt(gamma_g/2) * |0><1|   (moves population 1->0)
+      L2 = sqrt(gamma_g/2) * |1><0|   (moves population 0->1)
+
+    The GKSL sum over these operators yields relaxation of populations toward
+    the equal-mix target while preserving complete positivity. This also
+    produces some dephasing terms as a physical side-effect.
     """
     def Dfn(L_km: float, E_GeV: float, rho: np.ndarray) -> np.ndarray:
-        D = np.zeros_like(rho, dtype=complex)
-        tr = np.trace(rho)
-        target = 0.5 * tr
-        D[0, 0] = -gamma_g * (rho[0, 0] - target)
-        D[1, 1] = -gamma_g * (rho[1, 1] - target)
-        return D
+        g = float(gamma_g)
+        s = np.sqrt(g / 2.0)
+        L1 = s * np.array([[0.0, 1.0], [0.0, 0.0]], dtype=complex)
+        L2 = s * np.array([[0.0, 0.0], [1.0, 0.0]], dtype=complex)
+
+        def single_gksl(Lmat: np.ndarray, r: np.ndarray) -> np.ndarray:
+            term1 = Lmat @ r @ Lmat.conj().T
+            LdagL = Lmat.conj().T @ Lmat
+            term2 = 0.5 * (LdagL @ r + r @ LdagL)
+            return term1 - term2
+
+        return single_gksl(L1, rho) + single_gksl(L2, rho)
 
     return Dfn
 
