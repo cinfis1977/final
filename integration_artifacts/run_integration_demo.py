@@ -14,7 +14,8 @@ OUT = ROOT / "out"
 OUT.mkdir(exist_ok=True)
 
 def run_demo():
-    demo_script = ROOT / "runners" / "new_mastereq_forward_solver.py"
+    # Use the cleaned runner that depends on the unified GKSL API
+    demo_script = ROOT / "runners" / "new_mastereq_forward_solver_clean.py"
     if not demo_script.exists():
         print("Demo script not found:", demo_script)
         return 2
@@ -37,23 +38,39 @@ def run_tests():
     env = os.environ.copy()
     env_py = env.get("PYTHONPATH", "")
     env["PYTHONPATH"] = str(ROOT) + (os.pathsep + env_py if env_py else "")
-    try:
-        cmd = [sys.executable, "-m", "pytest", "-q", str(tests_dir)]
-        print("Running tests with pytest:", " ".join(cmd))
-        rc = subprocess.call(cmd, cwd=str(ROOT), env=env)
-        if rc == 0:
-            return 0
-    except Exception:
-        pass
+    # Run the weak and strong integration tests (prefer pytest, fallback to direct execution)
+    test_files = [
+        tests_dir / "test_weak_integration.py",
+        tests_dir / "test_strong_integration.py",
+        tests_dir / "test_em_integration.py",
+        tests_dir / "test_dm_integration.py",
+    ]
+    any_failed = False
+    for tf in test_files:
+        if not tf.exists():
+            print("Test not found, skipping:", tf)
+            continue
+        try:
+            cmd = [sys.executable, "-m", "pytest", "-q", str(tf)]
+            print("Running tests with pytest:", " ".join(cmd))
+            rc = subprocess.call(cmd, cwd=str(ROOT), env=env)
+            if rc != 0:
+                any_failed = True
+                # continue to attempt other tests
+                continue
+            else:
+                continue
+        except Exception:
+            pass
 
-    # Fall back: run the test file directly (test_gksl_basic.py has a main block).
-    test_file = tests_dir / "test_gksl_basic.py"
-    if test_file.exists():
-        cmd2 = [sys.executable, str(test_file)]
+        # Fallback direct run
+        cmd2 = [sys.executable, str(tf)]
         print("Falling back to direct test execution:", " ".join(cmd2))
-        return subprocess.call(cmd2, cwd=str(ROOT), env=env)
-    print("No runnable tests found")
-    return 0
+        rc2 = subprocess.call(cmd2, cwd=str(ROOT), env=env)
+        if rc2 != 0:
+            any_failed = True
+
+    return 1 if any_failed else 0
 
 def main():
     rc = run_demo()
