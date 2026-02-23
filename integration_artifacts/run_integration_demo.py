@@ -43,7 +43,9 @@ def run_tests():
         tests_dir / "test_weak_integration.py",
         tests_dir / "test_strong_integration.py",
         tests_dir / "test_em_integration.py",
-        tests_dir / "test_dm_integration.py",
+            tests_dir / "test_dm_integration.py",
+            tests_dir / "test_ms_integration.py",
+            tests_dir / "test_ligo_integration.py",
     ]
     any_failed = False
     for tf in test_files:
