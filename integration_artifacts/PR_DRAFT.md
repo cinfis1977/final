@@ -49,6 +49,8 @@ Follow-ups (optional)
 - Add LIGO / MS sectors and map their physics into the `UnifiedGKSL` contract.
  - Add LIGO / MS sectors and map their physics into the `UnifiedGKSL` contract. (MS now includes a GKSL dephasing derivation recorded in `derivation_mastereq.md`.)
 
+- CI: a GitHub Actions workflow `/.github/workflows/gksl-integration.yml` is provided to run the demo and pytest-based tests on pushes to `gksl-pr-draft` and on PRs. The workflow installs `pytest` and any top-level `requirements.txt`.
+
 MS derivation (summary)
 
 - The MSW coherent potential $V_e$ is computed from mass density via
