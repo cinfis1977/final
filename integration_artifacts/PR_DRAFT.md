@@ -7,6 +7,8 @@ Scope of changes
 - Solver: `integration_artifacts/mastereq/gk_sl_solver_clean.py` (RK4 density-matrix integrator, hermiticity/trace safeguards).
 - Orchestration: `integration_artifacts/mastereq/unified_gksl.py` (API to register mass-basis and flavor-basis sector contributions and dissipators).
 - Sectors: toy adapters `weak_sector.py`, `strong_sector.py`, `em_sector.py`, `dm_sector.py` with conversion helpers and parametric dissipators.
+- Sectors: toy adapters `weak_sector.py`, `strong_sector.py`, `em_sector.py`, `dm_sector.py` with conversion helpers and parametric dissipators.
+- LIGO: a toy gravitational-sector adapter `ligo_sector.py` implementing a small mass-basis modulation and a population-relaxation dissipator; unit tests added under `integration_artifacts/mastereq/tests/test_ligo_integration.py`.
 - Tests & demo: per-sector unit tests under `integration_artifacts/mastereq/tests/` and an isolated demo runner `integration_artifacts/run_integration_demo.py` that writes outputs to `integration_artifacts/out/`.
 - Documentation: `integration_artifacts/mastereq/derivation_mastereq.md` consolidates mappings, unit conversions and integration contracts.
 
