@@ -150,6 +150,16 @@ References
 
 This LIGO subsection is intentionally minimal and mirrors the DM toy approach; extend with model-specific derivations and Lindblad jump operators when available.
 
+**Compact master-equation (GKSL) one-liner**
+
+Add this concise GKSL form when referencing the overall master-equation in papers or summaries:
+
+$$\frac{d\rho}{dL} = -i\,[H(L,E),\rho] + \sum_a \gamma_a\Big(L_a\,\rho\,L_a^{\dagger} - \tfrac{1}{2}\{L_a^{\dagger}L_a,\rho\}\Big)$$
+
+Short note: here $L$ is distance (km), $H(L,E)$ is the total Hamiltonian in $\mathrm{km}^{-1}$, and $\{L_a\}$ are Lindblad jump operators with nonnegative rates $\gamma_a$. The first term is Hamiltonian (coherent) evolution and the second term encodes dissipative (GKSL) effects.
+
+Türkçe kısa açıklama: Burada $L$ mesafe (km), $H(L,E)$ toplam Hamiltonyen (1/km biriminde) ve $L_a$ Lindblad sıçrama operatörleridir; $\gamma_a\ge0$ oranları disipatif katkıları temsil eder. İlk terim Hamiltoniyen evrimi, ikinci terim disipatif GKSL katkılarıdır.
+
 **MSW sector — Lindblad (GKSL) dissipator derivation**
 
 - Objective: replace ad-hoc off-diagonal damping by an explicit GKSL Lindblad operator that implements pure dephasing while preserving complete positivity.
