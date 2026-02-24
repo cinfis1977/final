@@ -256,6 +256,35 @@ If you want, I can now:
 - insert explicit example formulas connecting scattering cross section $\sigma$ and density $n$ to a GKSL rate $\gamma\sim n\sigma v$ (with unit conversion to 1/km), and
 - add references (e.g., reviews on open quantum systems, MSW derivations, QKE/Nakajima–Zwanzig papers) to the derivation file.
 
+**Microphysical scaffolding now implemented in code**
+
+To continue from the previous “placeholder/default” status, the integration code now provides an explicit shared microphysics layer in `mastereq/microphysics.py` and optional per-sector `use_microphysics=True` switches.
+
+- Shared rate conversion:
+  $$\Gamma = n\sigma v\quad [\mathrm{s}^{-1}],\qquad \gamma = \Gamma/c\quad [\mathrm{km}^{-1}]$$
+  implemented as `gamma_km_inv_from_n_sigma_v(...)`.
+
+- Weak/MS approximations:
+  - $\sigma(\nu_e e)\approx 9.2\times 10^{-45} E_{\rm GeV}\,\mathrm{cm}^2$
+  - $\sigma(\nu_\mu e)\approx 1.57\times 10^{-45} E_{\rm GeV}\,\mathrm{cm}^2$
+  - $n_e\approx \rho\,Y_e\,N_A$ for medium conversion in MS.
+
+- EM approximation:
+  - template scaling for magnetic-moment induced scattering
+    $$\sigma_{\rm EM}\sim 10^{-45}\left(\frac{\mu_\nu}{10^{-11}\mu_B}\right)^2 E_{\rm GeV}\,\mathrm{cm}^2.$$
+
+- DM approximation:
+  - reference template
+    $$\sigma_{\rm DM}\sim 10^{-46}\left(\frac{g}{10^{-6}}\right)^2 E_{\rm GeV}\,\mathrm{cm}^2.$$
+
+- LIGO/gravity approximation:
+  - reference effective template
+    $$\sigma_{g}\sim 10^{-50} h^2 E_{\rm GeV}\,\mathrm{cm}^2.$$
+
+These are now wired into the sector APIs as optional paths. If `use_microphysics=False`, the code keeps fixed defaults for backward compatibility and stable regression tests.
+
+Important: these are still controlled approximations/templates, not full first-principles QFT derivations for each model. Full microphysical closure still requires model-specific amplitudes, medium response functions, and (where needed) non-Markovian analysis.
+
 **Fixed defaults used in code (global placeholders)**
 
 To keep all sectors consistent when parameters are not provided, the code now uses

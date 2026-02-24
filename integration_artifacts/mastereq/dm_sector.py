@@ -8,6 +8,8 @@ terms enter the master equation and provide conversion helpers.
 from __future__ import annotations
 import numpy as np
 from typing import Callable
+from .defaults import DEFAULT_GAMMA_KM_INV
+from .microphysics import gamma_km_inv_from_n_sigma_v, sigma_dm_reference_cm2
 
 # Conversion constants
 EV_TO_KM_INV = 5.0677307e3
@@ -31,12 +33,28 @@ def make_dm_mass_modulation(amplitude_eV2: float, omega_km_inv: float = 0.0, pha
     return f
 
 
-def make_dm_scattering_damping(gamma_s: float) -> Callable[[float, float, np.ndarray], np.ndarray]:
+def make_dm_scattering_damping(
+    gamma_s: float | None = None,
+    *,
+    use_microphysics: bool = False,
+    n_cm3: float = 1.0e22,
+    E_GeV_ref: float = 1.0,
+    coupling_g: float = 1.0e-6,
+    v_cm_s: float = 3.0e10,
+) -> Callable[[float, float, np.ndarray], np.ndarray]:
     """Return a damping function modeling DM-induced scattering (population damping).
 
     gamma_s: rate in 1/km units applied to populations
     D(rho) = -gamma_s * diag(rho - target_pop)
     """
+    if gamma_s is None and use_microphysics:
+        sigma = sigma_dm_reference_cm2(E_GeV_ref, coupling_g)
+        gamma_s = gamma_km_inv_from_n_sigma_v(n_cm3, sigma, v_cm_s)
+    elif gamma_s is None:
+        gamma_s = DEFAULT_GAMMA_KM_INV
+
+    gamma_s = float(gamma_s)
+
     def Dfn(L_km: float, E_GeV: float, rho: np.ndarray) -> np.ndarray:
         D = np.zeros_like(rho, dtype=complex)
         tr = np.trace(rho)
