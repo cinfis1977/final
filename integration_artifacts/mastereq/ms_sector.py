@@ -11,6 +11,7 @@ import numpy as np
 from typing import Callable
 
 from .weak_sector import ve_from_rho, ve_to_H_km_inv
+from .defaults import DEFAULT_GAMMA_KM_INV
 
 
 def make_msw_flavor_H_fn(rho_gcm3: float, Ye: float = 0.5) -> Callable[[float, float], np.ndarray]:
@@ -29,7 +30,7 @@ def make_msw_flavor_H_fn(rho_gcm3: float, Ye: float = 0.5) -> Callable[[float, f
     return Hfn
 
 
-def make_msw_damping_fn(gamma: float = 1e-4) -> Callable[[float, float, np.ndarray], np.ndarray]:
+def make_msw_damping_fn(gamma: float | None = None) -> Callable[[float, float, np.ndarray], np.ndarray]:
     """Return a GKSL Lindblad dissipator implementing pure dephasing in flavor basis.
 
     We implement the dissipator via a single Hermitian jump operator
@@ -42,6 +43,9 @@ def make_msw_damping_fn(gamma: float = 1e-4) -> Callable[[float, float, np.ndarr
     $\mathcal{D}[\rho]=(\gamma/2)(\sigma_z\rho\sigma_z-\rho)$,
     which preserves trace and damps off-diagonal coherences with rate $\gamma$.
     """
+    if gamma is None:
+        gamma = DEFAULT_GAMMA_KM_INV
+
     def Dfn(L_km: float, E_GeV: float, rho: np.ndarray) -> np.ndarray:
         sz = np.array([[1.0, 0.0], [0.0, -1.0]], dtype=complex)
         Lmat = np.sqrt(float(gamma) / 2.0) * sz

@@ -255,3 +255,22 @@ This section summarizes where the sector mappings implemented in the code align 
 If you want, I can now:
 - insert explicit example formulas connecting scattering cross section $\sigma$ and density $n$ to a GKSL rate $\gamma\sim n\sigma v$ (with unit conversion to 1/km), and
 - add references (e.g., reviews on open quantum systems, MSW derivations, QKE/Nakajima–Zwanzig papers) to the derivation file.
+
+**Fixed defaults used in code (global placeholders)**
+
+To keep all sectors consistent when parameters are not provided, the code now uses
+a fixed global default rate and a helper for turning $n,\sigma,v$ into a GKSL rate:
+
+- Collision-rate estimate (in s$^{-1}$):
+  $$\Gamma = n\,[\mathrm{cm^{-3}}]\;\sigma\,[\mathrm{cm^{2}}]\;v\,[\mathrm{cm\,s^{-1}}].$$
+
+- Convert to per-length units for the solver ($L$ in km):
+  $$\gamma\,[\mathrm{km^{-1}}] = \frac{\Gamma}{c_{\rm km/s}},\qquad c_{\rm km/s}=2.99792458\times10^{5}.$$
+
+- Default placeholders (documented in `mastereq/defaults.py`):
+  - $\gamma_{\rm default}=10^{-6}\,\mathrm{km^{-1}}$
+  - $n=10^{23}\,\mathrm{cm^{-3}}$,
+  - $\sigma=10^{-44}\,\mathrm{cm^{2}}$,
+  - $v=3\times10^{10}\,\mathrm{cm\,s^{-1}}$.
+
+These are **placeholders for numerical stability**, not microphysical predictions. Replace them with model-specific values as needed.

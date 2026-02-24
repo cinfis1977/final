@@ -7,6 +7,7 @@ pattern; real physical mapping should replace the toy scaling factors.
 from __future__ import annotations
 import numpy as np
 from typing import Callable, Tuple
+from .defaults import DEFAULT_GAMMA_KM_INV
 
 # A tiny scale to convert electron density (cm^-3) to an effective potential
 # in 1/km units for this toy model. This is NOT physical accuracy; it's a tunable
@@ -27,8 +28,14 @@ def make_weak_flavor_H_fn(ne_cm3: float, scale: float = 1.0) -> Callable[[float,
     return Hfn
 
 
-def make_weak_damping_fn(gamma: float) -> Callable[[float, float, np.ndarray], np.ndarray]:
-    """Return a simple off-diagonal damping function for weak-sector environmental effects."""
+def make_weak_damping_fn(gamma: float | None = None) -> Callable[[float, float, np.ndarray], np.ndarray]:
+    """Return a simple off-diagonal damping function for weak-sector environmental effects.
+
+    If gamma is None, a fixed global default is used for consistent behavior
+    across sectors.
+    """
+    if gamma is None:
+        gamma = DEFAULT_GAMMA_KM_INV
     def Dfn(L_km: float, E_GeV: float, rho: np.ndarray) -> np.ndarray:
         D = np.zeros_like(rho, dtype=complex)
         D[0, 1] = -gamma * rho[0, 1]
