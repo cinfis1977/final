@@ -73,7 +73,7 @@ This check is encoded as a pytest test:
 Run it:
 
 ```powershell
-C:/Dropbox/projects/new_master_equation_with_gauga_structure_test_git/.venv/Scripts/python.exe -m pytest -q integration_artifacts/mastereq/tests/test_equivalence_weak_runner.py
+python -m pytest -q integration_artifacts/mastereq/tests/test_equivalence_weak_runner.py
 ```
 
 ### WEAK: golden-output per-bin phase-map equivalence (paper-grade claim)
@@ -97,7 +97,7 @@ This check is encoded as a pytest test:
 Run it:
 
 ```powershell
-C:/Dropbox/projects/new_master_equation_with_gauga_structure_test_git/.venv/Scripts/python.exe -m pytest -q integration_artifacts/mastereq/tests/test_equivalence_weak_golden_outputs.py
+python -m pytest -q integration_artifacts/mastereq/tests/test_equivalence_weak_golden_outputs.py
 ```
 
 ### STRONG: golden-output equivalence (sigma_tot and rho energy scans)

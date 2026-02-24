@@ -32,5 +32,5 @@
       "dchi2": 3.235630220168275
     }
   ],
-  "out_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\integration_artifacts\\out\\verdict_golden\\out_sigmatot_GEO_Aneg003.csv"
+  "out_csv": "integration_artifacts/out/verdict_golden/out_sigmatot_GEO_Aneg003.csv"
 }

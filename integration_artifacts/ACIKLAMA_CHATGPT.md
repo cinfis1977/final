@@ -39,7 +39,7 @@ Bu chat’in son kısmında odak, “paper-grade **tam eşleşme**” standardı
 Koşturulan komut (repo root’tan):
 
 ```powershell
-C:/Dropbox/projects/new_master_equation_with_gauga_structure_test_git/.venv/Scripts/python.exe integration_artifacts/scripts/verdict_golden_harness.py
+python integration_artifacts/scripts/verdict_golden_harness.py
 ```
 
 Kanıt / raporlar:
@@ -51,7 +51,7 @@ Kanıt / raporlar:
 Golden artefact’lar üretildikten sonra tüm equivalence test suite tekrar koşturuldu ve yeşil:
 
 ```powershell
-C:/Dropbox/projects/new_master_equation_with_gauga_structure_test_git/.venv/Scripts/python.exe -m pytest -q integration_artifacts/mastereq/tests
+python -m pytest -q integration_artifacts/mastereq/tests
 ```
 
 Son durum: **31 passed**.
