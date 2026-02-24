@@ -285,6 +285,12 @@ These are now wired into the sector APIs as optional paths. If `use_microphysics
 
 Important: these are still controlled approximations/templates, not full first-principles QFT derivations for each model. Full microphysical closure still requires model-specific amplitudes, medium response functions, and (where needed) non-Markovian analysis.
 
+Validation note:
+- The WEAK “golden CSV” equivalence checks validate the runner’s exported **unitary phase-map** ($H$-side) against GKSL (see `integration_artifacts/EQUIVALENCE_CHECKS.md`).
+- Microphysics-derived $\,n\sigma v\to\gamma\,$ wiring is validated separately by GKSL-side unit tests that show `use_microphysics=True` produces identical evolution to supplying the same $
+  \gamma$ explicitly (this is distinct from runner equivalence, since the runners typically do not export a $
+  \gamma$-sensitive observable).
+
 **Fixed defaults used in code (global placeholders)**
 
 To keep all sectors consistent when parameters are not provided, the code now uses

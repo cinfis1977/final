@@ -5,6 +5,43 @@ WEAK / EM / STRONG / DM / GW + mass spectrometry (real Bruker mzML addendum).
 
 Scope note: `PASS` means not falsified under preregistered tests for the specific tested panels; it is not a universal proof.
 
+## GKSL / Lindblad integration validation (evidence)
+
+This branch-local folder contains an isolated GKSL reference implementation and tests under `integration_artifacts/mastereq/`.
+
+What is validated by deterministic pytest checks:
+
+- **WEAK runner ↔ GKSL equivalence (unitary / phase-map):**
+  - Convention/mapping check: `integration_artifacts/mastereq/tests/test_equivalence_weak_runner.py`
+  - Golden-output per-bin phase-map equivalence: `integration_artifacts/mastereq/tests/test_equivalence_weak_golden_outputs.py`
+
+- **EM runners ↔ declared-math equivalence (baseline + GEO map):**
+  - Bhabha forward golden-output check: `integration_artifacts/mastereq/tests/test_equivalence_em_bhabha_golden_outputs.py`
+  - MuMu forward golden-output check: `integration_artifacts/mastereq/tests/test_equivalence_em_mumu_golden_outputs.py`
+
+- **DM runners ↔ declared-math equivalence (holdout CV protocol + GEO map):**
+  - Holdout CV (env_model=none + env_model=thread STIFFGATE) golden-output checks:
+    `integration_artifacts/mastereq/tests/test_equivalence_dm_golden_outputs.py`
+
+- **LIGO runner ↔ declared-math equivalence (quadrupole pattern generation):**
+  - Quadrupole-drive golden-output check (plus/cross patterns):
+    `integration_artifacts/mastereq/tests/test_equivalence_ligo_quadrupole_golden_outputs.py`
+
+- **STRONG runners ↔ declared-math equivalence (frozen baseline + GEO maps):**
+  - sigma_tot energy scan golden-output check: `integration_artifacts/mastereq/tests/test_equivalence_strong_sigma_tot_golden_outputs.py`
+  - rho energy scan golden-output check: `integration_artifacts/mastereq/tests/test_equivalence_strong_rho_golden_outputs.py`
+
+- **Microphysics-derived rate wiring (n·σ·v → γ):**
+  - Microphysics helper sanity: `integration_artifacts/mastereq/tests/test_microphysics_scaffold.py`
+  - End-to-end wiring equivalence (derive γ internally vs pass γ explicitly):
+    `integration_artifacts/mastereq/tests/test_microphysics_wiring_equivalence.py`
+
+Important non-claims:
+- These checks do not prove the microphysics templates are quantitatively “true SM/BSM predictions”; they are documented placeholders until replaced by model-specific calculations.
+- Most runners export primarily unitary/phase-map observables; they generally do not export a γ-sensitive observable, so runner ↔ GKSL dissipator equivalence is not yet end-to-end validated.
+
+Further detail (including what is not checked yet) is recorded in `integration_artifacts/EQUIVALENCE_CHECKS.md`.
+
 ## Current Paper Files (Active)
 
 - **Canonical / stable names** (recommended for sharing):

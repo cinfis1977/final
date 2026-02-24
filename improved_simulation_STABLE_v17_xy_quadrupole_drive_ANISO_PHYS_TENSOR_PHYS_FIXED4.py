@@ -496,38 +496,38 @@ def simulate(p: SimParams, out_csv: Path, plot_png: Optional[Path]) -> None:
                 e0 = (r0_ab / n0).astype(float)
 
             # stiffness
-                if K_mat is not None and p.tensor_mode == "full":
-                    f_k = (K_mat @ du).astype(float)
+            if K_mat is not None and p.tensor_mode == "full":
+                f_k = (K_mat @ du).astype(float)
+            else:
+                if K_mat is not None:
+                    k_use = float(e0 @ K_mat @ e0)
                 else:
-                    if K_mat is not None:
-                        k_use = float(e0 @ K_mat @ e0)
+                    ax = int(np.argmax(np.abs(r0_ab)))
+                    if ax == 0:
+                        k_use = p.k_out_x
+                    elif ax == 1:
+                        k_use = p.k_out_y
                     else:
-                        ax = int(np.argmax(np.abs(r0_ab)))
-                        if ax == 0:
-                            k_use = p.k_out_x
-                        elif ax == 1:
-                            k_use = p.k_out_y
-                        else:
-                            k_use = p.k_out_z
-                    f_k = k_use * du
+                        k_use = p.k_out_z
+                f_k = k_use * du
 
-                # damping
-                if C_mat is not None and p.tensor_mode == "full":
-                    f_c = (C_mat @ dv).astype(float)
+            # damping
+            if C_mat is not None and p.tensor_mode == "full":
+                f_c = (C_mat @ dv).astype(float)
+            else:
+                if C_mat is not None:
+                    c_use = float(e0 @ C_mat @ e0)
                 else:
-                    if C_mat is not None:
-                        c_use = float(e0 @ C_mat @ e0)
+                    ax = int(np.argmax(np.abs(r0_ab)))
+                    if ax == 0:
+                        c_use = p.c_out_x
+                    elif ax == 1:
+                        c_use = p.c_out_y
                     else:
-                        ax = int(np.argmax(np.abs(r0_ab)))
-                        if ax == 0:
-                            c_use = p.c_out_x
-                        elif ax == 1:
-                            c_use = p.c_out_y
-                        else:
-                            c_use = p.c_out_z
-                    f_c = c_use * dv
+                        c_use = p.c_out_z
+                f_c = c_use * dv
 
-                f_ab = f_k + f_c
+            f_ab = f_k + f_c
             F[a] += f_ab
             F[b] -= f_ab
         if p.pin_edges:
