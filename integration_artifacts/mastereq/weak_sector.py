@@ -6,8 +6,9 @@ pattern; real physical mapping should replace the toy scaling factors.
 """
 from __future__ import annotations
 import numpy as np
-from typing import Callable, Tuple
+from typing import Callable
 from .defaults import DEFAULT_GAMMA_KM_INV
+from .microphysics import gamma_km_inv_from_n_sigma_v, sigma_weak_nue_e_cm2, sigma_weak_numu_e_cm2
 
 # A tiny scale to convert electron density (cm^-3) to an effective potential
 # in 1/km units for this toy model. This is NOT physical accuracy; it's a tunable
@@ -28,14 +29,34 @@ def make_weak_flavor_H_fn(ne_cm3: float, scale: float = 1.0) -> Callable[[float,
     return Hfn
 
 
-def make_weak_damping_fn(gamma: float | None = None) -> Callable[[float, float, np.ndarray], np.ndarray]:
+def make_weak_damping_fn(
+    gamma: float | None = None,
+    *,
+    use_microphysics: bool = False,
+    n_cm3: float | None = None,
+    E_GeV_ref: float = 1.0,
+    channel: str = "nue_e",
+    v_cm_s: float = 3.0e10,
+) -> Callable[[float, float, np.ndarray], np.ndarray]:
     """Return a simple off-diagonal damping function for weak-sector environmental effects.
 
-    If gamma is None, a fixed global default is used for consistent behavior
-    across sectors.
+    If `use_microphysics=True` and `gamma` is not supplied, derive gamma from
+    n*sigma*v using approximate weak ν-e scattering cross sections.
+    Otherwise fallback to the fixed global default.
     """
-    if gamma is None:
+    if gamma is None and use_microphysics:
+        n_val = 1.0e23 if n_cm3 is None else float(n_cm3)
+        ch = str(channel).lower()
+        if ch == "numu_e":
+            sigma = sigma_weak_numu_e_cm2(E_GeV_ref)
+        else:
+            sigma = sigma_weak_nue_e_cm2(E_GeV_ref)
+        gamma = gamma_km_inv_from_n_sigma_v(n_val, sigma, v_cm_s)
+    elif gamma is None:
         gamma = DEFAULT_GAMMA_KM_INV
+
+    gamma = float(gamma)
+
     def Dfn(L_km: float, E_GeV: float, rho: np.ndarray) -> np.ndarray:
         D = np.zeros_like(rho, dtype=complex)
         D[0, 1] = -gamma * rho[0, 1]
@@ -77,6 +98,3 @@ def delta_m2_from_rho(rho_gcm3: float, Ye: float, E_GeV: float, K: float = KCONS
 
 
 __all__ = ["make_weak_flavor_H_fn", "make_weak_damping_fn", "ve_from_rho", "ve_to_H_km_inv", "ve_to_delta_m2_equiv", "delta_m2_from_rho"]
-
-
-__all__ = ["make_weak_flavor_H_fn", "make_weak_damping_fn"]

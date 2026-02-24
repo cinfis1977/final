@@ -8,7 +8,7 @@ Scope note: `PASS` means not falsified under preregistered tests for the specifi
 ## Current Paper Files (Active)
 
 - **Canonical / stable names** (recommended for sharing):
-  - `paper/paper_final.md`   (should be the current locked draft)
+  - `paper/paper_final.md` (should be the current locked draft)
   - `paper/paper_final.html` (render of the same)
 - **Versioned locked snapshots** (historical, audit-friendly):
   - `paper/paper_LOCKED_mathfixed_v452_CHATRUNS_ONEFORALL_LIGOpatternonly__massspec_REALDATA_particlespecific.md`
@@ -55,9 +55,9 @@ python .\tools\make_fig_strong_deltachi2.py
 
 ## Baselines and evaluation metrics (what “SM baseline” means here)
 
-The phrase **“SM baseline”** is used in a *sector-specific* sense. Not every panel is a literal “Standard Model fit” in the same way.
+The phrase **“SM baseline”** is used in a _sector-specific_ sense. Not every panel is a literal “Standard Model fit” in the same way.
 
-- **Weak (neutrino):** the baseline is the standard 3-flavor oscillation description evaluated with the sector’s chosen metric (typically Δχ² with a fixed convention). Some checks are “scan-free” (no parameter sweeps) and are compared to the corresponding baseline under the *same metric*.
+- **Weak (neutrino):** the baseline is the standard 3-flavor oscillation description evaluated with the sector’s chosen metric (typically Δχ² with a fixed convention). Some checks are “scan-free” (no parameter sweeps) and are compared to the corresponding baseline under the _same metric_.
 - **EM (LEP Bhabha):** the baseline is the standard QED/Bhabha prediction for the same binned table (often via an imported baseline curve such as BHAGEN-derived tables). Evaluation is done on the same binned observable (e.g., χ² / residual structure).
 - **Strong (σ_tot, ρ):** the baseline is the standard reference curve/table used in that runner (PDG/experiment tables and their standard parametrizations). The runner’s metric (Δχ² or residual score) is the authority.
 - **GW (ringdown):** some runs are **sim-only** (internal consistency), while “real-compare” runs use GWOSC strain and compare against the chosen GR/null reference within that script’s metric.
@@ -68,23 +68,23 @@ The phrase **“SM baseline”** is used in a *sector-specific* sense. Not every
 
 ## Quick way to reproduce the PASS/TENSION/FAIL table
 
-1) Run the verdict batch:
+1. Run the verdict batch:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\run_verdict.ps1
 ```
 
-2) Build reports:
+2. Build reports:
 
 ```powershell
 python .\tools\make_repro_report.py
 python .\tools\verdict_group_eval.py
 ```
 
-3) Read the final summary:
+3. Read the final summary:
 
-- `repro/REPORT_VERDICT.md`  (human-readable verdict table)
-- `repro/run_summary.csv`    (per-command run log)
+- `repro/REPORT_VERDICT.md` (human-readable verdict table)
+- `repro/run_summary.csv` (per-command run log)
 
 If you want to rerun only a subset, use `-StartIndex` / `-EndIndex` with the same command list `tools/verdict_commands.txt`.
 
@@ -96,7 +96,6 @@ mzML files are typically **not committed** to git due to size and licensing/data
 - Set the mzML paths explicitly in the mass-spec runner commands you execute.
 
 The paper section and runner examples use a “cyto_full” style folder convention (e.g., `data/cyto_full/*.mzML`), but the exact location is not required as long as the runner paths point to the files.
-
 
 ## Repro Entry Points
 
@@ -137,6 +136,7 @@ What it does: produces locked final verdict artefacts (JSON+MD) from already-gen
 It does not rerun mzML conversion or the multi-target analysis.
 
 Runner path:
+
 - `runners/particle_specific_finalize_from_runs_v1_0_DROPIN/RUN_finalize_particle_specific_goodppm3_lock_from_runs_v1_0.ps1`
 
 Example:
@@ -151,6 +151,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\runners\particle_specific_
 ```
 
 Expected final artefacts:
+
 - `out/particle_specific_final_goodppm3_lock/prereg_lock_and_final_verdict_goodppm3.json`
 - `out/particle_specific_final_goodppm3_lock/FINAL_VERDICT_REPORT_goodppm3.md`
 
@@ -174,6 +175,7 @@ Expected final artefacts:
 ## Data And Packaging Notes
 
 Some datasets are intentionally duplicated across:
+
 - repo root
 - `data/hepdata/`
 - sector-specific subfolders (for example `data/hepdata/em_bhabha_pack/`)

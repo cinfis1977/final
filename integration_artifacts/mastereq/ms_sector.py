@@ -12,6 +12,7 @@ from typing import Callable
 
 from .weak_sector import ve_from_rho, ve_to_H_km_inv
 from .defaults import DEFAULT_GAMMA_KM_INV
+from .microphysics import electron_density_from_rho_ye, sigma_weak_nue_e_cm2, gamma_km_inv_from_n_sigma_v
 
 
 def make_msw_flavor_H_fn(rho_gcm3: float, Ye: float = 0.5) -> Callable[[float, float], np.ndarray]:
@@ -30,7 +31,15 @@ def make_msw_flavor_H_fn(rho_gcm3: float, Ye: float = 0.5) -> Callable[[float, f
     return Hfn
 
 
-def make_msw_damping_fn(gamma: float | None = None) -> Callable[[float, float, np.ndarray], np.ndarray]:
+def make_msw_damping_fn(
+    gamma: float | None = None,
+    *,
+    use_microphysics: bool = False,
+    rho_gcm3: float = 3.0,
+    Ye: float = 0.5,
+    E_GeV_ref: float = 1.0,
+    v_cm_s: float = 3.0e10,
+) -> Callable[[float, float, np.ndarray], np.ndarray]:
     """Return a GKSL Lindblad dissipator implementing pure dephasing in flavor basis.
 
     We implement the dissipator via a single Hermitian jump operator
@@ -43,8 +52,14 @@ def make_msw_damping_fn(gamma: float | None = None) -> Callable[[float, float, n
     $\mathcal{D}[\rho]=(\gamma/2)(\sigma_z\rho\sigma_z-\rho)$,
     which preserves trace and damps off-diagonal coherences with rate $\gamma$.
     """
-    if gamma is None:
+    if gamma is None and use_microphysics:
+        n_e = electron_density_from_rho_ye(rho_gcm3, Ye)
+        sigma = sigma_weak_nue_e_cm2(E_GeV_ref)
+        gamma = gamma_km_inv_from_n_sigma_v(n_e, sigma, v_cm_s)
+    elif gamma is None:
         gamma = DEFAULT_GAMMA_KM_INV
+
+    gamma = float(gamma)
 
     def Dfn(L_km: float, E_GeV: float, rho: np.ndarray) -> np.ndarray:
         sz = np.array([[1.0, 0.0], [0.0, -1.0]], dtype=complex)

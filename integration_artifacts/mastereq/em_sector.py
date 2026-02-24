@@ -7,6 +7,8 @@ precision physics module) to illustrate how an EM term can be added.
 from __future__ import annotations
 import numpy as np
 from typing import Callable
+from .defaults import DEFAULT_GAMMA_KM_INV
+from .microphysics import gamma_km_inv_from_n_sigma_v, sigma_em_magnetic_moment_cm2
 
 # Physical constants / conversion
 MU_B_EV_PER_T = 5.7883818060e-5  # Bohr magneton in eV/T
@@ -35,8 +37,28 @@ def make_em_flavor_H_fn(mu_nu_muB: float, B_field_T_fn: Callable[[float], float]
     return Hfn
 
 
-def make_em_damping_from_radiation(gamma: float) -> Callable[[float, float, np.ndarray], np.ndarray]:
-    """Toy damping: small off-diagonal damping due to EM interactions."""
+def make_em_damping_from_radiation(
+    gamma: float | None = None,
+    *,
+    use_microphysics: bool = False,
+    mu_nu_muB: float = 1.0e-11,
+    n_cm3: float = 1.0e23,
+    E_GeV_ref: float = 1.0,
+    v_cm_s: float = 3.0e10,
+) -> Callable[[float, float, np.ndarray], np.ndarray]:
+    """EM damping: off-diagonal dephasing due to EM interactions.
+
+    If `use_microphysics=True` and gamma is None, derive gamma from
+    n*sigma*v using a magnetic-moment cross-section template.
+    """
+    if gamma is None and use_microphysics:
+        sigma = sigma_em_magnetic_moment_cm2(mu_nu_muB, E_GeV_ref)
+        gamma = gamma_km_inv_from_n_sigma_v(n_cm3, sigma, v_cm_s)
+    elif gamma is None:
+        gamma = DEFAULT_GAMMA_KM_INV
+
+    gamma = float(gamma)
+
     def Dfn(L_km: float, E_GeV: float, rho: np.ndarray) -> np.ndarray:
         D = np.zeros_like(rho, dtype=complex)
         D[0, 1] = -gamma * rho[0, 1]

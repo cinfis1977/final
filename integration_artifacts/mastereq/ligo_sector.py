@@ -9,6 +9,7 @@ from __future__ import annotations
 import numpy as np
 from typing import Callable
 from .defaults import DEFAULT_GAMMA_KM_INV
+from .microphysics import gamma_km_inv_from_n_sigma_v, sigma_gravity_reference_cm2
 
 
 def make_ligo_mass_modulation(amplitude_eV2: float, omega_km_inv: float = 0.0, phase: float = 0.0) -> Callable[[float, float], np.ndarray]:
@@ -29,7 +30,17 @@ def make_ligo_mass_modulation(amplitude_eV2: float, omega_km_inv: float = 0.0, p
     return f
 
 
-def make_ligo_damping(gamma_g: float | None = None, mode: str = "lindblad", equilibrium: float | None = None) -> Callable[[float, float, np.ndarray], np.ndarray]:
+def make_ligo_damping(
+    gamma_g: float | None = None,
+    mode: str = "lindblad",
+    equilibrium: float | None = None,
+    *,
+    use_microphysics: bool = False,
+    n_cm3: float = 1.0e20,
+    E_GeV_ref: float = 1.0,
+    coupling_h: float = 1.0,
+    v_cm_s: float = 3.0e10,
+) -> Callable[[float, float, np.ndarray], np.ndarray]:
     """Return a damping function for the LIGO sector.
 
     Parameters
@@ -41,8 +52,13 @@ def make_ligo_damping(gamma_g: float | None = None, mode: str = "lindblad", equi
       jump rates are chosen to relax populations toward this target.
     """
     mode = str(mode).lower()
-    if gamma_g is None:
+    if gamma_g is None and use_microphysics:
+        sigma = sigma_gravity_reference_cm2(E_GeV_ref, coupling_h)
+        gamma_g = gamma_km_inv_from_n_sigma_v(n_cm3, sigma, v_cm_s)
+    elif gamma_g is None:
         gamma_g = DEFAULT_GAMMA_KM_INV
+
+    gamma_g = float(gamma_g)
 
     if mode == "toy":
         def Dfn_toy(L_km: float, E_GeV: float, rho: np.ndarray) -> np.ndarray:
