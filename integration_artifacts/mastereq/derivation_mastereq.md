@@ -199,3 +199,59 @@ Short note: here $L$ is distance (km), $H(L,E)$ is the total Hamiltonian in $\ma
   - For strict GKSL fidelity, replace the toy population-relaxation with the pair of jump operators above (or other operators derived from microphysics), and implement the GKSL formula in `make_ligo_damping`.
 
 Add these derivations to the MS and LIGO subsections in the file and ensure the code implements the GKSL formula as shown.
+
+**Relation to the Standard Model and other frameworks (per-sector)**
+
+This section summarizes where the sector mappings implemented in the code align with Standard-Model (SM) physics, where they represent beyond-SM (BSM) hypotheses, and what additional derivations or math would be required to move from the present toy/Lindblad implementations to fully microphysical descriptions.
+
+- **Weak / MSW:**
+  - SM relation: direct — MSW potential arises from coherent forward charged-current scattering on electrons within the SM. The usual expression $V_e\simeq\sqrt{2}G_F N_e$ is derived from SM Feynman amplitudes in the low-momentum-transfer limit.
+  - What we implement: the flavor-diagonal potential and its unit conversions are SM-consistent; the GKSL dephasing operator we use is a phenomenological choice and must be derived from microphysics (collision integrals) if a SM-based dissipator is desired.
+  - To rigorously match SM: derive dissipative kernels from finite-temperature field theory or Boltzmann/QKE limits (compute scattering rates $\gamma\sim n\sigma v$ and, if necessary, Lindblad operators from system–bath couplings using Born–Markov approximations).
+
+- **Strong sector:**
+  - SM relation: partial — strong-interaction effects (coherent forward scattering on nucleons, nuclear medium modifications) can modify effective mass terms; these are in-principle derivable from SM QCD matrix elements, but usually treated via nuclear/phenomenological models.
+  - What we implement: a toy mass-basis modulation and a population-relaxation term; these are phenomenological placeholders.
+  - To connect to SM: compute coherent forward-scattering amplitudes in the relevant medium (nuclear response functions) or map hadronic physics into effective potentials used in the master equation.
+
+- **EM (magnetic-moment) sector:**
+  - SM relation: neutrino magnetic moments are extremely small in minimal SM with massive neutrinos (loop-suppressed). Large magnetic moments imply BSM physics.
+  - What we implement: an off-diagonal coupling proportional to $\mu_\nu B$ (toy); damping is phenomenological.
+  - To make microphysical: if a BSM model predicts an enhanced $\mu_\nu$, compute radiative corrections and scattering-induced dissipators from photon/neutrino interactions to derive Lindblad rates.
+
+- **DM (Dark Matter) sector:**
+  - SM relation: none (BSM) — DM-induced mass-modulation or scattering is outside SM and must be motivated by a specific DM model (scalar background, axion-like coupling, vector mediator, etc.).
+  - What we implement: a simple mapping from local DM density to a mass-squared modulation and a toy scattering-induced relaxation. This is explicitly model-dependent and meant for exploratory comparisons.
+  - To be microphysical: choose a DM model, derive the effective Hamiltonian and collision terms (from the DM–neutrino interaction Lagrangian), and compute jump operators and rates from the S-matrix or effective interaction potential.
+
+- **MS (Matter-sector / Earth-like density):**
+  - SM relation: identical to Weak sector for the coherent potential; the GKSL Lindblad dephasing we added is phenomenological and should be derived using SM scattering rates to ensure quantitative match.
+  - What we implemented: MSW potential + GKSL dephasing (sigma_z) as the minimal CP-preserving dephasing channel.
+  - To improve: compute electron scattering cross-sections and in-medium correlators to derive $\gamma$ and possible non-Markovian corrections.
+
+- **LIGO / gravitational-sector:**
+  - SM relation: none (BSM/gravitational) — metric perturbations and gravitational-wave backgrounds lie in the gravity sector; how they couple to neutrino flavor/mass depends on the gravity–neutrino coupling model.
+  - What we implement: toy mass-basis modulation and a GKSL pair of jump operators for population exchange (now implemented with tunable equilibrium). This is a phenomenological mapping to assess sensitivity.
+  - To be microphysical: specify the coupling (e.g., minimal-coupling metric perturbation, nonminimal couplings, or new scalar degrees of freedom), compute induced effective potential or transition amplitudes, and derive dissipative terms from interaction with a stochastic gravitational bath if applicable.
+
+**Where new physics, new mathematics, or new approaches appear**
+
+- New physics (BSM) areas in the code:
+  - DM sector (explicit beyond-SM interactions mapping to mass modulation or scattering).
+  - EM sector if neutrino magnetic moments are taken larger than SM predictions.
+  - LIGO sector (gravitationally induced modifications) — requires hypothesis about gravity–neutrino coupling beyond minimal GR.
+
+- New mathematics / numerical approaches used here (relative to standard oscillation calculations):
+  - GKSL master-equation framework: retains coherence and open-system dissipation; needs Lindblad operators and rates consistent with microphysics.
+  - Lindblad operator construction vs. direct dissipator parametrization: we favor explicit GKSL when possible to guarantee complete positivity; constructing these from first principles requires Born–Markov derivations or projection-operator techniques (Nakajima–Zwanzig).
+  - Unit conversions and basis rotations: mapping mass-basis amplitudes (eV^2) to Hamiltonian units (1/km) with the $K/(2E)$ factor is an essential numeric step that couples particle-physics parameters to solver units.
+  - Numerical stability and step-size constraints: rapidly varying mass modulations or large amplitudes require smaller integration steps or adaptive solvers to avoid numerical artifacts (we use RK4 with step control via `steps` argument).
+
+- New methodological steps you may want to pursue for rigor:
+  1. For any dissipative channel intended to represent SM physics, derive Lindblad operators and rates from the microscopic interaction Lagrangian using standard open-quantum-system derivations (Born–Markov, secular approximations), and validate the Markovian assumption.
+  2. For regimes where memory effects matter, use non-Markovian master equations (Nakajima–Zwanzig) or full quantum kinetic equations (Kadanoff–Baym) rather than GKSL.
+  3. When mapping BSM hypotheses (DM, enhanced $\mu_\nu$, gravitational couplings), clearly document the assumed Lagrangian and the approximations used to produce the effective Hamiltonian and dissipator.
+
+If you want, I can now:
+- insert explicit example formulas connecting scattering cross section $\sigma$ and density $n$ to a GKSL rate $\gamma\sim n\sigma v$ (with unit conversion to 1/km), and
+- add references (e.g., reviews on open quantum systems, MSW derivations, QKE/Nakajima–Zwanzig papers) to the derivation file.
