@@ -61,3 +61,10 @@ repro/tmp_run_*.ps1
 
 # Local helper/reference clones
 _ref_master_equation/
+
+# Local bundles / archives
+integration_artifacts.zip
+
+# Golden harness run reports include absolute local paths; treat as local artifacts
+integration_artifacts/out/verdict_golden/RUN_SUMMARY.md
+integration_artifacts/out/verdict_golden/RUN_SUMMARY.json

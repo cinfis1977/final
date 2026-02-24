@@ -8,6 +8,64 @@ Bu doküman, bu repo içinde yaptığımız **GKSL/Lindblad master-equation ente
 
 ---
 
+## 0) Bu konuşmada özellikle yaptıklarımız (verdict golden harness + LIGO)
+
+Bu chat’in son kısmında odak, “paper-grade **tam eşleşme**” standardını LIGO tarafına da taşıyıp, bunu **golden-output** yaklaşımıyla otomatik yeniden üretilebilir hale getirmekti.
+
+### 0.1 LIGO’yu canonical verdict akışına bağlama
+
+- Canonical komut listesine iki LIGO komutu eklendi (plus/cross quadrupole drive):
+  - Kaynak: `tools/verdict_commands.txt`
+  - Üretilen golden artefact hedefleri:
+    - `integration_artifacts/out/verdict_golden/out/LIGO_quadrupole_plus_FIXED4.csv`
+    - `integration_artifacts/out/verdict_golden/out/LIGO_quadrupole_cross_FIXED4.csv`
+
+### 0.2 LIGO runner bug fix
+
+- `improved_simulation_STABLE_v17_xy_quadrupole_drive_ANISO_PHYS_TENSOR_PHYS_FIXED4.py` içinde gerçek bir indentation hatası düzeltildi (report/force değerlendirme bloğunda hizalama).
+
+### 0.3 LIGO için paper-grade equivalence testi
+
+- LIGO quadrupole-drive çıktıları için “runner matematiğini bağımsız reimplement eden” deterministik test eklendi:
+  - `integration_artifacts/mastereq/tests/test_equivalence_ligo_quadrupole_golden_outputs.py`
+  - Amaç: runner çıktısı ↔ bağımsız reimplement çıktısı **noktasal** eşleşiyor mu?
+  - Not: Bu test GKSL ile fiziksel eşdeğerlik iddiası değildir; LIGO runner’ın **kendi declared-math sözleşmesini** doğrular.
+
+### 0.4 Golden harness end-to-end rerun (iptal edildi → tekrar çalıştırıldı)
+
+- `integration_artifacts/scripts/verdict_golden_harness.py` komutu, `tools/verdict_commands.txt` içindeki canonical komutları alıp çıktı path’lerini `integration_artifacts/out/verdict_golden/` altına rewrite ederek tüm golden artefact’ları yeniden üretir.
+- Bu chat’te ilk deneme kullanıcı tarafından yanlışlıkla iptal edildi; ardından tekrar koşuldu ve **başarıyla bitti**.
+
+Koşturulan komut (repo root’tan):
+
+```powershell
+C:/Dropbox/projects/new_master_equation_with_gauga_structure_test_git/.venv/Scripts/python.exe integration_artifacts/scripts/verdict_golden_harness.py
+```
+
+Kanıt / raporlar:
+- `integration_artifacts/out/verdict_golden/RUN_SUMMARY.md` (Result: OK)
+- `integration_artifacts/out/verdict_golden/RUN_SUMMARY.json`
+
+### 0.5 Pytest doğrulaması (tam suite)
+
+Golden artefact’lar üretildikten sonra tüm equivalence test suite tekrar koşturuldu ve yeşil:
+
+```powershell
+C:/Dropbox/projects/new_master_equation_with_gauga_structure_test_git/.venv/Scripts/python.exe -m pytest -q integration_artifacts/mastereq/tests
+```
+
+Son durum: **31 passed**.
+
+### 0.6 Dokümantasyon “kanıt yolları” ile güncellendi
+
+- `integration_artifacts/README_INTEGRATION.md` ve `integration_artifacts/EQUIVALENCE_CHECKS.md` içine:
+  - Golden harness rapor yolları (`RUN_SUMMARY.md/.json`)
+  - Tam suite pytest komutu
+  - LIGO golden artefact isim/konumları
+  açıkça eklendi.
+
+---
+
 ## 1) Başardıklarımız (yüksek seviye)
 
 1. **İzole GKSL/Lindblad referans altyapısı kuruldu**
@@ -32,7 +90,7 @@ Bu doküman, bu repo içinde yaptığımız **GKSL/Lindblad master-equation ente
    - Bu, “tam exact derivation” değil; ama bir sonraki adım için ortak altyapı.
 
 6. **Testler: tüm sektörler + microphysics scaffolding PASS**
-   - `pytest -q integration_artifacts/mastereq/tests` koşusunda **18 passed** sonucu alındı.
+  - `python -m pytest -q integration_artifacts/mastereq/tests` koşusunda **31 passed** sonucu alındı.
 
 7. **Politika: Remote push yok (local-only)**
    - Bu gereksinim repo kök README’ye taşınmadı; yalnızca `integration_artifacts/` altında belgelendi.
@@ -126,4 +184,4 @@ Aşağıdaki soruları bu dokümanla birlikte ChatGPT’ye sor:
 
 ## 6) Çok kısa özet (tek paragraf)
 
-Bu chat’te, ana projeye minimum müdahale prensibiyle `integration_artifacts/` altında izole bir GKSL/Lindblad master-equation referans implementasyonu ve sektör entegrasyonlarını kurduk; MS ve LIGO’da explicit Lindblad yapıları güçlendirdik; ortak default’lar ve opsiyonel microphysics scaffolding ekledik; tüm sektör testleri dahil 18 testin geçtiğini doğruladık; “NO REMOTE PUSH” kuralını sadece artifacts dokümantasyonunda tutarak ana README’yi temiz bıraktık.
+Bu chat’te, ana projeye minimum müdahale prensibiyle `integration_artifacts/` altında izole bir GKSL/Lindblad master-equation referans implementasyonu ve sektör entegrasyonlarını kurduk; MS ve LIGO’da explicit Lindblad yapıları güçlendirdik; ortak default’lar ve opsiyonel microphysics scaffolding ekledik; ayrıca LIGO quadrupole-drive için golden-output + bağımsız reimplement “paper-grade” equivalence testini ekleyip verdict golden harness’i end-to-end koşturduk; tüm equivalence suite dahil **31 testin geçtiğini** doğruladık; “NO REMOTE PUSH” kuralını sadece artifacts dokümantasyonunda tutarak ana README’yi temiz bıraktık.

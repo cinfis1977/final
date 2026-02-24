@@ -176,3 +176,11 @@ py -3 .\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
    --zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
    --shape_only --freeze_betas --beta_nonneg `
    --out .\out\EM\bhabha_diag_Aneg1e5.csv
+
+py -3 .\improved_simulation_STABLE_v17_xy_quadrupole_drive_ANISO_PHYS_TENSOR_PHYS_FIXED4.py `
+  --drive_pattern quad_plus_xy `
+  --out_csv .\out\LIGO_quadrupole_plus_FIXED4.csv
+
+py -3 .\improved_simulation_STABLE_v17_xy_quadrupole_drive_ANISO_PHYS_TENSOR_PHYS_FIXED4.py `
+  --drive_pattern quad_cross_xy `
+  --out_csv .\out\LIGO_quadrupole_cross_FIXED4.csv

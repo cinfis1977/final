@@ -66,11 +66,11 @@ LIGO SECTOR (quadrupole drive)
 
 py -3 .\improved_simulation_STABLE_v17_xy_quadrupole_drive_ANISO_PHYS_TENSOR_PHYS_FIXED4.py ^
   --drive_pattern quad_plus_xy ^
-  --out .\out_ligo_plus.csv
+  --out_csv .\out_ligo_plus.csv
 
 py -3 .\improved_simulation_STABLE_v17_xy_quadrupole_drive_ANISO_PHYS_TENSOR_PHYS_FIXED4.py ^
   --drive_pattern quad_cross_xy ^
-  --out .\out_ligo_cross.csv
+  --out_csv .\out_ligo_cross.csv
 
 
 ------------------------------------------------------------
