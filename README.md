@@ -53,6 +53,19 @@ python .\tools\verdict_group_eval.py
 python .\tools\make_fig_strong_deltachi2.py
 ```
 
+## Integration equivalence evidence (paper-grade)
+
+Deterministic golden-output regeneration + strict equivalence tests live under `integration_artifacts/`.
+
+- Overview + how to run: `integration_artifacts/README_INTEGRATION.md`
+- What is checked / not checked: `integration_artifacts/EQUIVALENCE_CHECKS.md`
+
+Run the full deterministic suite (from repo root):
+
+```powershell
+python -m pytest -q integration_artifacts/mastereq/tests
+```
+
 ## Baselines and evaluation metrics (what “SM baseline” means here)
 
 The phrase **“SM baseline”** is used in a _sector-specific_ sense. Not every panel is a literal “Standard Model fit” in the same way.
