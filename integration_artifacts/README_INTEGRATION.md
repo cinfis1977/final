@@ -1,22 +1,25 @@
-Integration artifacts for the GKSL/Lindblad demo and comparison.
+Integration artifacts for the GKSL/Lindblad demo and “paper-grade” equivalence checks.
 
-## Local-only policy (NO REMOTE PUSH)
+This folder is intended to be committed and used as a stable evidence bundle:
 
-Do **not** push this repository to GitHub or any other remote. These artifacts are meant for **local** reproducibility only.
+- A reference implementation and deterministic pytest suite under `integration_artifacts/mastereq/`
+- A golden-output regeneration harness: `integration_artifacts/scripts/verdict_golden_harness.py`
+- Golden outputs under `integration_artifacts/out/verdict_golden/`
 
-If you want to hard-disable remote pushes:
+Generated harness reports (`integration_artifacts/out/verdict_golden/RUN_SUMMARY.{md,json}`) are gitignored because they may contain machine-specific absolute paths.
+
+## How to run
+
+From repo root:
 
 ```powershell
-git remote -v
-# Option A (recommended): remove the remote entirely
-git remote remove origin
-# Option B: keep fetch but disable push
-git remote set-url --push origin DISABLED
+python integration_artifacts/scripts/verdict_golden_harness.py
+python -m pytest -q integration_artifacts/mastereq/tests
 ```
 
 ## Validation (evidence)
 
-This folder contains an isolated GKSL reference implementation and a deterministic test suite under `integration_artifacts/mastereq/`.
+This folder contains a GKSL reference implementation and a deterministic test suite under `integration_artifacts/mastereq/`.
 
 What is validated by pytest checks:
 
@@ -63,16 +66,18 @@ Important non-claims:
 
 More detail (including what is not checked yet) is recorded in `integration_artifacts/EQUIVALENCE_CHECKS.md`.
 
-This folder contains copies of all files created for the GKSL integration so
-that nothing in the original repository is modified. Use `run_integration_demo.py`
-to run the demo and tests in this isolated location.
+Notes on scope:
+
+- The reference solver + tests live under `integration_artifacts/mastereq/`.
+- The sector runners under repo root are treated as the “system under test”.
+- The golden harness rewrites `--out`/`--out_csv`/`--chi2_out` paths so outputs land under `integration_artifacts/out/verdict_golden/`.
 
 Structure:
-- `mastereq/` : GKSL solver and tests (copies)
-- `runners/`  : demo runner (copy)
-- `scripts/`  : plotting script (copy)
-- `out/`      : demo outputs (example)
-- `run_integration_demo.py` : runner script that runs demo and tests from here
+
+- `mastereq/` : GKSL solver and tests
+- `scripts/`  : golden harness and helper scripts
+- `out/`      : golden outputs and demo outputs
+- `run_integration_demo.py` : optional demo runner
 
 How to run (from repository root):
 
@@ -81,7 +86,8 @@ python integration_artifacts/run_integration_demo.py
 ```
 
 This will:
-- run the demo runner and write outputs to `integration_artifacts/out/`
-- run the small test-suite located in `integration_artifacts/mastereq/tests/`
 
-No existing files outside `integration_artifacts/` will be modified.
+- run the demo runner and write outputs to `integration_artifacts/out/`
+- run the test-suite located in `integration_artifacts/mastereq/tests/`
+
+The demo/test workflow is designed to avoid modifying tracked source files; it only writes generated outputs under `integration_artifacts/out/`.
