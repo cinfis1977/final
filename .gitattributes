@@ -1,3 +1,5 @@
+integration_artifacts/entanglement_photon_bridge/02_54_coinc_slotfix.csv filter=lfs diff=lfs merge=lfs -text
+integration_artifacts/entanglement_photon_bridge/03_43_run4_afterfixingModeLocking.build.hdf5 filter=lfs diff=lfs merge=lfs -text
 data/nist_raw_03_43/*.zip filter=lfs diff=lfs merge=lfs -text
 data/nist/*.hdf5 filter=lfs diff=lfs merge=lfs -text
 INTEGRITY_CLOSURE_EVIDENCE_20260304.zip filter=lfs diff=lfs merge=lfs -text

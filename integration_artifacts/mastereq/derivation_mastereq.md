@@ -309,3 +309,145 @@ a fixed global default rate and a helper for turning $n,\sigma,v$ into a GKSL ra
   - $v=3\times10^{10}\,\mathrm{cm\,s^{-1}}$.
 
 These are **placeholders for numerical stability**, not microphysical predictions. Replace them with model-specific values as needed.
+
+---
+
+## Complete hook-to-master-equation map (code ↔ math)
+
+This section is the “no-ambiguity” mapping for every currently integrated sector hook.
+
+### Core wrapper contract (`unified_gksl.py`)
+
+- Total equation solved:
+  $$
+  \frac{d\rho}{dL}=-i[H_{\rm vac}+\sum_s H_s,\rho] + \sum_s \mathcal D_s[\rho].
+  $$
+- `add_mass_sector(fn)` expects `fn(L,E)` returning 2×2 mass-basis $\delta M_s^2$ in eV$^2$.
+  Wrapper applies
+  $$
+  H_s=K\frac{1}{2E}U\,\delta M_s^2\,U^\dagger\quad (\mathrm{km}^{-1}).
+  $$
+- `add_flavor_sector(fn)` expects `fn(L,E)` already in flavor basis and in km$^{-1}$.
+- `add_damping(fn)` expects `fn(L,E,\rho)` returning additive dissipator matrix.
+
+### Sector-by-sector technical mapping
+
+1. **Weak (`weak_sector.py`)**
+   - Coherent term: flavor-diagonal matter potential $\mathrm{diag}(V_e,0)$ in km$^{-1}$.
+   - Optional damping: off-diagonal dephasing
+     $$D_{01}=-\gamma\rho_{01},\;D_{10}=-\gamma\rho_{10}.$$
+   - Microphysics switch: `use_microphysics=True` derives $\gamma$ from $n\sigma v$ using weak $\nu e$ templates.
+
+2. **MS (`ms_sector.py`)**
+   - Coherent term: MSW-like flavor potential.
+   - Dissipator: explicit Lindblad dephasing using $L\propto\sigma_z$ (CP-safe pure dephasing channel).
+   - Microphysics switch: derives $\gamma$ from medium density conversion + weak template cross section.
+
+3. **EM (`em_sector.py`)**
+   - Coherent term: off-diagonal magnetic coupling $H\propto\mu_\nu B\,\sigma_x$.
+   - Dissipator: dephasing template (or explicit fixed gamma).
+   - Microphysics switch: derives $\gamma$ via magnetic-moment template cross section.
+
+4. **Strong (`strong_sector.py`)**
+   - Coherent term: toy mass-basis modulation (typically $\sigma_z$-like structure in mass basis).
+   - Dissipator: toy population-relaxation/decoherence channel (trace-preserving by construction).
+
+5. **DM (`dm_sector.py`)**
+   - Coherent term: density/coupling-driven $\delta M^2_{\rm DM}(L,E)$ in mass basis.
+   - Dissipator: population-relaxation style scattering approximation.
+   - Microphysics switch: derives scattering-rate gamma from DM template cross section.
+
+6. **LIGO / gravity (`ligo_sector.py`)**
+   - Coherent term: tiny oscillatory mass-basis modulation.
+   - Dissipator: Lindblad pair (exchange/relaxation form) or equivalent toy mode.
+   - Microphysics switch: effective gravity-bath template cross section to gamma.
+
+7. **Entanglement (`entanglement_sector.py`)**
+   - Dissipator hook: off-diagonal dephasing template (GKSL-compatible approximation path).
+   - Diagnostic bridge map: CHSH visibility template
+     $$|S|(L)=S_0\,e^{-\gamma L}$$
+     used as a controlled phenomenological link between decoherence and Bell-violation magnitude.
+   - Microphysics switch: `sigma_entanglement_reference_cm2(E,visibility)` + $n\sigma v\to\gamma$.
+
+8. **Photon/birefringence (`photon_sector.py`)**
+   - Dissipator hook: off-diagonal dephasing template.
+   - Added deterministic math mirrors for prereg runners:
+     - CMB lock test (single-point locked-$C_\beta$ z-score rule),
+     - FRW accumulation integral
+       $$I(z)=\int_0^z\frac{dz'}{(1+z')E(z')}$$
+       and locked prediction transfer to holdout.
+   - Microphysics switch: `sigma_photon_birefringence_reference_cm2(E,coupling_x)` + $n\sigma v\to\gamma$.
+
+---
+
+## What is exact vs what is scaffold (strict boundary)
+
+To prevent interpretational drift:
+
+- **Exact in this repo (deterministic):**
+  - code-path contracts and unit conversions,
+  - GKSL numerical integration behavior,
+  - runner declared-math equivalence tests (golden/independent reimplementation checks),
+  - reproducible command outputs for the checked panels.
+
+- **Not yet exact (still scaffold/template):**
+  - full first-principles microphysical derivation of all sector dissipators,
+  - sector-specific QFT amplitudes + medium response + Markov/secular justification end-to-end,
+  - non-Markovian closure where required by physics regime.
+
+In other words: current `microphysics.py` gives consistent and testable $n\sigma v\to\gamma$ wiring, but does **not** claim universal first-principles completion.
+
+---
+
+## Exact-derivation completion recipe (implementation-grade)
+
+For any target sector, the required closure chain is:
+
+1. Fix interaction model (SM or explicit BSM Lagrangian).
+2. Derive matrix element $\mathcal M$ and cross section/rate kernels.
+3. Compute medium averages (distribution-weighted rates and correlation times).
+4. Derive reduced dynamics (Born-Markov + secular checks explicitly documented).
+5. Express resulting generator in Lindblad form (or justify non-GKSL form if needed).
+6. Map coefficients to km$^{-1}$ solver units and add numerical regression tests.
+7. Validate physical limits:
+   - positivity,
+   - trace conservation,
+   - SM/no-new-physics limit,
+   - stability under step-size refinement.
+
+No sector should be labeled “microphysical exact derivation complete” unless all seven are satisfied and evidenced by tests/docs.
+
+---
+
+## Reproducibility checklist (current repo state)
+
+- Full integration tests:
+  - `python -m pytest -q integration_artifacts/mastereq/tests`
+- Current validated snapshot in this branch/session: **37 passed**.
+- New bridge equivalence tests included in this count:
+  - entanglement runner equivalence,
+  - photon/birefringence runner equivalence.
+
+This checklist is intentionally duplicated in high-level docs so readers can verify status without searching through commit history.
+
+---
+
+## Appendix: sector-by-sector runner reference map
+
+This derivation file focuses on equation-level mapping. For reproducible runner paths,
+use this quick index (canonical source remains `tools/verdict_commands.txt`):
+
+- EM (Bhabha): `em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py`
+- EM (mu-mu): `em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py`
+- Weak/oscillation: `nova_mastereq_forward_kernel_BREATH_THREAD_fixedbyclaude.py`, `nova_mastereq_forward_kernel_BREATH_THREAD_v2.py`
+- Strong: `strong_sigma_tot_energy_scan_v2.py`, `strong_rho_energy_scan_v3.py`
+- DM: `dm_holdout_cv_thread_STIFFGATE.py`, `dm_holdout_cv_thread.py`
+- LIGO/GW: `improved_simulation_STABLE_v17_xy_quadrupole_drive_ANISO_PHYS_TENSOR_PHYS_FIXED4.py`
+- Entanglement/Photon bridge:
+  - `integration_artifacts/entanglement_photon_bridge/audit_nist_coinc_csv_bridgeE0_v1_DROPIN.py`
+  - `integration_artifacts/entanglement_photon_bridge/run_prereg_cmb_birefringence_v1_DROPIN_SELFCONTAINED.ps1`
+  - `integration_artifacts/entanglement_photon_bridge/run_prereg_birefringence_accumulation_v1_DROPIN_SELFCONTAINED_FIX.ps1`
+
+Cross-check files:
+- equivalence scope and evidence: `integration_artifacts/EQUIVALENCE_CHECKS.md`
+- golden rerun orchestration: `integration_artifacts/scripts/verdict_golden_harness.py`

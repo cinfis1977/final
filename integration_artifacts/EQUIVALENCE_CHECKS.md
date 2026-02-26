@@ -1,4 +1,4 @@
-# GKSL ↔ runner equivalence checks (work in progress)
+# GKSL ↔ runner equivalence checks (current status)
 
 This folder contains an **exact GKSL (Lindblad) reference** implementation under `integration_artifacts/mastereq/`.
 The repo also contains sector-specific forward runners (WEAK/EM/STRONG/DM/…)
@@ -7,6 +7,12 @@ that often implement *approximations* (phase-shift kernels, baseline×modulation
 This document records equivalence checks that explicitly relate a runner’s math to a GKSL evolution.
 
 ## What is checked today
+
+Snapshot (this branch/session):
+- Full suite: `python -m pytest -q integration_artifacts/mastereq/tests` → **37 passed**.
+- New bridge tests included:
+   - `integration_artifacts/mastereq/tests/test_equivalence_entanglement_runner.py`
+   - `integration_artifacts/mastereq/tests/test_equivalence_photon_birefringence_runner.py`
 
 ### Validation status (evidence)
 
@@ -42,9 +48,30 @@ What we can currently claim, backed by deterministic tests in this repo:
    - sigma_tot energy scan golden-output check: `integration_artifacts/mastereq/tests/test_equivalence_strong_sigma_tot_golden_outputs.py`
    - rho energy scan golden-output check: `integration_artifacts/mastereq/tests/test_equivalence_strong_rho_golden_outputs.py`
 
+- **Entanglement/Photon bridge ↔ declared-math equivalence:**
+    - Entanglement CHSH coincidence audit equivalence:
+       `integration_artifacts/mastereq/tests/test_equivalence_entanglement_runner.py`
+    - Photon birefringence prereg (locked formulas) equivalence:
+       `integration_artifacts/mastereq/tests/test_equivalence_photon_birefringence_runner.py`
+
 Non-claims (explicitly not proven by the above):
 - That the runner outputs include or validate dissipative GKSL channels (they generally don’t).
 - That the microphysics templates are quantitatively “true SM/BSM predictions” (they are documented placeholders until replaced by model-specific calculations).
+
+## Canonical runner map (sector-by-sector)
+
+Canonical command source: `tools/verdict_commands.txt`.
+
+- EM (Bhabha): `em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py`
+- EM (mu-mu): `em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py`
+- Weak/oscillation: `nova_mastereq_forward_kernel_BREATH_THREAD_fixedbyclaude.py`, `nova_mastereq_forward_kernel_BREATH_THREAD_v2.py`
+- Strong: `strong_sigma_tot_energy_scan_v2.py`, `strong_rho_energy_scan_v3.py`
+- DM: `dm_holdout_cv_thread_STIFFGATE.py`, `dm_holdout_cv_thread.py`
+- LIGO/GW: `improved_simulation_STABLE_v17_xy_quadrupole_drive_ANISO_PHYS_TENSOR_PHYS_FIXED4.py`
+- Entanglement/Photon bridge:
+   - `integration_artifacts/entanglement_photon_bridge/audit_nist_coinc_csv_bridgeE0_v1_DROPIN.py`
+   - `integration_artifacts/entanglement_photon_bridge/run_prereg_cmb_birefringence_v1_DROPIN_SELFCONTAINED.ps1`
+   - `integration_artifacts/entanglement_photon_bridge/run_prereg_birefringence_accumulation_v1_DROPIN_SELFCONTAINED_FIX.ps1`
 
 ### WEAK: phase-shift runner ↔ GKSL mass-sector mapping
 
@@ -161,9 +188,23 @@ Evidence test:
 - Any validation that the **microphysics-derived** rates (the `n·σ·v → γ` scaffolding) match runner outputs: the WEAK runner golden outputs are a unitary
    phase-map ($H$ update) and do not include dissipative Lindblad terms (no $\gamma$ to compare).
 
+## Exactness boundary (important)
+
+What is exact/reproducible in this repo:
+- Runner declared-math equivalence checks (golden outputs + independent reimplementation tests).
+- GKSL integration contracts and deterministic regression tests.
+- Microphysics wiring checks (`use_microphysics=True` vs explicit same $\gamma$).
+
+What is not “first-principles exact derivation complete” yet:
+- Sector-by-sector full QFT dissipator derivations from SM/BSM amplitudes,
+- medium-response closure + Born-Markov/secular validity proof per sector,
+- non-Markovian closure where required.
+
 ## Next extensions
 
 - Add an end-to-end WEAK check: parse a channels pack, reproduce per-bin P_sm/P_geo and the printed χ² summary, and compare to the runner outputs.
 - Add sector-by-sector mapping docs: what exactly would be treated as Hamiltonian vs dissipator in GKSL for EM/STRONG/DM.
 - If/when a runner exports damping-like observables (or we add a GKSL-damped runner mode), add a microphysics-to-runner equivalence test that compares
    predicted damping vs exported $\gamma$-sensitive outputs.
+
+- Add explicit per-sector links from this file to `integration_artifacts/mastereq/derivation_mastereq.md` subsections so equation-level and runner-level evidence are navigable in one click.

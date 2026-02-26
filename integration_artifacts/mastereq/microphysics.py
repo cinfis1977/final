@@ -76,6 +76,26 @@ def sigma_gravity_reference_cm2(E_GeV: float, coupling_h: float = 1.0) -> float:
     return 1.0e-50 * (h * h) * max(0.0, float(E_GeV))
 
 
+def sigma_entanglement_reference_cm2(E_GeV: float, visibility: float = 1.0) -> float:
+        """Reference effective cross section for entanglement decoherence templates.
+
+        Deterministic placeholder scaling used for GKSL wiring checks:
+            sigma_ent ~ 1e-47 * visibility^2 * E[GeV]
+        """
+        v = float(visibility)
+        return 1.0e-47 * (v * v) * max(0.0, float(E_GeV))
+
+
+def sigma_photon_birefringence_reference_cm2(E_GeV: float, coupling_x: float = 1.0) -> float:
+        """Reference effective cross section for photon/birefringence templates.
+
+        Deterministic placeholder scaling used for GKSL wiring checks:
+            sigma_ph ~ 1e-49 * coupling_x^2 * E[GeV]
+        """
+        x = float(coupling_x)
+        return 1.0e-49 * (x * x) * max(0.0, float(E_GeV))
+
+
 __all__ = [
     "N_A",
     "gamma_km_inv_from_n_sigma_v",
@@ -85,4 +105,6 @@ __all__ = [
     "sigma_em_magnetic_moment_cm2",
     "sigma_dm_reference_cm2",
     "sigma_gravity_reference_cm2",
+    "sigma_entanglement_reference_cm2",
+    "sigma_photon_birefringence_reference_cm2",
 ]
