@@ -1,9 +1,11 @@
 # New Master Equation With Gauge Structure
 
 This repository is a reproducibility workspace for a locked, cross-sector draft:
-WEAK / EM / STRONG / DM / GW + mass spectrometry (real Bruker mzML addendum).
+WEAK / EM / STRONG / DM / GW + entanglement + photon/birefringence + FT-ICR target-specific mass spectrometry (real Bruker mzML addendum).
 
-Scope note: `PASS` means not falsified under preregistered tests for the specific tested panels; it is not a universal proof.
+Scope note: `PASS` means not falsified under preregistered tests for the specific tested panels; `PENDING` means internal/pipeline support exists but a key calibration, holdout, or paper embedding is still open. Neither label is a universal proof.
+
+Terminology note: the paper now uses **unified equation** (instead of “master equation”) and treats the FT-ICR line as **target-specific / cross-domain robustness**. Legacy runner filenames still use `particle_specific` and are intentionally preserved for reproducibility.
 
 ## Current Paper Files (Active)
 
@@ -65,6 +67,56 @@ Run the full deterministic suite (from repo root):
 ```powershell
 python -m pytest -q integration_artifacts/mastereq/tests
 ```
+
+### Unified-equation + microphysics wiring (integration layer)
+
+The shared unified-equation framework and microphysics hook wiring (`use_microphysics=True`, `Γ=nσv`, `γ=Γ/c`) are integrated under:
+
+- `integration_artifacts/mastereq/` (core GKSL/unified-equation modules)
+- `integration_artifacts/mastereq/microphysics.py`
+- `integration_artifacts/mastereq/defaults.py`
+
+The integration tests check both:
+1. **Runner declared-math equivalence** (golden/equivalence outputs), and  
+2. **Microphysics wiring equivalence** (derived \(\gamma\) path matches explicit-\(\gamma\) path).
+
+### Entanglement + photon/birefringence (new bridge integration)
+
+The bridge pack and new GKSL-compatible sector hooks are now integrated under:
+
+- `integration_artifacts/entanglement_photon_bridge/`
+- `integration_artifacts/mastereq/entanglement_sector.py`
+- `integration_artifacts/mastereq/photon_sector.py`
+
+New deterministic equivalence tests:
+
+- `integration_artifacts/mastereq/tests/test_equivalence_entanglement_runner.py`
+- `integration_artifacts/mastereq/tests/test_equivalence_photon_birefringence_runner.py`
+
+Run only the new bridge equivalence tests:
+
+```powershell
+python -m pytest -q integration_artifacts/mastereq/tests/test_equivalence_entanglement_runner.py integration_artifacts/mastereq/tests/test_equivalence_photon_birefringence_runner.py
+```
+
+Latest snapshot for these new tests: **6 passed**.
+
+Current full-suite snapshot (after path + solver fallback fixes): **37 passed**.
+
+Bridge prereg/audit reruns are written under:
+
+- `integration_artifacts/out/entanglement_photon/`
+
+Example produced files:
+
+- `integration_artifacts/out/entanglement_photon/coinc_audit_summary_v1.csv`
+- `integration_artifacts/out/entanglement_photon/birefringence_accumulation_prereg_v1.csv`
+
+Note on full-suite command:
+
+- Latest local run:
+  - `python -m pytest -q integration_artifacts/mastereq/tests`
+  - result: **37 passed**.
 
 ## Baselines and evaluation metrics (what “SM baseline” means here)
 
@@ -145,6 +197,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\run_verdict.ps1 -App
 
 ## Mass-Spec Finalizer (good_ppm=3 prereg lock)
 
+Terminology: this sector is described in the paper as **target-specific FT-ICR** (cross-domain robustness check). Script names below keep the legacy `particle_specific` naming.
+
 What it does: produces locked final verdict artefacts (JSON+MD) from already-generated run outputs.
 It does not rerun mzML conversion or the multi-target analysis.
 
@@ -167,6 +221,29 @@ Expected final artefacts:
 
 - `out/particle_specific_final_goodppm3_lock/prereg_lock_and_final_verdict_goodppm3.json`
 - `out/particle_specific_final_goodppm3_lock/FINAL_VERDICT_REPORT_goodppm3.md`
+
+## Future Work (paper + release priorities)
+
+Most remaining work is **calibration / framing / paper embedding**, not a reset of the framework.
+
+### Priority 1 — publication blockers
+1. **GW frequency calibration closure** (align the frequency scale to the ringdown band and embed the calibration figures).
+2. **EM strongest full-cov holdout completion** (finish and embed the covariance-preserving holdout presentation).
+3. **Paper structure cleanup** (section order/numbering consistency and moving long CLI catalogs to a technical supplement).
+
+### Priority 2 — strengthens the paper substantially
+1. **FT-ICR framing cleanup** in prose (`target-specific` wording, cross-domain robustness framing).
+2. **Independent weak-sector validation for `du_phase`** on a separate public dataset / holdout profile.
+3. **Fill remaining figure placeholders** from existing run outputs.
+
+### Priority 3 — deeper theory work (not required for current release)
+1. **Substrate-to-operator derivation** for sector hooks.
+2. **CT/RT dual-tension dimensional analysis**.
+3. **Stronger microphysics derivations** for sector-specific \((n,\sigma,v)\) mappings.
+
+### Data requirement note
+Nearly all items above can be completed with the **existing code and existing public datasets**.  
+The only likely extra public-data step is the weak-sector independent validation for `du_phase`.
 
 ## Main Output Locations
 

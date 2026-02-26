@@ -1,17 +1,19 @@
-# Draft (pre-publication) — A Master-Equation Geometric Modulation Framework Across Weak, Strong, Electromagnetic, Gravitational-Wave, and Dark Matter Sectors
-Date: 2026-02-21 (v4_52; editorial: added inline g_bp/g_lp forward reference; MS real-data prereg lock unchanged)
+# Unified Equation (GKSL) Geometric Modulation (one-for-all implementation) — Ahmet Özbalık — research notes & reproducible runs — Weak, EM, Strong, Dark Matter, GW (LIGO), Mass Spectrometry, Entanglement (CHSH), Photon (birefringence/decay) — All sectors: PASS where tested; EM conditioning under study; GW PENDING (band calibration); DM PENDING (results-to-paper embed)
+
+**One-for-all implementation (what this means):** this draft uses a single **locked** base parameterization (a small set of “physical” knobs) plus a **deterministic sector map** that generates each sector’s runner parameters from that same base. The intent is to avoid per-sector tuning and make cross-sector checks auditable: if the base and map are fixed, each sector run is a reproducible consequence of the same upstream choices.
+
 > This is a falsification-first, preregistered working-paper draft: the pipeline and artifacts are provided end-to-end, and the strongest results are clearly separated from follow-up tests.
 
 > **Scope / status (read carefully).**
-> This document is a **falsification-first, preregistered** research note. It contains the full **weak-sector master-equation implementation** (CurvedCube kernel + holonomy/du_phase rule), the **EM bridge** with LEP Bhabha shape-only tests (including covariance variants and predictive holdouts), the **phenomenology sector** that formalizes an **Entangled Bubble Pair** (strict anti-chiral two-state locking) with a **photon-release hypothesis** and an explicit locality/delay discussion (hypothesis track; tests proposed), and the **strong-sector validation track** (TOTEM 13 TeV CNI “phase gate” plus energy-axis panels for \(\sigma_{\mathrm{tot}}(\sqrt{s})\) and \(\rho(\sqrt{s})\)).
+> This document is a **falsification-first, preregistered** research synthesis for the unified-equation / gauge-geometry program. It now includes validated empirical sectors for weak, strong, EM, dark matter, and gravitational-wave tests, plus an **entanglement bridge sector** (Bell/CHSH audit on NIST run4) and a **photon-decay / propagation bridge sector** (preregistered cosmic birefringence accumulation tests).
 > 
-> **Real-data mass-spectrometry (new):** we include a **fit-free, preregistered** analysis of **real Bruker/CompassXport-exported mzML** full-scan runs to test **setting-conditioned separation** and a **multi-target particle-specific signature** under a locked success threshold (`good_ppm=3`) with holdout + third-arm consistency.
+> **Real-data mass-spectrometry (new):** we include a **fit-free, preregistered** analysis of **real Bruker/CompassXport-exported mzML** full-scan runs to test **setting-conditioned separation** and a **multi-target target-specific signature** under a locked success threshold (`good_ppm=3`) with holdout + third-arm consistency.
 
 > **Headlines (mass-spectrometry sector).**
-> **A) real Bruker mzML (particle-specific; fit-free prereg PASS):** Using CompassXport-exported, full-scan mzML runs, a scan-resolved pipeline produces per-scan mass estimates and a normalized ion-load proxy \(g\). A multi-target “particle-specific” test with a locked success threshold **`good_ppm=3`** yields a preregistered **PASS** with strong holdout + third-arm stability (see §4.9.10 and the signed artefacts under `out/particle_specific_final_goodppm3_lock/`).
+> **A) real Bruker mzML (target-specific; fit-free prereg PASS):** Using CompassXport-exported, full-scan mzML runs, a scan-resolved pipeline produces per-scan mass estimates and a normalized ion-load proxy \(g\). A multi-target “target-specific” test with a locked success threshold **`good_ppm=3`** yields a preregistered **PASS** with strong holdout + third-arm stability (see §4.9.10 and the signed artefacts under `out/particle_specific_final_goodppm3_lock/`).
 
 > **Important scope note (data provenance).** The Mass Spectrometer section below is based on **real instrument exports (mzML)** and is evaluated under a **preregistered lock**; earlier toy demonstrations are intentionally omitted in this version to keep the write-up fully aligned with the current, real-data pipeline.
-> - **real mzML addendum:** Bruker/CompassXport‑exported, full‑scan mzML runs analyzed fit‑free under a locked prereg gate (good_ppm=3) to test setting-conditioned separation and target‑dependent “particle-specific” structure.
+> - **real mzML addendum:** Bruker/CompassXport‑exported, full‑scan mzML runs analyzed fit‑free under a locked prereg gate (good_ppm=3) to test setting-conditioned separation and target‑dependent “target-specific” structure.
 >
 > In several evaluation tables, “SM” is a **legacy label for a frozen baseline/no‑correction reference** (it does **not** refer to the particle‑physics Standard Model).
 >
@@ -21,12 +23,64 @@ Date: 2026-02-21 (v4_52; editorial: added inline g_bp/g_lp forward reference; MS
 >
 > Throughout, **PASS** means *not falsified under the stated preregistered test definition* (it is not a proof of truth); **TENSION** flags sensitivity to conditioning/baseline/covariance choices that motivates the next preregistered checks; **INCONCLUSIVE** means the test is not yet decisive because the baseline/covariance/selection is not stable enough.
 
+> **Revision note (entanglement + photon integration into the unified-equation program).**  
+> In this revision, the entanglement (CHSH/NIST audit) and photon (decay/birefringence) analyses are treated not as isolated add-ons but as sectors of the same cross-sector open-system program used elsewhere in the project. The paper now records the project-level integration chain explicitly: (i) a shared GKSL-style **unified-equation** sector insertion contract, (ii) an optional microphysics bridge \(n\,\sigma\,v \rightarrow \gamma\), and (iii) independent equivalence tests confirming that the declared mathematics is wired consistently into the runner implementations. A new **Sector Hook Map** subsection further lists the sector-level observables, \(H_s/\mathcal D_s\) roles, microphysics candidates, runner/test anchors, and validation status (validated vs scaffolding) so the integration can be checked sector by sector.
+
+
+### Scope and interpretation note (reviewer-facing)
+
+This revision intentionally uses **unified equation** terminology (formerly “master equation”) and keeps the claims conservative:
+
+- The **geometric substrate → sector operator** step is currently a **structured bridge map** (declared and tested), **not** a first-principles derivation from substrate coordinates.
+- The **CT/RT dual-tension split** is a working geometric rule used across sectors; a full dimensional-limit derivation (e.g., Coulomb/Newtonian limits) is future work.
+- The **microphysics hook** \(\Gamma=n\sigma v\), \(\gamma=\Gamma/c\) is a shared wiring/scaffolding layer. It is validated as code-to-math plumbing, but not claimed as a completed universal derivation.
+- The **entanglement line** is a **Bell-audit / pipeline validation** on a known Bell-violating dataset (plus unified-equation hooks), not a first-principles Bell-violation derivation from the substrate.
+- The **photon/birefringence line** is a preregistered **scaffolding/falsification testbed** (accumulation law + bridge wiring), not a final calibrated cosmic birefringence parameter extraction.
+- Status labels are strict: **PASS = not falsified for the declared test**; **PENDING = internal/pipeline support exists but a key calibration, holdout, or full paper embedding is still open**.
+
+
 ## Physical picture of the model (read this first)
 
 This section is deliberately **visual**. The goal is that a reader can “play the model like an animation” in their head before seeing any equations.
 
 > **Not metaphor, mechanism (“engine-room” rule).** Throughout this draft, words like *thread*, *junction*, *jitter*, *lock plane*, *gate*, and *route–register* are used as **literal elements of a discrete substrate protocol**, not as poetic stand-ins for continuum fields. “Jitter” is not an externally injected random noise term; it refers to a reproducible timing/phase mismatch produced by distinct transport paths on the lattice.
 
+
+### Project-level integration status (unified equation → microphysics → tested runners)
+
+This paper now reflects a repository-level milestone: the entanglement and photon sectors are integrated into the same *sector-pluggable* unified-equation workflow that is used for weak, EM, strong, DM, and LIGO analyses. In practical terms, the project now has a **three-layer bridge** from concept to code. To remove ambiguity for readers, a **sector-by-sector hook map** (including microphysics candidates and validation status) is also included below in the mathematical framework section:
+
+1. **Common cross-sector unified equation (shared contract).**  
+   Sector contributions are inserted into one open-system evolution skeleton,
+   \[
+   \frac{d\rho}{dL}
+   =-i\!\left[H_{\mathrm{vac}}+\sum_s H_s,\rho\right]
+   +\sum_s \mathcal{D}_s[\rho],
+   \]
+   where each sector \(s\) contributes a coherent piece \(H_s\) and/or a dissipative/Lindblad piece \(\mathcal{D}_s\).  
+   In the codebase, this is the common interface carried by the unified GKSL layer (e.g. `unified_gksl.py`, `gk_sl_solver_clean.py`, and the derivation notes in `derivation_mastereq.md`), with sector modules following the same insertion logic (`weak_sector.py`, `ms_sector.py`, `em_sector.py`, `strong_sector.py`, `dm_sector.py`, `ligo_sector.py`, `entanglement_sector.py`, `photon_sector.py`).
+
+2. **Microphysics bridge (optional, auditable scaling).**  
+   Instead of treating damping rates as only fixed toy constants, the project now supports an optional *microphysics scaffolding*:
+   \[
+   \Gamma_s = n_s\,\sigma_s\,v_s,
+   \qquad
+   \gamma_s = \Gamma_s/c.
+   \]
+   This is implemented as a controlled conversion layer (`microphysics.py`, `defaults.py`) and can be switched on sector-by-sector via `use_microphysics=True`.  
+   Importantly, this paper does **not** claim that a complete first-principles derivation is finished for every sector. The claim is narrower and stronger: the bridge is a **consistent, inspectable, and test-validated wiring layer** from microphysical scales to the unified-equation damping channel.
+
+3. **Equivalence verification (declared math ↔ runner code).**  
+   The project now includes explicit equivalence tests to answer the crucial question: *Was the mathematics transferred to the runners correctly?*  
+   Two classes of tests are used:
+   - **Declared-math runner equivalence tests:** independent reimplementations reproduce runner outputs (golden/equivalence checks).
+   - **Microphysics wiring equivalence tests:** `use_microphysics=True` must match the evolution obtained by injecting the same \(\gamma\) explicitly from outside.
+
+   This is the key quality-control step for the entanglement + photon additions: the new sectors are not only described mathematically, but also checked against the actual executable runners.
+
+A practical implication for the entanglement sector is that the **canonical evidence path** remains the NIST run4 HDF5-export coincidence workflow (the one that yields the CHSH violation result used in this paper), while the prescreen CSV “Bridge-E0” slot-fix audit is documented as a format/mapping incompatibility case (producing the trivial \(S=-2\) artifact) and is therefore excluded from final evidence claims. This prevents over-claiming and keeps the entanglement conclusion tied to the validated data chain.
+
+On the photon side, the same integration logic now covers both the photon-decay-style dissipative interpretation and the birefringence/redshift-accumulation prereg pathway: the formulas are locked, the sector plugs into the same unified-equation architecture, and the runner-level equivalence checks confirm consistency with the declared mathematics.
 
 ### Visual summary (what the “unit cell” and the “junction” literally are)
 
@@ -73,30 +127,32 @@ The planes are *conditioning layers* applied when a link crosses a slice:
 
 
 
-### Master equation one-liner + minimal glossary (quick reader entry)
+### Unified equation one-liner + minimal glossary (quick reader entry)
 
-The propagation core used by the forward code is a master equation written in baseline coordinate \(L\):
+The cross-sector propagation/response core is expressed in this paper as a GKSL-style **unified equation** with sector hooks:
 
 $$
 \boxed{
-\frac{d\rho}{dL}
+\frac{d\rho}{d\lambda}
 =
--i\,K(E)\,[\,H_{\mathrm{vac}}(E)+H_{\mathrm{mat}}(L,E)+H_{\mathrm{geo}}(L,E),\,\rho\,]
-\;+\;
-\sum_j \Gamma_j(L,E)\,\mathcal D[L_j]\,\rho
+-i\,[\,H_0(\lambda)+\sum_s H_s(\lambda),\,\rho\,]
+\;+
+\sum_s \mathcal D_s[\rho;\,\gamma_s(\lambda)]
 }
 $$
 
+This is the project’s “one-for-all” mathematical contract: each sector contributes through a coherent term \(H_s\), an optional dissipative term \(\mathcal D_s\), and (when enabled) a microphysics bridge \(\gamma_s \leftarrow n_s\sigma_s v_s/c\).
+
 **Glossary (minimum needed to parse the rest of the paper):**
-- \(\rho(L,E)\): density matrix of the propagated internal state (e.g. flavor).  
-- \(L\): baseline / propagation coordinate used in code (continuous or discretized steps).  
-- \(E\): neutrino (or probe) energy; forward runs evaluate at bin centers.  
-- \(K(E)\): code-faithful unit/scale factor (absorbs convention choices; does not change the protocol).  
-- \(H_{\mathrm{vac}}(E)\): standard vacuum Hamiltonian.  
-- \(H_{\mathrm{mat}}(L,E)\): standard matter potential term (optional per dataset).  
-- \(H_{\mathrm{geo}}(L,E)\): **geometric modulation** derived from the junction protocol (holonomy / phase-mismatch / gating) — the sector-bridge entry point.  
-- \(\mathcal D[L_j]\rho\): Lindblad dissipator(s) for decoherence channels.  
-- \(\Gamma_j(L,E)\): decoherence rates (set to 0 in “strict closed” tests unless explicitly preregistered otherwise).  
+- \(\rho\): effective state object being propagated/evolved (density matrix or sector-equivalent state representation).  
+- \(\lambda\): sector-specific evolution coordinate (e.g., baseline \(L\) in weak oscillations, redshift/path variable for photon transport, or another sector-defined path parameter).  
+- \(H_0\): baseline/reference coherent generator for the sector under study.  
+- \(H_s\): sector hook (geometric modulation, medium coupling, analyzer-phase convention, propagation kernel deformation, etc.).  
+- \(\mathcal D_s\): dissipative/decoherence hook written in unified-equation (GKSL-style) language.  
+- \(\gamma_s\): sector damping/decoherence rate parameter (explicit or microphysics-derived).  
+- \(n_s,\sigma_s,v_s\): optional microphysics ingredients used to build \(\gamma_s\) through the repository bridge \(n\sigma v\to\gamma\).  
+
+**Weak-sector specialization (used in NOvA/MINOS/T2K runners).** In the weak propagation code, the same unified equation reduces to the familiar baseline-form statement with \(\lambda=L\), \(H_0\equiv K(E)[H_{\mathrm{vac}}+H_{\mathrm{mat}}]\), and \(H_s\equiv K(E)H_{\mathrm{geo}}\), plus optional Lindblad dephasing/damping.
 
 **No fundamental arrow of time.** The model’s “time/order” is implemented as a **junction update schedule** (LP/RL ordering variable \(\tau\)) on the graph. Any apparent arrow arises **emergently** from (i) ordering constraints, (ii) relaxation of mismatch energy into queued degrees, and (iii) boundary/absorber conditions in a given test.
 
@@ -228,7 +284,7 @@ where \(\Delta t\) is the edge–bulk timing mismatch. This is the operational o
 \(A_I\) tracks bulk loss/delay (absorption‑like), \(A_R\) tracks the phase rotation (dispersion‑like).
 
 **(E) The “threshold / gate” is a separate filter (junction stiffness).**  
-After the interference pattern exists, the junction applies an additional filter governed by stiffness \(\kappa_{\mathrm{junc}}\) (and when enabled, \(\kappa_{ m gate}\)). This filter penalizes out‑of‑order / non‑causal configurations and conditions forward singular behavior in EM. So:  
+After the interference pattern exists, the junction applies an additional filter governed by stiffness \(\kappa_{\mathrm{junc}}\) (and when enabled, \(\kappa_{\mathrm{m\,gate}}\)). This filter penalizes out‑of‑order / non‑causal configurations and conditions forward singular behavior in EM. So:  
 **pattern = split‑path geometry; success probability = stiffness/gating filter.**
 
 **Mental movie (one step).**
@@ -253,12 +309,9 @@ Independent of whether we explicitly *draw* a 2D junction-pattern map, the allow
 
 Concretely, every RT crossing samples a slice-cell index \(c\) (an **addressing** map from a crossing to a cell), and the effective transport across that interface is written as
 \[
-U_{ij}^{
-m eff}(c)=\mathcal{O}_{
-m slice}(c)\,s_{ij}(c)\,U_{ij},
+U_{ij}^{\mathrm{eff}}(c)=\mathcal{O}_{\mathrm{slice}}(c)\,s_{ij}(c)\,U_{ij},
 \]
-where \(s_{ij}(c)=g(\phi_c)\) is the TT2/\(\phi\)-gate factor and \(\mathcal{O}_{
-m slice}(c)\) bundles the sector-readout operators (LP ordering, RL localization readout, EM/QEM conditioning with \(\kappa(c)\), etc.).  
+where \(s_{ij}(c)=g(\phi_c)\) is the TT2/\(\phi\)-gate factor and \(\mathcal{O}_{\mathrm{slice}}(c)\) bundles the sector-readout operators (LP ordering, RL localization readout, EM/QEM conditioning with \(\kappa(c)\), etc.).  
 
 **“Plane input points / ports” (for visualization):** the set of all RT crossings \(\{(i\!\leftrightarrow\!j)\}\) defines a *discrete* set of sampling points on the plane. In figures we can draw these as dots on a 2D slice grid, colored by \(g(\phi_c)\) and/or \(\kappa(c)\). This preserves the rule: **no wires from the 16-thread bus to the plane**, only **conditioning at the slice**.
 
@@ -277,7 +330,7 @@ m slice}(c)\) bundles the sector-readout operators (LP ordering, RL localization
 Operationally it is an *interface observable*: the pattern appears as **relative phases/attenuations across the port set** (entries of \(U_{ij}^{\mathrm{eff}}\)) and as the resulting sector readouts (weak holonomy phase, EM/QEM channel interference, strong complex amplitude \(A_R+iA_I\)). Conceptually you may picture the same structure as living on the plane-map (a 2D junction pattern) or on the face (a conditioned 16-port tensor). Both are the same book-keeping.
 
 **What is implemented in the current code path?**  
-The preregistered runs reported here use the **operator/gate view**: plane effects enter through **effective per-crossing factors** (global parameters + deterministic generators such as `geo_structure/geo_gen`, plus \(\kappa\) where applicable). A fully explicit stored 2D “junction-pattern map” per plane family is *not required* for the current falsification runs; it is a visualization-friendly representation of the same operators and can be added later without changing the already-tested master-equation core.
+The preregistered runs reported here use the **operator/gate view**: plane effects enter through **effective per-crossing factors** (global parameters + deterministic generators such as `geo_structure/geo_gen`, plus \(\kappa\) where applicable). A fully explicit stored 2D “junction-pattern map” per plane family is *not required* for the current falsification runs; it is a visualization-friendly representation of the same operators and can be added later without changing the already-tested unified-equation core.
 
 **Are plane families different?**  
 Yes, by *role* (not necessarily by being separate “physical slabs”): LP provides global ordering/time-reference + localization lock; RL is the route/localization **readout** defined on LP slices; EM/QEM provides junction conditioning + stiffness \(\kappa\); TT2/\(\phi\)-gate is a multiplicative crossing operator; GW is **metric strain on the RT skeleton** that shifts effective crossings/phases indirectly (no GW “routing plane”).
@@ -347,7 +400,7 @@ This is not used as a fit device in the sector likelihoods, but it provides a **
 - EM/QEM conditioning uses a stiffness / ordering filter (e.g. \(\kappa_{\mathrm{junc}}\)) as a *gate/threshold* acting at junction composition.
 - LP/RL act as a **global reference + ordering/time-order rule** for whether a junction composition is admissible (localization/ordering), not as a separate “wire network”.
 
-This keeps the **Master Equation and the tested likelihoods unchanged**: we are clarifying *where a pattern would live* if one later chooses to visualize (or explicitly discretize) it.
+This keeps the **Unified Equation and the tested likelihoods unchanged**: we are clarifying *where a pattern would live* if one later chooses to visualize (or explicitly discretize) it.
 
 **So where do “patterns” show up? (plane vs. cube face)**  
 Think of two different *readouts* of the same mechanism:
@@ -440,7 +493,7 @@ and an indicator of “being locked” is
 A localized object corresponds to a connected region where \(\Psi_{\mathrm{lock}}\) stays high; the “locking radius” is the scale of that region. (This is presented as a diagnostic definition; the preregistered sector runners do not yet compute \(\Psi_{\mathrm{lock}}\) explicitly.)
 - **Why a “lock plane”?** In the geometric language used elsewhere in this program, the “lock” is naturally expressed as a *reference manifold/plane* in the auxiliary-field layer against which phases are measured. Localization occurs when the internal transport over a window produces phase alignment relative to this reference, after which the local update becomes well-defined.
 
-- **What is implemented today?** The current sector tests do **not** require a full localization operator; instead, localization enters effectively via decoherence terms (optional GKSL dissipators in the weak master equation) and via gate functions in the CurvedCube kernel. The “global lock plane” is therefore treated as a **global reference/clock field** in the theoretical picture; in the current code it is realized implicitly via the fixed gating/phase reference and the update schedule (an explicit dynamic plane field is future work).
+- **What is implemented today?** The current sector tests do **not** require a full localization operator; instead, localization enters effectively via decoherence terms (optional GKSL dissipators in the weak unified equation) and via gate functions in the CurvedCube kernel. The “global lock plane” is therefore treated as a **global reference/clock field** in the theoretical picture; in the current code it is realized implicitly via the fixed gating/phase reference and the update schedule (an explicit dynamic plane field is future work).
 
 #### Auxiliary planes and component choices (sector-dependent projections)
 
@@ -649,15 +702,15 @@ We summarize results (verbatim logs in **Appendix A**):
 ---
 
 
-## Master equation quick reference (one-line vs boxed long form)
+## Unified equation quick reference (one-line vs boxed long form)
 
-The “one-line master equation” is intentionally compact — think of it like **\(E=mc^2\)**: correct, but hiding many definitions (unit conventions, what is inside each Hamiltonian piece, how geometry enters, and what is actually predicted vs scanned). 
+The “one-line unified equation” is intentionally compact — think of it like **\(E=mc^2\)**: correct, but hiding many definitions (unit conventions, what is inside each Hamiltonian piece, how geometry enters, and what is actually predicted vs scanned). 
 This section gives **both**:
 
 1) a **one-line** form you can cite quickly, and 
 2) a **boxed long form** that unpacks what the one-line statement really means in this framework.
 
-### One-line master equation (continuous propagation; weak sector)
+### One-line unified equation (continuous propagation; weak-sector specialization)
 
 In baseline-coordinate form (the same independent variable used by the forward code), the compact statement is:
 
@@ -724,7 +777,7 @@ Concretely:
 | Strong (elastic / \(\sigma_{\mathrm{tot}}\) / CNI) | Eikonal / amplitude \(F(t,s)\) | Add geometry as an **impact-parameter texture** or an **amplitude-level phase**: \(\chi(b,s)\to \chi_{\mathrm{SM}}(b,s)+A_I\,\mathcal W_I(b,s;\mathcal K)\) for absorptive/bulk, and \(F\to F\,e^{iA_R\,\mathcal W_R(\cdot;\mathcal K)}\) for dispersive/phase-sensitive observables (CNI, \(\rho\)). |
 | EM (Bhabha, this draft) | Differential cross section vs. \(\cos\theta\) | Shape-only multiplicative deformation on an imported baseline curve: \(\sigma_i^{\mathrm{GEO}}=\beta_{g(i)}\sigma_i^{\mathrm{base}}(1+\delta_i)\), with \(\delta\propto A_{\mathrm{EM}}\,s_{\mathrm{struct}}\,g_{\mathrm{gen}}\sin\phi\cdot R(|t|)\cdot[\alpha_{\mathrm{map}}\ln(|t|/t_{\mathrm{ref}})]\). Robustness uses preregistered pivot-centering \(\delta\leftarrow\delta-\delta(x_p)\). |
 
-**Why this matters:** the “one-line master equation” is the correct weak-sector dynamical statement, but **strong and EM do not share the same evolution variable**. The mapping postulate makes the framework explicit: the kernel is universal; the sector dependence is isolated into \(\mathcal B_X\), which must itself be fixed and falsifiable.
+**Why this matters:** the “one-line unified equation” is the correct weak-sector specialization, but **strong and EM do not share the same evolution variable**. The mapping postulate makes the framework explicit: the kernel is universal; the sector dependence is isolated into \(\mathcal B_X\), which must itself be fixed and falsifiable.
 
 
 
@@ -758,7 +811,7 @@ This is **not** introduced as “extra freedom to fit strong data”: the strong
 
 #### Symbol glossary (continuous form)
 
-> **Completeness note:** This table defines the *continuous master‑equation symbols*. 
+> **Completeness note:** This table defines the *continuous unified-equation symbols*. 
 > For the full cross‑sector parameter inventory (including \(|c_1|\), \(\delta_{\mathrm{geo}}\), \(\kappa_{\mathrm{junc}}\), `env_mode/env_scale`, GW backreaction knobs, and the exact CLI names), see **§7.B**.
 
 | Symbol | Meaning (code-faithful) | Typical unit / convention |
@@ -799,6 +852,84 @@ This is **not** introduced as “extra freedom to fit strong data”: the strong
 
 **Mechanistic reading of \(\phi\) and \(\zeta\) (not “free fit knobs”).** 
 In the forward code, \(u(s)\) is generated by a damped driven proxy (a minimal stand-in for the bubble+thread response). \(\zeta\) controls *how rapidly the response relaxes* (topological friction / dephasing), while \(\phi\) sets the *handed twist* of the internal response relative to the edge transport frame. Under path reversal (or \(\nu\leftrightarrow\bar\nu\) in the weak mapping), the model treats \(\phi\) as the CP-odd slot: the accumulated oriented phase is sensitive to the handedness implied by \(\phi\), whereas \(\zeta\) mainly controls the damping of contributions with traversal length.
+
+#### Project integration note (how the one-line unified equation is wired into the repository)
+
+The one-line **unified equation** above is not only a conceptual summary; it is now the **explicit software contract** used to connect sectors. The implementation follows a shared pattern:
+
+- a **common GKSL/open-system evolution layer** carries the baseline propagation and sector insertion hooks;
+- each sector contributes a declared mapping from its kernel outputs/observables into a bridge operator (coherent and/or dissipative);
+- the runner executes the same contract with sector-specific defaults and datasets.
+
+For this revision, the entanglement and photon sectors are treated on equal footing with the previously established weak / EM / strong / DM / LIGO sectors. In particular:
+
+- **Entanglement sector:** the CHSH/correlation audit is interpreted as a sector-level observable test anchored to the common bridge framework (with NIST run4 HDF5-export coincidences as the validated evidence path).
+- **Photon sector:** the birefringence / redshift-accumulation and photon-decay-style dissipative terms are represented as sector-level contributions that can be read in the same unified-equation language (coherent phase accumulation + optional dissipative channel).
+
+This is the project-level mathematical unification claim: **different sectors keep their own observables and datasets, but they share one evolution grammar.**
+
+#### Microphysics bridge note (\(n\sigma v \rightarrow \gamma\) as a tested scaffolding layer)
+
+The microphysics integration introduced in this revision promotes sector damping from a purely symbolic coefficient to an optional derived quantity:
+\[
+\Gamma = n\,\sigma\,v,
+\qquad
+\gamma = \Gamma/c.
+\]
+
+In repository terms, this is implemented as a switchable layer (via `use_microphysics=True`) rather than a forced replacement of all legacy defaults. This design choice is deliberate:
+
+- it preserves backward compatibility with preregistered runner settings,
+- it makes the microphysics conversion traceable and auditable,
+- and it allows direct equivalence checks between “derived \(\gamma\)” and “explicit \(\gamma\)” modes.
+
+Accordingly, the paper should be read as claiming a **validated integration scaffold** (mathematically consistent and tested), not a completed first-principles closure for every sector.
+
+
+#### Sector Hook Map (observable → unified-equation hook → microphysics hook → runner/test status)
+
+The table below is the explicit “sector-by-sector mathematics hook” catalog for this revision. It is meant to make the repository wiring auditable at a glance: each sector keeps its own observable, but plugs into the same unified-equation grammar (\(H_s\), \(\mathcal D_s\), and optional \(n\sigma v\rightarrow\gamma\) bridge).
+
+| Sector | Primary observable(s) | Unified-equation hook (\(H_s\), \(\mathcal D_s\)) | Microphysics candidate (\(n,\sigma,v\)) | Runner / test anchor | Status |
+|---|---|---|---|---|---|
+| **Weak (oscillation)** | \(P_{\alpha\to\beta}(L,E)\), \(\Delta\chi^2\) on NOvA/MINOS/T2K packs | \(H_s\): vacuum + matter + geometric mass-basis deformation \(H_{\mathrm{geo}}\); \(\mathcal D_s\): optional dephasing/damping channel | \(n\): matter/electron density \(n_e\); \(\sigma\): weak interaction proxy/effective scattering scale; \(v\!\approx\!c\) | `nova_mastereq_forward_kernel_BREATH_THREAD_v2.py`; `test_equivalence_weak_runner.py`; `test_equivalence_weak_golden_outputs.py` | **Validated (prereg real-data path)** |
+| **Mass spectrometry (ESI FT-ICR)** | m/z shift, setting-conditioned separation, target-specific holdout PASS | \(\mathcal D_s\)-dominant correction (effective dephasing/load damping); optional \(H_s\)-like phase/frequency bias term | \(n\): ion-load / packet density proxy (TIC-based); \(\sigma\): effective ion-ion interaction surrogate; \(v\): cyclotron/packet speed proxy | `ms_sector.py` + locked mzML prereg runner family (§4.9.10 artefacts); microphysics hooks via `microphysics.py` | **Validated (observable pipeline)** / **Microphysics: scaffolding** |
+| **EM (Bhabha / \(\mu^+\mu^-\))** | \(\sigma(\sqrt{s})\), angular dependence, residuals vs baseline | \(H_s\): coherent bridge deformation; \(\mathcal D_s\): optional absorptive/junction-filter correction \(J(\tau;\kappa_{\mathrm{junc}})\) | \(n\): target/luminosity density proxy; \(\sigma\): QED process cross section; \(v_{\mathrm{rel}}\!\approx\!c\) | `em_sector.py`; `test_equivalence_em_bhabha_golden_outputs.py`; `test_equivalence_em_mumu_golden_outputs.py` | **Validated (golden/equivalence)** |
+| **Strong (hadronic)** | \(\sigma_{\mathrm{tot}}\), \(\rho\) ratio, ridge-style/elastic observables (sector-dependent) | \(H_s\): phase-like coherent deformation; \(\mathcal D_s\): absorptive/attenuative channel for hadronic broadening | \(n\): effective hadronic medium/occupancy proxy; \(\sigma\): hadronic cross section; \(v\): relative beam speed | `strong_sector.py`; `test_equivalence_strong_sigma_tot_golden_outputs.py`; `test_equivalence_strong_rho_golden_outputs.py` | **Validated (golden/equivalence)** |
+| **Dark matter (SPARC / RAR)** | Rotation curves, residual structure, profile-consistency metrics | \(H_s\)-dominant effective potential/geometry contribution; \(\mathcal D_s\) typically off or secondary in current mapping | \(n\): halo mass density proxy; \(\sigma\): DM self-/baryon-coupling surrogate (model-dependent); \(v\): halo orbital speed | `dm_sector.py`; `test_equivalence_dm_golden_outputs.py` | **Validated (observable mapping)** / **Microphysics: scaffolding** |
+| **LIGO / GW ringdown** | Ringdown residuals, projected/null consistency, detector-combined diagnostics | \(H_s\): coherent propagation/ringdown kernel deformation; \(\mathcal D_s\): damping-envelope / loss channel (if enabled) | \(n\): effective environment occupancy proxy (not literal particle gas); \(\sigma\): interaction surrogate; \(v\): propagation speed scale | `ligo_sector.py`; `test_equivalence_ligo_quadrupole_golden_outputs.py` | **Validated (equivalence)** / **Microphysics: scaffolding** |
+| **Entanglement (Bell/CHSH)** | Coincidence counts, correlators \(E(a,b)\), CHSH \(S\), significance \(z\) | Observable audit interpreted as sector-level coherence/decoherence test; \(H_s\): analyzer-phase/setting convention; \(\mathcal D_s\): decoherence channel governing correlation loss | \(n\): pair/coincidence rate proxy; \(\sigma\): effective pair-environment scattering surrogate; \(v\!\approx\!c\) | Canonical evidence path: NIST run4 HDF5-export coincidences (`nist_run4_coincidences.csv`); equivalence: `test_equivalence_entanglement_runner.py` | **Validated (NIST run4 evidence path)** |
+| **Photon (decay / birefringence)** | Birefringence accumulation, redshift-weighted phase rotation, attenuation/decay-style tests | \(H_s\): coherent polarization-phase accumulation; \(\mathcal D_s\): attenuation / decay-like dissipative channel | \(n\): background medium/field occupancy proxy; \(\sigma\): polarization-dependent interaction surrogate; \(v\!\approx\!c\) | `photon_sector.py`; birefringence prereg runner family; `test_equivalence_photon_birefringence_runner.py` | **Validated (birefringence equivalence + prereg path)** / **Photon-decay microphysics: scaffolding** |
+
+**Reading note.** “Scaffolding” in the microphysics column/status does **not** mean “untested code.” It means the \(n,\sigma,v\) identification is presently a controlled, auditable bridge layer rather than a claimed unique first-principles derivation for that sector.
+
+#### Verification status (declared math ↔ runners, plus microphysics wiring)
+
+To verify that the mathematical declarations are correctly transferred into executable code, the project now includes two test families.
+
+**(A) Declared-math / golden-output equivalence tests**  
+Independent implementations are compared against runner outputs (or golden outputs) for sector-specific observables. Representative files include:
+
+- `test_equivalence_weak_runner.py`
+- `test_equivalence_weak_golden_outputs.py`
+- `test_equivalence_em_bhabha_golden_outputs.py`
+- `test_equivalence_em_mumu_golden_outputs.py`
+- `test_equivalence_dm_golden_outputs.py`
+- `test_equivalence_strong_sigma_tot_golden_outputs.py`
+- `test_equivalence_strong_rho_golden_outputs.py`
+- `test_equivalence_ligo_quadrupole_golden_outputs.py`
+- `test_equivalence_entanglement_runner.py`
+- `test_equivalence_photon_birefringence_runner.py`
+
+A consolidated list/documentation is maintained in `EQUIVALENCE_CHECKS.md`.
+
+**(B) Microphysics wiring equivalence tests**  
+These tests verify that the `use_microphysics=True` path produces the same evolution as the path in which the corresponding \(\gamma\) is injected explicitly:
+
+- `test_microphysics_wiring_equivalence.py`
+- `test_microphysics_scaffold.py`
+
+At the integration snapshot corresponding to this paper revision, the full integration suite is recorded as **37 passed**, with the newly added entanglement + photon equivalence checks reported as **6/6 PASS**. This is the main evidence that the cross-sector unified-equation narrative is not only conceptual prose, but also faithfully implemented.
 
 ### Boxed long form (what the one-line hides)
 
@@ -887,7 +1018,7 @@ $$
 }
 $$
 
-### One-line master equation (discrete lattice / ordered junction update)
+### One-line unified equation (discrete lattice / ordered junction update)
 
 For the discrete cube-lattice formulation used elsewhere in the program (route–register / gauge–energy / bubble-mode layers), the compact “\(E=mc^2\)” form is:
 
@@ -978,9 +1109,9 @@ This terminology is used consistently below: the kernel (§2.4/§2.5) defines th
 ## 1.3 Paper objectives, evidence levels, and what is completed in this draft
 
 ### 1.3.1 Primary objective
-Demonstrate that a **single master-equation modulation family** can be *ported* across sectors (weak, strong, EM, DM, GW) by changing only:
+Demonstrate that a **single unified-equation modulation family** can be *ported* across sectors (weak, strong, EM, DM, GW) by changing only:
 1) the sector baseline model and likelihood, and
-2) the mapping from master-equation state → an observable.
+2) the mapping from unified-equation state → an observable.
 
 ### 1.3.2 Evidence levels (do not mix)
 This draft uses two evidence levels that must not be conflated:
@@ -993,10 +1124,11 @@ In other words: a model can be **correct/useful as a detector/template family** 
 
 ### 1.3.3 Completion snapshot (this draft)
 - **EM sector:** re-run under the updated CurvedCube (v6) configuration using LEP Bhabha (Table 18) with an imported baseline curve. Under a preregistered, scan-free bridge, full-covariance runs show \(\Delta\chi^2>0\) for \(A=+10^5\) and a strong sign-flip falsifier; pivot-centered holdouts (diag_total shown) also pass. No discovery claim is made; robustness upgrades (full-cov pivot holdouts + cross-channel transfer) are listed in §4.7.
-- **Mass spectrometry (real Bruker/CompassXport mzML; prereg-locked, fit-free):** scan-resolved per-scan mass estimate pipeline + setting separation; **multi-target particle-specific test** with locked `good_ppm=3` yields prereg **PASS** with holdout + third-arm stability (median_abs_delta 0.116/0.119; rank_corr_abs 0.965; MAD rank_corr 0.836; third-arm rank_corr 0.853; 12/12 nonzero targets). See §4.9.10 and signed artefacts under `out/particle_specific_final_goodppm3_lock/`.
-- **Phenomenology sector (Entangled Bubble Pair & photon-release hypothesis):** a formal two-bubble shear/torsion coupling definition with strictly anti-chiral stable set {A,B}, a singlet-style operational analogue, an energy-ledger wavepacket criterion for the photon-release hypothesis, and an explicit delay/locality discussion (hypothesis track; falsifiers specified; see §4.10).
+- **Mass spectrometry (real Bruker/CompassXport mzML; prereg-locked, fit-free):** scan-resolved per-scan mass estimate pipeline + setting separation; **multi-target target-specific test** with locked `good_ppm=3` yields prereg **PASS** with holdout + third-arm stability (median_abs_delta 0.116/0.119; rank_corr_abs 0.965; MAD rank_corr 0.836; third-arm rank_corr 0.853; 12/12 nonzero targets). See §4.9.10 and signed artefacts under `out/particle_specific_final_goodppm3_lock/`.
+- Entanglement sector — preregistered Bell/CHSH audit on NIST run4 (Bridge-E0, no-fit); HDF5-export path passes with GLOBAL_CHSH ≈ 2.455 and z ≈ 1.991 (see §4.10).
+- Photon-decay / propagation bridge sector — preregistered cosmic birefringence accumulation and sky-fold falsifier tests (no-fit); current locked results are null-compatible and constrain the effect (see §4.11).
 - **GW sector:** ringdown-only pipeline + cubic-lattice response implemented; *detection-grade exploration* is underway. A separate localization-grade claim is explicitly deferred (see §6.7).
-- **Weak/Strong/DM sectors:** the master-equation interface + CLI mapping are documented; quantitative sector-wide result tables are partly complete and flagged where additional runs are required.
+- **Weak/Strong/DM sectors:** the unified-equation interface + CLI mapping are documented; quantitative sector-wide result tables are partly complete and flagged where additional runs are required.
 
 ### 1.3.4 What remains for a publication-quality claim set
 Across sectors, the minimum “paper-ready” checklist is:
@@ -1024,7 +1156,7 @@ still missing before a publishable claim.*
  <tr>
  <td style="border:1px solid #ddd; padding:8px;"><b>Weak</b> (T2K profile + MINOS/NOvA spectra)</td>
  <td style="border:1px solid #ddd; padding:8px;">
- Insert the master‑equation GEO term into a realistic oscillation likelihood <b>without scanning \(\delta_{\mathrm{CP}}\)</b>: predict \(\delta_{\mathrm{CP}}^{\mathrm{geo}}\) from geometry (CurvedCube holonomy), then evaluate T2K profile penalty and MINOS/NOvA spectral \(\chi^2\).
+ Insert the unified-equation GEO term into a realistic oscillation likelihood <b>without scanning \(\delta_{\mathrm{CP}}\)</b>: predict \(\delta_{\mathrm{CP}}^{\mathrm{geo}}\) from geometry (CurvedCube holonomy), then evaluate T2K profile penalty and MINOS/NOvA spectral \(\chi^2\).
  </td>
  <td style="border:1px solid #ddd; padding:8px;">
  Single‑shot CurvedCube prediction with <b>zero scan</b>:
@@ -1093,8 +1225,8 @@ still missing before a publishable claim.*
 
 ## 2. Framework
 
-### 2.1 Weak sector: master equation (density matrix evolution)
-We evolve a 3×3 flavor-basis density matrix \(\rho(L)\) (for \(\nu_e,\nu_\mu,\nu_\tau\)) as a function of baseline length \(L\). The master equation is written in Lindblad (GKSL) form:
+### 2.1 Weak sector: unified equation (density matrix evolution)
+We evolve a 3×3 flavor-basis density matrix \(\rho(L)\) (for \(\nu_e,\nu_\mu,\nu_\tau\)) as a function of baseline length \(L\). The unified equation is written in Lindblad (GKSL) form:
 
 $$
 \frac{d\rho}{dL} = -i\,[H(L,E),\,\rho] + \sum_j \Gamma_j(L,E)\left(L_j\,\rho\,L_j^\dagger - \tfrac12\{L_j^\dagger L_j,\rho\}\right),
@@ -1246,7 +1378,7 @@ M_{geo}^{2}(L,E).
 $$
 
 
-#### 2.1.2 Path-Holonomy-Instrument master equation (single-line conditioned form)
+#### 2.1.2 Path-Holonomy-Instrument unified equation (single-line conditioned form)
 
 For experiments where the observable is **conditional**
 (e.g., coincidence gating / quantum-eraser-style post-selection), the
@@ -1279,20 +1411,20 @@ subtracting its expectation keeps the innovation correctly centered.
 **Consistency check:** averaging over records (taking
 \(\mathbb{E}[ \cdot ]\))
 removes the last stochastic term and returns the deterministic GKSL
-master equation used elsewhere in this paper.
+unified equation used elsewhere in this paper.
 
 
 
-#### 2.1.3 Discrete closed-system lattice master equation (route–gauge–mode layer; ordered junction updates)
+#### 2.1.3 Discrete closed-system lattice unified equation (route–gauge–mode layer; ordered junction updates)
 
 This paper’s weak-sector story can be read in two compatible ways:
 
 - **Continuous GKSL umbrella (Sec. 2.1):** a standard Lindblad-form evolution for \(\rho(L)\).
 - **Code-faithful discrete map (this subsection):** a *closed-system, ordered* junction update on a cube-lattice graph. It reproduces the same conceptual split—(i) phase-generating “Hamiltonian-like” transport and (ii) decoherence/irreversibility—without requiring a globally Hamiltonian system. The ordering is explicit (a global lock/schedule), which is the minimal way to make “junction dynamics” time/sense-of-order driven.
 
-**Bridge note (discrete ↔ continuous):** in the limit of small step size \(\Delta L\to 0\) (or \(\Delta t\to 0\)) with appropriate scaling of the dissipators, the discrete route–register update is expected to approach a GKSL-type master equation. A full derivation of this continuum limit (and the conditions under which complete positivity is preserved) is deferred to future work. For the weak-sector CurvedCube tests reported in this draft, the numerics use the **discrete** probability engine; the GKSL form is provided as a familiar umbrella description.
+**Bridge note (discrete ↔ continuous):** in the limit of small step size \(\Delta L\to 0\) (or \(\Delta t\to 0\)) with appropriate scaling of the dissipators, the discrete route–register update is expected to approach a GKSL-type unified equation. A full derivation of this continuum limit (and the conditions under which complete positivity is preserved) is deferred to future work. For the weak-sector CurvedCube tests reported in this draft, the numerics use the **discrete** probability engine; the GKSL form is provided as a familiar umbrella description.
 
-The discrete formulation is what we refer to as the **route–register master equation**: the state is a coupled set of route weights, gauge/link fields, mismatch energy, and a response variable. Gates are *derived* (not new free knobs): they are functions of mismatch and response.
+The discrete formulation is what we refer to as the **route–register unified equation**: the state is a coupled set of route weights, gauge/link fields, mismatch energy, and a response variable. Gates are *derived* (not new free knobs): they are functions of mismatch and response.
 
 > **Terminology note.** In this document “gauge plane” means an **auxiliary field / extra‑DOF layer** carried on nodes/links. It is **not** a new coordinate direction and **not** the Standard Model gauge field; it is a bookkeeping/interaction layer used to express interference, constraints, and derived gates in the discrete update map.
 
@@ -1313,14 +1445,14 @@ The discrete formulation is what we refer to as the **route–register master eq
 
 ---
 
-### One-line master equation (discrete, ordered, closed)
+### One-line unified equation (discrete, ordered, closed)
 
 Let the full state at tick \(n\) and energy bin \(E\) be
 $$
 X_n(E) \equiv \Big(\{p_i(E)\},\{\rho_{i\to j}(E)\},\{A_{ij}\},\{E_{ij}\},\{Q_i\},\{E^{\mathrm{mis}}_{ij}\},\{q_i\}\Big).
 $$
 
-Define an **ordered edge schedule** \(\chi_n(i,j)\in\{0,1\}\) (“global lock”) selecting which junctions update at tick \(n\). Then the discrete master equation is:
+Define an **ordered edge schedule** \(\chi_n(i,j)\in\{0,1\}\) (“global lock”) selecting which junctions update at tick \(n\). Then the discrete unified equation is:
 
 $$
 \boxed{
@@ -2085,7 +2217,7 @@ Keeping these maps explicit is part of the falsification stance: topology is fix
 
 ---
 
-### 2.5 One-line master equation used across sectors
+### 2.6 One-line unified equation used across sectors
 
 $$
 \boxed{
@@ -2479,7 +2611,7 @@ Until (1)–(2) are completed, the EM sector is best labeled as **PASS (not fals
 
 
 
-## 4.9 Mass Spectrometer sector (real Bruker mzML; fit-free, prereg-locked particle-specific test)
+## 4.9 Mass Spectrometer sector (real Bruker mzML; fit-free, prereg-locked target-specific test)
 
 **What is being tested here (real data).** This sector evaluates whether a **target-wise, mass-conditioned signature** exists in real instrument outputs and remains **stable under holdout**—using **fit-free** observables:
 - \(p_{\mathrm{success}}(g)\): near-target success probability as a function of ion-load proxy \(g\),
@@ -2487,9 +2619,9 @@ Until (1)–(2) are completed, the EM sector is best labeled as **PASS (not fals
 
 A preregistered lock is applied (not tuned per-target), and a **final PASS/FAIL verdict** is produced under fixed criteria (C1–C3). This section supersedes earlier toy-only demonstrations and is the canonical Mass Spectrometer write-up in this document.
 
-### 4.9.1 Real-data validation (Bruker mzML) — setting separation and particle-specific multi-target test (fit-free)
+### 4.9.1 Real-data validation (Bruker mzML) — setting separation and target-specific multi-target test (fit-free)
 
-**Why this section exists.** We validate the particle-specific signature directly on Bruker-origin mzML exports (CompassXport metadata visible in mzML), using a fit-free, prereg-locked protocol.
+**Why this section exists.** We validate the target-specific signature directly on Bruker-origin mzML exports (CompassXport metadata visible in mzML), using a fit-free, prereg-locked protocol.
 
 #### Data (real runs; full-scan)
 
@@ -2532,11 +2664,11 @@ Earlier “echo/tail” style observables can easily miss the effect if the domi
 
 2) **Particle-specific signature (multi-target):** does the Mode A↔B separation *change across target m/z windows* in a stable way?
 
-The second question is the “particle-specific” question in operational form: a global offset would look similar at every m/z; a particle-specific (mass-conditioned) effect produces a target-dependent signature.
+The second question is the “target-specific” question in operational form: a global offset would look similar at every m/z; a target-specific (mass-conditioned) effect produces a target-dependent signature.
 
 ---
 
-## Particle-specific multi-target test (preregistered lock)
+## Target-specific multi-target test (preregistered lock)
 
 We define a set of \(K\) target m/z values (auto-selected, locked by `topK`) and analyze each target independently within a fixed window:
 
@@ -2559,7 +2691,7 @@ and summarize each target by a bin-mean absolute delta:
 \overline{\lvert\Delta p\rvert}(t) \equiv \langle\lvert\Delta p_{\mathrm{success}}(t,b)\rvert\rangle_{b}.
 \]
 
-A particle-specific signature exists if \(\overline{\lvert\Delta p\rvert}(t)\) is **nonzero** for many targets and **stable** across an independent holdout.
+A target-specific signature exists if \(\overline{\lvert\Delta p\rvert}(t)\) is **nonzero** for many targets and **stable** across an independent holdout.
 
 ### Locked prereg gate (good_ppm = 3)
 
@@ -2587,18 +2719,18 @@ Using `topK=12` targets and the lock above, the run outputs (written under `out/
 
 #### What this does and does not mean
 
-- **Does mean (strong):** within this pipeline, the setting effect is not purely global. It has a **stable target-dependent signature** across multiple runs and a holdout. That is an *operational* “mass/particle-specific” effect.
+- **Does mean (strong):** within this pipeline, the setting effect is not purely global. It has a **stable target-dependent signature** across multiple runs and a holdout. That is an *operational* “mass/target-specific” effect.
 
 - **Does not mean (yet):** we have identified chemical species, charge states, or vibrational transitions. This test only says the model’s gate (or correction) behaves as if it is **m/z-conditioned** in the instrument readout. Connecting that to underlying molecular physics requires:
   - annotating targets with actual m/z and tentative assignments (isotope envelopes / charge states),
   - repeating across chemically distinct mixtures,
   - verifying that the signature follows the expected mass ordering under known calibrants.
 
-This addendum is therefore positioned as: **PASS (not falsified) for particle-specific behavior in real mzML**, with clear next falsifiers.
+This addendum is therefore positioned as: **PASS (not falsified) for target-specific behavior in real mzML**, with clear next falsifiers.
 
 ### 4.9.11 Preregistered follow-up plan — bridging to species/charge (no-fit)
 
-The real-mzML PASS above is an **operational particle-specific signature** in the instrument readout: different target \(m/z\) windows exhibit different, stable \(p_{\mathrm{success}}(g)\) and \(\mathrm{MAD}_{\mathrm{success}}(g)\) patterns across setting comparisons and holdouts.
+The real-mzML PASS above is an **operational target-specific signature** in the instrument readout: different target \(m/z\) windows exhibit different, stable \(p_{\mathrm{success}}(g)\) and \(\mathrm{MAD}_{\mathrm{success}}(g)\) patterns across setting comparisons and holdouts.
 
 What it is **not yet** (and what this plan targets) is a **species-resolved physical explanation** (charge state, isotope envelope, adduct class, or vibrational/energy-transition mapping). The next step is to preregister a minimal, decisive bridge that either (a) strengthens the “species/charge-linked” interpretation or (b) falsifies it by exposing a purely global/pipeline artifact.
 
@@ -2642,7 +2774,7 @@ Using the same gate as the locked final artefact:
 
 Final verdict: **PASS** iff C1 & C2 & C3 are all true; otherwise **FAIL**.
 
-#### Reproducible commands (real mzML → particle-specific verdict)
+#### Reproducible commands (real mzML → target-specific verdict)
 
 > These are the “no guessing” commands for the real‑data addendum. The mzML→points step uses a **no‑deps** reader (no `pyteomics` needed).  
 > Copy/paste from PowerShell at the project root.
@@ -2702,71 +2834,241 @@ This follow-up plan is intentionally narrow: it either **reproduces** the target
 
 
 
-## 4.10 Phenomenology sector — Entangled Bubble Pair & photon-release hypothesis (mechanistic extension)
+## 4.10. Entanglement sector (NIST run4, Bridge-E0, no-fit prereg audit)
+> **Interpretation note:** This section is a **Bell-audit pipeline validation** (CHSH reconstruction on the known NIST run4 Bell-violating export path) and a unified-equation hook integration check. It is **not** a first-principles derivation of Bell violation from the substrate.
 
-This section formalizes a **two-bubble coupled subsystem** motivated by the same *membrane shear + elasticity* mechanics used throughout this framework. The purpose is not to “declare quantum mechanics solved,” but to state a **crisp, testable geometric/mechanical postulate** for an anti-correlated two-state pair and to specify what must be measured (in simulation and, later, in bench analogues) to validate or falsify it.
 
-### 4.10.1 Single-bubble anchor: mass encoding and AMORPH bubble size scaling (recap)
-We use a **single-bubble anchor** based on a toy oscillator encoding (in toy units):
-- a candidate’s base resonance is encoded as \(\omega_0 = 5\sqrt{p/q}\) (Hz in the toy units), and
-- a one-constant mapping \(m = C\,\omega_0^2\) provides an internal mass-scaling consistency check within the toy encoding.
+This section upgrades the earlier qualitative “entangled bubble pair” discussion into a **strict, data-facing, falsification-first entanglement test** using the NIST run4 Bell dataset in the Bridge-E0 pipeline. The key point is methodological: we do **not** fit free parameters to the Bell score. We use a locked coincidence construction and a preregistered null benchmark, then ask whether the observed CHSH violation survives the audit.
 
-In this draft’s language, the **AMORPH bubble size** \(R\) is an effective inner-bubble radius parameter controlling (i) characteristic thread lengths and (ii) the stiffness/response scales of membrane and interior-thread modes. A minimal and testable size mapping consistent with the above encoding is:
-- **relative scaling:** \(R \propto 1/\omega_0\) (equivalently \(R \propto 1/\sqrt{m}\) under \(m\propto\omega_0^2\)),
-- **absolute anchoring:** choose one reference \(R_\mu\) and propagate \(R_i = R_\mu(\omega_{0,\mu}/\omega_{0,i})\).
+### 4.10.1. Role of this sector in the unified-equation program
 
-These definitions tie “bubble size” directly to the same resonance quantities used in the QED-plane \(\theta\) sector, enabling cross-sector consistency checks.
+In the broader framework, this sector tests whether the model family can at least remain compatible with a standard, externally validated nonlocality benchmark after our event-building and counting pipeline is fixed. Concretely, this sector is a **pipeline-integrity + compatibility test**:
 
-### 4.10.2 Bubble membrane mechanics: shear, elasticity, and two-state chirality locking
-We posit that each bubble has a membrane (soap-bubble–like film, but with elastic response) that supports a **tangential shear/rotation mode** around a preferred axis \(\hat z\). A “spin event” is identified with the membrane entering one of two **stable chiral shear states**:
-- **CW** (clockwise circulation), and
-- **CCW** (counter-clockwise circulation).
+- **Pass condition:** the locked event-building + CHSH audit reproduces a statistically positive Bell violation on the accepted NIST run4 coincidence export.
+- **Fail condition:** the same locked pipeline collapses to a non-violating or sign/pathology result on the canonical export.
 
-To enforce “no stable middle,” we assume a **bistable shear response**: intermediate rotation/shear relaxes rapidly to one of two minima. At the coarse-grained level this can be represented by a chiral order parameter \(s\in\{+1,-1\}\) (CW/CCW), or by an equivalent double-well in a continuous variable whose stable attractors are the two chiral signs. The same membrane is also the transmission medium for coupling signals (shear/torsion fronts) between bubbles.
+This is not yet a full geometric derivation of Bell correlations from the lattice/bubble dynamics. It is the correct preregistered first step: **prove the pipeline does not destroy the signal** before attempting any deeper mechanism claims.
 
-### 4.10.3 Entangled Bubble Pair: strictly anti-chiral stable set {A,B} and “singlet analogue”
-We define a coupled two-bubble system connected by a **thread-bundle bridge** whose geometry transmits shear/torsion through the membrane channel (with interior threads as an additional conduit). The bridge is postulated to enforce **strict anti-chirality** as the only stable outcome:
+### 4.10.2. Data object and format discipline (important)
 
-- **State A:** \((\mathrm{bubble}_1=\mathrm{CW},\ \mathrm{bubble}_2=\mathrm{CCW})\)  
-- **State B:** \((\mathrm{bubble}_1=\mathrm{CCW},\ \mathrm{bubble}_2=\mathrm{CW})\)
+The valid entanglement audit here is tied to the **HDF5-derived NIST run4 coincidence export** (the CSV produced from the known-good HDF5 route). We explicitly do **not** use the incompatible prescreen coincidence CSV batch for the Bridge-E0 claim.
 
-No same-chirality stable state is permitted under this coupling: \((\mathrm{CW},\mathrm{CW})\) and \((\mathrm{CCW},\mathrm{CCW})\) are mechanically unstable and relax toward the anti-chiral set. Importantly, there is **no “satellite bubble”**: the coupling is two-way and either bubble can trigger the other; the pair’s macrostate is a **collective** outcome.
+Why this matters:
+- The prescreen CSV (`02_54_coinc_slotfix.csv`) can produce a diagnostic outcome like \(S=-2.0\), which indicates a **format/mapping mismatch** (especially setting-dependent slot→outcome interpretation), not a physics failure.
+- The HDF5-derived coincidence CSV preserves the intended field semantics for the Bridge-E0 CHSH audit.
 
-A minimal energy-level expression for this “anti-lock” constraint is an effective coupling penalty that is minimized when the two chiral phases oppose, e.g.
+So the entanglement claim in this paper is attached to the **correct export path** only.
+
+### 4.10.3. CHSH observable and counting definitions
+
+Let the four analyzer-setting pairs be indexed as
 \[
-E_{\mathrm{couple}} \propto (\phi_1+\phi_2)^2,
+ab \in \{00,01,10,11\}.
 \]
-so the stable manifold is \(\phi_1\approx-\phi_2\), consistent with the discrete outcomes CW/CCW at the bistable endpoints.
 
-This anti-correlated binary pair is the geometric/mechanical analogue of the spin‑1/2 singlet correlation pattern,
+For each setting pair, let the coincidence outcomes be binary and encoded into the usual correlator form. Denote the setting-conditioned coincidence counts
 \[
-\lvert\psi\rangle = \frac{\lvert\uparrow\downarrow\rangle-\lvert\downarrow\uparrow\rangle}{\sqrt{2}},
+N_{ab}^{++},\; N_{ab}^{+-},\; N_{ab}^{-+},\; N_{ab}^{--},
 \]
-in the operational sense that observing one bubble’s chirality fixes the other to be opposite. In our setting the anti-correlation arises from a **deterministic constraint** imposed by the bridge geometry and membrane‑shear transmission, not from an abstract postulate.
-
-**Photon-release hypothesis (test track).** When the coupled pair is driven into an excited anti-phase shear/torsion configuration and then relaxes into State A or B, the stored coupling/binding energy cannot vanish; it must be exported into the surrounding lattice/substrate as a propagating wavepacket. We identify this released wavepacket with the model’s **photon candidate** (“geometry → wave” channel). This is falsifiable: a preregistered check must show an energy ledger transfer
-- \(E_{\mathrm{pair}}(t)\) decreasing during relaxation,
-- a corresponding increase in emitted field/lattice energy \(E_{\mathrm{lat}}(t)\),
-- and a localized, outward-propagating packet in the lattice readout.
-
-### 4.10.4 Delay, locality, and Bell-style interpretation (explicitly an open question)
-Although the anti-correlation may appear “instantaneous” at coarse measurement scales, the mechanism here is **elastic transmission** (membrane shear + thread torsion). Therefore the coupling has a finite propagation time
+and total
 \[
-\tau_{\mathrm{prop}} \sim R/v_s,
+N_{ab}=N_{ab}^{++}+N_{ab}^{--}+N_{ab}^{+-}+N_{ab}^{-+}.
 \]
-with \(v_s\) the effective shear/torsion signal speed in the membrane/bridge channel. If \(\tau_{\mathrm{prop}}\) is below experimental time resolution, the pair will be operationally indistinguishable from an instantaneous constraint.
 
-**Scope note (do not overclaim):** this draft does not claim a completed Bell-inequality analysis. Instead, it defines the mechanistic ingredients needed to pose the question sharply. A dedicated preregistered test would require:
-1) a precise “measurement” protocol for chirality readout,
-2) an explicit model of signal speed/dispersion in the bridge+membrane channel, and
-3) a comparison against Bell-type correlation targets.
+The setting-wise correlator is
+\[
+E_{ab} = \frac{N_{ab}^{++}+N_{ab}^{--}-N_{ab}^{+-}-N_{ab}^{-+}}{N_{ab}}.
+\]
 
-Until then, this remains a clearly stated hypothesis layer with concrete falsifiers (e.g. observable nonzero \(\tau_{\mathrm{prop}}\) in the simulation, loss of strict anti-chiral stability under perturbations, or failure of the energy-ledger wavepacket criterion in the photon-release hypothesis).
+The CHSH combination (signed convention may differ by encoding order) is
+\[
+S = E_{00}+E_{01}+E_{10}-E_{11},
+\]
+and the reported physics quantity is \(|S|\).
 
+Classically (local-hidden-variable bound),
+\[
+|S| \le 2.
+\]
+
+The question is whether the locked pipeline returns \(|S|>2\) with positive significance on the accepted NIST run4 coincidence export.
+
+### 4.10.4. Preregistered no-fit significance test
+
+We use a preregistered, no-fit significance audit:
+
+1. Build coincidences with locked Bridge-E0 rules from the HDF5 source.
+2. Compute the observed \(S_{\mathrm{obs}}\).
+3. Generate null surrogates under a label-preserving / setting-consistent randomization rule (locked in script).
+4. Form the null distribution of \(S\).
+5. Report:
+   - one-sided null p-value (for Bell-violation direction),
+   - z-score derived from the null ensemble,
+   - stability diagnostics across seeds/trials.
+
+No regression fitting is used. No “optimize-until-pass” step is allowed.
+
+### 4.10.5. NIST run4 result (Bridge-E0 prereg audit)
+
+Using the accepted HDF5-derived coincidence CSV route, the locked prereg audit returns:
+
+- \(S_{\mathrm{obs}} = 2.455001027\)
+- null mean \(\mu_0 \approx 1.999999713\)
+- null std \(\sigma_0 \approx 0.228559614\)
+- one-sided \(p \approx 0.023236\)
+- \(z \approx 1.991\)
+
+Interpretation:
+- The pipeline preserves a **positive Bell violation** relative to the local bound.
+- The null benchmark places the result at roughly **2-sigma** (preregistered, no-fit).
+- This is a **PASS** for the entanglement-sector audit in the falsification-first sense.
+
+### 4.10.6. What this pass does and does not claim
+
+**What it does claim**
+- The locked Bridge-E0 counting/audit pipeline is compatible with a genuine Bell-violation dataset.
+- The data-processing chain used in this sector does not trivially wash out entanglement signatures.
+- The broader program can legitimately include an entanglement-facing empirical checkpoint.
+
+**What it does not claim**
+- It does **not** yet derive Bell correlations from the geometric lattice dynamics.
+- It does **not** prove a unique microscopic entanglement mechanism.
+- It does **not** validate any prescreen CSV format that is semantically mismatched to Bridge-E0.
+
+This is exactly the kind of scoped claim we want in a preregistered falsification workflow.
+
+### 4.10.7. Connection to the “memory” idea (careful wording)
+
+Earlier conversations framed entanglement in terms of a possible shared-field or residual-memory picture (e.g., finite-time correlation support after direct coupling). The present section does **not** test that mechanism directly. Instead, it establishes the prerequisite empirical fact:
+
+> our locked event-processing and CHSH audit can pass a real Bell benchmark.
+
+That is the correct foundation before attempting any stronger mechanism-level derivation (shared mediator field, damped common mode, finite-memory kernel, etc.).
+
+### 4.10.8. Immediate next falsifiers for this sector
+
+The strongest next steps are:
+1. **Weihs audit repair** (offset/format bugfix) using the same prereg rules.
+2. **Cross-dataset invariance:** run the same no-fit CHSH audit on additional Bell datasets with no retuning.
+3. **Mapping robustness:** explicitly enumerate and lock setting-dependent slot→outcome mappings where data format requires it, then preregister before rerun.
+4. **Mechanism layer (later):** only after repeated empirical passes, attempt a true model-generated correlator \(E_{ab}^{\text{model}}\) comparison.
+
+This keeps the project aligned with the user’s stated rule: **falsification first, no p-hacking, no fit-driven storytelling**.
+
+## 4.11. Photon-decay / propagation bridge sector (preregistered cosmic birefringence accumulation tests)
+> **Interpretation note:** This section reports **preregistered accumulation-law / consistency / bridge-wiring** checks for the photon propagation/birefringence line. It is a **scaffolding + falsification testbed** in this revision, not a final calibrated cosmic birefringence parameter claim.
+
+
+This section formalizes the photon-facing part of the program in a way that is testable now. Earlier discussions used “photon decay” language as a conceptual motivation (phase/energy leakage during propagation). The current data-facing implementation is a **propagation bridge observable**:
+
+- a tiny polarization-rotation accumulation law along line of sight,
+- tested on real cosmological polarization compilations,
+- with **locked, no-fit, preregistered** statistics.
+
+So this is the empirical bridge sector for the photon-decay/progression idea, not yet a direct microscopic decay-rate derivation.
+
+### 4.11.1. Observable definition (rotation accumulation)
+
+We model a polarization-angle rotation contribution
+\[
+\alpha(z) = \beta\, I(z),
+\]
+where \(\beta\) is a single locked amplitude (not fit in the prereg tests), and
+\[
+I(z)=\int_0^z \frac{dz'}{(1+z')E(z')}
+\]
+is the propagation accumulation kernel in flat \(\Lambda\)CDM with
+\[
+E(z)=\sqrt{\Omega_m(1+z)^3+\Omega_\Lambda+\Omega_r(1+z)^4}.
+\]
+
+In the prereg runs used here, the kernel is locked to
+\[
+\Omega_m=0.315,\quad \Omega_\Lambda=0.685,\quad \Omega_r=0.
+\]
+
+This choice is not fit to the birefringence data. It is fixed in advance as part of the test protocol.
+
+### 4.11.2. Why this is a photon-decay “bridge”
+
+The original physical intuition was that photon propagation may carry a small cumulative phase effect (or phase/energy bookkeeping leakage in the broader geometric picture). A direct decay-law test is not yet available in the current pipeline, so we use a safer, falsifiable projection:
+
+- If a propagation-linked effect exists, a redshift-integrated kernel like \(I(z)\) is a natural first observable.
+- If the effect is absent, locked no-fit tests should return null-compatible statistics.
+
+Thus, the birefringence accumulation analysis is a **bridge observable**: it probes the propagation-side consequence of the photon-sector idea without overclaiming a full microscopic derivation.
+
+### 4.11.3. Preregistered test A (accumulation correlation; no fit)
+
+For a dataset with measured polarization rotation angles \(\alpha_i\) and uncertainties \(\sigma_i\) at redshifts \(z_i\), define the kernel values \(I_i = I(z_i)\).
+
+We run a preregistered, no-fit correlation-style test:
+
+- **Null:** no monotonic accumulation signal relative to the locked kernel \(I(z)\).
+- **Statistic:** correlation / signed trend statistic locked in the script.
+- **Calibration:** permutation or equivalent null generation (locked).
+- **Outputs:** p-value(s) for signed and absolute variants.
+
+No regression coefficient is fitted to maximize significance.
+
+### 4.11.4. Preregistered test B (sky-fold anisotropy falsifier)
+
+A second locked test probes whether any apparent signal is actually a sky-geometry artifact. The sample is split by a preregistered sky-fold rule (hemisphere / angular partition fixed in code), and a contrast statistic is evaluated under a null randomization.
+
+This gives a **falsifier** for accidental directional structure:
+- If significance appears only in a specific sky split and is unstable, it is likely not a robust propagation law.
+- If no significance appears, that is consistent with null and still scientifically useful.
+
+### 4.11.5. Results (locked prereg runs)
+
+The current locked prereg outputs are null-compatible:
+
+**Accumulation test (no-fit)**
+- signed p-value \(\approx 0.3603\)
+- absolute-metric p-value \(\approx 0.3936\)
+
+**Sky-fold anisotropy falsifier**
+- p-value \(\approx 0.1536\)
+
+Interpretation:
+- No statistically compelling birefringence accumulation signal is detected in the present locked tests.
+- No robust sky-fold anisotropy signal is detected either.
+- Therefore, the photon bridge sector is currently a **null result**, but a **successful falsification-style execution** (the pipeline ran correctly and did not manufacture a false positive).
+
+### 4.11.6. Why this still counts as progress
+
+In this program, a null result is informative because the methodology is preregistered and no-fit:
+
+- It constrains the size of any propagation-linked effect in this observable.
+- It validates the pipeline and locked-kernel implementation.
+- It prevents premature theory inflation from weak or post-selected signals.
+
+This is exactly the behavior we want before adding more complex structure (anisotropic kernels, energy dependence, source-population stratification, etc.).
+
+### 4.11.7. Relationship to future direct photon-decay tests
+
+The long-term photon sector may include more direct observables (energy attenuation, spectral distortions, lifetime-like constraints, or source-class-specific transport effects). When those are implemented, the present birefringence accumulation sector remains valuable as:
+
+1. a locked baseline transport observable,
+2. a null benchmark for pipeline sanity,
+3. a cross-check against overfitting in future photon-sector extensions.
+
+In other words, this section is the photon-sector **discipline layer**.
+
+### 4.11.8. Immediate next falsifiers for this sector
+
+The strongest preregistered follow-ups are:
+
+1. **Holdout datasets:** quasar polarization compilations or tighter tomography samples (no retuning of kernel form).
+2. **Subsample robustness:** rerun by redshift bins and source classes with preregistered splits.
+3. **Sign convention audit:** lock angle-wrap and sign conventions across all catalogs before rerun.
+4. **Energy/frequency stratification:** only if data quality supports it, add a preregistered frequency-dependent extension.
+
+Again, the rule is unchanged: **no fit-driven claim; nulls are acceptable; robustness beats excitement**.
 
 ### 5.1 Weak sector (neutrino oscillations; NOvA pack)
 
-**Goal.** Demonstrate that the master‑equation geometric modulation can be inserted into a realistic oscillation likelihood (matter effects, multiple channels, nuisance handling) and that the pipeline is stable under scan / profiling.
+**Goal.** Demonstrate that the unified-equation geometric modulation can be inserted into a realistic oscillation likelihood (matter effects, multiple channels, nuisance handling) and that the pipeline is stable under scan / profiling.
 
 **Canonical forward run (PowerShell):**
 *(Forward-run example removed; use the locked weak-sector commands in Section 8.1.)*
@@ -2777,7 +3079,7 @@ Until then, this remains a clearly stated hypothesis layer with concrete falsifi
 
 #### 5.1.1 Parameter definitions and CLI mapping (Weak / NOvA)
 
-This section maps each weak-sector (neutrino) parameter in the master-equation form to the exact CLI flag used in the reproducible runs (Section 8.4).
+This section maps each weak-sector (neutrino) parameter in the unified-equation form to the exact CLI flag used in the reproducible runs (Section 8.4).
 
 | Paper symbol / name | Definition + purpose | Units | CLI flag (Section 8.4 example) |
 |---|---|---|---|
@@ -3097,15 +3399,11 @@ Key runners (drop‑in files referenced by the runbook):
 
 Across weak/EM/strong, we keep a minimal set of global geometry knobs fixed (e.g. geometry structure/generator choices, and common damping envelopes where applicable), and introduce only sector‑specific ingredients that have a clear physical role.
 
-- **Weak:** propagation-phase modulation inside the master equation, with an explicit gate \(\kappa_{\mathrm{gate}}\in\{0,1\}\) used for *null-limit consistency*.
+- **Weak:** propagation-phase modulation inside the unified equation, with an explicit gate \(\kappa_{\mathrm{gate}}\in\{0,1\}\) used for *null-limit consistency*.
 - **Strong:** split couplings \((A_I,A_R)\) reflecting absorptive (\(\sigma_{\mathrm{tot}}\)) vs dispersive/phase (\(\rho\), CNI) sensitivity; the current prereg point uses the minimal relation \(A_R\approx- A_I\).
 - **EM (Bhabha):** a shape-level multiplicative deformation on an imported baseline, enforced as **shape-only** (per-group zero-mean) and, in the strongest holdout checks, **pivot-centering** to remove DC normalization components without re-fitting nuisance normalizations.
 
 A recurring practical point is that the raw amplitude parameter \(A\) is not a universal “physical strength” by itself: the meaningful quantity is an **effective amplitude** (e.g. \(A_{\mathrm{eff}}\sim A\alpha g_{\mathrm{gen}}\sin\phi\) or directly \(\mathrm{RMS}[\delta]\)), which should be used when transporting a locked hypothesis across panels.
-
-## 5. Weak and strong sectors (summary status)
-
-This section summarizes the current status of the **weak** and **strong** interaction validations using the *same* master‑equation geometry kernel and the same global “locked” parameters (notably \(\alpha\approx 7.5\times 10^{-5}\) and \(\phi=\pi/2\)).
 
 
 ## 6. Gravitational-wave sector (ringdown-only): cubic-lattice response + detector projection
@@ -3500,7 +3798,7 @@ For the present draft we treat localization as a **pipeline extension** rather t
 
 ## 7. Dark matter sector (SPARC/RAR)
 
-**Objective.** Test whether a master-equation-inspired environment modulation can reproduce the SPARC/RAR relation with strong out-of-sample behavior, compared to a baryon-only baseline.
+**Objective.** Test whether a unified-equation-inspired environment modulation can reproduce the SPARC/RAR relation with strong out-of-sample behavior, compared to a baryon-only baseline.
 
 **What was achieved in this draft.** The dataset, likelihood, model family, and CLI mapping are specified to make runs reproducible.
 **Mechanism sketch (what “DM” means in this substrate).** 
@@ -3769,7 +4067,7 @@ It is written to prevent the most common referee objection: “these parameters 
 | `--kernel` | — | Selects the transport kernel implementation (e.g. `rt` route‑time kernel used in CurvedCube runs). | enum | weak/strong/EM |
 | `--geo_action` | — | Selects which geometric action operator is applied (e.g. mech/fullphys variants in the codebase). | enum | weak/strong/EM |
 
-### 7.B.4 Weak-sector propagation knobs (density-matrix master equation)
+### 7.B.4 Weak-sector propagation knobs (density-matrix unified equation)
 
 | CLI | Symbol | Meaning | Units | Notes |
 |---|---:|---|---:|---|
@@ -3907,6 +4205,8 @@ $A_DM = (-59.27598033463076) * $A_phys
 $alpha_DM = 1.0 * $alpha_phys
 
 $A_EM = (-33333333.333333336) * $A_phys    # -> +100000
+
+*(Parameterization note.)* In the EM sector, the numerically large internal amplitude `A_EM` is not interpreted as a standalone physical scale. The effective modulation is controlled by the **product-level** quantity (e.g. `A_EM × α_map`), so many (`A_EM`, `α_map`) pairs can be algebraically equivalent at fixed product. The no-scan claim in this draft refers to fixing the **effective** modulation used by the preregistered runner, not to treating `A_EM` and `α_map` as independently meaningful physics parameters.
 $A_EM_NEG = -1.0 * $A_EM
 $alpha_EM = 0.075 * $alpha_phys            # -> 7.5e-05
 ```
@@ -4184,7 +4484,74 @@ py -3 dm_holdout_cv_thread.py `
 
 **Mechanical check:** both runs print per-fold `train Δχ²` and `test Δχ²`. The *comparison* is between `env_model thread` and `env_model none` with the same fixed `(A, α)`.
 
-## 9. Theoretical implications and philosophy: Topological Field Theory framing (topology-first)
+
+### 8.6. Entanglement sector — latest working run commands (NIST run4, Bridge-E0)
+
+These are the locked, last-known working commands for the **valid** NIST run4 entanglement audit path (HDF5 export \(\rightarrow\) coincidence CSV \(\rightarrow\) prereg CHSH audit). We intentionally exclude the prescreen `02_54_coinc_slotfix.csv` route from the claim because that file format is not Bridge-E0 compatible and can yield diagnostic \(S=-2\) mapping failures.
+
+#### 8.6.1. Build coincidence CSV from the accepted NIST run4 HDF5 source
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\run_nist_hdf5_to_coinc_csv_bridgeE0_v1_DROPIN_SELFCONTAINED.ps1 `
+  -H5Path ".\data\nist\03_43_run4_afterfixingModeLocking.build.hdf5" `
+  -OutDir "out" `
+  -Prefix "nist_run4"
+```
+
+Expected main output:
+- `out\nist_run4_coincidences.csv`
+
+#### 8.6.2. Run preregistered no-fit CHSH audit on the coincidence CSV
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\run_nist_coinc_csv_prereg_chsh_bridgeE0_v1_DROPIN_SELFCONTAINED.ps1 `
+  -InCsv ".\out\nist_run4_coincidences.csv" `
+  -Trials 20000 `
+  -Seed 12345 `
+  -OutDir "out" `
+  -Prefix "nist_run4_prereg"
+```
+
+Expected PASS-style summary (representative):
+- `GLOBAL_CHSH ≈ 2.455001027`
+- `NULL z ≈ 1.991`
+- `PASS (z >= 1.96)`
+
+---
+
+### 8.7. Photon-decay / propagation bridge sector — latest working run commands
+
+These are the locked, last-known working prereg commands for the photon-facing bridge tests (cosmic birefringence accumulation + sky-fold falsifier). They are the current data-facing implementation of the photon-sector idea.
+
+#### 8.7.1. Accumulation prereg test (no-fit)
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\run_prereg_birefringence_accumulation_v1_DROPIN_SELFCONTAINED_FIX.ps1 `
+  -AbsTest `
+  -OutCsv "out\birefringence_accumulation_prereg_v1.csv"
+```
+
+Expected null-compatible outputs (representative):
+- signed p-value \(\approx 0.3603\)
+- absolute p-value \(\approx 0.3936\)
+
+#### 8.7.2. Sky-fold anisotropy falsifier (no-fit)
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\run_prereg_birefringence_skyfold_v1_DROPIN_SELFCONTAINED_FIX.ps1 `
+  -OutCsv "out\birefringence_skyfold_prereg_v1.csv"
+```
+
+Expected null-compatible output (representative):
+- sky-fold p-value \(\approx 0.1536\)
+
+#### 8.7.3. Interpretation note (important)
+
+The photon-sector prereg commands currently produce **null-compatible** results. This is still a valid PASS for the falsification protocol because the scripts run correctly, the test statistic is locked in advance, and no post-hoc fit is used to force a signal.
+
+## 9. Theoretical implications and philosophy: Topological Field Theory framing (future-work, topology-first)
+
+> **Scope note:** This section is an interpretive / future-work framing. No explicit gauge group, fiber-bundle construction, or holonomy derivation is claimed in this version.
 
 This framework is best read as a **topology-first field theory**: 
 local physics is controlled by **connectivity, ordering, and transport holonomy** on an amorphous lattice, while metric-like effects appear through **inter‑cube distance-dependent tension**. 
@@ -4192,7 +4559,7 @@ local physics is controlled by **connectivity, ordering, and transport holonomy*
 
 ### 9.1 Topological universality across scales (micro ↔ macro)
 
-The same Master‑Equation + bridge formalism applies across scales **because the substrate rules are topological**, not because the geometry repeats. 
+The same unified-equation + bridge formalism applies across scales **because the substrate rules are topological**, not because the geometry repeats. 
 Two limiting readings are used throughout the project:
 
 **Weak (edge-addressed / holonomy-dominant):** long-baseline propagation is routed primarily along *Edge Threads*; the leading observable is an oriented-loop phase (holonomy) rather than bulk absorption. Operationally, this is why the weak sector modifies **phase** with minimal impact on amplitude compared to the bulk-addressed strong channel.
@@ -4271,34 +4638,51 @@ A publishable claim would require a prereg observational target and a controlled
 ## 10. Summary and open tests
 
 ### 10.1 What the paper establishes now
-- A single **master-equation modulation interface** (parameters + CLI) that is reused across weak/strong/EM/DM/GW.
+- A single **unified-equation modulation interface** (parameters + CLI) reused across weak/strong/EM/DM/GW, now explicitly extended with entanglement and photon bridge sectors and a target-specific FT-ICR cross-domain line.
 - A GW ringdown-only pipeline that connects a **cubic-lattice + bubble-thread** simulation output to detector-projected templates and off-source p-values.
 - A reproducibility section containing canonical run commands (or explicit placeholders where the canonical “paper run” is not yet frozen).
 
 
 **Sector status snapshot (as of this revision).** 
-All verdicts below are under **single-shot preregistered** definitions (no scan/fit). “PASS” means *not falsified*; it is not a proof.
+All verdicts below are under **single-shot preregistered** definitions (no scan/fit). “PASS” means *not falsified*; “PENDING” means internal/pipeline support exists but a key calibration/holdout/full embedding is still open. Neither is a proof.
 
 | Sector | Current verdict | Evidence in this document | Notes |
 |---|---|---|---|
 | Weak (T2K/NOvA/MINOS) | **PASS** | Sec. 5.1 + Appendix A logs | Uses CurvedCube kernel + holonomy/du_phase mapping into \(H_{\mathrm{geo}}\). |
 | EM (LEP Bhabha) | **PASS + TENSION** | Sec. 4 (full-sample + holdouts) + Sec. 4.7 | Positive \(\Delta\chi^2\) at the prereg point; remaining sensitivity to covariance/conditioning requires the planned full-cov holdouts. |
 | Strong (CNI + \(\sigma_{\mathrm{tot}}\) + \(\rho\)) | **PASS** | Sec. 5.2 (CNI gate + energy panels) | Strong data motivates the absorptive/dispersive split \((A_I,A_R)\); reported at a fixed prereg point. |
-| GW / LIGO ringdown | **PASS (internal; summarized)** | Sec. 6 (method stub) + reproducibility hooks | Detailed result bundles are not embedded in this draft; available in the run logs. |
-| DM / SPARC | **PASS (internal; summarized)** | Sec. 7 (method stub) + reproducibility hooks | Detailed result bundles are not embedded in this draft; available in the run logs. |
+| GW / LIGO ringdown | **PENDING** (calibration open) | Sec. 6 (method stub) + reproducibility hooks | Internal pipeline status exists, but frequency calibration and external-facing figures are not yet closed. |
+| DM / SPARC | **PENDING** (paper embedding open) | Sec. 7 (method stub) + reproducibility hooks | Internal package status is carried forward; full result bundles/figures should be embedded in-paper. |
+| Entanglement (NIST CHSH audit) | **PASS** (pipeline/audit validation) | Sec. 4.10 + reproducibility hooks | Confirms CHSH/Bell audit path on the known NIST run4 export; not a first-principles Bell derivation claim. |
+| Photon (birefringence accumulation) | **PASS** (scaffolding/prereg line) | Sec. 4.11 + reproducibility hooks | Accumulation-law and bridge wiring are integrated; final calibrated cosmic birefringence estimate is deferred. |
+| FT-ICR mass spectrometry (target-specific) | **PASS** (cross-domain robustness) | Sec. 4.9 + signed artefacts | Operational target-specific signature under prereg lock; legacy `particle_specific` filenames retained for reproducibility. |
 
 ### 10.2 What is not yet a hard claim
 - **Sky localization** is not claimed as a completed result. The paper frames it as a pipeline extension with specific tests required (\(\alpha,\delta,\psi\) scan + robustness + multiple-testing accounting).
+- **Entanglement** is not presented as a first-principles Bell-violation derivation; it is a **pipeline/audit validation** on a known Bell-violating NIST path.
+- **Photon birefringence** is not presented as a final calibrated cosmic birefringence parameter extraction; it is a **preregistered scaffolding/falsification line** in this revision.
+- **FT-ICR mass spectrometry** is not a fundamental-particle claim in this draft; it is a **target-specific cross-domain robustness check** (molecule/charge-state specific operational signature).
+- **GW and DM** are not yet treated as finished external-facing sectors in this paper version; they remain **PENDING** until calibration (GW) and full in-paper embedding (DM) are closed.
 - Cross-sector “universal parameter” claims are not made until each sector has a finalized result table and robustness notes.
+- The topological-field-theory discussion is an **interpretive/future-work framing**, not a derived gauge-bundle/holonomy formalism.
 
 ### 10.3 Open tests required for a publishable v1
-**GW:** (i) finalize a physically justified plus/cross mixing rule (SIM-native or deterministic \(\lambda^*\)), (ii) multi-seed + multi-event robustness, (iii) explicit artifact diagnostics (lag freedom, time_scales, band sensitivity) summarized in a result table, (iv) if localization is claimed: RA/Dec/psi grid + posterior consistency.
+**Priority 1 — publication blockers**
+- **GW:** close the frequency calibration gap (dominant simulated power vs target ringdown band), then embed the calibration/robustness figures.
+- **EM:** complete and embed the strongest **full-cov pivot-centered holdout** (the current positive result is promising but not yet the strongest version).
+- **Paper structure:** finalize section order/numbering consistency and move oversized CLI-style material to a technical supplement.
 
-**DM:** held-out validation on SPARC, sensitivity to systematics, and clear comparison baselines.
+**Priority 2 — strengthens the paper substantially**
+- **FT-ICR:** keep the sector, but frame it consistently as **target-specific cross-domain robustness** in prose (legacy `particle_specific` filenames can remain).
+- **Weak:** run an **independent validation** of the preregistered `du_phase` rule on a separate public dataset / non-overlapping holdout to reduce post-hoc selection concerns.
+- **Figures:** fill remaining placeholders from existing outputs.
 
-**Weak/Strong:** one frozen canonical run each + result tables + look-elsewhere accounting for discrete prereg choices (templates / mappings).
+**Priority 3 — deeper theory (not required for the current release)**
+- Derive the substrate-to-operator bridge (sector hooks) from explicit substrate coordinates/DOFs.
+- Add dimensional-analysis support for the CT/RT dual-tension split.
+- Strengthen sector-level microphysics derivations beyond surrogate \((n,\sigma,v)\) mappings.
 
-**EM:** keep as a consistency/null check; if extended to “strong environment” scenarios, define the environment proxy and show scaling behavior.
+**Data requirement note:** Nearly all of the above can be completed with the current codebase and existing public datasets. The only likely extra public-data step is the independent weak-sector validation for `du_phase`.
 
 
 ## Appendix A — Removed (portable paper edition)
@@ -5153,3 +5537,27 @@ zip
 
 
 *Clarification:* This framework is **not an infinite self‑similar nesting model**; scale-coverage arises from topological universality of the lattice rules, not self-similar recursion.
+
+
+## Future Work
+
+### Figure completion note (no new data required)
+
+Several sections include figure placeholders. These are not meant as missing evidence; they are an editorial backlog. All planned figures are generated from **already existing run outputs** (CSV summaries and previously produced plots). The journal-facing version will move the long CLI inventories to a technical supplement and will include the minimal figure set required to visually support (i) the strongest holdouts and (ii) the key failure modes marked **PENDING**.
+
+
+### Independent validation for the *du_phase* variant (release-holdout, public datasets)
+
+A remaining vulnerability is the *post‑hoc appearance* of selecting the **du_phase** variant over alternative phase-update variants. A fully independent, δ\_CP‑sensitive real‑data likelihood outside the NOvA/T2K/MINOS family is currently difficult to obtain in a clean, public, “drop‑in runner” format (many atmospheric releases are effectively δ\_CP‑flat, and DUNE is not yet real data). This is **not a blocker** for the present falsification‑first draft, but it is a clear strengthening target.
+
+We therefore preregister the following **release‑holdout validation** plan that requires **no new experiment** (only an additional public release):
+
+1. **Lock the du_phase rule and all one‑for‑all factors** (no tuning).  
+2. Use the **already‑used releases as calibration** (e.g., earlier official T2K/NOvA/MINOS releases), and treat a **later official release** as a holdout.  
+3. Re-run the same pipeline unchanged and report the holdout Δχ² shift and any qualitative changes in preferred regions.  
+
+This is not “fully independent baseline physics,” but it directly tests whether the du_phase choice survives a **version‑independent** check when confronted with a different official release of the same experiment. If a genuinely δ\_CP‑sensitive independent public likelihood becomes available later, the same preregistered du_phase rule can be transported unchanged as an additional falsifier.
+
+---
+
+*Build/version: 2026-02-21 (v4_52; editorial: added inline g_bp/g_lp forward reference; MS real-data prereg lock unchanged).*

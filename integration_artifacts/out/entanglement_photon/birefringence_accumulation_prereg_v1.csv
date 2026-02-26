@@ -1,0 +1,2 @@
+cal_label,hold_label,z_cal,z_hold,Om,Ol,Or,I_cal,I_hold,beta_cal_deg,sigma_cal_deg,C_beta_locked_per_I,beta_pred_hold_deg,beta_hold_deg,sigma_hold_deg,abs_test,metric,diff_deg,sigma_comb_deg,z_score,k_sigma,verdict
+WMAP+Planck (CMB),UV radio galaxies (z>2),1100.0,2.5,0.315,0.685,0.0,0.9509533045149386,0.771079088678931,0.342,0.094,0.3596391099081853,0.27731019712130545,-0.8,2.2,0,signed(beta),-1.0773101971213055,2.202007266109719,-0.48924007368267536,2.0,PASS

@@ -1,0 +1,2 @@
+cal_label,hold_label,beta_cal_deg,sigma_cal_deg,C_beta_locked_deg,beta_hold_deg,sigma_hold_deg,diff_deg,sigma_comb_deg,z_score,k_sigma,verdict,sign_verdict
+WMAP+Planck,ACT_DR6,0.34,0.09,0.34,0.215,0.074,-0.12500000000000003,0.11651609330903606,-1.072813174987442,2.0,PASS,OK

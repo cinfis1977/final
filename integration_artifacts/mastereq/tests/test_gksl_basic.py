@@ -1,6 +1,9 @@
 import math
 import numpy as np
-from mastereq.gk_sl_solver import build_Hfn_2flavor, build_Dfn_simple, integrate_rho, geometric_delta_m2_2flavor
+try:
+    from mastereq.gk_sl_solver import build_Hfn_2flavor, build_Dfn_simple, integrate_rho, geometric_delta_m2_2flavor
+except Exception:
+    from mastereq.gk_sl_solver_clean import build_Hfn_2flavor, build_Dfn_simple, integrate_rho, geometric_delta_m2_2flavor
 
 
 def base_dphi_dL_kernel(L_km: float, E_GeV: float, A: float, omega: float, phi: float, zeta: float) -> float:
