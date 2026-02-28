@@ -1,0 +1,5 @@
+run_name,target_id,weighted_median_mz,local_spread_mz,local_spread_method,point_count,summed_intensity,target_mz_nominal,window_ppm
+A1_B2_direct_ModeB_holdout,T05,816.217195966588,0.005647177590390129,weighted_mad_fallback,3984,1223670345.2214086,816.22,30.0
+A1_B2_direct_ModeB_holdout,T08,816.2833460688211,0.005839727413786022,weighted_mad_fallback,2200,1059366417.1877985,816.28,30.0
+A1_B2_direct_ModeB_holdout,T09,816.1508878687215,0.00593985744933434,weighted_mad_fallback,2207,1080887566.2506866,816.15,30.0
+A1_B2_direct_ModeB_holdout,T12,816.3492004225496,0.005622583022386607,weighted_mad_fallback,2264,1020850644.4125519,816.35,30.0
