@@ -1,0 +1,61 @@
+{
+  "chi2": {
+    "by_galaxy": {
+      "toy1": 2.409680769042054e-10
+    },
+    "ndof": 240,
+    "ndof_by_galaxy": {
+      "toy1": 240
+    },
+    "total": 2.409680769042054e-10
+  },
+  "framing": {
+    "stability_not_accuracy": true
+  },
+  "io": {
+    "data_loaded_from_paths": true,
+    "out_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\log_capture\\2026-03-03_run02\\dm_c1_paper\\dm_c1_pred_forward.csv",
+    "out_json": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\log_capture\\2026-03-03_run02\\dm_c1_paper\\dm_c1_summary_forward.json",
+    "pack_json": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\log_capture\\2026-03-03_run02\\dm_c1_paper\\pack_dm_c1_toy.json"
+  },
+  "pack": {
+    "path": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\log_capture\\2026-03-03_run02\\dm_c1_paper\\pack_dm_c1_toy.json",
+    "schema_version": "dm_c1_pack_v1"
+  },
+  "params": {
+    "dt": 0.2,
+    "dyn": {
+      "A_dm": 0.07,
+      "S0": 1.0,
+      "drive_strength": 0.45,
+      "env_p": 2.0,
+      "env_r0": 2.5,
+      "eps_decay": 0.7,
+      "eps_w": 0.6,
+      "gamma_eps": 0.18,
+      "k_circ": 0.9,
+      "k_eps": 0.25,
+      "k_g": 0.9,
+      "k_omega": 0.25,
+      "m_w": 0.9,
+      "texture_C": 0.4,
+      "texture_wr": 0.6
+    },
+    "n_steps": 240,
+    "order_mode": "forward",
+    "seed": 2026
+  },
+  "telemetry": {
+    "boundedness": {
+      "epsilon_nonneg": true,
+      "finite_all": true,
+      "g_in_0_1": true
+    },
+    "dm_dynamics_core_used": true,
+    "poison": {
+      "DM_POISON_PROXY_CALLS": "1"
+    },
+    "proxy_overlay_used": false,
+    "stiffgate_in_evolution": true
+  }
+}

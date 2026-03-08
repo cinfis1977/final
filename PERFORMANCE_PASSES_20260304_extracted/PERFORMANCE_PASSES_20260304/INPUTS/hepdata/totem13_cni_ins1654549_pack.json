@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "experiment": "TOTEM",
+    "process": "pp->pp elastic",
+    "sqrts_TeV": 13.0,
+    "hepdata_record": "ins1654549",
+    "source_archive": "totem13_rho_cni_ins1654549_csv.zip",
+    "notes": "Built from HEPData CSV Table1 (dsigma/dt) for very-low |t| region; covariance assumed diagonal from stat/sys."
+  },
+  "paths": {
+    "dsdt_csv": "totem13_cni_ins1654549_dsdt.csv",
+    "cov_stat_csv": "totem13_cni_ins1654549_cov_stat.csv",
+    "cov_sys_csv": "totem13_cni_ins1654549_cov_sys.csv",
+    "cov_total_csv": "totem13_cni_ins1654549_cov_total.csv"
+  }
+}

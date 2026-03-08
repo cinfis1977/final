@@ -1,0 +1,9 @@
+target_label,target_mz,g_bin,g_center,baseline,compare,delta_p_success,ratio_mad_success
+T07,874.37,0,0.007136892050265684,ModeA_points,ModeB_holdout_points,0.0,
+T07,874.37,1,0.0391684095432314,ModeA_points,ModeB_holdout_points,0.09090909090909091,
+T07,874.37,2,0.08607933357813041,ModeA_points,ModeB_holdout_points,-0.043478260869565216,
+T07,874.37,3,0.11317008475376072,ModeA_points,ModeB_holdout_points,-0.125,0.0
+T07,874.37,4,0.1284757816883324,ModeA_points,ModeB_holdout_points,-0.07236842105263158,
+T07,874.37,5,0.1403827790511029,ModeA_points,ModeB_holdout_points,0.045454545454545456,
+T07,874.37,6,0.14886098784471125,ModeA_points,ModeB_holdout_points,-0.08152173913043478,
+T07,874.37,7,0.5764493651695034,ModeA_points,ModeB_holdout_points,0.027199882378887014,0.7355231849861097

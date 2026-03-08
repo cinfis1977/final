@@ -1,0 +1,16 @@
+C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git\integration_artifacts\mastereq\gk_sl_solver_clean.py:93: RuntimeWarning: overflow encountered in multiply
+  k4 = drho(L + h, rho + h * k3)
+C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git\integration_artifacts\mastereq\entanglement_sector.py:39: RuntimeWarning: invalid value encountered in scalar multiply
+  D[0, 1] = -gamma * rho[0, 1]
+C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git\integration_artifacts\mastereq\entanglement_sector.py:40: RuntimeWarning: invalid value encountered in scalar multiply
+  D[1, 0] = -gamma * rho[1, 0]
+C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git\integration_artifacts\mastereq\gk_sl_solver_clean.py:80: RuntimeWarning: invalid value encountered in matmul
+  return A @ B - B @ A
+C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git\integration_artifacts\mastereq\gk_sl_solver_clean.py:94: RuntimeWarning: overflow encountered in multiply
+  return rho + (h / 6.0) * (k1 + 2 * k2 + 2 * k3 + k4)
+C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git\integration_artifacts\mastereq\gk_sl_solver_clean.py:91: RuntimeWarning: overflow encountered in multiply
+  k2 = drho(L + 0.5 * h, rho + 0.5 * h * k1)
+C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git\integration_artifacts\mastereq\gk_sl_solver_clean.py:92: RuntimeWarning: overflow encountered in multiply
+  k3 = drho(L + 0.5 * h, rho + 0.5 * h * k2)
+C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git\integration_artifacts\mastereq\gk_sl_solver_clean.py:91: RuntimeWarning: overflow encountered in add
+  k2 = drho(L + 0.5 * h, rho + 0.5 * h * k1)

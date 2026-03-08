@@ -1,0 +1,13 @@
+﻿{
+    "name":  "pytest_integration_artifacts_mastereq_tests",
+    "cwd":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git",
+    "cmd":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\.venv\\\\Scripts\\\\python.exe -RunDir C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\\\pass_runs\\20260302_211241",
+    "exe":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\.venv\\\\Scripts\\\\python.exe",
+    "args":  null,
+    "start_utc":  "2026-03-02T18:12:41.8269759Z",
+    "end_utc":  "2026-03-02T18:12:42.8703117Z",
+    "duration_sec":  1.043,
+    "exit_code":  2,
+    "stdout_path":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\pass_runs\\20260302_211241\\pytest_integration_artifacts_mastereq_tests.stdout.txt",
+    "stderr_path":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\pass_runs\\20260302_211241\\pytest_integration_artifacts_mastereq_tests.stderr.txt"
+}

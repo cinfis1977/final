@@ -1,0 +1,13 @@
+thread_weight_app,thread_weight_dis,chi2_geo_total,delta_total,pos_channels,exit_code,ok,evidence_dir
+1.0,0.5,258.305,0.906,3,0,True,logs\weak\2026-03-03_run11\model_grid_thread_weights\wapp_1__wdis_0p5
+1.0,1.0,258.305,0.906,3,0,True,logs\weak\2026-03-03_run11\model_grid_thread_weights\wapp_1__wdis_1
+1.0,1.5,258.305,0.906,3,0,True,logs\weak\2026-03-03_run11\model_grid_thread_weights\wapp_1__wdis_1p5
+0.5,0.5,258.308,0.903,3,0,True,logs\weak\2026-03-03_run11\model_grid_thread_weights\wapp_0p5__wdis_0p5
+0.5,1.0,258.308,0.903,3,0,True,logs\weak\2026-03-03_run11\model_grid_thread_weights\wapp_0p5__wdis_1
+0.5,1.5,258.308,0.903,3,0,True,logs\weak\2026-03-03_run11\model_grid_thread_weights\wapp_0p5__wdis_1p5
+0.2,0.5,258.309,0.901,3,0,True,logs\weak\2026-03-03_run11\model_grid_thread_weights\wapp_0p2__wdis_0p5
+0.2,1.0,258.309,0.901,3,0,True,logs\weak\2026-03-03_run11\model_grid_thread_weights\wapp_0p2__wdis_1
+0.2,1.5,258.309,0.901,3,0,True,logs\weak\2026-03-03_run11\model_grid_thread_weights\wapp_0p2__wdis_1p5
+0.0,0.5,258.311,0.9,3,0,True,logs\weak\2026-03-03_run11\model_grid_thread_weights\wapp_0__wdis_0p5
+0.0,1.0,258.311,0.9,3,0,True,logs\weak\2026-03-03_run11\model_grid_thread_weights\wapp_0__wdis_1
+0.0,1.5,258.311,0.9,3,0,True,logs\weak\2026-03-03_run11\model_grid_thread_weights\wapp_0__wdis_1p5

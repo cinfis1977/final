@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "source": "HEPData ins2122408 (record 128017) v2 CSV export",
+    "reaction": "P P --> P P",
+    "sqrt_s_TeV": 13.0,
+    "observable": "d\u03c3/dt (elastic pp)",
+    "t_unit": "GeV^2",
+    "dsdt_unit": "mb/GeV^2",
+    "tables_used": {
+      "dsdt": "Table10.csv",
+      "cov_stat": "Table11.csv"
+    },
+    "covariance_note": "cov_sys reconstructed from relative signed systematic shifts in Table10 assuming each source is 100% correlated across bins; cov_total=cov_stat+cov_sys.",
+    "n_bins": 80
+  },
+  "paths": {
+    "dsdt_csv": "atlas13_pp_elastic_dsdt_table10_clean.csv",
+    "cov_stat_csv": "atlas13_pp_elastic_cov_stat_table11.csv",
+    "cov_sys_csv": "atlas13_pp_elastic_cov_sys_from_table10.csv",
+    "cov_total_csv": "atlas13_pp_elastic_cov_total_stat_plus_sys.csv"
+  }
+}

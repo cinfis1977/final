@@ -1,0 +1,6 @@
+run_id: ms_papersafe_raw_ppm_raw_common_resid_20260304_033542
+drift_state_mode: telemetry_commonbaseline_plus_residual
+prereg_observable: raw_ppm
+ablations: internal_only full
+artifacts_copied_from: C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git\out\MS\ms_papersafe_raw_ppm_raw_common_resid_20260304_033542
+artifacts_copied_to: C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git\logs\ms\ms_papersafe_raw_ppm_raw_common_resid_20260304_033542\artifacts\out_MS

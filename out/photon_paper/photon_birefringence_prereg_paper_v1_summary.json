@@ -1,0 +1,62 @@
+{
+  "runner": "run_photon_birefringence_prereg_paper_v1.py",
+  "layer": "paper-faithful",
+  "claim_boundary": {
+    "does": "Reproduces the locked bridge formulas used for the photon-sector prereg checks and records the paper-reference p-values.",
+    "does_not": "Does not claim a unique microscopic derivation; this remains a bridge/scaffolding layer."
+  },
+  "inputs": {
+    "holdout_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\integration_artifacts\\entanglement_photon_bridge\\birefringence_holdouts_v1_TEMPLATE.csv",
+    "holdout_sha256": "175ee5636a2ae492f67b3c024ee0d324b2c8cd771afa0937205b563dd57a4082",
+    "holdout_rows": [
+      {
+        "label": "UV_radio_galaxies_mean",
+        "z": "2.8",
+        "beta_deg": "-0.8",
+        "sigma_deg": "2.2"
+      },
+      {
+        "label": "ACT_DR6_CMB",
+        "z": "1100",
+        "beta_deg": "0.215",
+        "sigma_deg": "0.074"
+      }
+    ]
+  },
+  "locked_cosmology": {
+    "Om": 0.315,
+    "Ol": 0.685,
+    "Or": 0.0
+  },
+  "cmb_locked_check": {
+    "C_beta_locked_deg": 0.34,
+    "diff_deg": -0.12500000000000003,
+    "sigma_comb_deg": 0.11651609330903606,
+    "z_score": -1.072813174987442,
+    "k_sigma": 2.0,
+    "verdict": "PASS",
+    "sign_verdict": "OK"
+  },
+  "accumulation_locked_check": {
+    "I_cal": 0.9509533045149386,
+    "I_hold": 0.771079088678931,
+    "C_beta_locked_per_I": 0.3596391099081853,
+    "beta_pred_hold_deg": 0.27731019712130545,
+    "diff_deg": -1.0773101971213055,
+    "sigma_comb_deg": 2.202007266109719,
+    "z_score": -0.48924007368267536,
+    "k_sigma": 2.0,
+    "abs_test": 0,
+    "metric": "signed(beta)",
+    "verdict": "PASS"
+  },
+  "paper_reference_results": {
+    "section": "paper/paper_final.md \u00a74.11.5",
+    "signed_pvalue": 0.3603,
+    "absolute_metric_pvalue": 0.3936,
+    "skyfold_pvalue": 0.1536,
+    "note": "Paper-reference values remain the canonical benchmark. If a source table with sky coordinates is supplied, this wrapper records a local sky-fold recomputation separately."
+  },
+  "skyfold_local_recompute": null,
+  "no_fit_statement": "No regression coefficient is fitted or tuned in this runner."
+}

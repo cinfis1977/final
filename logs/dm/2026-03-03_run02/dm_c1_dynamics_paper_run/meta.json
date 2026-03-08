@@ -1,0 +1,24 @@
+﻿{
+    "sector":  "dm",
+    "run_id":  "2026-03-03_run02",
+    "name":  "dm_c1_dynamics_paper_run",
+    "status":  "ok",
+    "start_utc":  "2026-03-03T00:29:55.7361230Z",
+    "end_utc":  "2026-03-03T00:29:57.6763991Z",
+    "git_head":  "636e3e11817e94d81654d68641bafb7fd0a52540",
+    "repo_root":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git",
+    "exe":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\.venv\\Scripts\\python.exe",
+    "args":  [
+                 "run_dm_c1_paper_run.py",
+                 "--out_dir",
+                 "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\log_capture\\2026-03-03_run02\\dm_c1_paper",
+                 "--seed",
+                 "2026",
+                 "--dt",
+                 "0.2",
+                 "--n_steps",
+                 "240"
+             ],
+    "cmd":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\.venv\\Scripts\\python.exe run_dm_c1_paper_run.py --out_dir C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\log_capture\\2026-03-03_run02\\dm_c1_paper --seed 2026 --dt 0.2 --n_steps 240",
+    "artifacts_from":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\log_capture\\2026-03-03_run02\\dm_c1_paper"
+}

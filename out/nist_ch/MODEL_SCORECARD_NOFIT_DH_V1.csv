@@ -1,0 +1,13 @@
+run_id,label,window,slots,bitmask_hex,trials_valid,J_data,J_model,j_data_per_1M,j_model_per_1M,delta_J,delta_j_per_1M,sign_ok,provider,emp_N_pp_ab,emp_N_p0_abp,emp_N_0p_apb,emp_N_pp_apbp
+01_11,real_run,slot6,6,0x20,337818518,122,-770.742,0.361141,-2.28153,-892.742,-2.64267,NO,NOFIT_DETECTORHAZARD v1 (config-only; fixed k_single/k_pair; no seeding),2416,1101,1177,16
+01_11,real_run,slots5-7,5-7,0x70,337818518,398,-2312.18,1.17815,-6.84443,-2710.18,-8.02258,NO,NOFIT_DETECTORHAZARD v1 (config-only; fixed k_single/k_pair; no seeding),7248,3314,3473,63
+01_11,real_run,slots4-8,4-8,0xf8,337818518,550,-3853.54,1.62809,-11.4071,-4403.54,-13.0352,NO,NOFIT_DETECTORHAZARD v1 (config-only; fixed k_single/k_pair; no seeding),12082,5580,5836,116
+02_54,real_run,slot6,6,0x20,203681460,8,-465.447,0.039277,-2.28517,-473.447,-2.32445,NO,NOFIT_DETECTORHAZARD v1 (config-only; fixed k_single/k_pair; no seeding),1348,641,686,13
+02_54,real_run,slots5-7,5-7,0x70,203681460,41,-1396.31,0.201295,-6.85536,-1437.31,-7.05665,NO,NOFIT_DETECTORHAZARD v1 (config-only; fixed k_single/k_pair; no seeding),3983,1882,2022,38
+02_54,real_run,slots4-8,4-8,0xf8,203681460,176,-2327.13,0.864094,-11.4253,-2503.13,-12.2894,NO,NOFIT_DETECTORHAZARD v1 (config-only; fixed k_single/k_pair; no seeding),6653,3095,3312,70
+03_31,training_stub,slot6,6,0x20,363,0,-0.000717916,0,-1.97773,-0.000717916,-1.97773,YES,NOFIT_DETECTORHAZARD v1 (config-only; fixed k_single/k_pair; no seeding),0,0,0,0
+03_31,training_stub,slots5-7,5-7,0x70,363,0,-0.0021537,0,-5.93305,-0.0021537,-5.93305,YES,NOFIT_DETECTORHAZARD v1 (config-only; fixed k_single/k_pair; no seeding),0,0,0,0
+03_31,training_stub,slots4-8,4-8,0xf8,363,0,-0.00358941,0,-9.88819,-0.00358941,-9.88819,YES,NOFIT_DETECTORHAZARD v1 (config-only; fixed k_single/k_pair; no seeding),0,0,0,0
+03_43,real_run,slot6,6,0x20,107109594,13,-244.703,0.121371,-2.2846,-257.703,-2.40597,NO,NOFIT_DETECTORHAZARD v1 (config-only; fixed k_single/k_pair; no seeding),783,370,391,9
+03_43,real_run,slots5-7,5-7,0x70,107109594,49,-734.093,0.457475,-6.85366,-783.093,-7.31113,NO,NOFIT_DETECTORHAZARD v1 (config-only; fixed k_single/k_pair; no seeding),2348,1082,1187,30
+03_43,real_run,slots4-8,4-8,0xf8,107109594,151,-1223.46,1.40977,-11.4225,-1374.46,-12.8323,NO,NOFIT_DETECTORHAZARD v1 (config-only; fixed k_single/k_pair; no seeding),3953,1801,1947,54

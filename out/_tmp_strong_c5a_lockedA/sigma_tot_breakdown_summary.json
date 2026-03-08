@@ -1,0 +1,19 @@
+{
+  "cov_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\integration_artifacts\\mastereq\\packs\\strong_c5a\\pdg_sigma_tot_cov_diag.csv",
+  "cov_diag_only_heuristic": true,
+  "cov_offdiag_max": 0.0,
+  "delta_chi2_diag_neg_sum": -49.15277106834219,
+  "delta_chi2_diag_pos_sum": 1141.3338887271407,
+  "delta_chi2_diag_total": 1092.1811176587985,
+  "frac_pos": 0.5909090909090909,
+  "kind": "sigma_tot",
+  "n_neg": 9,
+  "n_points": 22,
+  "n_pos": 13,
+  "out_csv": "out\\_tmp_strong_c5a_lockedA\\sigma_tot_breakdown.csv",
+  "pred_csv": "out\\_tmp_strong_c5a_lockedA\\sigma_tot_pred.csv",
+  "summary_json": "out\\_tmp_strong_c5a_lockedA\\sigma_tot_summary.json",
+  "top1_share_of_pos": 0.44656756231894246,
+  "top3_share_of_pos": 0.8173841613392784,
+  "top5_share_of_pos": 0.9569816969440341
+}

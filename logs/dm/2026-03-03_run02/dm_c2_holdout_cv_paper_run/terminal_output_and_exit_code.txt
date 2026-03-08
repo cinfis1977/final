@@ -1,0 +1,7 @@
+﻿# terminal output
+
+DM-C2 CV paper run OK
+out_dir: C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git\out\log_capture\2026-03-03_run02\dm_c2_cv_paper
+
+EXIT_CODE: 0
+

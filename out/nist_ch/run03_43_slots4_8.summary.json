@@ -1,0 +1,36 @@
+{
+  "h5_path": ".\\data\\nist\\03_43_run4_afterfixingModeLocking.build.hdf5",
+  "slots": [
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "bitmask_hex": "0xf8",
+  "processed_trials_total_scanned": 107109596,
+  "dropped_invalid_settings_trials": 2,
+  "settings_decode_mode_counts_by_chunk": {
+    "alice": {
+      "2": 54
+    },
+    "bob": {
+      "2": 54
+    },
+    "mode_meaning": {
+      "1": "already binary {0,1}",
+      "2": "onehot bits {1,2,3} decoded (1->0,2->1, else invalid)",
+      "3": "2-valued remap",
+      "9": "unknown -> invalid"
+    }
+  },
+  "CH_terms": {
+    "N_pp_ab": 3953,
+    "N_p0_abp": 1801,
+    "N_0p_apb": 1947,
+    "N_pp_apbp": 54
+  },
+  "J": 151,
+  "local_realism_bound": "J <= 0",
+  "violation": true
+}

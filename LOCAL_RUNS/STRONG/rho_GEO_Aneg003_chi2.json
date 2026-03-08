@@ -1,0 +1,14 @@
+{
+  "data": ".\\INPUTS\\hepdata\\pdg_rho_clean_for_runner.csv",
+  "channel": "both",
+  "A": -0.003,
+  "template": "cos",
+  "env_mode": "eikonal_amp",
+  "sqrts_ref_GeV": 13000.0,
+  "delta_geo_ref": -1.315523,
+  "c1_abs": 0.725147,
+  "n": 4,
+  "chi2_SM": 17.851169007822406,
+  "chi2_GEO": 18.507060220940183,
+  "dchi2": -0.6558912131177763
+}

@@ -1,0 +1,84 @@
+{
+  "calibration": {
+    "z_cal": 1100.0,
+    "I_cal": 0.9509533045149386,
+    "beta_cal_deg": 0.342,
+    "C_beta_locked_per_I": 0.3596391099081853
+  },
+  "state_variable_schema": [
+    "I_z",
+    "gamma_z",
+    "L_eff_km",
+    "coherence_survival",
+    "dynamic_kernel"
+  ],
+  "cosmology": {
+    "Om": 0.315,
+    "Ol": 0.685,
+    "Or": 0.0,
+    "I_steps": 20000
+  },
+  "physics": {
+    "dm2": 0.0025,
+    "theta_deg": 33.0,
+    "L0_km": 810.0,
+    "E0_GeV": 2.0
+  },
+  "damping": {
+    "gamma_src": "microphysics",
+    "gamma_base_km_inv": 5.784001410735956e-28,
+    "k_I": 0.0,
+    "gamma_floor_mult": 0.0,
+    "use_microphysics": true,
+    "n_cm3": 1e+16,
+    "coupling_x": 1.7,
+    "v_cm_s": 30000000000.0
+  },
+  "pipeline_assertions": {
+    "no_fit": true,
+    "proxy_bypass_detected": false,
+    "dynamic_modulation_applied": true,
+    "beta_model_formula": "beta_bridge(z) * V_model(z)"
+  },
+  "per_source_state": [
+    {
+      "z": 2.8,
+      "I_z": 0.791672820132652,
+      "gamma_z_km_inv": 5.784001410735956e-28,
+      "gamma_base_km_inv": 5.784001410735956e-28,
+      "L_eff_km": 641.2549843074481,
+      "coherence_survival": 0.4466794736729331,
+      "dynamic_kernel": 0.35362399861801963,
+      "active_mappings": [
+        "I_z -> L_eff_km",
+        "I_z -> beta_bridge",
+        "gamma_z -> rho evolution",
+        "coherence_survival -> beta_model"
+      ],
+      "locked_coefficients": {
+        "k_I": 0.0,
+        "gamma_floor_mult": 0.0
+      }
+    },
+    {
+      "z": 1100.0,
+      "I_z": 0.9509533045149386,
+      "gamma_z_km_inv": 5.784001410735956e-28,
+      "gamma_base_km_inv": 5.784001410735956e-28,
+      "L_eff_km": 770.2721766571003,
+      "coherence_survival": 0.527582240491987,
+      "dynamic_kernel": 0.5017060749992501,
+      "active_mappings": [
+        "I_z -> L_eff_km",
+        "I_z -> beta_bridge",
+        "gamma_z -> rho evolution",
+        "coherence_survival -> beta_model"
+      ],
+      "locked_coefficients": {
+        "k_I": 0.0,
+        "gamma_floor_mult": 0.0
+      }
+    }
+  ],
+  "note": "V_model is derived from final rho coherence: V=2*|rho01| (clamped to [0,1]). beta_model(z)=beta_bridge(z)*V_model(z)."
+}

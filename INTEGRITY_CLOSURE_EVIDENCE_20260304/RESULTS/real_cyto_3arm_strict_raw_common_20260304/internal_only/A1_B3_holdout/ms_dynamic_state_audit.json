@@ -1,0 +1,42 @@
+{
+  "runner": "ms_particle_specific_dynamic_runner_v1_0_DROPIN",
+  "ablation": "internal_only",
+  "prereg_observable": "raw_ppm",
+  "drift_state_mode": "telemetry_only_commonbaseline",
+  "baseline": "ModeA_points",
+  "settings": [
+    "ModeA_points",
+    "ModeB_holdout_points"
+  ],
+  "stateful_steps_total": 527,
+  "paths": {
+    "scan_state_csv": "C:/Dropbox/projects/new_master_equation_with_gauga_structure_test_git/out/MS/real_cyto_3arm_strict_raw_common_20260304/internal_only/A1_B3_holdout/scan_state.csv",
+    "drift_common_csv": "C:/Dropbox/projects/new_master_equation_with_gauga_structure_test_git/out/MS/real_cyto_3arm_strict_raw_common_20260304/internal_only/A1_B3_holdout/drift_common.csv",
+    "residuals_csv": null
+  },
+  "drift_fit_baseline": {
+    "rmse_ppm": 1.3092115918760519,
+    "mae_ppm": 0.8960093457989341,
+    "corr_obs_vs_state": 0.9730985586765228,
+    "median_abs_residual_ppm": 0.6006646896588943,
+    "n_scans": 528
+  },
+  "residual_summary_by_setting": {
+    "ModeA_points": {
+      "median_abs_residual_ppm": 0.6006646896588943,
+      "mean_abs_residual_ppm": 0.8960093457989341,
+      "corr_obs_vs_state": 0.9730985586765228
+    },
+    "ModeB_holdout_points": {
+      "median_abs_residual_ppm": 0.9681102299772073,
+      "mean_abs_residual_ppm": 1.3883250395818088,
+      "corr_obs_vs_state": 0.9296715251985883
+    }
+  },
+  "anti_cancel": {
+    "rank_corr_raw_vs_corrected": 0.7062937062937064,
+    "top_raw": "T03",
+    "top_corrected": "T11",
+    "top_match": false
+  }
+}

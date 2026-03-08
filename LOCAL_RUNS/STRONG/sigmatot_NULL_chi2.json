@@ -1,0 +1,43 @@
+{
+  "data": ".\\INPUTS\\hepdata\\pdg_sigma_tot_clean_for_runner.csv",
+  "s_window_GeV": [
+    7.0,
+    100000.0
+  ],
+  "channel": "both",
+  "baseline": {
+    "form": "PDG/COMPETE: P + H ln^2(s/sM) + R1 (s/sM)^(-eta1) +/- R2 (s/sM)^(-eta2)",
+    "P_mb": 33.73,
+    "H_mb": 0.2838,
+    "R1_mb": 13.67,
+    "eta1": 0.412,
+    "R2_mb": 7.77,
+    "eta2": 0.5626,
+    "sM_GeV2": 15.618304
+  },
+  "geometry": {
+    "A_rad": 0.0,
+    "template": "cos",
+    "env_mode": "none",
+    "sqrts_ref_GeV": 13000.0,
+    "delta_geo_ref_rad": -1.315523,
+    "c1_abs": 0.725147
+  },
+  "results": [
+    {
+      "channel": "pp",
+      "n": 15,
+      "chi2_SM": 107.54079881937183,
+      "chi2_GEO": 107.54079881937183,
+      "dchi2": 0.0
+    },
+    {
+      "channel": "pbarp",
+      "n": 7,
+      "chi2_SM": 10.393116669634878,
+      "chi2_GEO": 10.393116669634878,
+      "dchi2": 0.0
+    }
+  ],
+  "out_csv": ".\\LOCAL_RUNS\\STRONG\\sigmatot_NULL.csv"
+}

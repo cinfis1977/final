@@ -1,0 +1,400 @@
+{
+  "overall": {
+    "run_root": ".\\out\\MS\\ms_papersafe_raw_ppm_raw_common_resid_20260304_033542",
+    "counts": {
+      "arms": 6,
+      "with_audit": 6,
+      "with_telemetry": 6,
+      "with_verdict": 6
+    },
+    "prereg_all_pass": true,
+    "dynamics_stateful_all": true,
+    "notes": []
+  },
+  "per_arm": {
+    "internal_only/A1_B2": {
+      "paths": {
+        "folder": "internal_only\\A1_B2",
+        "verdict": "internal_only\\final\\prereg_lock_and_final_verdict_goodppm3.json",
+        "audit": "internal_only\\A1_B2\\ms_dynamic_state_audit.json",
+        "telemetry": "internal_only\\A1_B2\\ms_dynamic_telemetry.json",
+        "drift_common_csv": "internal_only\\A1_B2\\drift_common.csv",
+        "residuals_csv": "internal_only\\A1_B2\\residuals.csv"
+      },
+      "prereg": {
+        "final_verdict": "PASS",
+        "C1_psuccess": true,
+        "C2_mad": true,
+        "C3_thirdarm": true,
+        "rank_corr_abs": 0.965034965034965,
+        "mad_rank_corr": 0.8363636363636365,
+        "third_rank_corr_b2_a23": 0.8741258741258742,
+        "third_rank_corr_b3_a23": 0.8741258741258742,
+        "third_top_all_match": true
+      },
+      "audit": {
+        "stateful_steps_total": 527,
+        "drift_fit_baseline": {
+          "rmse_ppm": 1.3092115918760519,
+          "mae_ppm": 0.8960093457989341,
+          "corr_obs_vs_state": 0.9730985586765228,
+          "median_abs_residual_ppm": 0.6006646896588943,
+          "n_scans": 528
+        },
+        "residual_summary_by_setting": {
+          "ModeA_points": {
+            "median_abs_residual_ppm": 0.6006646896588943,
+            "mean_abs_residual_ppm": 0.8960093457989341,
+            "corr_obs_vs_state": 0.9730985586765228
+          },
+          "ModeB_points": {
+            "median_abs_residual_ppm": 1.1723539982260478,
+            "mean_abs_residual_ppm": 1.645306579611499,
+            "corr_obs_vs_state": 0.912079202663562
+          }
+        },
+        "anti_cancel": {
+          "rank_corr_raw_vs_corrected": 0.4755244755244756,
+          "top_raw": "T03",
+          "top_corrected": "T11",
+          "top_match": false
+        }
+      },
+      "telemetry": {
+        "ablation": "internal_only",
+        "prereg_observable": "raw_ppm",
+        "drift_state_mode": "telemetry_commonbaseline_plus_residual",
+        "internal_dynamics_used": true,
+        "thread_env_used": false,
+        "stateful_steps_total": 527,
+        "scan_series_required": true
+      },
+      "derived": {
+        "prereg_pass": true,
+        "stateful_steps": 527,
+        "stateful_expected": true,
+        "stateful_ok": true
+      }
+    },
+    "internal_only/A1_B3_holdout": {
+      "paths": {
+        "folder": "internal_only\\A1_B3_holdout",
+        "verdict": "internal_only\\final\\prereg_lock_and_final_verdict_goodppm3.json",
+        "audit": "internal_only\\A1_B3_holdout\\ms_dynamic_state_audit.json",
+        "telemetry": "internal_only\\A1_B3_holdout\\ms_dynamic_telemetry.json",
+        "drift_common_csv": "internal_only\\A1_B3_holdout\\drift_common.csv",
+        "residuals_csv": "internal_only\\A1_B3_holdout\\residuals.csv"
+      },
+      "prereg": {
+        "final_verdict": "PASS",
+        "C1_psuccess": true,
+        "C2_mad": true,
+        "C3_thirdarm": true,
+        "rank_corr_abs": 0.965034965034965,
+        "mad_rank_corr": 0.8363636363636365,
+        "third_rank_corr_b2_a23": 0.8741258741258742,
+        "third_rank_corr_b3_a23": 0.8741258741258742,
+        "third_top_all_match": true
+      },
+      "audit": {
+        "stateful_steps_total": 527,
+        "drift_fit_baseline": {
+          "rmse_ppm": 1.3092115918760519,
+          "mae_ppm": 0.8960093457989341,
+          "corr_obs_vs_state": 0.9730985586765228,
+          "median_abs_residual_ppm": 0.6006646896588943,
+          "n_scans": 528
+        },
+        "residual_summary_by_setting": {
+          "ModeA_points": {
+            "median_abs_residual_ppm": 0.6006646896588943,
+            "mean_abs_residual_ppm": 0.8960093457989341,
+            "corr_obs_vs_state": 0.9730985586765228
+          },
+          "ModeB_holdout_points": {
+            "median_abs_residual_ppm": 0.9681102299772073,
+            "mean_abs_residual_ppm": 1.3883250395818088,
+            "corr_obs_vs_state": 0.9296715251985883
+          }
+        },
+        "anti_cancel": {
+          "rank_corr_raw_vs_corrected": 0.7062937062937064,
+          "top_raw": "T03",
+          "top_corrected": "T11",
+          "top_match": false
+        }
+      },
+      "telemetry": {
+        "ablation": "internal_only",
+        "prereg_observable": "raw_ppm",
+        "drift_state_mode": "telemetry_commonbaseline_plus_residual",
+        "internal_dynamics_used": true,
+        "thread_env_used": false,
+        "stateful_steps_total": 527,
+        "scan_series_required": true
+      },
+      "derived": {
+        "prereg_pass": true,
+        "stateful_steps": 527,
+        "stateful_expected": true,
+        "stateful_ok": true
+      }
+    },
+    "internal_only/A2_B3_thirdarm": {
+      "paths": {
+        "folder": "internal_only\\A2_B3_thirdarm",
+        "verdict": "internal_only\\final\\prereg_lock_and_final_verdict_goodppm3.json",
+        "audit": "internal_only\\A2_B3_thirdarm\\ms_dynamic_state_audit.json",
+        "telemetry": "internal_only\\A2_B3_thirdarm\\ms_dynamic_telemetry.json",
+        "drift_common_csv": "internal_only\\A2_B3_thirdarm\\drift_common.csv",
+        "residuals_csv": "internal_only\\A2_B3_thirdarm\\residuals.csv"
+      },
+      "prereg": {
+        "final_verdict": "PASS",
+        "C1_psuccess": true,
+        "C2_mad": true,
+        "C3_thirdarm": true,
+        "rank_corr_abs": 0.965034965034965,
+        "mad_rank_corr": 0.8363636363636365,
+        "third_rank_corr_b2_a23": 0.8741258741258742,
+        "third_rank_corr_b3_a23": 0.8741258741258742,
+        "third_top_all_match": true
+      },
+      "audit": {
+        "stateful_steps_total": 527,
+        "drift_fit_baseline": {
+          "rmse_ppm": 1.552581262162213,
+          "mae_ppm": 1.1046192749711676,
+          "corr_obs_vs_state": 0.962210580751151,
+          "median_abs_residual_ppm": 0.8248335473171211,
+          "n_scans": 528
+        },
+        "residual_summary_by_setting": {
+          "ModeA_points": {
+            "median_abs_residual_ppm": 0.8248335473171211,
+            "mean_abs_residual_ppm": 1.1046192749711676,
+            "corr_obs_vs_state": 0.962210580751151
+          },
+          "ModeB_holdout_points": {
+            "median_abs_residual_ppm": 1.0202503496525477,
+            "mean_abs_residual_ppm": 1.3413941380026753,
+            "corr_obs_vs_state": 0.9409092292074482
+          }
+        },
+        "anti_cancel": {
+          "rank_corr_raw_vs_corrected": 0.7692307692307694,
+          "top_raw": "T03",
+          "top_corrected": "T02",
+          "top_match": false
+        }
+      },
+      "telemetry": {
+        "ablation": "internal_only",
+        "prereg_observable": "raw_ppm",
+        "drift_state_mode": "telemetry_commonbaseline_plus_residual",
+        "internal_dynamics_used": true,
+        "thread_env_used": false,
+        "stateful_steps_total": 527,
+        "scan_series_required": true
+      },
+      "derived": {
+        "prereg_pass": true,
+        "stateful_steps": 527,
+        "stateful_expected": true,
+        "stateful_ok": true
+      }
+    },
+    "full/A1_B2": {
+      "paths": {
+        "folder": "full\\A1_B2",
+        "verdict": "full\\final\\prereg_lock_and_final_verdict_goodppm3.json",
+        "audit": "full\\A1_B2\\ms_dynamic_state_audit.json",
+        "telemetry": "full\\A1_B2\\ms_dynamic_telemetry.json",
+        "drift_common_csv": "full\\A1_B2\\drift_common.csv",
+        "residuals_csv": "full\\A1_B2\\residuals.csv"
+      },
+      "prereg": {
+        "final_verdict": "PASS",
+        "C1_psuccess": true,
+        "C2_mad": true,
+        "C3_thirdarm": true,
+        "rank_corr_abs": 0.965034965034965,
+        "mad_rank_corr": 0.8363636363636365,
+        "third_rank_corr_b2_a23": 0.8741258741258742,
+        "third_rank_corr_b3_a23": 0.8741258741258742,
+        "third_top_all_match": true
+      },
+      "audit": {
+        "stateful_steps_total": 527,
+        "drift_fit_baseline": {
+          "rmse_ppm": 1.8085706111396576,
+          "mae_ppm": 1.2126236446985983,
+          "corr_obs_vs_state": 0.9481957002762041,
+          "median_abs_residual_ppm": 0.8461079106267907,
+          "n_scans": 528
+        },
+        "residual_summary_by_setting": {
+          "ModeA_points": {
+            "median_abs_residual_ppm": 0.8461079106267907,
+            "mean_abs_residual_ppm": 1.2126236446985983,
+            "corr_obs_vs_state": 0.9481957002762041
+          },
+          "ModeB_points": {
+            "median_abs_residual_ppm": 1.2131186956523332,
+            "mean_abs_residual_ppm": 1.656918361629249,
+            "corr_obs_vs_state": 0.9192843152741642
+          }
+        },
+        "anti_cancel": {
+          "rank_corr_raw_vs_corrected": 0.6153846153846154,
+          "top_raw": "T03",
+          "top_corrected": "T02",
+          "top_match": false
+        }
+      },
+      "telemetry": {
+        "ablation": "full",
+        "prereg_observable": "raw_ppm",
+        "drift_state_mode": "telemetry_commonbaseline_plus_residual",
+        "internal_dynamics_used": true,
+        "thread_env_used": true,
+        "stateful_steps_total": 527,
+        "scan_series_required": true
+      },
+      "derived": {
+        "prereg_pass": true,
+        "stateful_steps": 527,
+        "stateful_expected": true,
+        "stateful_ok": true
+      }
+    },
+    "full/A1_B3_holdout": {
+      "paths": {
+        "folder": "full\\A1_B3_holdout",
+        "verdict": "full\\final\\prereg_lock_and_final_verdict_goodppm3.json",
+        "audit": "full\\A1_B3_holdout\\ms_dynamic_state_audit.json",
+        "telemetry": "full\\A1_B3_holdout\\ms_dynamic_telemetry.json",
+        "drift_common_csv": "full\\A1_B3_holdout\\drift_common.csv",
+        "residuals_csv": "full\\A1_B3_holdout\\residuals.csv"
+      },
+      "prereg": {
+        "final_verdict": "PASS",
+        "C1_psuccess": true,
+        "C2_mad": true,
+        "C3_thirdarm": true,
+        "rank_corr_abs": 0.965034965034965,
+        "mad_rank_corr": 0.8363636363636365,
+        "third_rank_corr_b2_a23": 0.8741258741258742,
+        "third_rank_corr_b3_a23": 0.8741258741258742,
+        "third_top_all_match": true
+      },
+      "audit": {
+        "stateful_steps_total": 527,
+        "drift_fit_baseline": {
+          "rmse_ppm": 1.8117151089049477,
+          "mae_ppm": 1.2150742014491813,
+          "corr_obs_vs_state": 0.9480072762733944,
+          "median_abs_residual_ppm": 0.8514070316838692,
+          "n_scans": 528
+        },
+        "residual_summary_by_setting": {
+          "ModeA_points": {
+            "median_abs_residual_ppm": 0.8514070316838692,
+            "mean_abs_residual_ppm": 1.2150742014491813,
+            "corr_obs_vs_state": 0.9480072762733944
+          },
+          "ModeB_holdout_points": {
+            "median_abs_residual_ppm": 1.0391075008997828,
+            "mean_abs_residual_ppm": 1.3806756746924922,
+            "corr_obs_vs_state": 0.9374178777413633
+          }
+        },
+        "anti_cancel": {
+          "rank_corr_raw_vs_corrected": 0.6363636363636365,
+          "top_raw": "T03",
+          "top_corrected": "T11",
+          "top_match": false
+        }
+      },
+      "telemetry": {
+        "ablation": "full",
+        "prereg_observable": "raw_ppm",
+        "drift_state_mode": "telemetry_commonbaseline_plus_residual",
+        "internal_dynamics_used": true,
+        "thread_env_used": true,
+        "stateful_steps_total": 527,
+        "scan_series_required": true
+      },
+      "derived": {
+        "prereg_pass": true,
+        "stateful_steps": 527,
+        "stateful_expected": true,
+        "stateful_ok": true
+      }
+    },
+    "full/A2_B3_thirdarm": {
+      "paths": {
+        "folder": "full\\A2_B3_thirdarm",
+        "verdict": "full\\final\\prereg_lock_and_final_verdict_goodppm3.json",
+        "audit": "full\\A2_B3_thirdarm\\ms_dynamic_state_audit.json",
+        "telemetry": "full\\A2_B3_thirdarm\\ms_dynamic_telemetry.json",
+        "drift_common_csv": "full\\A2_B3_thirdarm\\drift_common.csv",
+        "residuals_csv": "full\\A2_B3_thirdarm\\residuals.csv"
+      },
+      "prereg": {
+        "final_verdict": "PASS",
+        "C1_psuccess": true,
+        "C2_mad": true,
+        "C3_thirdarm": true,
+        "rank_corr_abs": 0.965034965034965,
+        "mad_rank_corr": 0.8363636363636365,
+        "third_rank_corr_b2_a23": 0.8741258741258742,
+        "third_rank_corr_b3_a23": 0.8741258741258742,
+        "third_top_all_match": true
+      },
+      "audit": {
+        "stateful_steps_total": 527,
+        "drift_fit_baseline": {
+          "rmse_ppm": 2.175354500560198,
+          "mae_ppm": 1.5324962694842472,
+          "corr_obs_vs_state": 0.9250372411080757,
+          "median_abs_residual_ppm": 1.0992098102522152,
+          "n_scans": 528
+        },
+        "residual_summary_by_setting": {
+          "ModeA_points": {
+            "median_abs_residual_ppm": 1.0992098102522152,
+            "mean_abs_residual_ppm": 1.5324962694842472,
+            "corr_obs_vs_state": 0.9250372411080757
+          },
+          "ModeB_holdout_points": {
+            "median_abs_residual_ppm": 1.1777250887352915,
+            "mean_abs_residual_ppm": 1.4577492829398584,
+            "corr_obs_vs_state": 0.9269243027017847
+          }
+        },
+        "anti_cancel": {
+          "rank_corr_raw_vs_corrected": 0.7272727272727274,
+          "top_raw": "T03",
+          "top_corrected": "T02",
+          "top_match": false
+        }
+      },
+      "telemetry": {
+        "ablation": "full",
+        "prereg_observable": "raw_ppm",
+        "drift_state_mode": "telemetry_commonbaseline_plus_residual",
+        "internal_dynamics_used": true,
+        "thread_env_used": true,
+        "stateful_steps_total": 527,
+        "scan_series_required": true
+      },
+      "derived": {
+        "prereg_pass": true,
+        "stateful_steps": 527,
+        "stateful_expected": true,
+        "stateful_ok": true
+      }
+    }
+  }
+}

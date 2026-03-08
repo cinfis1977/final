@@ -1,0 +1,13 @@
+run_id,window,slots,bitmask_hex,trials_scanned,trials_valid,dropped_invalid_settings,N_pp_ab,N_p0_abp,N_0p_apb,N_pp_apbp,J,J_per_1M,violation,label,summary_file,counts_file
+01_11,slot6,6,0x20,337818639,337818518,121,2416,1101,1177,16,122,0.361141,YES,real_run,out\nist_ch\run01_11_slot6.summary.json,out\nist_ch\run01_11_slot6.counts.csv
+01_11,slots5-7,5-7,0x70,337818639,337818518,121,7248,3314,3473,63,398,1.17815,YES,real_run,out\nist_ch\run01_11_slots5_7.summary.json,out\nist_ch\run01_11_slots5_7.counts.csv
+01_11,slots4-8,4-8,0xf8,337818639,337818518,121,12082,5580,5836,116,550,1.62809,YES,real_run,out\nist_ch\run01_11_slots4_8.summary.json,out\nist_ch\run01_11_slots4_8.counts.csv
+02_54,slot6,6,0x20,203681462,203681460,2,1348,641,686,13,8,0.039277,YES,real_run,out\nist_ch\run02_54_slot6.summary.json,out\nist_ch\run02_54_slot6.counts.csv
+02_54,slots5-7,5-7,0x70,203681462,203681460,2,3983,1882,2022,38,41,0.201295,YES,real_run,out\nist_ch\run02_54_slots5_7.summary.json,out\nist_ch\run02_54_slots5_7.counts.csv
+02_54,slots4-8,4-8,0xf8,203681462,203681460,2,6653,3095,3312,70,176,0.864094,YES,real_run,out\nist_ch\run02_54_slots4_8.summary.json,out\nist_ch\run02_54_slots4_8.counts.csv
+03_31,slot6,6,0x20,363,363,0,0,0,0,0,0,0,NO,training_stub,out\nist_ch\run03_31_slot6.summary.json,out\nist_ch\run03_31_slot6.counts.csv
+03_31,slots5-7,5-7,0x70,363,363,0,0,0,0,0,0,0,NO,training_stub,out\nist_ch\run03_31_slots5_7.summary.json,out\nist_ch\run03_31_slots5_7.counts.csv
+03_31,slots4-8,4-8,0xf8,363,363,0,0,0,0,0,0,0,NO,training_stub,out\nist_ch\run03_31_slots4_8.summary.json,out\nist_ch\run03_31_slots4_8.counts.csv
+03_43,slot6,6,0x20,107109596,107109594,2,783,370,391,9,13,0.121371,YES,real_run,out\nist_ch\run03_43_slot6.summary.json,out\nist_ch\run03_43_slot6.counts.csv
+03_43,slots5-7,5-7,0x70,107109596,107109594,2,2348,1082,1187,30,49,0.457475,YES,real_run,out\nist_ch\run03_43_slots5_7.summary.json,out\nist_ch\run03_43_slots5_7.counts.csv
+03_43,slots4-8,4-8,0xf8,107109596,107109594,2,3953,1801,1947,54,151,1.40977,YES,real_run,out\nist_ch\run03_43_slots4_8.summary.json,out\nist_ch\run03_43_slots4_8.counts.csv

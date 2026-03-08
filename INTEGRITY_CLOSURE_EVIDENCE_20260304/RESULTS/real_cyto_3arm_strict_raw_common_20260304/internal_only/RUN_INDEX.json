@@ -1,0 +1,10 @@
+{
+  "run_id": "real_cyto_3arm_strict_raw_common_20260304",
+  "ablation": "internal_only",
+  "paths": {
+    "discovery": "C:/Dropbox/projects/new_master_equation_with_gauga_structure_test_git/out/MS/real_cyto_3arm_strict_raw_common_20260304/internal_only/A1_B2",
+    "holdout": "C:/Dropbox/projects/new_master_equation_with_gauga_structure_test_git/out/MS/real_cyto_3arm_strict_raw_common_20260304/internal_only/A1_B3_holdout",
+    "third_arm": "C:/Dropbox/projects/new_master_equation_with_gauga_structure_test_git/out/MS/real_cyto_3arm_strict_raw_common_20260304/internal_only/A2_B3_thirdarm",
+    "final": "C:/Dropbox/projects/new_master_equation_with_gauga_structure_test_git/out/MS/real_cyto_3arm_strict_raw_common_20260304/internal_only/final"
+  }
+}

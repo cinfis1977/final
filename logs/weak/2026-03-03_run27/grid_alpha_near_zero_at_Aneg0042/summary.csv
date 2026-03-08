@@ -1,0 +1,8 @@
+A,alpha,chi2_geo_total,delta_total,pos_channels,exit_code,ok,evidence_dir
+-0.042,0.0,248.58,10.63,3,0,True,logs\weak\2026-03-03_run27\grid_alpha_near_zero_at_Aneg0042\A_m0p042__alpha_0
+-0.042,0.002,248.581,10.629,3,0,True,logs\weak\2026-03-03_run27\grid_alpha_near_zero_at_Aneg0042\A_m0p042__alpha_0p002
+-0.042,0.005,248.582,10.628,3,0,True,logs\weak\2026-03-03_run27\grid_alpha_near_zero_at_Aneg0042\A_m0p042__alpha_0p005
+-0.042,0.01,248.585,10.625,3,0,True,logs\weak\2026-03-03_run27\grid_alpha_near_zero_at_Aneg0042\A_m0p042__alpha_0p01
+-0.042,0.015,248.587,10.623,3,0,True,logs\weak\2026-03-03_run27\grid_alpha_near_zero_at_Aneg0042\A_m0p042__alpha_0p015
+-0.042,0.02,248.59,10.62,3,0,True,logs\weak\2026-03-03_run27\grid_alpha_near_zero_at_Aneg0042\A_m0p042__alpha_0p02
+-0.042,0.03,248.596,10.615,3,0,True,logs\weak\2026-03-03_run27\grid_alpha_near_zero_at_Aneg0042\A_m0p042__alpha_0p03

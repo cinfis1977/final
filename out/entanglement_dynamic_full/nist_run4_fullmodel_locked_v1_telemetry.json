@@ -1,0 +1,34 @@
+{
+  "runner": "entanglement_full_dynamic_runner_v1.py",
+  "layer": "NEW WORK",
+  "locked_parameter_policy": "no-fit",
+  "input_csv": "integration_artifacts/entanglement_photon_bridge/nist_run4_coincidences.csv",
+  "parameter_lock": {
+    "dm2": 0.0025,
+    "theta_deg": 45.0,
+    "L_km": 295.0,
+    "E_GeV": 1.0,
+    "steps": 320,
+    "use_microphysics": true,
+    "n_cm3": 1e18,
+    "visibility": 0.9,
+    "v_cm_s": 30000000000.0,
+    "state_mode": "gap_proxy",
+    "k_gap": 0.0,
+    "k_jitter": 0.0,
+    "gamma_floor_mult": 0.0,
+    "null_trials": 5000,
+    "seed": 12345
+  },
+  "mapping": {
+    "event_stream": "coincidence CSV rows sorted by coinc_idx with first row dropped to mirror bridge gap-valid convention",
+    "state_variables": [
+      "alignment_lag -> gap feature proxy",
+      "window_jitter -> gap MAD proxy",
+      "mismatch_load -> not separately activated in this locked run",
+      "coherence_floor -> gamma_floor_mult",
+      "rate_n -> per-setting counts"
+    ],
+    "telemetry_note": "This wrapper exposes the existing dynamic runner under the requested stable file name. Detailed per-setting state remains in the paired state_audit JSON."
+  }
+}

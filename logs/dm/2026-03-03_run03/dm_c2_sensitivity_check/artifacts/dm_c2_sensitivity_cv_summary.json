@@ -1,0 +1,108 @@
+{
+  "fold_details": [
+    {
+      "A_best": 0.0,
+      "fold": 0,
+      "test_galaxies": [
+        "CamB_rotmod",
+        "D631-7_rotmod"
+      ],
+      "train_galaxies": [
+        "DDO064_rotmod",
+        "DDO154_rotmod",
+        "DDO161_rotmod",
+        "DDO168_rotmod",
+        "DDO170_rotmod",
+        "ESO079-G014_rotmod"
+      ]
+    },
+    {
+      "A_best": 0.0,
+      "fold": 1,
+      "test_galaxies": [
+        "DDO168_rotmod",
+        "DDO170_rotmod"
+      ],
+      "train_galaxies": [
+        "CamB_rotmod",
+        "D631-7_rotmod",
+        "DDO064_rotmod",
+        "DDO154_rotmod",
+        "DDO161_rotmod",
+        "ESO079-G014_rotmod"
+      ]
+    },
+    {
+      "A_best": 0.0,
+      "fold": 2,
+      "test_galaxies": [
+        "DDO154_rotmod",
+        "ESO079-G014_rotmod"
+      ],
+      "train_galaxies": [
+        "CamB_rotmod",
+        "D631-7_rotmod",
+        "DDO064_rotmod",
+        "DDO161_rotmod",
+        "DDO168_rotmod",
+        "DDO170_rotmod"
+      ]
+    },
+    {
+      "A_best": 0.0,
+      "fold": 3,
+      "test_galaxies": [
+        "DDO161_rotmod",
+        "DDO064_rotmod"
+      ],
+      "train_galaxies": [
+        "CamB_rotmod",
+        "D631-7_rotmod",
+        "DDO154_rotmod",
+        "DDO168_rotmod",
+        "DDO170_rotmod",
+        "ESO079-G014_rotmod"
+      ]
+    }
+  ],
+  "framing": {
+    "stability_not_accuracy": true
+  },
+  "io": {
+    "data_loaded_from_paths": true,
+    "out_csv": "c:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\logs\\dm\\2026-03-03_run03\\dm_c2_sensitivity_check\\artifacts\\dm_c2_sensitivity_cv.csv",
+    "out_json": "c:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\logs\\dm\\2026-03-03_run03\\dm_c2_sensitivity_check\\artifacts\\dm_c2_sensitivity_cv_summary.json"
+  },
+  "pack": {
+    "path": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\logs\\dm\\2026-03-03_run02\\dm_c2_holdout_cv_paper_run\\artifacts\\pack_dm_c2_sparc.json",
+    "schema_version": "dm_c2_pack_v1"
+  },
+  "params": {
+    "A_max": 0.2,
+    "A_min": 0.0,
+    "dt": 0.001,
+    "kfold": 4,
+    "nA": 21,
+    "n_steps": 240,
+    "order_mode": "forward",
+    "seed": 2026,
+    "sigma_floor": 1e-06
+  },
+  "runner": {
+    "name": "dm_holdout_cv_dynamics_c2",
+    "path": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\dm_holdout_cv_dynamics_c2.py"
+  },
+  "telemetry": {
+    "delta_chi2_test": {
+      "max": 0.0,
+      "min": 0.0
+    },
+    "diagonal_sigma_v_used": true,
+    "folds_are_galaxy_holdout": true,
+    "leakage_guard_disjoint_train_test": true,
+    "poison": {
+      "DM_POISON_PROXY_CALLS": null
+    },
+    "train_only_calibration": true
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "runner": {
+    "name": "ms_particle_specific_dynamic_runner_v1_0_DROPIN",
+    "path": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\ms_particle_specific_dynamic_runner_v1_0_DROPIN.py"
+  },
+  "ablation": "internal_only",
+  "dynamics": {
+    "internal_dynamics_used": true,
+    "thread_env_used": false,
+    "alpha": 0.3,
+    "alpha_g_floor": 0.25,
+    "stateful_steps_total": 1054
+  },
+  "integrity": {
+    "scan_series_required": true,
+    "columns_used_for_dynamics": [
+      "ppm_shift_raw",
+      "intensity_window_sum",
+      "g"
+    ],
+    "setting_not_used_in_dynamics": true
+  },
+  "data": {
+    "n_settings": 2,
+    "settings": [
+      "ModeA_points",
+      "ModeB_points"
+    ],
+    "baseline": "ModeA_points",
+    "n_targets": 12
+  }
+}

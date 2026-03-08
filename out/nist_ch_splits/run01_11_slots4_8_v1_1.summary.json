@@ -1,0 +1,191 @@
+{
+  "h5_path": "data\\nist\\hdf5\\2015_09_18\\01_11_CH_pockel_100kHz.run4.afterTimingfix.dat.compressed.build.hdf5",
+  "slots": [
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "bitmask_hex": "0xf8",
+  "n_splits": 10,
+  "settings_mapping": {
+    "alice": {
+      "code0->0": 1,
+      "code1->1": 2
+    },
+    "bob": {
+      "code0->0": 1,
+      "code1->1": 2
+    }
+  },
+  "settings_code_counts": {
+    "alice_nonzero": {
+      "1": 170445811,
+      "2": 167372707,
+      "3": 121
+    },
+    "bob_nonzero": {
+      "1": 168919921,
+      "2": 168898718
+    }
+  },
+  "invalid_settings_code_counts": {
+    "alice_invalid_nonzero": {
+      "3": 121
+    },
+    "bob_invalid_nonzero": {}
+  },
+  "overall": {
+    "trials_valid": 337818518,
+    "dropped_invalid": 121,
+    "N_pp_ab": 12082,
+    "N_p0_abp": 5580,
+    "N_0p_apb": 5836,
+    "N_pp_apbp": 116,
+    "J": 550,
+    "J_per_1M_valid": 1.6280931053045469
+  },
+  "splits": [
+    {
+      "split": 0,
+      "start_idx": 0,
+      "end_idx": 33781863,
+      "trials_valid": 33781851,
+      "dropped_invalid": 12,
+      "N_pp_ab": 1188,
+      "N_p0_abp": 560,
+      "N_0p_apb": 613,
+      "N_pp_apbp": 12,
+      "J": 3,
+      "J_per_1M_valid": 0.08880508057418168
+    },
+    {
+      "split": 1,
+      "start_idx": 33781863,
+      "end_idx": 67563727,
+      "trials_valid": 33781849,
+      "dropped_invalid": 15,
+      "N_pp_ab": 1242,
+      "N_p0_abp": 535,
+      "N_0p_apb": 577,
+      "N_pp_apbp": 16,
+      "J": 114,
+      "J_per_1M_valid": 3.374593261606255
+    },
+    {
+      "split": 2,
+      "start_idx": 67563727,
+      "end_idx": 101345591,
+      "trials_valid": 33781856,
+      "dropped_invalid": 8,
+      "N_pp_ab": 1149,
+      "N_p0_abp": 534,
+      "N_0p_apb": 603,
+      "N_pp_apbp": 11,
+      "J": 1,
+      "J_per_1M_valid": 0.029601689143426577
+    },
+    {
+      "split": 3,
+      "start_idx": 101345591,
+      "end_idx": 135127455,
+      "trials_valid": 33781853,
+      "dropped_invalid": 11,
+      "N_pp_ab": 1230,
+      "N_p0_abp": 588,
+      "N_0p_apb": 600,
+      "N_pp_apbp": 10,
+      "J": 32,
+      "J_per_1M_valid": 0.947254136710618
+    },
+    {
+      "split": 4,
+      "start_idx": 135127455,
+      "end_idx": 168909319,
+      "trials_valid": 33781849,
+      "dropped_invalid": 15,
+      "N_pp_ab": 1193,
+      "N_p0_abp": 572,
+      "N_0p_apb": 538,
+      "N_pp_apbp": 6,
+      "J": 77,
+      "J_per_1M_valid": 2.2793305363480845
+    },
+    {
+      "split": 5,
+      "start_idx": 168909319,
+      "end_idx": 202691183,
+      "trials_valid": 33781847,
+      "dropped_invalid": 17,
+      "N_pp_ab": 1227,
+      "N_p0_abp": 568,
+      "N_0p_apb": 614,
+      "N_pp_apbp": 13,
+      "J": 32,
+      "J_per_1M_valid": 0.9472543049525978
+    },
+    {
+      "split": 6,
+      "start_idx": 202691183,
+      "end_idx": 236473047,
+      "trials_valid": 33781852,
+      "dropped_invalid": 12,
+      "N_pp_ab": 1211,
+      "N_p0_abp": 556,
+      "N_0p_apb": 580,
+      "N_pp_apbp": 12,
+      "J": 63,
+      "J_per_1M_valid": 1.8649066368534204
+    },
+    {
+      "split": 7,
+      "start_idx": 236473047,
+      "end_idx": 270254911,
+      "trials_valid": 33781854,
+      "dropped_invalid": 10,
+      "N_pp_ab": 1235,
+      "N_p0_abp": 530,
+      "N_0p_apb": 589,
+      "N_pp_apbp": 14,
+      "J": 102,
+      "J_per_1M_valid": 3.019372471386562
+    },
+    {
+      "split": 8,
+      "start_idx": 270254911,
+      "end_idx": 304036775,
+      "trials_valid": 33781857,
+      "dropped_invalid": 7,
+      "N_pp_ab": 1234,
+      "N_p0_abp": 593,
+      "N_0p_apb": 553,
+      "N_pp_apbp": 8,
+      "J": 80,
+      "J_per_1M_valid": 2.3681350613733283
+    },
+    {
+      "split": 9,
+      "start_idx": 304036775,
+      "end_idx": 337818639,
+      "trials_valid": 33781850,
+      "dropped_invalid": 14,
+      "N_pp_ab": 1173,
+      "N_p0_abp": 544,
+      "N_0p_apb": 569,
+      "N_pp_apbp": 14,
+      "J": 46,
+      "J_per_1M_valid": 1.3616779424454257
+    }
+  ],
+  "notes": [
+    "Data-side CH/Eberhard J computation (NO FIT).",
+    "v1.1 uses global 2-code settings mapping per side (top-2 most frequent uint8 codes).",
+    "Not a model-performance test; not a local-realism p-value proof.",
+    "Use splits to check sign stability over time index."
+  ],
+  "outputs": {
+    "splits_csv": "out\\nist_ch_splits\\run01_11_slots4_8_v1_1.splits.csv",
+    "summary_json": "out\\nist_ch_splits\\run01_11_slots4_8_v1_1.summary.json"
+  }
+}

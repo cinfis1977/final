@@ -1,0 +1,18 @@
+{
+  "fold_rule": "sky_coord_deg >= 0",
+  "metric": "signed(beta)",
+  "weighting": "uniform",
+  "n_total": 84,
+  "n_pos": 42,
+  "n_neg": 42,
+  "statistic": -12.5,
+  "p_value_signed": 0.0114,
+  "p_value_abs": 0.02395,
+  "n_perm": 20000,
+  "seed": 12345,
+  "verdict": "ANISOTROPY_CANDIDATE",
+  "in_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauge_structure_test\\out\\quasar_jet_matches_v1.csv",
+  "coord_col": "qso_dec_deg",
+  "beta_col": "delta_wrap90_deg",
+  "sigma_col": ""
+}

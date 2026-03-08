@@ -9,7 +9,7 @@ This document records equivalence checks that explicitly relate a runner’s mat
 ## What is checked today
 
 Snapshot (this branch/session):
-- Full suite: `python -m pytest -q integration_artifacts/mastereq/tests` → **37 passed**.
+- Full suite: `python -m pytest -q integration_artifacts/mastereq/tests` → passes in this snapshot (see terminal/CI output).
 - New bridge tests included:
    - `integration_artifacts/mastereq/tests/test_equivalence_entanglement_runner.py`
    - `integration_artifacts/mastereq/tests/test_equivalence_photon_birefringence_runner.py`
@@ -26,6 +26,62 @@ What we can currently claim, backed by deterministic tests in this repo:
 - **WEAK runner ↔ GKSL equivalence (unitary / phase-map):**
    - Mathematical convention mapping: `integration_artifacts/mastereq/tests/test_equivalence_weak_runner.py`
    - Golden-output per-bin phase-map equivalence: `integration_artifacts/mastereq/tests/test_equivalence_weak_golden_outputs.py`
+   - End-to-end runner regeneration (runner+pack → CSV → golden): `integration_artifacts/mastereq/tests/test_e2e_weak_runner_regenerates_golden.py`
+   - End-to-end GKSL-dynamics runner matches the same golden outputs (numerical tolerance):
+     `integration_artifacts/mastereq/tests/test_e2e_weak_gksl_runner_matches_golden.py`
+     (runner: `nova_mastereq_forward_kernel_BREATH_THREAD_GKSL_DYNAMICS.py`)
+
+- **WEAK 3-flavor dynamics integrity (not a golden/pipeline test):**
+    - Positivity (ρ ⪰ 0), trace/Hermiticity, unitary purity limit, and vacuum CPT/T symmetry checks:
+       `integration_artifacts/mastereq/tests/test_weak_3flavor_dynamics_integrity.py`
+
+- **WEAK 3-flavor runner-level dynamics telemetry (e2e, not golden):**
+    - Runs the runner in `--flavors 3` mode and asserts per-bin density-matrix integrity from CSV telemetry
+       (trace≈1, ρ ⪰ 0 via min eigenvalue, Hermiticity error, and Pe+Pmu+Ptau≈1):
+       `integration_artifacts/mastereq/tests/test_e2e_weak_runner_3flavor_telemetry.py`
+
+- **WEAK internal rate-kernel closure step (e2e, not golden):**
+    - Computes `pred_sm/pred_geo` from explicit internal rate ingredients (flux×σ×eff×smearing×exposure)
+       driven by state-derived probabilities, without using pack `N_sig_sm` and without signal reweighting:
+       `integration_artifacts/mastereq/tests/test_e2e_weak_runner_internal_rate_kernel.py`
+
+- **WEAK dynamics-to-rate deformation coupling (e2e, not golden):**
+      - Asserts that deforming the *state-derived* probability deforms internally computed reconstructed rates as expected:
+         - P(E)=0 → rate collapse
+         - P(E)=1 → no-oscillation rate
+         - energy-dependent P(E) → spectral distortion (analytic 2-flavor vacuum check)
+         `integration_artifacts/mastereq/tests/test_e2e_weak_runner_dynamics_to_rate_deformation.py`
+
+- **WEAK tabular (experiment-shaped) rate inputs (e2e, not golden):**
+      - Adds tabular/histogram flux/σ/eff models to the internal rate kernel and checks:
+         - tabular-constant reproduces the old const-model predictions
+         - shaped tabular flux deforms the reconstructed spectrum as expected
+         `integration_artifacts/mastereq/tests/test_e2e_weak_runner_rate_kernel_tabular_models.py`
+
+- **WEAK tabular validation + multi-tabular product lock (unit + e2e, not golden):**
+      - Validates tabular inputs are physical and debuggable:
+         - rejects negative or non-finite y values
+         - optional strict coverage check that true-energy bins are fully covered by tabular support
+         `integration_artifacts/mastereq/tests/test_weak_rate_kernel_tabular_validation.py`
+      - E2E lock that flux×σ×eff tabular inputs bind multiplicatively (P(E)=1, identity smearing):
+         `integration_artifacts/mastereq/tests/test_e2e_weak_runner_rate_kernel_tabular_product_lock.py`
+
+   Note: `rate_kernel.tabular_coverage` defaults to `ignore` for backward compatibility; for paper-facing runs prefer `warn` or `strict`
+   to prevent silent rate suppression when tabular inputs do not cover the true-energy bins.
+
+- **WEAK smearing physics constraints (unit + e2e, not golden):**
+    - Validates migration matrix is nonnegative and column-stochastic (Σ_rec S(rec,true)=1):
+       `integration_artifacts/mastereq/tests/test_weak_rate_kernel_smearing_physical.py`
+    - E2E check that a nontrivial physical smearing matrix deforms the reconstructed spectrum as expected:
+       `integration_artifacts/mastereq/tests/test_e2e_weak_runner_internal_rate_kernel_smearing.py`
+
+- **WEAK sparse migration matrices (A3 realism step; unit + e2e, not golden):**
+      - Adds a pack format for sparse smearing/migration matrices (`rate_kernel.smear_sparse`, COO) with:
+         - nonnegativity, index-range checks, duplicate (i,j) merging
+         - column-stochastic enforcement (Σ_rec S(rec,true)=1)
+         `integration_artifacts/mastereq/tests/test_weak_rate_kernel_sparse_smearing.py`
+      - E2E check that a realistic-size sparse COO migration (25 bins) produces the expected reconstructed spectrum deformation:
+         `integration_artifacts/mastereq/tests/test_e2e_weak_runner_internal_rate_kernel_sparse_smearing.py`
 - **Microphysics-derived rate plumbing (n·σ·v → γ):**
    - Stability/sanity of microphysics helpers: `integration_artifacts/mastereq/tests/test_microphysics_scaffold.py`
    - End-to-end wiring equivalence (derive γ internally vs pass γ explicitly): `integration_artifacts/mastereq/tests/test_microphysics_wiring_equivalence.py`
@@ -34,9 +90,21 @@ What we can currently claim, backed by deterministic tests in this repo:
    - Bhabha forward golden-output check: `integration_artifacts/mastereq/tests/test_equivalence_em_bhabha_golden_outputs.py`
    - MuMu forward golden-output check: `integration_artifacts/mastereq/tests/test_equivalence_em_mumu_golden_outputs.py`
 
+- **EM paper run mode (single command → deterministic out/ artifacts; not accuracy):**
+    - Runs the EM forward harnesses (Bhabha + mu+mu-) on repo-hosted HEPData-derived packs.
+    - Writes deterministic CSV + JSON summaries under `out/` and emits provenance telemetry (resolved paths).
+    - Evidence test (e2e):
+       `integration_artifacts/mastereq/tests/test_e2e_em_paper_run_mode.py`
+
 - **DM runners ↔ declared-math equivalence (CV protocol + GEO map):**
    - Holdout CV (env_model=none) golden-output check: `integration_artifacts/mastereq/tests/test_equivalence_dm_golden_outputs.py`
    - Holdout CV (env_model=thread + STIFFGATE calibration) golden-output check: `integration_artifacts/mastereq/tests/test_equivalence_dm_golden_outputs.py`
+
+- **DM paper run mode (single command → deterministic out/ artifacts; not accuracy):**
+    - Runs the DM holdout-CV runners on repo-hosted SPARC points (thread+STIFFGATE calibration + env_model=none branch).
+    - Writes deterministic CSV + JSON summaries under `out/` and emits provenance telemetry (resolved paths).
+    - Evidence test (e2e):
+       `integration_artifacts/mastereq/tests/test_e2e_dm_paper_run_mode.py`
 
 - **LIGO runner ↔ declared-math equivalence (quadrupole pattern generation):**
    - Quadrupole-drive golden-output check (plus/cross patterns): `integration_artifacts/mastereq/tests/test_equivalence_ligo_quadrupole_golden_outputs.py`
@@ -47,6 +115,51 @@ What we can currently claim, backed by deterministic tests in this repo:
 - **STRONG runner ↔ declared-math equivalence (frozen baseline + GEO map):**
    - sigma_tot energy scan golden-output check: `integration_artifacts/mastereq/tests/test_equivalence_strong_sigma_tot_golden_outputs.py`
    - rho energy scan golden-output check: `integration_artifacts/mastereq/tests/test_equivalence_strong_rho_golden_outputs.py`
+
+- **STRONG stateful “film” baseline (energy-axis internal state) ↔ golden outputs:**
+    - Adds a state evolution `t=ln(s/sM)` basis engine (exact stepping, no drift) and derives
+       $\sigma_{\rm SM}(s)$ and $d\sigma/d\ln s$ from an evolved internal state (not pointwise closed-form evaluation).
+    - Equivalence to the existing golden CSV outputs (same canonical verdict settings):
+       `integration_artifacts/mastereq/tests/test_equivalence_strong_stateful_matches_golden.py`
+    - Internal-state evolution unit tests (this is a dynamics test surface, not just a formula check):
+       `integration_artifacts/mastereq/tests/test_dynamics_strong_pdg_stateful_basis.py`
+
+- **STRONG C1 amplitude-level core (toy eikonal; integrity + anti-fallback, not golden):**
+    - Evolves an internal complex eikonal state $\chi(b,t)$ along $t=\ln(s/s_0)$ and computes
+      $\sigma_{\rm tot}$ and $\rho$ from a forward-amplitude proxy (optical theorem).
+      - Anti-fallback lock: when `STRONG_C1_POISON_PDG_CALLS=1`, the runner overwrites PDG baseline-eval
+         functions with stubs that raise; the C1 path must still run successfully (no baseline calls).
+      - C1.2 stability locks: the e2e test enforces numerical stability under `dt_max` refinement and `nb`
+         (impact-parameter grid) refinement for both $\sigma_{\rm tot}$ and $\rho$.
+         These are regression/integrity requirements (numerical stability), not physical-accuracy claims.
+    - Evidence test (e2e):
+       `integration_artifacts/mastereq/tests/test_e2e_strong_c1_amplitude_core_integrity_and_antifallback.py`
+
+- **STRONG C2 pack/observable closure (chi2/cov + anti-fallback, not golden):**
+    - Consumes a pack with an energy scan (and optional data/covariance), predicts $\sigma_{\rm tot}$ and $\rho$
+      from the amplitude core, and computes residuals + $\chi^2$.
+    - Anti-fallback lock: PDG/COMPETE baseline *eval calls* are poisoned; the C2 path must still run successfully.
+    - Evidence test (e2e):
+       `integration_artifacts/mastereq/tests/test_e2e_strong_c2_pack_chi2_closure_and_antifallback.py`
+
+- **STRONG C3 (GEO inside evolution + response physics locks, not golden):**
+    - Integrates GEO *inside* the amplitude-core evolution law (state-derived; not a post-hoc σ/ρ overlay).
+    - Validates response/migration maps with physics locks (WEAK A3 pattern): nonnegativity + column-stochastic
+      normalization for both dense and sparse COO.
+    - Evidence test (e2e):
+       `integration_artifacts/mastereq/tests/test_e2e_strong_c3_geo_in_evolution_response_and_separation.py`
+
+- **STRONG C4 HEPData-like IO closure (CSV+cov paths, not golden):**
+    - Consumes a pack that points to external data and covariance CSVs (HEPData-like `paths` style).
+    - Computes predictions from the amplitude core and computes $\chi^2$ using either full covariance or diag uncertainties.
+    - Evidence test (e2e):
+       `integration_artifacts/mastereq/tests/test_e2e_strong_c4_hepdata_like_pack_ingestion.py`
+
+- **STRONG C5A real-data reproduction packs (paths-based; smoke-only, not accuracy):**
+   - Runs the same C4 runner on repo-hosted real CSV tables for $\sigma_{\rm tot}$ and $\rho$ via `paths`.
+   - Enforces call-poison + IO provenance telemetry; asserts finite $\chi^2$ without claiming fit quality.
+   - Evidence test (e2e):
+      `integration_artifacts/mastereq/tests/test_e2e_strong_c5a_realdata_packs_smoke.py`
 
 - **Entanglement/Photon bridge ↔ declared-math equivalence:**
     - Entanglement CHSH coincidence audit equivalence:
@@ -66,6 +179,10 @@ Canonical command source: `tools/verdict_commands.txt`.
 - EM (mu-mu): `em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py`
 - Weak/oscillation: `nova_mastereq_forward_kernel_BREATH_THREAD_fixedbyclaude.py`, `nova_mastereq_forward_kernel_BREATH_THREAD_v2.py`
 - Strong: `strong_sigma_tot_energy_scan_v2.py`, `strong_rho_energy_scan_v3.py`
+   - Optional stateful runners (same declared math, but state-derived from an internal state evolved along energy):
+      `strong_sigma_tot_energy_scan_stateful.py`, `strong_rho_energy_scan_stateful.py`
+   - Optional C1 amplitude-core runner (internal state + evolution + integrity + anti-fallback; not golden-equivalent):
+      `strong_amplitude_eikonal_energy_scan_c1.py`
 - DM: `dm_holdout_cv_thread_STIFFGATE.py`, `dm_holdout_cv_thread.py`
 - LIGO/GW: `improved_simulation_STABLE_v17_xy_quadrupole_drive_ANISO_PHYS_TENSOR_PHYS_FIXED4.py`
 - Entanglement/Photon bridge:
@@ -132,6 +249,12 @@ python -m pytest -q integration_artifacts/mastereq/tests/test_equivalence_weak_g
 The STRONG runners are not GKSL density-matrix solvers; they are frozen-baseline energy-scan harnesses.
 For paper-grade reproducibility, we validate that the golden CSV outputs satisfy the runners’ declared
 math exactly (independent reimplementation), point-by-point.
+
+New in this snapshot: an optional **stateful “film” implementation** of the same frozen-PDG baseline.
+Instead of evaluating the closed form independently at each energy point, it evolves an internal basis state
+along $t=\ln(s/s_M)$ and derives $\sigma_{\rm SM}(s)$ and $d\sigma/d\ln s$ from that state.
+This is still a frozen-baseline harness (not a first-principles strong-sector engine), but it eliminates
+the “photo overlay” implementation mode.
 
 1) `strong_sigma_tot_energy_scan_v2.py` (total cross section)
     - Baseline: frozen PDG/COMPETE form $\sigma_{\rm SM}(\sqrt{s})$

@@ -1,0 +1,32 @@
+{
+  "h5_path": ".\\data\\nist\\hdf5\\2015_09_18\\02_54_CH_pockel_100kHz.run4.afterTimingfix2.dat.compressed.build.hdf5",
+  "slots": [
+    6
+  ],
+  "bitmask_hex": "0x20",
+  "processed_trials_total_scanned": 203681462,
+  "dropped_invalid_settings_trials": 2,
+  "settings_decode_mode_counts_by_chunk": {
+    "alice": {
+      "2": 102
+    },
+    "bob": {
+      "2": 102
+    },
+    "mode_meaning": {
+      "1": "already binary {0,1}",
+      "2": "onehot bits {1,2,3} decoded (1->0,2->1, else invalid)",
+      "3": "2-valued remap",
+      "9": "unknown -> invalid"
+    }
+  },
+  "CH_terms": {
+    "N_pp_ab": 1348,
+    "N_p0_abp": 641,
+    "N_0p_apb": 686,
+    "N_pp_apbp": 13
+  },
+  "J": 8,
+  "local_realism_bound": "J <= 0",
+  "violation": true
+}

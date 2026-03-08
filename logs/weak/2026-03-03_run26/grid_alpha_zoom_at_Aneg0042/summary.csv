@@ -1,0 +1,11 @@
+A,alpha,chi2_geo_total,delta_total,pos_channels,exit_code,ok,evidence_dir
+-0.042,0.02,248.59,10.62,3,0,True,logs\weak\2026-03-03_run26\grid_alpha_zoom_at_Aneg0042\A_m0p042__alpha_0p02
+-0.042,0.05,248.608,10.603,3,0,True,logs\weak\2026-03-03_run26\grid_alpha_zoom_at_Aneg0042\A_m0p042__alpha_0p05
+-0.042,0.08,248.628,10.582,3,0,True,logs\weak\2026-03-03_run26\grid_alpha_zoom_at_Aneg0042\A_m0p042__alpha_0p08
+-0.042,0.1,248.644,10.567,3,0,True,logs\weak\2026-03-03_run26\grid_alpha_zoom_at_Aneg0042\A_m0p042__alpha_0p1
+-0.042,0.12,248.66,10.55,3,0,True,logs\weak\2026-03-03_run26\grid_alpha_zoom_at_Aneg0042\A_m0p042__alpha_0p12
+-0.042,0.15,248.688,10.522,3,0,True,logs\weak\2026-03-03_run26\grid_alpha_zoom_at_Aneg0042\A_m0p042__alpha_0p15
+-0.042,0.18,248.718,10.492,3,0,True,logs\weak\2026-03-03_run26\grid_alpha_zoom_at_Aneg0042\A_m0p042__alpha_0p18
+-0.042,0.2,248.741,10.47,3,0,True,logs\weak\2026-03-03_run26\grid_alpha_zoom_at_Aneg0042\A_m0p042__alpha_0p2
+-0.042,0.22,248.764,10.446,3,0,True,logs\weak\2026-03-03_run26\grid_alpha_zoom_at_Aneg0042\A_m0p042__alpha_0p22
+-0.042,0.25,248.802,10.409,3,0,True,logs\weak\2026-03-03_run26\grid_alpha_zoom_at_Aneg0042\A_m0p042__alpha_0p25

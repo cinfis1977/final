@@ -1,0 +1,4 @@
+channel,sqrt_s,sigma_tot,err,experiment
+pp,13000.0,104.7,1.1,ATLAS
+pp,8000.0,96.07,0.92,ATLAS
+pp,7000.0,95.35,1.36,ATLAS

@@ -1,0 +1,42 @@
+{
+  "runner": "ms_particle_specific_dynamic_runner_v1_0_DROPIN",
+  "ablation": "internal_only",
+  "prereg_observable": "raw_ppm",
+  "drift_state_mode": "telemetry_only_commonbaseline",
+  "baseline": "ModeA_points",
+  "settings": [
+    "ModeA_points",
+    "ModeB_points"
+  ],
+  "stateful_steps_total": 527,
+  "paths": {
+    "scan_state_csv": "out/MS/ms_strict_raw_common_local/internal_only/A1_B2/scan_state.csv",
+    "drift_common_csv": "out/MS/ms_strict_raw_common_local/internal_only/A1_B2/drift_common.csv",
+    "residuals_csv": null
+  },
+  "drift_fit_baseline": {
+    "rmse_ppm": 1.3092115918760519,
+    "mae_ppm": 0.8960093457989341,
+    "corr_obs_vs_state": 0.9730985586765228,
+    "median_abs_residual_ppm": 0.6006646896588943,
+    "n_scans": 528
+  },
+  "residual_summary_by_setting": {
+    "ModeA_points": {
+      "median_abs_residual_ppm": 0.6006646896588943,
+      "mean_abs_residual_ppm": 0.8960093457989341,
+      "corr_obs_vs_state": 0.9730985586765228
+    },
+    "ModeB_points": {
+      "median_abs_residual_ppm": 1.1723539982260478,
+      "mean_abs_residual_ppm": 1.645306579611499,
+      "corr_obs_vs_state": 0.912079202663562
+    }
+  },
+  "anti_cancel": {
+    "rank_corr_raw_vs_corrected": 0.4755244755244756,
+    "top_raw": "T03",
+    "top_corrected": "T11",
+    "top_match": false
+  }
+}

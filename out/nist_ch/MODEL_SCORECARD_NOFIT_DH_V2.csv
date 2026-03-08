@@ -1,0 +1,13 @@
+run_id,label,window,slots,bitmask_hex,trials_valid,J_data,J_model,j_data_per_1M,j_model_per_1M,delta_J,delta_j_per_1M,sign_ok,provider,emp_N_pp_ab,emp_N_p0_abp,emp_N_0p_apb,emp_N_pp_apbp
+01_11,real_run,slot6,6,0x20,337818518,122,-219388,0.361141,-649.426,-219510,-649.787,NO,NOFIT_DETECTORHAZARD v2 (pair-emission+loss; config-only; fixed knobs),2416,1101,1177,16
+01_11,real_run,slots5-7,5-7,0x70,337818518,398,-645089,1.17815,-1909.57,-645487,-1910.75,NO,NOFIT_DETECTORHAZARD v2 (pair-emission+loss; config-only; fixed knobs),7248,3314,3473,63
+01_11,real_run,slots4-8,4-8,0xf8,337818518,550,-1.05393e+06,1.62809,-3119.82,-1.05448e+06,-3121.44,NO,NOFIT_DETECTORHAZARD v2 (pair-emission+loss; config-only; fixed knobs),12082,5580,5836,116
+02_54,real_run,slot6,6,0x20,203681460,8,-133693,0.039277,-656.383,-133701,-656.422,NO,NOFIT_DETECTORHAZARD v2 (pair-emission+loss; config-only; fixed knobs),1348,641,686,13
+02_54,real_run,slots5-7,5-7,0x70,203681460,41,-393111,0.201295,-1930.03,-393152,-1930.23,NO,NOFIT_DETECTORHAZARD v2 (pair-emission+loss; config-only; fixed knobs),3983,1882,2022,38
+02_54,real_run,slots4-8,4-8,0xf8,203681460,176,-642256,0.864094,-3153.24,-642432,-3154.1,NO,NOFIT_DETECTORHAZARD v2 (pair-emission+loss; config-only; fixed knobs),6653,3095,3312,70
+03_31,training_stub,slot6,6,0x20,363,0,-0.154453,0,-425.491,-0.154453,-425.491,YES,NOFIT_DETECTORHAZARD v2 (pair-emission+loss; config-only; fixed knobs),0,0,0,0
+03_31,training_stub,slots5-7,5-7,0x70,363,0,-0.454154,0,-1251.11,-0.454154,-1251.11,YES,NOFIT_DETECTORHAZARD v2 (pair-emission+loss; config-only; fixed knobs),0,0,0,0
+03_31,training_stub,slots4-8,4-8,0xf8,363,0,-0.741987,0,-2044.04,-0.741987,-2044.04,YES,NOFIT_DETECTORHAZARD v2 (pair-emission+loss; config-only; fixed knobs),0,0,0,0
+03_43,real_run,slot6,6,0x20,107109594,13,-70261.7,0.121371,-655.98,-70274.7,-656.101,NO,NOFIT_DETECTORHAZARD v2 (pair-emission+loss; config-only; fixed knobs),783,370,391,9
+03_43,real_run,slots5-7,5-7,0x70,107109594,49,-206598,0.457475,-1928.84,-206647,-1929.3,NO,NOFIT_DETECTORHAZARD v2 (pair-emission+loss; config-only; fixed knobs),2348,1082,1187,30
+03_43,real_run,slots4-8,4-8,0xf8,107109594,151,-337534,1.40977,-3151.3,-337685,-3152.71,NO,NOFIT_DETECTORHAZARD v2 (pair-emission+loss; config-only; fixed knobs),3953,1801,1947,54

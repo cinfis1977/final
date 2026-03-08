@@ -1,0 +1,22 @@
+{
+  "scorecard_csv": ".\\out\\nist_ch\\MODEL_SCORECARD_GKSL_DETECTORFIRST_V2.csv",
+  "metrics": {
+    "slot6_mae_per_1M": 0.1818386442300371,
+    "wide_mae_per_1M": 2.018412337533236,
+    "wide_rmse_per_1M": 2.769803876256867,
+    "sign_ok_all": false
+  },
+  "thresholds": {
+    "max_slot6_mae_per_1M": 0.01,
+    "max_wide_mae_per_1M": 0.15,
+    "max_wide_rmse_per_1M": 0.2,
+    "require_all_sign_ok": true
+  },
+  "criteria": {
+    "slot6_mae_ok": false,
+    "wide_mae_ok": false,
+    "wide_rmse_ok": false,
+    "sign_ok_all": false
+  },
+  "pass": false
+}

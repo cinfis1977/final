@@ -1,0 +1,17 @@
+﻿# terminal output
+
+omega0_geom [1/km] = 0.010649466622338281
+GKSL base dm2 [eV^2] = 0.01
+- T2K_app_FHC        type=appearance   bins=18  chi2_SM= 405.656  chi2_GEO= 398.992  dchi2=   6.664
+- T2K_app_RHC        type=appearance   bins=18  chi2_SM=  77.724  chi2_GEO=  77.559  dchi2=   0.165
+- T2K_dis_FHC        type=disappearance bins=18  chi2_SM= 224.125  chi2_GEO= 224.315  dchi2=  -0.191
+- T2K_dis_RHC        type=disappearance bins=18  chi2_SM=  25.624  chi2_GEO=  25.629  dchi2=  -0.005
+
+------------------------
+TOTAL chi2_SM  = 733.129
+TOTAL chi2_GEO = 726.495
+Delta chi2 = chi2_SM - chi2_GEO = 6.633
+------------------------
+
+EXIT_CODE: 0
+

@@ -5,6 +5,12 @@ __pycache__/
 out/*.csv
 out/*.png
 
+# PASS-run logs (timestamped, local-only)
+out/pass_runs/
+
+# Log-capture scratch (artifacts are copied into logs/)
+out/log_capture/
+
 # VSCode
 .vscode/
 
@@ -31,6 +37,9 @@ env/
 .coverage.*
 coverage.xml
 htmlcov/
+# Ignore files larger than 1GB (manual listing)
+data/nist/hdf5/2015_09_18/01_11_CH_pockel_100kHz.run4.afterTimingfix.dat.compressed.build.hdf5
+data/nist/hdf5/2015_09_18/02_54_CH_pockel_100kHz.run4.afterTimingfix2.dat.compressed.build.hdf5
 
 # Packaging artifacts
 build/

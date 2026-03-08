@@ -1,0 +1,28 @@
+﻿{
+    "sector":  "dm",
+    "run_id":  "2026-03-03_run02",
+    "name":  "dm_c2_realpack_dynamics_paper_run",
+    "status":  "ok",
+    "start_utc":  "2026-03-03T00:29:57.7063959Z",
+    "end_utc":  "2026-03-03T00:30:00.4294430Z",
+    "git_head":  "636e3e11817e94d81654d68641bafb7fd0a52540",
+    "repo_root":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git",
+    "exe":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\.venv\\Scripts\\python.exe",
+    "args":  [
+                 "run_dm_c2_paper_run.py",
+                 "--out_dir",
+                 "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\log_capture\\2026-03-03_run02\\dm_c2_paper",
+                 "--max_galaxies",
+                 "5",
+                 "--min_points",
+                 "8",
+                 "--seed",
+                 "2026",
+                 "--dt",
+                 "0.001",
+                 "--n_steps",
+                 "300"
+             ],
+    "cmd":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\.venv\\Scripts\\python.exe run_dm_c2_paper_run.py --out_dir C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\log_capture\\2026-03-03_run02\\dm_c2_paper --max_galaxies 5 --min_points 8 --seed 2026 --dt 0.001 --n_steps 300",
+    "artifacts_from":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\log_capture\\2026-03-03_run02\\dm_c2_paper"
+}

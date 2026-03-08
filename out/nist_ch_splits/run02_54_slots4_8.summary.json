@@ -1,0 +1,163 @@
+{
+  "h5_path": "data\\nist\\hdf5\\2015_09_18\\02_54_CH_pockel_100kHz.run4.afterTimingfix2.dat.compressed.build.hdf5",
+  "slots": [
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "bitmask_hex": "0xf8",
+  "n_splits": 10,
+  "overall": {
+    "trials_valid": 198680846,
+    "dropped_invalid": 5000616,
+    "N_pp_ab": 6321,
+    "N_p0_abp": 2953,
+    "N_0p_apb": 3319,
+    "N_pp_apbp": 422,
+    "J": -373,
+    "J_per_1M_valid": -1.8773827850521636
+  },
+  "splits": [
+    {
+      "split": 0,
+      "start_idx": 0,
+      "end_idx": 20368146,
+      "trials_valid": 20368146,
+      "dropped_invalid": 0,
+      "N_pp_ab": 632,
+      "N_p0_abp": 305,
+      "N_0p_apb": 321,
+      "N_pp_apbp": 9,
+      "J": -3,
+      "J_per_1M_valid": -0.14728881067525731
+    },
+    {
+      "split": 1,
+      "start_idx": 20368146,
+      "end_idx": 40736292,
+      "trials_valid": 20368146,
+      "dropped_invalid": 0,
+      "N_pp_ab": 716,
+      "N_p0_abp": 341,
+      "N_0p_apb": 337,
+      "N_pp_apbp": 7,
+      "J": 31,
+      "J_per_1M_valid": 1.521984376977659
+    },
+    {
+      "split": 2,
+      "start_idx": 40736292,
+      "end_idx": 61104438,
+      "trials_valid": 17868779,
+      "dropped_invalid": 2499367,
+      "N_pp_ab": 519,
+      "N_p0_abp": 244,
+      "N_0p_apb": 369,
+      "N_pp_apbp": 177,
+      "J": -271,
+      "J_per_1M_valid": -15.166117393919304
+    },
+    {
+      "split": 3,
+      "start_idx": 61104438,
+      "end_idx": 81472584,
+      "trials_valid": 20368146,
+      "dropped_invalid": 0,
+      "N_pp_ab": 703,
+      "N_p0_abp": 312,
+      "N_0p_apb": 327,
+      "N_pp_apbp": 3,
+      "J": 61,
+      "J_per_1M_valid": 2.9948724837302323
+    },
+    {
+      "split": 4,
+      "start_idx": 81472584,
+      "end_idx": 101840731,
+      "trials_valid": 20368147,
+      "dropped_invalid": 0,
+      "N_pp_ab": 670,
+      "N_p0_abp": 302,
+      "N_0p_apb": 359,
+      "N_pp_apbp": 4,
+      "J": 5,
+      "J_per_1M_valid": 0.24548133907321074
+    },
+    {
+      "split": 5,
+      "start_idx": 101840731,
+      "end_idx": 122208877,
+      "trials_valid": 17866897,
+      "dropped_invalid": 2501249,
+      "N_pp_ab": 520,
+      "N_p0_abp": 242,
+      "N_0p_apb": 326,
+      "N_pp_apbp": 189,
+      "J": -237,
+      "J_per_1M_valid": -13.264754366692774
+    },
+    {
+      "split": 6,
+      "start_idx": 122208877,
+      "end_idx": 142577023,
+      "trials_valid": 20368146,
+      "dropped_invalid": 0,
+      "N_pp_ab": 675,
+      "N_p0_abp": 293,
+      "N_0p_apb": 361,
+      "N_pp_apbp": 7,
+      "J": 14,
+      "J_per_1M_valid": 0.6873477831512008
+    },
+    {
+      "split": 7,
+      "start_idx": 142577023,
+      "end_idx": 162945169,
+      "trials_valid": 20368146,
+      "dropped_invalid": 0,
+      "N_pp_ab": 651,
+      "N_p0_abp": 317,
+      "N_0p_apb": 294,
+      "N_pp_apbp": 9,
+      "J": 31,
+      "J_per_1M_valid": 1.521984376977659
+    },
+    {
+      "split": 8,
+      "start_idx": 162945169,
+      "end_idx": 183313315,
+      "trials_valid": 20368146,
+      "dropped_invalid": 0,
+      "N_pp_ab": 631,
+      "N_p0_abp": 301,
+      "N_0p_apb": 304,
+      "N_pp_apbp": 6,
+      "J": 20,
+      "J_per_1M_valid": 0.9819254045017155
+    },
+    {
+      "split": 9,
+      "start_idx": 183313315,
+      "end_idx": 203681462,
+      "trials_valid": 20368147,
+      "dropped_invalid": 0,
+      "N_pp_ab": 604,
+      "N_p0_abp": 296,
+      "N_0p_apb": 321,
+      "N_pp_apbp": 11,
+      "J": -24,
+      "J_per_1M_valid": -1.1783104275514116
+    }
+  ],
+  "notes": [
+    "Data-side CH/Eberhard J computation (NO FIT).",
+    "Not a model-performance test; not a local-realism p-value proof.",
+    "Use splits to check sign stability over time index."
+  ],
+  "outputs": {
+    "splits_csv": "out\\nist_ch_splits\\run02_54_slots4_8.splits.csv",
+    "summary_json": "out\\nist_ch_splits\\run02_54_slots4_8.summary.json"
+  }
+}

@@ -1,0 +1,11 @@
+A,alpha,chi2_geo_total,delta_total,pos_channels,exit_code,ok,evidence_dir
+-0.014,0.5,253.533,5.677,3,0,True,logs\weak\2026-03-03_run20\grid_A_local_alpha0p5\A_m0p014__alpha_0p5
+-0.013,0.5,253.857,5.353,3,0,True,logs\weak\2026-03-03_run20\grid_A_local_alpha0p5\A_m0p013__alpha_0p5
+-0.012,0.5,254.193,5.017,3,0,True,logs\weak\2026-03-03_run20\grid_A_local_alpha0p5\A_m0p012__alpha_0p5
+-0.011,0.5,254.542,4.669,3,0,True,logs\weak\2026-03-03_run20\grid_A_local_alpha0p5\A_m0p011__alpha_0p5
+-0.0105,0.5,254.72,4.49,3,0,True,logs\weak\2026-03-03_run20\grid_A_local_alpha0p5\A_m0p0105__alpha_0p5
+-0.01,0.5,254.902,4.308,3,0,True,logs\weak\2026-03-03_run20\grid_A_local_alpha0p5\A_m0p01__alpha_0p5
+-0.0095,0.5,255.088,4.123,3,0,True,logs\weak\2026-03-03_run20\grid_A_local_alpha0p5\A_m0p0095__alpha_0p5
+-0.009,0.5,255.276,3.934,3,0,True,logs\weak\2026-03-03_run20\grid_A_local_alpha0p5\A_m0p009__alpha_0p5
+-0.0085,0.5,255.467,3.743,3,0,True,logs\weak\2026-03-03_run20\grid_A_local_alpha0p5\A_m0p0085__alpha_0p5
+-0.008,0.5,255.662,3.548,3,0,True,logs\weak\2026-03-03_run20\grid_A_local_alpha0p5\A_m0p008__alpha_0p5

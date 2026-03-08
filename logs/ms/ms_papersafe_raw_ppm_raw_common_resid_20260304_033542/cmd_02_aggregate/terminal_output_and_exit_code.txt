@@ -1,0 +1,12 @@
+exit_code: 0
+
+=== STDOUT ===
+
+=== DYNAMICS INTEGRITY AGGREGATOR v1 ===
+run_id : ms_papersafe_raw_ppm_raw_common_resid_20260304_033542
+run_root: .\out\MS\ms_papersafe_raw_ppm_raw_common_resid_20260304_033542
+wrote  : .\out\MS\ms_papersafe_raw_ppm_raw_common_resid_20260304_033542\DYNAMICS_INTEGRITY_SUMMARY.json
+wrote  : .\out\MS\ms_papersafe_raw_ppm_raw_common_resid_20260304_033542\DYNAMICS_INTEGRITY_SUMMARY.md
+
+
+=== STDERR ===

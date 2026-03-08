@@ -437,7 +437,18 @@ def main():
     ap.add_argument("--center_mode", default="pivot_cos", choices=["none","pivot_cos"], help="Center delta around a pivot cos(theta): delta := delta_raw - delta_raw(center_cos) within each group.")
     ap.add_argument("--center_cos", type=float, default=0.72, help="Pivot cos(theta) used when --center_mode=pivot_cos. Chosen prereg to sit at the mid/forward boundary (0.72).")
     ap.add_argument("--A", type=float, default=0.0)
-    ap.add_argument("--alpha", type=float, default=7.5e-05)
+    ap.add_argument(
+        "--alpha",
+        type=float,
+        default=7.5e-05,
+        help="DEPRECATED (EM only): use --em_alpha_tshape. Kept for backward compatibility.",
+    )
+    ap.add_argument(
+        "--em_alpha_tshape",
+        type=float,
+        default=None,
+        help="EM |t|-shape exponent for f(|t|) = (|t|/t_ref)**em_alpha_tshape; overrides --alpha if provided.",
+    )
     ap.add_argument("--phi", type=float, default=math.pi/2)
     ap.add_argument("--geo_structure", default="offdiag")
     ap.add_argument("--geo_gen", default="lam2")
@@ -468,6 +479,8 @@ def main():
     ap.add_argument("--holdout_cos_max", type=float, default=0.91, help="For holdout_mode=contiguous: test band upper edge in cos(theta) (applied to x_ctr). Default 0.91 (covers [0.72,0.90] bins).")
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
+
+    em_alpha_tshape = float(args.alpha) if args.em_alpha_tshape is None else float(args.em_alpha_tshape)
 
     pack, base, paths, cols = load_pack(args.pack)
     df = pd.read_csv(paths["data_csv"])
@@ -598,7 +611,7 @@ def main():
                 cos_ctr=cos_ctr,
                 sqrt_s_GeV=sqrt_s_bins,
                 A=args.A,
-                alpha=args.alpha,
+                alpha=em_alpha_tshape,
                 phi=args.phi,
                 geo_structure=args.geo_structure,
                 geo_gen=args.geo_gen,
@@ -618,7 +631,7 @@ def main():
                     sqrt_s_by_group=sqrt_s_by_group,
                     center_cos=args.center_cos,
                     A=args.A,
-                    alpha=args.alpha,
+                    alpha=em_alpha_tshape,
                     phi=args.phi,
                     geo_structure=args.geo_structure,
                     geo_gen=args.geo_gen,
@@ -671,7 +684,7 @@ def main():
             print(f"SM betas  : " + ", ".join([f"g{i}={betas_sm[i]:.9g}" for i in range(n_groups)]))
             print(f"mech      : omega0={omega0_from_geom(args.omega0_geom, args.L0_km):.12g} (1/km) omega0_geom={args.omega0_geom} L0_km={args.L0_km} zeta={args.zeta} R_max={args.R_max} t_ref_GeV={args.t_ref_GeV}")
             print(f"env       : env_u={env_u:.3g} env_u0={args.env_u0:.3g} env_scale={env_scale:.9g}")
-            print(f"geo       : A={args.A} alpha={args.alpha} phi={args.phi} structure={args.geo_structure} gen={args.geo_gen} shape_only={args.shape_only} center_mode={args.center_mode} center_cos={args.center_cos} sqrt_s_mode={args.sqrt_s_mode} freeze_betas=True")
+            print(f"geo       : A={args.A} em_alpha_tshape={em_alpha_tshape} phi={args.phi} structure={args.geo_structure} gen={args.geo_gen} shape_only={args.shape_only} center_mode={args.center_mode} center_cos={args.center_cos} sqrt_s_mode={args.sqrt_s_mode} freeze_betas=True")
             print("")
             print("------------------------")
             print(f"TRAIN chi2_SM  = {chi2_sm_train:.6f}")
@@ -708,7 +721,7 @@ def main():
         cos_ctr=cos_ctr,
         sqrt_s_GeV=sqrt_s_bins,
         A=args.A,
-        alpha=args.alpha,
+        alpha=em_alpha_tshape,
         phi=args.phi,
         geo_structure=args.geo_structure,
         geo_gen=args.geo_gen,
@@ -794,7 +807,7 @@ def main():
     omega0 = omega0_from_geom(args.omega0_geom, args.L0_km)
     print(f"mech      : omega0={omega0:.10g} (1/km) omega0_geom={args.omega0_geom} L0_km={args.L0_km} zeta={args.zeta} R_max={args.R_max} t_ref_GeV={args.t_ref_GeV}")
     print(f"env       : env_u={env_u:.6g} env_u0={args.env_u0:.6g} env_scale={env_scale:.6g}")
-    print(f"geo       : A={args.A} alpha={args.alpha} phi={args.phi} structure={args.geo_structure} gen={args.geo_gen} shape_only={args.shape_only} freeze_betas={args.freeze_betas}")
+    print(f"geo       : A={args.A} em_alpha_tshape={em_alpha_tshape} phi={args.phi} structure={args.geo_structure} gen={args.geo_gen} shape_only={args.shape_only} freeze_betas={args.freeze_betas}")
     
     if imported:
         betas_str = ", ".join([f"g{g}={betas_geo[g]:.8g}" for g in range(n_groups)])

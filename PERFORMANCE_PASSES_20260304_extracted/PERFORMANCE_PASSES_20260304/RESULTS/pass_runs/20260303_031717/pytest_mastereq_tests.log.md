@@ -1,0 +1,46 @@
+﻿# pytest_mastereq_tests
+
+## Command
+
+```
+C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git\.venv\\Scripts\\python.exe -m pytest -q mastereq/tests
+```
+
+## Stdout
+
+```
+...                                                                      [100%]
+3 passed in 0.31s
+
+```
+
+## Stderr
+
+```
+
+```
+
+## Summary JSON
+
+```json
+{
+    "name":  "pytest_mastereq_tests",
+    "cwd":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git",
+    "cmd":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\.venv\\\\Scripts\\\\python.exe -m pytest -q mastereq/tests",
+    "exe":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\.venv\\\\Scripts\\\\python.exe",
+    "args":  [
+                 "-m",
+                 "pytest",
+                 "-q",
+                 "mastereq/tests"
+             ],
+    "start_utc":  "2026-03-03T00:19:28.0512242Z",
+    "end_utc":  "2026-03-03T00:19:29.0837698Z",
+    "duration_sec":  1.033,
+    "exit_code":  0,
+    "stdout_path":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\\\pass_runs\\20260303_031717\\pytest_mastereq_tests.stdout.txt",
+    "stderr_path":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\\\pass_runs\\20260303_031717\\pytest_mastereq_tests.stderr.txt"
+}
+
+```
+

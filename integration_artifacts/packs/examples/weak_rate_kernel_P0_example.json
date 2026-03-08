@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "baseline_km": 1.0,
+    "note": "Example WEAK pack for dynamics-to-rate coupling: enforce P(E)=0 via degenerate 3-flavor evolution (dm=0, mixing=0) with nu_in=mu, nu_out=e."
+  },
+  "channels": [
+    {
+      "name": "EXAMPLE_app_P0",
+      "type": "appearance",
+      "baseline_km": 1.0,
+      "nu_in": "mu",
+      "nu_out": "e",
+      "rate_kernel": {
+        "exposure": 10.0,
+        "n_steps": 256,
+        "true_bins": {
+          "E_lo": [0.0, 1.0],
+          "E_hi": [1.0, 3.0]
+        },
+        "smear_rec_by_true": [
+          [1.0, 0.0],
+          [0.0, 1.0]
+        ],
+        "flux_model": {"kind": "const", "value": 1.0},
+        "sigma_model": {"kind": "const", "value": 2.0},
+        "eff_model": {"kind": "const", "value": 0.5}
+      },
+      "bins": {
+        "E_lo": [0.0, 1.0],
+        "E_hi": [1.0, 3.0],
+        "E_ctr": [0.5, 2.0],
+        "N_obs": [0.0, 0.0],
+        "N_bkg_sm": [0.0, 0.0]
+      }
+    }
+  ]
+}

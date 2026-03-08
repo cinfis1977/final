@@ -1,0 +1,54 @@
+{
+  "runner": "photon_dynamic_full_runner_v1.py",
+  "layer": "NEW WORK",
+  "no_fit_statement": true,
+  "input_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\integration_artifacts\\entanglement_photon_bridge\\birefringence_holdouts_v1_TEMPLATE.csv",
+  "mapping": {
+    "bridge_kernel": "beta_bridge(z) = C_beta_locked * I(z)",
+    "dynamic_extension": "beta_model(z) = beta_bridge(z) * V_model(z)",
+    "gamma_scaling": {
+      "k_I": 0.0,
+      "gamma_floor_mult": 0.0
+    }
+  },
+  "per_source_state": [
+    {
+      "z": 2.8,
+      "I_z": 0.791672820132652,
+      "gamma_z_km_inv": 5.784001410735956e-28,
+      "gamma_base_km_inv": 5.784001410735956e-28,
+      "L_eff_km": 641.2549843074481,
+      "coherence_survival": 0.4466794736729331,
+      "dynamic_kernel": 0.35362399861801963,
+      "active_mappings": [
+        "I_z -> L_eff_km",
+        "I_z -> beta_bridge",
+        "gamma_z -> rho evolution",
+        "coherence_survival -> beta_model"
+      ],
+      "locked_coefficients": {
+        "k_I": 0.0,
+        "gamma_floor_mult": 0.0
+      }
+    },
+    {
+      "z": 1100.0,
+      "I_z": 0.9509533045149386,
+      "gamma_z_km_inv": 5.784001410735956e-28,
+      "gamma_base_km_inv": 5.784001410735956e-28,
+      "L_eff_km": 770.2721766571003,
+      "coherence_survival": 0.527582240491987,
+      "dynamic_kernel": 0.5017060749992501,
+      "active_mappings": [
+        "I_z -> L_eff_km",
+        "I_z -> beta_bridge",
+        "gamma_z -> rho evolution",
+        "coherence_survival -> beta_model"
+      ],
+      "locked_coefficients": {
+        "k_I": 0.0,
+        "gamma_floor_mult": 0.0
+      }
+    }
+  ]
+}

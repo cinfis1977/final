@@ -1,0 +1,22 @@
+﻿{
+    "sector":  "dm",
+    "run_id":  "2026-03-03_run02",
+    "name":  "dm_proxy_paper_run",
+    "status":  "ok",
+    "start_utc":  "2026-03-03T00:29:54.1230546Z",
+    "end_utc":  "2026-03-03T00:29:55.7091273Z",
+    "git_head":  "636e3e11817e94d81654d68641bafb7fd0a52540",
+    "repo_root":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git",
+    "exe":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\.venv\\Scripts\\python.exe",
+    "args":  [
+                 "run_dm_paper_run.py",
+                 "--out_dir",
+                 "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\log_capture\\2026-03-03_run02\\dm_paper",
+                 "--kfold",
+                 "2",
+                 "--seed",
+                 "2026"
+             ],
+    "cmd":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\.venv\\Scripts\\python.exe run_dm_paper_run.py --out_dir C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\log_capture\\2026-03-03_run02\\dm_paper --kfold 2 --seed 2026",
+    "artifacts_from":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\log_capture\\2026-03-03_run02\\dm_paper"
+}

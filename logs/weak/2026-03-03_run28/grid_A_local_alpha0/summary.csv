@@ -1,0 +1,14 @@
+A,alpha,chi2_geo_total,delta_total,pos_channels,exit_code,ok,evidence_dir
+-0.042,0.0,248.58,10.63,3,0,True,logs\weak\2026-03-03_run28\grid_A_local_alpha0\A_m0p042__alpha_0
+-0.04,0.0,248.583,10.628,3,0,True,logs\weak\2026-03-03_run28\grid_A_local_alpha0\A_m0p04__alpha_0
+-0.044,0.0,248.625,10.585,3,0,True,logs\weak\2026-03-03_run28\grid_A_local_alpha0\A_m0p044__alpha_0
+-0.038,0.0,248.633,10.577,3,0,True,logs\weak\2026-03-03_run28\grid_A_local_alpha0\A_m0p038__alpha_0
+-0.046,0.0,248.717,10.493,3,0,True,logs\weak\2026-03-03_run28\grid_A_local_alpha0\A_m0p046__alpha_0
+-0.036,0.0,248.732,10.478,3,0,True,logs\weak\2026-03-03_run28\grid_A_local_alpha0\A_m0p036__alpha_0
+-0.048,0.0,248.857,10.353,3,0,True,logs\weak\2026-03-03_run28\grid_A_local_alpha0\A_m0p048__alpha_0
+-0.034,0.0,248.879,10.331,3,0,True,logs\weak\2026-03-03_run28\grid_A_local_alpha0\A_m0p034__alpha_0
+-0.05,0.0,249.043,10.168,3,0,True,logs\weak\2026-03-03_run28\grid_A_local_alpha0\A_m0p05__alpha_0
+-0.032,0.0,249.076,10.134,3,0,True,logs\weak\2026-03-03_run28\grid_A_local_alpha0\A_m0p032__alpha_0
+-0.03,0.0,249.322,9.889,3,0,True,logs\weak\2026-03-03_run28\grid_A_local_alpha0\A_m0p03__alpha_0
+-0.055,0.0,249.71,9.501,3,0,True,logs\weak\2026-03-03_run28\grid_A_local_alpha0\A_m0p055__alpha_0
+-0.06,0.0,250.661,8.549,3,0,True,logs\weak\2026-03-03_run28\grid_A_local_alpha0\A_m0p06__alpha_0

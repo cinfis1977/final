@@ -1,0 +1,183 @@
+{
+  "best_config": {
+    "config_id": "form=abs_quad|L0=1000|gamma=0.01",
+    "profile_form": "abs_quad",
+    "L0_km": 1000.0,
+    "gamma_km_inv": 0.01,
+    "mae_all_per_1M": 0.19238687580304084,
+    "mae_wide_per_1M": 0.28858031369340525,
+    "rmse_wide_per_1M": 0.3818395350718052,
+    "sign_rate": 1.0,
+    "gamma_shift_mean_per_1M": 0.065580133552718,
+    "dynamic_sensitive": "YES"
+  },
+  "best_fit_report": {
+    "train_runs": [
+      "01_11",
+      "02_54",
+      "03_43"
+    ],
+    "holdout_runs": [],
+    "profile_form": "abs_quad",
+    "gksl": {
+      "dm2": 0.0025,
+      "theta_deg": 45.0,
+      "L0_km": 1000.0,
+      "E_GeV": 1.0,
+      "steps": 320,
+      "gamma_km_inv": 0.01,
+      "use_microphysics": false
+    },
+    "fits": {
+      "pp": {
+        "n_samples": 12,
+        "fit": {
+          "tilt": 0.0,
+          "linear_km": 0.0,
+          "abs_km": 0.0,
+          "quad_km": 0.0
+        }
+      },
+      "p0": {
+        "n_samples": 12,
+        "fit": {
+          "tilt": 0.0,
+          "linear_km": 0.0,
+          "abs_km": 0.0,
+          "quad_km": 0.0
+        }
+      },
+      "0p": {
+        "n_samples": 12,
+        "fit": {
+          "tilt": 0.0,
+          "linear_km": 0.0,
+          "abs_km": 10.0,
+          "quad_km": 10.0
+        }
+      }
+    }
+  },
+  "top10": [
+    {
+      "config_id": "form=abs_quad|L0=1000|gamma=0.01",
+      "profile_form": "abs_quad",
+      "L0_km": 1000.0,
+      "gamma_km_inv": 0.01,
+      "mae_all_per_1M": 0.19238687580304084,
+      "mae_wide_per_1M": 0.28858031369340525,
+      "rmse_wide_per_1M": 0.3818395350718052,
+      "sign_rate": 1.0,
+      "gamma_shift_mean_per_1M": 0.065580133552718,
+      "dynamic_sensitive": "YES"
+    },
+    {
+      "config_id": "form=abs_quad|L0=1000|gamma=0.1",
+      "profile_form": "abs_quad",
+      "L0_km": 1000.0,
+      "gamma_km_inv": 0.1,
+      "mae_all_per_1M": 0.19287302801837883,
+      "mae_wide_per_1M": 0.28930954201641224,
+      "rmse_wide_per_1M": 0.38295814752491897,
+      "sign_rate": 1.0,
+      "gamma_shift_mean_per_1M": 0.0652760475114851,
+      "dynamic_sensitive": "YES"
+    },
+    {
+      "config_id": "form=abs_quad|L0=1000|gamma=0.001",
+      "profile_form": "abs_quad",
+      "L0_km": 1000.0,
+      "gamma_km_inv": 0.001,
+      "mae_all_per_1M": 0.1981853315555307,
+      "mae_wide_per_1M": 0.29727799732214005,
+      "rmse_wide_per_1M": 0.39143441424162634,
+      "sign_rate": 1.0,
+      "gamma_shift_mean_per_1M": 0.054753930786211505,
+      "dynamic_sensitive": "YES"
+    },
+    {
+      "config_id": "form=abs_quad|L0=1000|gamma=0.0001",
+      "profile_form": "abs_quad",
+      "L0_km": 1000.0,
+      "gamma_km_inv": 0.0001,
+      "mae_all_per_1M": 0.20085168564797867,
+      "mae_wide_per_1M": 0.301277528460812,
+      "rmse_wide_per_1M": 0.4013876589810749,
+      "sign_rate": 1.0,
+      "gamma_shift_mean_per_1M": 0.06212923148153391,
+      "dynamic_sensitive": "YES"
+    },
+    {
+      "config_id": "form=abs_quad|L0=1000|gamma=1",
+      "profile_form": "abs_quad",
+      "L0_km": 1000.0,
+      "gamma_km_inv": 1.0,
+      "mae_all_per_1M": 0.21351567239986707,
+      "mae_wide_per_1M": 0.3202735085886446,
+      "rmse_wide_per_1M": 0.437702575380499,
+      "sign_rate": 1.0,
+      "gamma_shift_mean_per_1M": 0.07597818419746794,
+      "dynamic_sensitive": "YES"
+    },
+    {
+      "config_id": "form=abs_quad|L0=0.001|gamma=0",
+      "profile_form": "abs_quad",
+      "L0_km": 0.001,
+      "gamma_km_inv": 0.0,
+      "mae_all_per_1M": 0.21351567239986707,
+      "mae_wide_per_1M": 0.3202735085886446,
+      "rmse_wide_per_1M": 0.437702575380499,
+      "sign_rate": 1.0,
+      "gamma_shift_mean_per_1M": 0.0,
+      "dynamic_sensitive": "NO"
+    },
+    {
+      "config_id": "form=abs_quad|L0=0.001|gamma=0.0001",
+      "profile_form": "abs_quad",
+      "L0_km": 0.001,
+      "gamma_km_inv": 0.0001,
+      "mae_all_per_1M": 0.21351567239986707,
+      "mae_wide_per_1M": 0.3202735085886446,
+      "rmse_wide_per_1M": 0.437702575380499,
+      "sign_rate": 1.0,
+      "gamma_shift_mean_per_1M": 0.0,
+      "dynamic_sensitive": "NO"
+    },
+    {
+      "config_id": "form=abs_quad|L0=0.001|gamma=0.001",
+      "profile_form": "abs_quad",
+      "L0_km": 0.001,
+      "gamma_km_inv": 0.001,
+      "mae_all_per_1M": 0.21351567239986707,
+      "mae_wide_per_1M": 0.3202735085886446,
+      "rmse_wide_per_1M": 0.437702575380499,
+      "sign_rate": 1.0,
+      "gamma_shift_mean_per_1M": 0.0,
+      "dynamic_sensitive": "NO"
+    },
+    {
+      "config_id": "form=abs_quad|L0=0.001|gamma=0.01",
+      "profile_form": "abs_quad",
+      "L0_km": 0.001,
+      "gamma_km_inv": 0.01,
+      "mae_all_per_1M": 0.21351567239986707,
+      "mae_wide_per_1M": 0.3202735085886446,
+      "rmse_wide_per_1M": 0.437702575380499,
+      "sign_rate": 1.0,
+      "gamma_shift_mean_per_1M": 0.0,
+      "dynamic_sensitive": "NO"
+    },
+    {
+      "config_id": "form=abs_quad|L0=0.001|gamma=0.1",
+      "profile_form": "abs_quad",
+      "L0_km": 0.001,
+      "gamma_km_inv": 0.1,
+      "mae_all_per_1M": 0.21351567239986707,
+      "mae_wide_per_1M": 0.3202735085886446,
+      "rmse_wide_per_1M": 0.437702575380499,
+      "sign_rate": 1.0,
+      "gamma_shift_mean_per_1M": 0.0,
+      "dynamic_sensitive": "NO"
+    }
+  ]
+}

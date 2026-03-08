@@ -1,0 +1,9 @@
+........................................................................ [ 80%]
+..................                                                       [100%]
+============================== warnings summary ===============================
+dm_thread_env_dropin_STIFFGATE.py:76
+  C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git\dm_thread_env_dropin_STIFFGATE.py:76: DeprecationWarning: invalid escape sequence '\l'
+    """Calibrate (S0, k4) so that the gate is essentially closed in the 'galaxy' regime.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+90 passed, 1 warning in 129.10s (0:02:09)

@@ -1,0 +1,248 @@
+{
+  "defaults": {
+    "bridge_version": "PARAMMODEL v5 (calibrated bridge; alpha+beta)",
+    "window_union_mode": "anchored_alpha_beta"
+  },
+  "runs": {
+    "01_11": {
+      "bridge_version": "PARAMMODEL v5 (calibrated bridge; alpha+beta)",
+      "window_union_mode": "anchored_alpha_beta",
+      "p_pair_1slot_by_setting": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "pA1_u_1slot": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "pB1_u_1slot": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "alpha_pair_by_setting": {
+        "00": 1.0,
+        "01": 1.0,
+        "10": 1.0,
+        "11": 1.0
+      },
+      "beta_pair_by_setting": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "alpha_Au_by_setting": {
+        "00": 1.0,
+        "01": 1.0,
+        "10": 1.0,
+        "11": 1.0
+      },
+      "beta_Au_by_setting": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "alpha_Bu_by_setting": {
+        "00": 1.0,
+        "01": 1.0,
+        "10": 1.0,
+        "11": 1.0
+      },
+      "beta_Bu_by_setting": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "alpha_pair": 1.0,
+      "beta_pair": 0.0
+    },
+    "02_54": {
+      "bridge_version": "PARAMMODEL v5 (calibrated bridge; alpha+beta)",
+      "window_union_mode": "anchored_alpha_beta",
+      "p_pair_1slot_by_setting": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "pA1_u_1slot": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "pB1_u_1slot": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "alpha_pair_by_setting": {
+        "00": 1.0,
+        "01": 1.0,
+        "10": 1.0,
+        "11": 1.0
+      },
+      "beta_pair_by_setting": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "alpha_Au_by_setting": {
+        "00": 1.0,
+        "01": 1.0,
+        "10": 1.0,
+        "11": 1.0
+      },
+      "beta_Au_by_setting": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "alpha_Bu_by_setting": {
+        "00": 1.0,
+        "01": 1.0,
+        "10": 1.0,
+        "11": 1.0
+      },
+      "beta_Bu_by_setting": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "alpha_pair": 1.0,
+      "beta_pair": 0.0
+    },
+    "03_31": {
+      "bridge_version": "PARAMMODEL v5 (calibrated bridge; alpha+beta)",
+      "window_union_mode": "anchored_alpha_beta",
+      "p_pair_1slot_by_setting": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "pA1_u_1slot": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "pB1_u_1slot": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "alpha_pair_by_setting": {
+        "00": 1.0,
+        "01": 1.0,
+        "10": 1.0,
+        "11": 1.0
+      },
+      "beta_pair_by_setting": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "alpha_Au_by_setting": {
+        "00": 1.0,
+        "01": 1.0,
+        "10": 1.0,
+        "11": 1.0
+      },
+      "beta_Au_by_setting": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "alpha_Bu_by_setting": {
+        "00": 1.0,
+        "01": 1.0,
+        "10": 1.0,
+        "11": 1.0
+      },
+      "beta_Bu_by_setting": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "alpha_pair": 1.0,
+      "beta_pair": 0.0
+    },
+    "03_43": {
+      "bridge_version": "PARAMMODEL v5 (calibrated bridge; alpha+beta)",
+      "window_union_mode": "anchored_alpha_beta",
+      "p_pair_1slot_by_setting": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "pA1_u_1slot": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "pB1_u_1slot": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "alpha_pair_by_setting": {
+        "00": 1.0,
+        "01": 1.0,
+        "10": 1.0,
+        "11": 1.0
+      },
+      "beta_pair_by_setting": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "alpha_Au_by_setting": {
+        "00": 1.0,
+        "01": 1.0,
+        "10": 1.0,
+        "11": 1.0
+      },
+      "beta_Au_by_setting": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "alpha_Bu_by_setting": {
+        "00": 1.0,
+        "01": 1.0,
+        "10": 1.0,
+        "11": 1.0
+      },
+      "beta_Bu_by_setting": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "alpha_pair": 1.0,
+      "beta_pair": 0.0
+    }
+  }
+}

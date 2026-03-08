@@ -1,0 +1,5 @@
+[OK] wrote: .\out\nist_ch\_tmp_scan.csv
+[OK] wrote: .\out\nist_ch\_tmp_scan.md
+[OK] wrote: .\out\nist_ch\_tmp_best.csv
+[OK] wrote: .\out\nist_ch\_tmp_best.md
+best: scope=by_channel|form=tilt_abs_quad|L0=1|gamma=0.1

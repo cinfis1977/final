@@ -1,0 +1,8 @@
+# Extend A scan more negative (alpha fixed separately)
+-0.018
+-0.020
+-0.022
+-0.024
+-0.026
+-0.028
+-0.030

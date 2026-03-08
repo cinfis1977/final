@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "baseline_km": 1.0,
+    "note": "Example WEAK pack using rate_kernel (parametric flux/sigma/eff + smearing) for internal rate closure."
+  },
+  "channels": [
+    {
+      "name": "EXAMPLE_dis",
+      "type": "disappearance",
+      "baseline_km": 1.0,
+      "nu_in": "mu",
+      "nu_out": "mu",
+      "rate_kernel": {
+        "exposure": 10.0,
+        "n_steps": 256,
+        "true_bins": {
+          "E_lo": [0.0, 1.0],
+          "E_hi": [1.0, 3.0]
+        },
+        "smear_rec_by_true": [
+          [1.0, 0.0],
+          [0.0, 1.0]
+        ],
+        "flux_model": {"kind": "const", "value": 1.0},
+        "sigma_model": {"kind": "const", "value": 2.0},
+        "eff_model": {"kind": "const", "value": 0.5}
+      },
+      "bins": {
+        "E_lo": [0.0, 1.0],
+        "E_hi": [1.0, 3.0],
+        "E_ctr": [0.5, 2.0],
+        "N_obs": [0.0, 0.0],
+        "N_bkg_sm": [0.0, 0.0]
+      }
+    }
+  ]
+}

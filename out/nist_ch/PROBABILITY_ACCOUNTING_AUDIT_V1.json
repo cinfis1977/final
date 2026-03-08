@@ -1,0 +1,382 @@
+{
+  "provider": ".\\CODE\\ch_model_prob_provider_v1_GKSL_DETECTORFIRST_V2_DROPIN.py",
+  "init_module": ".\\CODE\\nist_ch_init_gksl_detectorfirst_v2_DROPIN.py",
+  "profile_form": "tilt_abs_quad",
+  "gksl": {
+    "dm2": 0.0025,
+    "theta_deg": 45.0,
+    "L0_km": 1.0,
+    "E_GeV": 1.0,
+    "steps": 320,
+    "gamma_km_inv": 1.0
+  },
+  "summary_rows": [
+    {
+      "holdout_run": "01_11",
+      "window": "slot6",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": 1.6917343592189017e-05
+    },
+    {
+      "holdout_run": "01_11",
+      "window": "slots5-7",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "01_11",
+      "window": "slots4-8",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "01_11",
+      "window": "monotonic_pp_00",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "01_11",
+      "window": "monotonic_pp_01",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "01_11",
+      "window": "monotonic_pp_10",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "01_11",
+      "window": "monotonic_pp_11",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "01_11",
+      "window": "monotonic_p0_00",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "01_11",
+      "window": "monotonic_p0_01",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "01_11",
+      "window": "monotonic_p0_10",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "01_11",
+      "window": "monotonic_p0_11",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "01_11",
+      "window": "monotonic_0p_00",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "01_11",
+      "window": "monotonic_0p_01",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "01_11",
+      "window": "monotonic_0p_10",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "01_11",
+      "window": "monotonic_0p_11",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "02_54",
+      "window": "slot6",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": 4.684411759901913e-06
+    },
+    {
+      "holdout_run": "02_54",
+      "window": "slots5-7",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "02_54",
+      "window": "slots4-8",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "02_54",
+      "window": "monotonic_pp_00",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "02_54",
+      "window": "monotonic_pp_01",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "02_54",
+      "window": "monotonic_pp_10",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "02_54",
+      "window": "monotonic_pp_11",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "02_54",
+      "window": "monotonic_p0_00",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "02_54",
+      "window": "monotonic_p0_01",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "02_54",
+      "window": "monotonic_p0_10",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "02_54",
+      "window": "monotonic_p0_11",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "02_54",
+      "window": "monotonic_0p_00",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "02_54",
+      "window": "monotonic_0p_01",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "02_54",
+      "window": "monotonic_0p_10",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "02_54",
+      "window": "monotonic_0p_11",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "03_43",
+      "window": "slot6",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": 2.8530987377687257e-05
+    },
+    {
+      "holdout_run": "03_43",
+      "window": "slots5-7",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "03_43",
+      "window": "slots4-8",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "03_43",
+      "window": "monotonic_pp_00",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "03_43",
+      "window": "monotonic_pp_01",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "03_43",
+      "window": "monotonic_pp_10",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "03_43",
+      "window": "monotonic_pp_11",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "03_43",
+      "window": "monotonic_p0_00",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "03_43",
+      "window": "monotonic_p0_01",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "03_43",
+      "window": "monotonic_p0_10",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "03_43",
+      "window": "monotonic_p0_11",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "03_43",
+      "window": "monotonic_0p_00",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "03_43",
+      "window": "monotonic_0p_01",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "03_43",
+      "window": "monotonic_0p_10",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    },
+    {
+      "holdout_run": "03_43",
+      "window": "monotonic_0p_11",
+      "bounds_ok": "YES",
+      "accounting_ok": "YES",
+      "suppression_pp11_lt_pp00": "YES",
+      "slot6_anchor_mae": NaN
+    }
+  ],
+  "global": {
+    "all_bounds_ok": true,
+    "all_accounting_ok": true,
+    "all_pp11_suppressed": true,
+    "monotonic_failures": 0,
+    "slot6_anchor_mae_mean": 1.6710914243259397e-05
+  }
+}

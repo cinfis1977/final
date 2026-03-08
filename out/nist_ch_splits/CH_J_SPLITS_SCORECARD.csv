@@ -1,0 +1,4 @@
+run,splits_csv,summary_json,h5_path,slots,bitmask_hex,settings_mapping,trials_valid,dropped_invalid,J_overall,J_per_1M_overall,n_splits,splits_pos,splits_neg,splits_zero,J_min_split,J_max_split,J_per_1M_min_split,J_per_1M_max_split,J_sum_first_half,J_sum_second_half
+run01_11_slots4_8_v1_1,out\nist_ch_splits\run01_11_slots4_8_v1_1.splits.csv,,,,,,337818518,121,550,1.6280931053045469,10,10,0,0,1,114,0.0296016891434265,3.374593261606255,227,323
+run02_54_slots4_8_v1_1,out\nist_ch_splits\run02_54_slots4_8_v1_1.splits.csv,,,,,,203681460,2,176,0.8640943559615097,10,8,2,0,-24,61,-1.1783104275514116,2.9948724837302323,110,66
+run03_43_slots4_8_v1_1,out\nist_ch_splits\run03_43_slots4_8_v1_1.splits.csv,,,,,,107109594,2,151,1.409771005200524,10,7,3,0,-40,84,-3.7344925198114822,7.842435023791987,153,-2

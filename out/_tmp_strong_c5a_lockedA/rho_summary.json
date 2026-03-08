@@ -1,0 +1,68 @@
+{
+  "amplitude_core_used": true,
+  "anti_fallback": {
+    "missing_modules": [],
+    "pdg_call_poison_active": true,
+    "poisoned_targets": [
+      "strong_sigma_tot_energy_scan_v2.sigma_tot_pdg_mb",
+      "strong_sigma_tot_energy_scan_v2_AIAR_FIX2.sigma_tot_pdg_mb",
+      "strong_rho_energy_scan_v3.sigma_tot_pdg_mb",
+      "strong_rho_energy_scan_v3.dsigma_dlns_pdg_mb",
+      "strong_rho_energy_scan_v3.rho_sm_proxy",
+      "strong_rho_energy_scan_v3_AIAR_FIX2.sigma_tot_pdg_mb",
+      "strong_rho_energy_scan_v3_AIAR_FIX2.dsigma_dlns_pdg_mb",
+      "strong_rho_energy_scan_v3_AIAR_FIX2.rho_sm_proxy",
+      "integration_artifacts.mastereq.strong_pdg_stateful_dynamics.scan_sigma_tot_stateful",
+      "integration_artifacts.mastereq.strong_pdg_stateful_dynamics.scan_rho_stateful"
+    ]
+  },
+  "chi2": {
+    "delta": -0.8098953416286179,
+    "geo": 85.92222069387925,
+    "ndof": 4,
+    "sm": 85.11232535225064
+  },
+  "framing": {
+    "note": "This paper run evaluates SM vs GEO using the same packs/cov; it is an IO/closure + anti-fallback artifact, not a physical-accuracy claim.",
+    "stability_not_accuracy": true
+  },
+  "geo": {
+    "A_locked": -0.0412,
+    "sm_A": 0.0
+  },
+  "io": {
+    "cov_rho_csv": null,
+    "cov_sigma_tot_csv": null,
+    "data_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\data\\hepdata\\pdg_rho_clean_for_runner.csv",
+    "data_loaded_from_paths": true
+  },
+  "pack": {
+    "meta": {
+      "name": "STRONG C5A PDG rho table (paths + diag)",
+      "note": "Real-data reproduction pack for paper-facing IO. Uses diagonal uncertainties from the CSV (no full covariance provided)."
+    },
+    "path": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\_tmp_strong_c5a_lockedA\\_tmp_packs\\pdg_rho_pack__sm.json"
+  },
+  "pars": {
+    "R0": 2.0,
+    "b_max": 12.0,
+    "chiI_cap": 40.0,
+    "chiI_floor": 0.0,
+    "dt_max": 0.05,
+    "g0": 0.8,
+    "g_slope": 0.08,
+    "geo_A": -0.0412,
+    "geo_omega": 1.0,
+    "geo_phi0": 0.0,
+    "geo_template": "cos",
+    "kappa_R": 0.15,
+    "lambda_I": 0.6,
+    "lambda_R": 1.2,
+    "nb": 600,
+    "s0_GeV2": 1.0,
+    "sigma_norm_mb": 1.0,
+    "t0": 0.0,
+    "v_R": 0.3
+  },
+  "pdg_baseline_used": false
+}

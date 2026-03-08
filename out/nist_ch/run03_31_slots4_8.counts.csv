@@ -1,0 +1,5 @@
+a_set,b_set,trials_valid,alice_detect,bob_detect,both_detect,rate_alice_detect,rate_bob_detect,rate_both_detect
+0,0,106,0,0,0,0,0,0
+0,1,79,0,0,0,0,0,0
+1,0,87,0,0,0,0,0,0
+1,1,91,0,0,0,0,0,0

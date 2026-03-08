@@ -1,0 +1,16 @@
+﻿omega0_geom [1/km] = 0.010649466622338281
+GKSL base dm2 [eV^2] = 0.01
+- T2K_app_FHC        type=appearance   bins=18  chi2_SM=  94.129  chi2_GEO=  93.824  dchi2=   0.304
+- T2K_app_RHC        type=appearance   bins=18  chi2_SM=  37.503  chi2_GEO=  37.422  dchi2=   0.081
+- T2K_dis_FHC        type=disappearance bins=18  chi2_SM=  74.742  chi2_GEO=  74.742  dchi2=  -0.000
+- T2K_dis_RHC        type=disappearance bins=18  chi2_SM=  40.787  chi2_GEO=  40.795  dchi2=  -0.007
+
+------------------------
+TOTAL chi2_SM  = 247.160
+TOTAL chi2_GEO = 246.782
+Delta chi2 = chi2_SM - chi2_GEO = 0.378
+------------------------
+
+
+EXIT_CODE: 0
+

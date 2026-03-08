@@ -1,0 +1,46 @@
+{
+  "best_config": {
+    "config_id": "scope=by_channel|form=tilt_abs_quad|L0=1|gamma=0.1",
+    "profile_scope": "by_channel",
+    "profile_form": "tilt_abs_quad",
+    "L0_km": 1.0,
+    "gamma_km_inv": 0.1,
+    "mae_all_per_1M": 3.1753646695415565,
+    "mae_wide_per_1M": 4.763047004301179,
+    "rmse_wide_per_1M": 6.18392750586513,
+    "slot6_mae_per_1M": 2.231199253133198e-11,
+    "sign_rate": 1.0,
+    "gamma_shift_mean_per_1M": 3.366767061448623,
+    "dynamic_sensitive": "YES"
+  },
+  "top10": [
+    {
+      "config_id": "scope=by_channel|form=tilt_abs_quad|L0=1|gamma=0",
+      "profile_scope": "by_channel",
+      "profile_form": "tilt_abs_quad",
+      "L0_km": 1.0,
+      "gamma_km_inv": 0.0,
+      "mae_all_per_1M": 0.21254467124353782,
+      "mae_wide_per_1M": 0.31881700685415076,
+      "rmse_wide_per_1M": 0.43573815708763525,
+      "slot6_mae_per_1M": 2.231199253133198e-11,
+      "sign_rate": 1.0,
+      "gamma_shift_mean_per_1M": 0.0,
+      "dynamic_sensitive": "NO"
+    },
+    {
+      "config_id": "scope=by_channel|form=tilt_abs_quad|L0=1|gamma=0.1",
+      "profile_scope": "by_channel",
+      "profile_form": "tilt_abs_quad",
+      "L0_km": 1.0,
+      "gamma_km_inv": 0.1,
+      "mae_all_per_1M": 3.1753646695415565,
+      "mae_wide_per_1M": 4.763047004301179,
+      "rmse_wide_per_1M": 6.18392750586513,
+      "slot6_mae_per_1M": 2.231199253133198e-11,
+      "sign_rate": 1.0,
+      "gamma_shift_mean_per_1M": 3.366767061448623,
+      "dynamic_sensitive": "YES"
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "in_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauge_structure_test\\out\\quasar_jet_matches_v1.csv",
+  "coord_col": "qso_dec_deg",
+  "beta_col": "delta_wrap90_deg",
+  "ra_col": "qso_ra_deg",
+  "target_p": 0.1536,
+  "n_perm": 5000,
+  "seed": 12345,
+  "n_rows": 84,
+  "top_matches": [
+    {
+      "partition_family": "ra_hemisphere",
+      "partition_rule": "cos(qso_ra_deg - 164 deg) >= 0",
+      "metric": "abs",
+      "statistic": -4.115560640732266,
+      "p_value_signed": 0.0798,
+      "p_value_abs": 0.1544,
+      "distance_to_target_abs_p": 0.0008000000000000229,
+      "n_pos": 46,
+      "n_neg": 38,
+      "center_deg": 164
+    },
+    {
+      "partition_family": "ra_hemisphere",
+      "partition_rule": "cos(qso_ra_deg - 344 deg) >= 0",
+      "metric": "abs",
+      "statistic": 4.115560640732266,
+      "p_value_signed": 0.0798,
+      "p_value_abs": 0.1544,
+      "distance_to_target_abs_p": 0.0008000000000000229,
+      "n_pos": 38,
+      "n_neg": 46,
+      "center_deg": 344
+    },
+    {
+      "partition_family": "dec_threshold",
+      "partition_rule": "qso_dec_deg >= 11.730833",
+      "metric": "signed",
+      "statistic": -8.18244514106583,
+      "p_value_signed": 0.0792,
+      "p_value_abs": 0.1588,
+      "distance_to_target_abs_p": 0.00520000000000001,
+      "n_pos": 29,
+      "n_neg": 55
+    },
+    {
+      "partition_family": "dec_threshold",
+      "partition_rule": "qso_dec_deg >= 55.382778",
+      "metric": "signed",
+      "statistic": -13.210526315789474,
+      "p_value_signed": 0.0806,
+      "p_value_abs": 0.159,
+      "distance_to_target_abs_p": 0.005400000000000016,
+      "n_pos": 8,
+      "n_neg": 76
+    },
+    {
+      "partition_family": "dec_threshold",
+      "partition_rule": "qso_dec_deg >= 29.245556",
+      "metric": "signed",
+      "statistic": -9.069635627530364,
+      "p_value_signed": 0.0808,
+      "p_value_abs": 0.1626,
+      "distance_to_target_abs_p": 0.009000000000000008,
+      "n_pos": 19,
+      "n_neg": 65
+    },
+    {
+      "partition_family": "ra_hemisphere",
+      "partition_rule": "cos(qso_ra_deg - 44 deg) >= 0",
+      "metric": "abs",
+      "statistic": 4.036363636363635,
+      "p_value_signed": 0.0842,
+      "p_value_abs": 0.1636,
+      "distance_to_target_abs_p": 0.010000000000000009,
+      "n_pos": 40,
+      "n_neg": 44,
+      "center_deg": 44
+    },
+    {
+      "partition_family": "ra_hemisphere",
+      "partition_rule": "cos(qso_ra_deg - 45 deg) >= 0",
+      "metric": "abs",
+      "statistic": 4.036363636363635,
+      "p_value_signed": 0.0842,
+      "p_value_abs": 0.1636,
+      "distance_to_target_abs_p": 0.010000000000000009,
+      "n_pos": 40,
+      "n_neg": 44,
+      "center_deg": 45
+    },
+    {
+      "partition_family": "ra_hemisphere",
+      "partition_rule": "cos(qso_ra_deg - 46 deg) >= 0",
+      "metric": "abs",
+      "statistic": 4.036363636363635,
+      "p_value_signed": 0.0842,
+      "p_value_abs": 0.1636,
+      "distance_to_target_abs_p": 0.010000000000000009,
+      "n_pos": 40,
+      "n_neg": 44,
+      "center_deg": 46
+    },
+    {
+      "partition_family": "ra_hemisphere",
+      "partition_rule": "cos(qso_ra_deg - 47 deg) >= 0",
+      "metric": "abs",
+      "statistic": 4.036363636363635,
+      "p_value_signed": 0.0842,
+      "p_value_abs": 0.1636,
+      "distance_to_target_abs_p": 0.010000000000000009,
+      "n_pos": 40,
+      "n_neg": 44,
+      "center_deg": 47
+    },
+    {
+      "partition_family": "ra_hemisphere",
+      "partition_rule": "cos(qso_ra_deg - 224 deg) >= 0",
+      "metric": "abs",
+      "statistic": -4.036363636363635,
+      "p_value_signed": 0.0842,
+      "p_value_abs": 0.1636,
+      "distance_to_target_abs_p": 0.010000000000000009,
+      "n_pos": 44,
+      "n_neg": 40,
+      "center_deg": 224
+    },
+    {
+      "partition_family": "ra_hemisphere",
+      "partition_rule": "cos(qso_ra_deg - 225 deg) >= 0",
+      "metric": "abs",
+      "statistic": -4.036363636363635,
+      "p_value_signed": 0.0842,
+      "p_value_abs": 0.1636,
+      "distance_to_target_abs_p": 0.010000000000000009,
+      "n_pos": 44,
+      "n_neg": 40,
+      "center_deg": 225
+    },
+    {
+      "partition_family": "ra_hemisphere",
+      "partition_rule": "cos(qso_ra_deg - 226 deg) >= 0",
+      "metric": "abs",
+      "statistic": -4.036363636363635,
+      "p_value_signed": 0.0842,
+      "p_value_abs": 0.1636,
+      "distance_to_target_abs_p": 0.010000000000000009,
+      "n_pos": 44,
+      "n_neg": 40,
+      "center_deg": 226
+    }
+  ]
+}

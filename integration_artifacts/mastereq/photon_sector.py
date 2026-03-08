@@ -155,10 +155,88 @@ def accumulation_prereg_locked_check(
     }
 
 
+def skyfold_anisotropy_prereg_check(
+    sky_coord_deg: list[float] | np.ndarray,
+    beta_deg: list[float] | np.ndarray,
+    sigma_deg: list[float] | np.ndarray | None = None,
+    *,
+    n_perm: int = 20000,
+    seed: int = 12345,
+    abs_metric: bool = False,
+) -> dict[str, float | int | str]:
+    """Locked sky-fold anisotropy falsifier with permutation null.
+
+    The sample is split by the sign of a preregistered sky coordinate
+    (e.g. declination or galactic latitude). The statistic is the weighted
+    difference of hemisphere means, with weights 1/sigma^2. A permutation null
+    is produced by shuffling the hemisphere labels while keeping the values and
+    uncertainties fixed.
+    """
+    coord = np.asarray(sky_coord_deg, dtype=float)
+    beta = np.asarray(beta_deg, dtype=float)
+    sigma = np.ones_like(beta, dtype=float) if sigma_deg is None else np.asarray(sigma_deg, dtype=float)
+
+    mask = np.isfinite(coord) & np.isfinite(beta) & np.isfinite(sigma) & (sigma > 0.0)
+    coord = coord[mask]
+    beta = beta[mask]
+    sigma = sigma[mask]
+    if coord.size < 2:
+        raise ValueError("Need at least two valid rows for sky-fold test")
+
+    side = coord >= 0.0
+    n_pos = int(np.sum(side))
+    n_neg = int(np.sum(~side))
+    if n_pos == 0 or n_neg == 0:
+        raise ValueError("Sky-fold test requires rows on both sides of the fold")
+
+    values = np.abs(beta) if bool(abs_metric) else beta
+    weights = 1.0 / np.square(sigma)
+
+    def _weighted_diff(lbl: np.ndarray) -> float:
+        pos = lbl
+        neg = ~lbl
+        wp = float(np.sum(weights[pos]))
+        wn = float(np.sum(weights[neg]))
+        mp = float(np.sum(weights[pos] * values[pos]) / wp)
+        mn = float(np.sum(weights[neg] * values[neg]) / wn)
+        return mp - mn
+
+    stat = _weighted_diff(side)
+    rng = np.random.default_rng(int(seed))
+    perm_stats = np.empty(int(n_perm), dtype=float)
+    idx = np.arange(coord.size)
+    for i in range(int(n_perm)):
+        rng.shuffle(idx)
+        perm_side = side[idx]
+        perm_stats[i] = _weighted_diff(perm_side)
+
+    if stat >= 0.0:
+        p_signed = float(np.mean(perm_stats >= stat))
+    else:
+        p_signed = float(np.mean(perm_stats <= stat))
+    p_abs = float(np.mean(np.abs(perm_stats) >= abs(stat)))
+
+    return {
+        "fold_rule": "sky_coord_deg >= 0",
+        "metric": "abs(beta)" if bool(abs_metric) else "signed(beta)",
+        "weighting": "uniform" if sigma_deg is None else "inverse_variance",
+        "n_total": int(coord.size),
+        "n_pos": n_pos,
+        "n_neg": n_neg,
+        "statistic": float(stat),
+        "p_value_signed": p_signed,
+        "p_value_abs": p_abs,
+        "n_perm": int(n_perm),
+        "seed": int(seed),
+        "verdict": "NULL_COMPATIBLE" if p_abs > 0.05 else "ANISOTROPY_CANDIDATE",
+    }
+
+
 __all__ = [
     "make_photon_birefringence_damping_fn",
     "cmb_prereg_locked_check",
     "frw_E",
     "frw_I",
     "accumulation_prereg_locked_check",
+    "skyfold_anisotropy_prereg_check",
 ]

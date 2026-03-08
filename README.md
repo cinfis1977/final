@@ -55,6 +55,24 @@ python .\tools\verdict_group_eval.py
 python .\tools\make_fig_strong_deltachi2.py
 ```
 
+## Performance-pass reproducibility (updated, project-relative)
+
+Canonical performance runbook is now:
+
+- [paper/PERFORMANCE_RUNBOOK_20260305_UPDATED.md](paper/PERFORMANCE_RUNBOOK_20260305_UPDATED.md)
+
+This runbook has been normalized to this project layout (no `bundle/CODE` command paths):
+
+- project root scripts: `./*.py`
+- real datasets: `./data/*` and `./t2k_release_extract/*`
+- run outputs: `./LOCAL_RUNS/*` and `./out/*`
+
+Included sector coverage:
+
+- WEAK, STRONG, EM, DM, MS, LIGO
+
+Important: LIGO commands in this updated runbook are also project-relative now (`./data/gw/...`, `./out/LIGO/...`).
+
 ## Integration equivalence evidence (paper-grade)
 
 Deterministic golden-output regeneration + strict equivalence tests live under `integration_artifacts/`.
@@ -168,10 +186,13 @@ The paper section and runner examples use a “cyto_full” style folder convent
   - `tools/run_verdict.ps1`
 - Command list consumed by verdict runner:
   - `tools/verdict_commands.txt`
-- Curated manual command sets:
+- Curated manual command sets (current):
+  - [paper/PERFORMANCE_RUNBOOK_20260305_UPDATED.md](paper/PERFORMANCE_RUNBOOK_20260305_UPDATED.md)
+- Legacy/archival command lists (reference only):
   - `verdict_reproducer_commands_v1.md`
   - `CODEX_FINAL_RUN_COMMANDS.md`
   - `CODEX_FINAL_RUN_COMMANDS_v2.txt`
+  - `CODEX_FINAL_RUN_COMMANDS_v3.txt`
 - Data allowlist used by runner checks:
   - `tools/data_allowlist.txt`
 

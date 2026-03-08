@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "name": "STRONG C5A PDG rho table (paths + diag)",
+    "note": "Real-data reproduction pack for paper-facing IO. Uses diagonal uncertainties from the CSV (no full covariance provided)."
+  },
+  "model": {
+    "s0_GeV2": 1.0,
+    "dt_max": 0.05,
+    "nb": 600,
+    "b_max": 12.0,
+    "sigma_norm_mb": 1.0
+  },
+  "geo": {
+    "A": 0.0,
+    "template": "cos",
+    "phi0": 0.0,
+    "omega": 1.0
+  },
+  "paths": {
+    "data_csv": "../../../../data/hepdata/pdg_rho_clean_for_runner.csv"
+  },
+  "columns": {
+    "sqrts_GeV": "sqrts_GeV",
+    "rho": "rho",
+    "rho_unc": "err"
+  }
+}

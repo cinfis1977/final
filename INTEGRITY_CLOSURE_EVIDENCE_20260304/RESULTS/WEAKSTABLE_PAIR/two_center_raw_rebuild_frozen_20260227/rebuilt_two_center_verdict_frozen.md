@@ -1,0 +1,47 @@
+# Rebuilt Two-Center Verdict (Frozen Audit)
+
+## Input Paths (Exact)
+- modea_points: `C:\Dropbox\projects\new_master_equation_with_gauge_structure_test\out\particle_specific_cytofull_A1_B2\ModeA_points.csv`
+- modeb_points: `C:\Dropbox\projects\new_master_equation_with_gauge_structure_test\out\particle_specific_cytofull_A1_B2\ModeB_points.csv`
+- modeb_holdout_points: `C:\Dropbox\projects\new_master_equation_with_gauge_structure_test\out\particle_specific_cytofull_A1_B2_direct\ModeB_holdout_points.csv`
+- modea_a2b3_points: `C:\Dropbox\projects\new_master_equation_with_gauge_structure_test\out\particle_specific_cytofull_A2_B3\ModeA_points.csv`
+- targets_csv: `C:\Dropbox\projects\new_master_equation_with_gauge_structure_test\out\particle_specific_cytofull_A1_B2_direct\targets_used.csv`
+- track8_csv: ``
+- track8_script: `C:\Dropbox\projects\new_master_equation_with_gauge_structure_test\two_center_track8_shell_monotonicity_stability_sweep_v1_PREPAPER_DROPIN_PATHSAFE.py`
+- track8_comparator_used: `generated_from_track8_script:C:\Dropbox\projects\new_master_equation_with_gauge_structure_test\two_center_track8_shell_monotonicity_stability_sweep_v1_PREPAPER_DROPIN_PATHSAFE.py;generated_csv:C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git\out\two_center_raw_rebuild_frozen_20260227\track8_current_layer_generated_frozen.csv`
+
+## Frozen Thresholds (Ex-Ante)
+- width_scale: `1.0`
+- corridor_min: `0.25`
+- reject_max: `0.75`
+- leak_ratio_max: `0.9`
+- sep_s0: `0.11`
+- confidence_quantile: `0.25`
+
+## Comparison Summary
+- matched_pairs: **21**
+- only_track8_pairs: **0**
+- only_rebuilt_pairs: **0**
+- classification_changes: **0**
+- confidence_changes: **1**
+
+## Shell Distribution (Rebuilt)
+- adjacent / REPULSIVE: 3
+- adjacent / STABLE-INTERMEDIATE-CANDIDATE: 8
+- next_nearest / REPULSIVE: 5
+- next_nearest / STABLE-INTERMEDIATE-CANDIDATE: 5
+
+## Shell Monotonicity
+- status: **OK**
+- adjacent_stable_fraction: 0.727272727273
+- next_nearest_stable_fraction: 0.5
+- adjacent_median_delta_mz: 0.108460807255
+- next_nearest_median_delta_mz: 29.15727387
+
+## Watch Anchors
+- T02<->T03: track8=STABLE-INTERMEDIATE-CANDIDATE -> rebuilt=STABLE-INTERMEDIATE-CANDIDATE, bc_track8=STRONG_STABLE -> bc_rebuilt=STRONG_STABLE
+- T12<->T07: track8=REPULSIVE -> rebuilt=REPULSIVE, bc_track8=STRONG_REPULSIVE -> bc_rebuilt=STRONG_REPULSIVE
+
+## Verdict
+- **PASS-DIAGNOSTIC-REBUILD**
+

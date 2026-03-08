@@ -1,0 +1,2 @@
+﻿C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git\.venv\Scripts\python.exe run_strong_c5a_paper_run.py --out_dir C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git\out\log_capture\2026-03-03_run02\strong_c5a
+

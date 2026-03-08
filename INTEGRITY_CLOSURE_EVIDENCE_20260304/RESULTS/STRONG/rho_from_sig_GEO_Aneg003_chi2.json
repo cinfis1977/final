@@ -1,0 +1,15 @@
+{
+  "sigma_data": ".\\data\\hepdata\\pdg_sigma_tot_clean_for_runner.csv",
+  "rho_data": ".\\data\\hepdata\\pdg_rho_clean_for_runner.csv",
+  "A": -0.003,
+  "template": "cos",
+  "env_mode": "eikonal",
+  "sqrts_ref_GeV": 13000.0,
+  "delta_geo_ref": -1.315523,
+  "c1_abs": 0.725147,
+  "n": 4,
+  "chi2_SM_disp": 29.250876134345837,
+  "chi2_GEO_disp": 29.65118420219672,
+  "dchi2": -0.400308067850883,
+  "note": "rho computed from sigma_tot via rho\u2248(pi/2)d ln sigma/d ln s; diagnostic harness"
+}

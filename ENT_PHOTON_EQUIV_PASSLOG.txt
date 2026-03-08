@@ -1,0 +1,25 @@
+[2026-03-07] Entanglement/Photon equivalence gate log
+
+Command:
+C:/Dropbox/projects/new_master_equation_with_gauga_structure_test_git/.venv/Scripts/python.exe -m pytest -q integration_artifacts/mastereq/tests/test_equivalence_entanglement_runner.py integration_artifacts/mastereq/tests/test_equivalence_photon_birefringence_runner.py
+
+Result:
+......                                                                   [100%]
+6 passed in 5.55s
+
+Status:
+- test_equivalence_entanglement_runner.py : PASS
+- test_equivalence_photon_birefringence_runner.py : PASS
+- test_equivalence_photon_birefringence_skyfold_runner.py : PASS
+
+Notes:
+- Entanglement equivalence covers CHSH coincidence audit parity and microphysics wiring parity.
+- Photon equivalence covers locked CMB / accumulation formulas and microphysics wiring parity.
+- Sky-fold equivalence covers the new permutation-based anisotropy falsifier runner against the shared helper math.
+
+[2026-03-07] Additional photon sky-fold command:
+C:/Dropbox/projects/new_master_equation_with_gauga_structure_test_git/.venv/Scripts/python.exe -m pytest -q integration_artifacts/mastereq/tests/test_equivalence_photon_birefringence_skyfold_runner.py
+
+Result:
+.                                                                        [100%]
+1 passed in 1.05s

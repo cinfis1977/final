@@ -1,0 +1,43 @@
+﻿# em_paper_run
+
+## Command
+
+```
+C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git\.venv\\Scripts\\python.exe run_em_paper_run.py --out_dir out\\em_paper
+```
+
+## Stdout
+
+```
+
+```
+
+## Stderr
+
+```
+
+```
+
+## Summary JSON
+
+```json
+{
+    "name":  "em_paper_run",
+    "cwd":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git",
+    "cmd":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\.venv\\\\Scripts\\\\python.exe run_em_paper_run.py --out_dir out\\\\em_paper",
+    "exe":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\.venv\\\\Scripts\\\\python.exe",
+    "args":  [
+                 "run_em_paper_run.py",
+                 "--out_dir",
+                 "out\\\\em_paper"
+             ],
+    "start_utc":  "2026-03-03T00:19:31.1760862Z",
+    "end_utc":  "2026-03-03T00:19:35.2361481Z",
+    "duration_sec":  4.06,
+    "exit_code":  0,
+    "stdout_path":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\\\pass_runs\\20260303_031717\\em_paper_run.stdout.txt",
+    "stderr_path":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\\\pass_runs\\20260303_031717\\em_paper_run.stderr.txt"
+}
+
+```
+

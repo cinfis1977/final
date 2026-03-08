@@ -1,0 +1,103 @@
+# CODEX_FINAL_RUN_COMMANDS_v3.txt
+# FINAL RUN COMMANDS (latest locked runs; PASS criteria varies by sector)
+# Date: 2026-03-03
+# Run from repo root. No absolute paths.
+
+# ------------------------------------------------------------
+# 0) Setup
+# ------------------------------------------------------------
+
+Set-Location '.'
+
+$py = Join-Path (Get-Location) '.venv\Scripts\python.exe'
+if (-not (Test-Path $py)) { $py = 'python' }
+
+New-Item -ItemType Directory -Force -Path .\out\WEAK, .\out\STRONG, .\out\EM, .\out\DM | Out-Null
+
+
+# ------------------------------------------------------------
+# 1) WEAK (T2K forward, SM vs GEO at fixed alpha=0 anchor)
+# Notes:
+# - This matches the recent micro-scan anchor around A≈-0.0412 with alpha≈0.
+# - Use the pair (A=0) vs (A=-0.0412) to compute a SM-vs-GEO delta externally.
+# ------------------------------------------------------------
+
+# WEAK / SM reference
+& $py .\nova_mastereq_forward_kernel_BREATH_THREAD_GKSL_DYNAMICS.py `
+  --pack .\t2k_channels_real_approx.json `
+  --kernel rt --k_rt 180 `
+  --A 0.0 --alpha 0.0 --n 0 --E0 1 `
+  --omega0_geom fixed --L0_km 295 `
+  --phi 1.57079632679 --zeta 0.05 `
+  --rho 2.6 --Ye 0.5 `
+  --kappa_gate 0 `
+  --T0 1 --mu 0 --eta 0 `
+  --bin_shift_app 0 --bin_shift_dis 0 `
+  --breath_B 0.3 --breath_w0 0.00387850944887629 --breath_gamma 0.2 `
+  --thread_C 1.0 --thread_w0 0.00387850944887629 --thread_gamma 0.2 `
+  --thread_weight_app 6.0 --thread_weight_dis 0.5 `
+  --flavors 3 --steps 700 `
+  --chi2_mode poisson_dev --poisson_shape none `
+  --out .\out\WEAK\t2k_GKSL_anchor_SM_A0_alpha0.csv
+
+# WEAK / GEO candidate (locked)
+& $py .\nova_mastereq_forward_kernel_BREATH_THREAD_GKSL_DYNAMICS.py `
+  --pack .\t2k_channels_real_approx.json `
+  --kernel rt --k_rt 180 `
+  --A -0.0412 --alpha 0.0 --n 0 --E0 1 `
+  --omega0_geom fixed --L0_km 295 `
+  --phi 1.57079632679 --zeta 0.05 `
+  --rho 2.6 --Ye 0.5 `
+  --kappa_gate 0 `
+  --T0 1 --mu 0 --eta 0 `
+  --bin_shift_app 0 --bin_shift_dis 0 `
+  --breath_B 0.3 --breath_w0 0.00387850944887629 --breath_gamma 0.2 `
+  --thread_C 1.0 --thread_w0 0.00387850944887629 --thread_gamma 0.2 `
+  --thread_weight_app 6.0 --thread_weight_dis 0.5 `
+  --flavors 3 --steps 700 `
+  --chi2_mode poisson_dev --poisson_shape none `
+  --out .\out\WEAK\t2k_GKSL_anchor_GEO_Aneg00412_alpha0.csv
+
+
+# ------------------------------------------------------------
+# 2) STRONG (SM vs GEO, locked-A, poison enforced)
+# Notes:
+# - This is the “paper-run” driver: deterministic artifacts + anti-fallback poison.
+# - PASS signal is `chi2.delta = chi2.sm - chi2.geo` in the summary JSONs.
+# ------------------------------------------------------------
+
+# STRONG / locked A=-0.0412
+.\run_strong_c5a_paper_run.ps1 -OutDir out/STRONG/strong_c5a_lockedA_Aneg00412 -A -0.0412
+
+
+# ------------------------------------------------------------
+# 3) EM (SM vs GEO, locked-A)
+# Notes:
+# - Driver writes `chi2.sm/geo/delta` per channel into out/em_paper/*_summary.json.
+# - PASS-as-improvement (if you want a single-bit verdict): require `chi2.delta = chi2.sm - chi2.geo > 0`.
+# - Otherwise treat this as IO/closure + integrity evidence (it can be neutral/negative vs SM).
+# ------------------------------------------------------------
+
+# EM / locked A=-0.0412 (shape-only + frozen betas recommended)
+.\run_em_paper_run.ps1 -OutDir out/EM/em_lockedA_Aneg00412 -Cov total -A -0.0412 -ShapeOnly -FreezeBetas -BetaNonneg
+
+
+# ------------------------------------------------------------
+# 4) DM (PASS mode + integrity-pack)
+# ------------------------------------------------------------
+
+# 4.1 DM PASS run (scan-free; Codex rule: all folds must have Δχ²_test > 0)
+# Uses the known PASS parameters from the DM paper-run harness.
+.\run_dm_paper_run.ps1 --out_dir out/DM/dm_paper_pass_A01778_a0001 --kfold 5 --seed 2026 --A 0.1778279410 --alpha 0.001
+
+# 4.2 DM integrity-pack (THREAD_ONLY / INTERNAL_ONLY / FULL, poison enforced)
+# Produces out/DM/dm_thread_integrity_v1/DM_THREAD_INTEGRITY_SCORECARD.md
+& $py .\run_dm_thread_integrity_pack_v1.py --out out/DM/dm_thread_integrity_v1 --kfold 5 --seed 2026
+
+
+# ------------------------------------------------------------
+# 5) (Optional) Quick local verification
+# ------------------------------------------------------------
+
+# DM e2e bundle (includes the integrity-pack driver test)
+# & $py -m pytest -q integration_artifacts\mastereq\tests\test_e2e_dm_paper_run_mode.py integration_artifacts\mastereq\tests\test_e2e_dm_thread_normscale_leakage_and_stiffgate_calib.py integration_artifacts\mastereq\tests\test_e2e_dm_thread_integrity_pack_v1.py integration_artifacts\mastereq\tests\test_e2e_dm_thread_integrity_pack_v1_paper_run_mode.py

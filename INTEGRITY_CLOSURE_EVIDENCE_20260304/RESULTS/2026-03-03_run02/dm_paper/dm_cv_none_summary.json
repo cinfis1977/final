@@ -1,0 +1,101 @@
+{
+  "folds": [
+    {
+      "A_best": 0.177827941,
+      "alpha_best": 0.001,
+      "chi2_test_base": 450.5856538323999,
+      "chi2_test_best": 87.55231838775438,
+      "chi2_train_base": 495.25728410832903,
+      "chi2_train_best": 92.96803010536263,
+      "delta_chi2_test": 363.0333354446455,
+      "delta_chi2_train": 402.2892540029664,
+      "env_model": "none",
+      "fold": 0,
+      "n_test_galaxies": 88,
+      "n_test_points": 1650,
+      "n_train_points": 1741,
+      "thread_S0": null,
+      "thread_gate_p": 4.0,
+      "thread_k2": 1.0,
+      "thread_k4": 0.0,
+      "thread_mode": "down",
+      "thread_norm": "median",
+      "thread_norm_scale_train": 1.0,
+      "thread_q": 0.6,
+      "thread_r_weight_power": 1.0,
+      "thread_xi": 0.5,
+      "use_env_scale": null
+    },
+    {
+      "A_best": 0.177827941,
+      "alpha_best": 0.001,
+      "chi2_test_base": 495.25728410832903,
+      "chi2_test_best": 92.96803010536263,
+      "chi2_train_base": 450.5856538323999,
+      "chi2_train_best": 87.55231838775438,
+      "delta_chi2_test": 402.2892540029664,
+      "delta_chi2_train": 363.0333354446455,
+      "env_model": "none",
+      "fold": 1,
+      "n_test_galaxies": 87,
+      "n_test_points": 1741,
+      "n_train_points": 1650,
+      "thread_S0": null,
+      "thread_gate_p": 4.0,
+      "thread_k2": 1.0,
+      "thread_k4": 0.0,
+      "thread_mode": "down",
+      "thread_norm": "median",
+      "thread_norm_scale_train": 1.0,
+      "thread_q": 0.6,
+      "thread_r_weight_power": 1.0,
+      "thread_xi": 0.5,
+      "use_env_scale": null
+    }
+  ],
+  "framing": {
+    "stability_not_accuracy": true
+  },
+  "io": {
+    "data_loaded_from_paths": true,
+    "out_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\log_capture\\2026-03-03_run02\\dm_paper\\dm_cv_none_fixed.csv",
+    "points_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\data\\sparc\\sparc_points.csv"
+  },
+  "params": {
+    "A_max": 0.177827941,
+    "A_min": 0.177827941,
+    "alpha_max": 0.001,
+    "alpha_min": 0.001,
+    "env_model": "none",
+    "g0": 1.2e-10,
+    "kfold": 2,
+    "model": "geo_add_const",
+    "nA": 1,
+    "nAlpha": 1,
+    "seed": 2026,
+    "thread_S0": null,
+    "thread_gate_p": 4.0,
+    "thread_k2": 1.0,
+    "thread_k4": 0.0,
+    "thread_mode": "down",
+    "thread_norm": "median",
+    "thread_q": 0.6,
+    "thread_r_weight_power": 1.0,
+    "thread_xi": 0.5,
+    "use_env_scale": null
+  },
+  "runner": {
+    "name": "dm_holdout_cv_thread",
+    "path": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\dm_holdout_cv_thread.py"
+  },
+  "telemetry": {
+    "all_folds_delta_test_positive": true,
+    "delta_chi2_test": {
+      "max": 402.2892540029664,
+      "mean": 382.66129472380595,
+      "min": 363.0333354446455
+    },
+    "n_galaxies": 175,
+    "n_points": 3391
+  }
+}

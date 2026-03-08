@@ -134,7 +134,18 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--pack", required=True)
     ap.add_argument("--cov", choices=["total", "stat", "sys_corr", "diag_total"], default="total")
     ap.add_argument("--A", type=float, default=0.0)
-    ap.add_argument("--alpha", type=float, default=0.0)
+    ap.add_argument(
+        "--alpha",
+        type=float,
+        default=0.0,
+        help="DEPRECATED (EM only): use --em_alpha_tshape. Kept for backward compatibility.",
+    )
+    ap.add_argument(
+        "--em_alpha_tshape",
+        type=float,
+        default=None,
+        help="EM |t|-shape exponent for f(|t|) = (|t|/t_ref)**em_alpha_tshape; overrides --alpha if provided.",
+    )
     ap.add_argument("--phi", type=float, default=math.pi / 2.0)
     ap.add_argument("--geo_structure", type=str, default="diag")
     ap.add_argument("--geo_gen", type=str, default="lam1")
@@ -178,6 +189,8 @@ def gls_fit_betas(A: np.ndarray, y: np.ndarray, C: np.ndarray) -> np.ndarray:
 def main() -> None:
     args = parse_args()
     pack, df = load_pack(args.pack)
+
+    em_alpha_tshape = float(args.alpha) if args.em_alpha_tshape is None else float(args.em_alpha_tshape)
 
     cov_key_map = {
         "total": "total",
@@ -228,7 +241,7 @@ def main() -> None:
         omega0 = math.pi / max(args.L0_km, 1e-9)
 
     # Shape factor f(|t|) with alpha control (alpha small -> near-constant)
-    f_shape = np.power(np.maximum(t_proxy / max(args.t_ref_GeV, 1e-12), 1e-12), args.alpha)
+    f_shape = np.power(np.maximum(t_proxy / max(args.t_ref_GeV, 1e-12), 1e-12), em_alpha_tshape)
 
     R = np.array([mech_response(tp, omega0, args.zeta, args.R_max, args.t_ref_GeV) for tp in t_proxy], dtype=float)
     delta = args.A * s_fac * g_fac * R * math.sin(args.phi) * f_shape
@@ -260,7 +273,7 @@ def main() -> None:
     print("baseline  : Born (gamma+Z) PDG χ1/χ2, massless; betas fitted per energy group")
     print(f"SM fit    : betas={beta_sm}  chi2_SM={chi2_sm:.6f}")
     print(f"mech      : omega0={omega0:.10f} (1/km) omega0_geom={args.omega0_geom} L0_km={args.L0_km} zeta={args.zeta} R_max={args.R_max} t_ref_GeV={args.t_ref_GeV}")
-    print(f"geo       : A={args.A} alpha={args.alpha} phi={args.phi} structure={args.geo_structure} gen={args.geo_gen}")
+    print(f"geo       : A={args.A} em_alpha_tshape={em_alpha_tshape} phi={args.phi} structure={args.geo_structure} gen={args.geo_gen}")
     print(f"GEO fit   : betas={beta_geo}  chi2_GEO={chi2_geo:.6f}")
     print("\n------------------------")
     print(f"TOTAL chi2_SM  = {chi2_sm:.6f}")

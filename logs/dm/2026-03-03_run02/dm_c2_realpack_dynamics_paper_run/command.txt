@@ -1,0 +1,2 @@
+﻿C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git\.venv\Scripts\python.exe run_dm_c2_paper_run.py --out_dir C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git\out\log_capture\2026-03-03_run02\dm_c2_paper --max_galaxies 5 --min_points 8 --seed 2026 --dt 0.001 --n_steps 300
+

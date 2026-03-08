@@ -1,0 +1,97 @@
+{
+  "generated_utc": "2026-03-03T23:24:04.111780+00:00",
+  "prereg_lock": {
+    "good_ppm": 3.0,
+    "window_ppm": 30.0,
+    "tail3_ppm": -300000.0,
+    "min_n": 8,
+    "max_bins": 8,
+    "targets_csv": "out/MS/real_cyto_3arm_dyn_baselinedrift_20260304/full/A1_B2/targets_used.csv",
+    "analysis_rule": "particle-specific if target-wise p_success signature is nonzero and stable in holdout; MAD signature also stable; third-arm consistency required"
+  },
+  "run_folders": {
+    "pair_b2_dir": "out/MS/real_cyto_3arm_dyn_baselinedrift_20260304/full/A1_B2",
+    "pair_b3_dir": "out/MS/real_cyto_3arm_dyn_baselinedrift_20260304/full/A1_B3_holdout",
+    "third_arm_dir": "out/MS/real_cyto_3arm_dyn_baselinedrift_20260304/full/A2_B3_thirdarm"
+  },
+  "frozen_inputs": [
+    {
+      "path": "out/particle_specific_cytofull_A1_B2/ModeA_points.csv",
+      "size": 147455572,
+      "md5": "3327bb66b2a347d3185541a00e640944",
+      "tag": "mode_a_points"
+    },
+    {
+      "path": "out/particle_specific_cytofull_A1_B2/ModeB_points.csv",
+      "size": 147914416,
+      "md5": "3740b38e3ac436ff5ae7f796fb7f1f45",
+      "tag": "mode_b2_points"
+    },
+    {
+      "path": "out/particle_specific_cytofull_A1_B2_direct/ModeB_holdout_points.csv",
+      "size": 148164506,
+      "md5": "b0dcac5420398031182edffa90c2ff4e",
+      "tag": "mode_b3_points"
+    },
+    {
+      "path": "out/particle_specific_cytofull_A2_B3/ModeA_points.csv",
+      "size": 147914416,
+      "md5": "6b11f1ff8366f7b774f6cbe3d29dda82",
+      "tag": "mode_a2_points"
+    },
+    {
+      "path": "out/MS/real_cyto_3arm_dyn_baselinedrift_20260304/full/A1_B2/targets_used.csv",
+      "size": 237,
+      "md5": "49ab12ae4eb3cdbaf805c32cc62b1e2f",
+      "tag": "targets_csv"
+    }
+  ],
+  "metrics": {
+    "A1_B2_vs_A1_B3": {
+      "median_abs_delta_b2": 0.14052343173708087,
+      "median_abs_delta_b3": 0.14475585266856786,
+      "rank_corr_abs": 0.6783216783216784,
+      "corr_abs": 0.7050535298351627,
+      "nz_targets_b2": 12,
+      "nz_targets_b3": 12,
+      "mad_rank_corr": 0.22377622377622378,
+      "mad_top_b2": "T10",
+      "mad_top_b3": "T04",
+      "mad_top_target_match": false
+    },
+    "third_arm_A2_B3": {
+      "rank_corr_b2_a23": 0.6223776223776225,
+      "rank_corr_b3_a23": 0.43356643356643365,
+      "top_b2": "T02",
+      "top_b3": "T11",
+      "top_a23": "T02",
+      "top_all_match": false
+    },
+    "psuccess_levels": {
+      "A1_B2": {
+        "mean_p_success": 0.39063226835569403,
+        "median_p_success": 0.375,
+        "min_p_success": 0.0,
+        "max_p_success": 1.0
+      },
+      "A1_B3_holdout": {
+        "mean_p_success": 0.40016819224815975,
+        "median_p_success": 0.375,
+        "min_p_success": 0.0,
+        "max_p_success": 1.0
+      },
+      "A2_B3": {
+        "mean_p_success": 0.37584643404184553,
+        "median_p_success": 0.36543914776210906,
+        "min_p_success": 0.0,
+        "max_p_success": 1.0
+      }
+    }
+  },
+  "criteria": {
+    "C1_psuccess": false,
+    "C2_mad": false,
+    "C3_thirdarm": false
+  },
+  "final_verdict": "FAIL"
+}

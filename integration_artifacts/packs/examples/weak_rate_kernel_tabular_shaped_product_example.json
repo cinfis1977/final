@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "baseline_km": 1.0,
+    "note": "A2 example: shaped tabular flux+sigma+eff with strict coverage. With P(E)=1 and identity smearing, expected signal is deterministic from the product in each true bin."
+  },
+  "channels": [
+    {
+      "name": "EXAMPLE_dis_tab_product",
+      "type": "disappearance",
+      "baseline_km": 1.0,
+      "nu_in": "mu",
+      "nu_out": "mu",
+      "rate_kernel": {
+        "exposure": 10.0,
+        "n_steps": 256,
+        "tabular_coverage": "strict",
+        "true_bins": {
+          "E_lo": [0.0, 1.0],
+          "E_hi": [1.0, 3.0]
+        },
+        "smear_rec_by_true": [
+          [1.0, 0.0],
+          [0.0, 1.0]
+        ],
+
+        "flux_model": {"kind": "tabular", "E_lo": [0.0, 1.0], "E_hi": [1.0, 3.0], "y": [2.0, 1.0]},
+        "sigma_model": {"kind": "tabular", "E_lo": [0.0, 1.0], "E_hi": [1.0, 3.0], "y": [1.0, 4.0]},
+        "eff_model": {"kind": "tabular", "E_lo": [0.0, 1.0], "E_hi": [1.0, 3.0], "y": [0.5, 0.2]}
+      },
+      "bins": {
+        "E_lo": [0.0, 1.0],
+        "E_hi": [1.0, 3.0],
+        "E_ctr": [0.5, 2.0],
+        "N_obs": [0.0, 0.0],
+        "N_bkg_sm": [0.0, 0.0]
+      }
+    }
+  ]
+}

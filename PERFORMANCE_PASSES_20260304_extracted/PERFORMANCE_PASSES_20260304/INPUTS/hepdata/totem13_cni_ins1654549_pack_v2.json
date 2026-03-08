@@ -1,0 +1,13 @@
+{
+  "name": "totem13_cni_ins1654549",
+  "description": "TOTEM 13 TeV elastic dsigma/dt (includes CNI region) from HEPData ins1654549 Table1; cleaned columns for strong_elastic_cni_rho_bridge_v1_ENV.py",
+  "meta": {
+    "source": "HEPData ins1654549 v1 Table1",
+    "sqrt_s_TeV": 13.0,
+    "observable": "dsigma/dt",
+    "units": "mb/GeV^2"
+  },
+  "paths": {
+    "dsdt_csv": "totem13_cni_ins1654549_dsdt_v2.csv"
+  }
+}

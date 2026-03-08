@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "purpose": "Explicitly declare which parameters are allowed to be frozen cross-sector (global/structural candidates).",
+  "allowed_cross_sector_freeze": [
+    "A"
+  ],
+  "notes": {
+    "A": "Candidate global/structural geometry amplitude. Eligible for one-time anchor calibration *only if preregistered* and then frozen across sectors.",
+    "alpha": "Not globally coherent across the repo today. Semantics differ by sector; must be treated as sector-specific unless/until unified."
+  },
+  "sector_specific_conventions": {
+    "weak_alpha_Etilt": "WEAK kernel energy-tilt modifier used inside sE(E): (xE**n) * (1 + weak_alpha_Etilt*(xE-1)).",
+    "em_alpha_tshape": "EM |t|-shape exponent used in f(|t|) = (|t|/t_ref)**em_alpha_tshape."
+  }
+}

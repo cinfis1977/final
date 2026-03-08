@@ -18,7 +18,13 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Literal, Optional
 
+import os
+
 import numpy as np
+
+
+if os.environ.get("DM_POISON_PROXY_CALLS") == "1":
+    raise RuntimeError("DM proxy path poisoned: thread_env_model import blocked")
 
 
 NormalizeMode = Literal["none", "mean", "median"]

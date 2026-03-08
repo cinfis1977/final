@@ -1,0 +1,82 @@
+{
+  "amplitude_core_used": true,
+  "anti_fallback": {
+    "missing_modules": [],
+    "pdg_call_poison_active": true,
+    "poisoned_targets": [
+      "strong_sigma_tot_energy_scan_v2.sigma_tot_pdg_mb",
+      "strong_sigma_tot_energy_scan_v2_AIAR_FIX2.sigma_tot_pdg_mb",
+      "strong_rho_energy_scan_v3.sigma_tot_pdg_mb",
+      "strong_rho_energy_scan_v3.dsigma_dlns_pdg_mb",
+      "strong_rho_energy_scan_v3.rho_sm_proxy",
+      "strong_rho_energy_scan_v3_AIAR_FIX2.sigma_tot_pdg_mb",
+      "strong_rho_energy_scan_v3_AIAR_FIX2.dsigma_dlns_pdg_mb",
+      "strong_rho_energy_scan_v3_AIAR_FIX2.rho_sm_proxy",
+      "integration_artifacts.mastereq.strong_pdg_stateful_dynamics.scan_sigma_tot_stateful",
+      "integration_artifacts.mastereq.strong_pdg_stateful_dynamics.scan_rho_stateful"
+    ]
+  },
+  "chi2": {
+    "ndof": 22,
+    "rho": null,
+    "sigma_tot_mb": 8812.930058655094,
+    "telemetry": {
+      "sigma_tot_mb": {
+        "cond_est": 484.00000000000006,
+        "kind": "cov"
+      }
+    },
+    "total": 8812.930058655094
+  },
+  "framing": {
+    "note": "C4 is HEPData-like IO closure (CSV+cov paths) over the amplitude-core; not a physical-accuracy claim.",
+    "stability_not_accuracy": true
+  },
+  "geo": {
+    "geo_applied_in_evolution": false
+  },
+  "integrity": {
+    "ImF_positive": true,
+    "S_abs_le_1": true,
+    "chiI_nonnegative": true,
+    "no_nan_inf": true,
+    "rho_finite": true,
+    "rho_reasonable_bound": true,
+    "sigma_tot_nonnegative": true
+  },
+  "io": {
+    "cov_rho_csv": null,
+    "cov_sigma_tot_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\integration_artifacts\\mastereq\\packs\\strong_c5a\\pdg_sigma_tot_cov_diag.csv",
+    "data_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\data\\hepdata\\pdg_sigma_tot_clean_for_runner.csv",
+    "data_loaded_from_paths": true
+  },
+  "pack": {
+    "meta": {
+      "name": "STRONG C5A PDG sigma_tot table (paths + derived diag-cov)",
+      "note": "Real-data reproduction pack for paper-facing IO. Covariance is a diagonal matrix derived from the per-point quoted errors; used to exercise the cov-path branch, not a claim of correlation modeling or physical accuracy."
+    },
+    "path": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\integration_artifacts\\mastereq\\packs\\strong_c5a\\pdg_sigma_tot_pack.json"
+  },
+  "pars": {
+    "R0": 2.0,
+    "b_max": 12.0,
+    "chiI_cap": 40.0,
+    "chiI_floor": 0.0,
+    "dt_max": 0.05,
+    "g0": 0.8,
+    "g_slope": 0.08,
+    "geo_A": 0.0,
+    "geo_omega": 1.0,
+    "geo_phi0": 0.0,
+    "geo_template": "cos",
+    "kappa_R": 0.15,
+    "lambda_I": 0.6,
+    "lambda_R": 1.2,
+    "nb": 600,
+    "s0_GeV2": 1.0,
+    "sigma_norm_mb": 1.0,
+    "t0": 0.0,
+    "v_R": 0.3
+  },
+  "pdg_baseline_used": false
+}

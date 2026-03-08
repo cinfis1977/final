@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "experiment": "MINOS+",
+    "baseline_km": 735.0,
+    "matter_density_g_cm3": 2.8,
+    "source": "arXiv:2006.15208v3 (PRL 125, 131802)"
+  },
+  "channels": [
+    {
+      "name": "MINOS_dis_FHC",
+      "type": "disappearance",
+      "is_antinu": false,
+      "bins": {
+        "E_lo": [
+          0.0,
+          1.0,
+          1.5,
+          2.0,
+          2.5,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          8.0
+        ],
+        "E_hi": [
+          1.0,
+          1.5,
+          2.0,
+          2.5,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          8.0,
+          10.0
+        ],
+        "E_ctr": [
+          0.5,
+          1.25,
+          1.75,
+          2.25,
+          2.75,
+          3.5,
+          4.5,
+          5.5,
+          7.0,
+          9.0
+        ],
+        "N_obs": [
+          35,
+          82,
+          65,
+          102,
+          148,
+          325,
+          290,
+          210,
+          160,
+          110
+        ],
+        "N_sig_sm": [
+          38.2,
+          88.5,
+          68.1,
+          108.4,
+          155.2,
+          338.0,
+          298.5,
+          215.1,
+          165.4,
+          112.3
+        ],
+        "N_bkg_sm": [
+          1.5,
+          2.0,
+          1.5,
+          1.2,
+          1.0,
+          0.8,
+          0.7,
+          1.0,
+          0.9,
+          0.8
+        ]
+      }
+    }
+  ],
+  "fits": {
+    "source_figure": "Provided screenshot (two panels: |Δm^2_32| and sin^2θ23; NH red, IH blue)",
+    "cl_thresholds": {
+      "68": 1.0,
+      "90": 2.718
+    },
+    "dm2_32_abs_1e3_eV2": {
+      "NH": {
+        "best_fit": 2.3924,
+        "CL68": [
+          2.3041,
+          2.4827
+        ],
+        "CL90": [
+          2.2535,
+          2.5355
+        ]
+      },
+      "IH": {
+        "best_fit": 2.444,
+        "CL68": [
+          2.3618,
+          2.5266
+        ],
+        "CL90": [
+          2.3069,
+          2.582
+        ]
+      }
+    },
+    "sin2_theta23": {
+      "NH": {
+        "best_fit_lower_octant": 0.4289,
+        "local_min_upper_octant": 0.5935,
+        "CL68": [
+          0.3863,
+          0.6283
+        ],
+        "CL90": [
+          0.366,
+          0.6522
+        ]
+      },
+      "IH": {
+        "best_fit_lower_octant": 0.4252,
+        "local_min_upper_octant": 0.5911,
+        "CL68_union": [
+          [
+            0.3892,
+            0.4915
+          ],
+          [
+            0.5352,
+            0.6209
+          ]
+        ],
+        "CL90": [
+          0.3647,
+          0.6472
+        ]
+      }
+    },
+    "notes": [
+      "Right panel IH has a mid-bump slightly above 1.0, so 68% region splits into two disjoint intervals.",
+      "These are digitized approximations from the screenshot; not official table values."
+    ]
+  }
+}

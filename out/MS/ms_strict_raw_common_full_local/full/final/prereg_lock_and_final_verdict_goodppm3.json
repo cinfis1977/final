@@ -1,0 +1,97 @@
+{
+  "generated_utc": "2026-03-04T21:40:39.306860+00:00",
+  "prereg_lock": {
+    "good_ppm": 3.0,
+    "window_ppm": 30.0,
+    "tail3_ppm": -300000.0,
+    "min_n": 8,
+    "max_bins": 8,
+    "targets_csv": "INPUTS/MS/particle_specific_cytofull_A1_B2_direct/targets_used.csv",
+    "analysis_rule": "particle-specific if target-wise p_success signature is nonzero and stable in holdout; MAD signature also stable; third-arm consistency required"
+  },
+  "run_folders": {
+    "pair_b2_dir": "out/MS/ms_strict_raw_common_full_local/full/A1_B2",
+    "pair_b3_dir": "out/MS/ms_strict_raw_common_full_local/full/A1_B3_holdout",
+    "third_arm_dir": "out/MS/ms_strict_raw_common_full_local/full/A2_B3_thirdarm"
+  },
+  "frozen_inputs": [
+    {
+      "path": "INPUTS/MS/particle_specific_cytofull_A1_B2/ModeA_points.csv",
+      "size": 147455572,
+      "md5": "3327bb66b2a347d3185541a00e640944",
+      "tag": "mode_a_points"
+    },
+    {
+      "path": "INPUTS/MS/particle_specific_cytofull_A1_B2/ModeB_points.csv",
+      "size": 147914416,
+      "md5": "3740b38e3ac436ff5ae7f796fb7f1f45",
+      "tag": "mode_b2_points"
+    },
+    {
+      "path": "INPUTS/MS/particle_specific_cytofull_A1_B2_direct/ModeB_holdout_points.csv",
+      "size": 148164506,
+      "md5": "b0dcac5420398031182edffa90c2ff4e",
+      "tag": "mode_b3_points"
+    },
+    {
+      "path": "INPUTS/MS/particle_specific_cytofull_A2_B3/ModeA_points.csv",
+      "size": 147914416,
+      "md5": "6b11f1ff8366f7b774f6cbe3d29dda82",
+      "tag": "mode_a2_points"
+    },
+    {
+      "path": "INPUTS/MS/particle_specific_cytofull_A1_B2_direct/targets_used.csv",
+      "size": 474,
+      "md5": "f5c05c6cabd12961916e3556a86bd2b7",
+      "tag": "targets_csv"
+    }
+  ],
+  "metrics": {
+    "A1_B2_vs_A1_B3": {
+      "median_abs_delta_b2": 0.11617211107412823,
+      "median_abs_delta_b3": 0.11930732788557251,
+      "rank_corr_abs": 0.965034965034965,
+      "corr_abs": 0.9683127065014514,
+      "nz_targets_b2": 12,
+      "nz_targets_b3": 12,
+      "mad_rank_corr": 0.8363636363636365,
+      "mad_top_b2": "T01",
+      "mad_top_b3": "T01",
+      "mad_top_target_match": true
+    },
+    "third_arm_A2_B3": {
+      "rank_corr_b2_a23": 0.8531468531468532,
+      "rank_corr_b3_a23": 0.8531468531468532,
+      "top_b2": "T03",
+      "top_b3": "T03",
+      "top_a23": "T03",
+      "top_all_match": true
+    },
+    "psuccess_levels": {
+      "A1_B2": {
+        "mean_p_success": 0.29046756723543815,
+        "median_p_success": 0.25,
+        "min_p_success": 0.0,
+        "max_p_success": 0.875
+      },
+      "A1_B3_holdout": {
+        "mean_p_success": 0.2969349128612609,
+        "median_p_success": 0.25,
+        "min_p_success": 0.0,
+        "max_p_success": 1.0
+      },
+      "A2_B3": {
+        "mean_p_success": 0.28884575696113407,
+        "median_p_success": 0.25,
+        "min_p_success": 0.0,
+        "max_p_success": 0.875
+      }
+    }
+  },
+  "criteria": {
+    "C1_psuccess": true,
+    "C2_mad": true,
+    "C3_thirdarm": true
+  },
+  "final_verdict": "PASS"
+}

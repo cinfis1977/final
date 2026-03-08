@@ -274,17 +274,48 @@ def safe_ratio(num: np.ndarray, den: np.ndarray, floor: float = 1e-12) -> np.nda
     return num / den2
 
 
-def chi2_gauss_loose(obs: np.ndarray, pred: np.ndarray, systfrac: float = 0.0) -> float:
+def chi2_gauss_loose(
+    obs: np.ndarray,
+    pred: np.ndarray,
+    systfrac: float = 0.0,
+    sigma_floor: float = 0.0,
+) -> float:
     """
     Lightweight, stable chi2. This is NOT the publication-grade statistic;
     it's for debug sanity only.
 
-    var = max(pred, 1.0) + (systfrac*pred)^2
+    var = max(pred, 1.0) + (systfrac*pred)^2 + sigma_floor^2
     """
     obs = np.asarray(obs, float)
     pred = np.asarray(pred, float)
-    var = np.maximum(pred, 1.0) + (systfrac * pred) ** 2
+    var = np.maximum(pred, 1.0) + (systfrac * pred) ** 2 + float(sigma_floor) ** 2
     return float(np.sum((obs - pred) ** 2 / var))
+
+
+def chi2_poisson_deviance(obs: np.ndarray, pred: np.ndarray, floor: float = 1e-12) -> float:
+    """Poisson deviance (-2 log L ratio) for binned counts.
+
+    Computes: 2 * sum( pred - obs + obs * log(obs/pred) )
+    with safe handling of obs=0 and pred floors.
+    """
+    obs = np.asarray(obs, float)
+    pred = np.asarray(pred, float)
+    pred = np.maximum(pred, float(floor))
+
+    term = pred - obs
+    m = obs > 0
+    term[m] = pred[m] - obs[m] + obs[m] * np.log(obs[m] / pred[m])
+    return float(2.0 * np.sum(term))
+
+
+def _poisson_shape_scale(obs: np.ndarray, pred: np.ndarray, floor: float = 1e-12) -> float:
+    obs = np.asarray(obs, float)
+    pred = np.asarray(pred, float)
+    pred_sum = float(np.sum(np.maximum(pred, float(floor))))
+    obs_sum = float(np.sum(np.maximum(obs, 0.0)))
+    if pred_sum <= 0.0:
+        return 1.0
+    return obs_sum / pred_sum
 
 
 def shift_bins(arr: np.ndarray, shift: int) -> np.ndarray:
@@ -322,7 +353,18 @@ def main() -> int:
     # kernel params
     ap.add_argument("--k_rt", type=float, default=180.0, help="RT stiffness baseline (user baseline now 180)")
     ap.add_argument("--A", type=float, default=0.0)
-    ap.add_argument("--alpha", type=float, default=0.0)
+    ap.add_argument(
+        "--alpha",
+        type=float,
+        default=0.0,
+        help="DEPRECATED (WEAK only): use --weak_alpha_Etilt. Kept for backward compatibility.",
+    )
+    ap.add_argument(
+        "--weak_alpha_Etilt",
+        type=float,
+        default=None,
+        help="WEAK kernel energy-tilt modifier; overrides --alpha if provided.",
+    )
     ap.add_argument("--n", type=float, default=0.0)
     ap.add_argument("--E0", type=float, default=1.0)
     ap.add_argument("--phi", type=float, default=math.pi/2)
@@ -351,12 +393,35 @@ def main() -> int:
     ap.add_argument("--rho", type=float, default=0.0)
     ap.add_argument("--Ye", type=float, default=0.5)
 
-    # chi2 debug knob
+    # chi2 (debug only)
+    ap.add_argument(
+        "--chi2_mode",
+        default="gauss_loose",
+        choices=["gauss_loose", "poisson_dev"],
+        help="Chi2 mode (debug only). Default matches legacy behavior.",
+    )
+    ap.add_argument(
+        "--poisson_shape",
+        default="none",
+        choices=["none", "per_channel", "per_channel_common"],
+        help=(
+            "For chi2_mode=poisson_dev: shape-only normalization options. "
+            "per_channel profiles separate scales for SM and GEO; per_channel_common uses SM-derived scale for both."
+        ),
+    )
     ap.add_argument("--systfrac", type=float, default=0.0, help="Loose chi2 systematic fraction (debug only)")
+    ap.add_argument(
+        "--sigma_floor",
+        type=float,
+        default=0.0,
+        help="Absolute sigma floor added in quadrature to loose-chi2 variance (debug only)",
+    )
 
     ap.add_argument("--out", required=True, help="Output CSV path")
 
     args = ap.parse_args()
+
+    weak_alpha_Etilt = float(args.alpha) if args.weak_alpha_Etilt is None else float(args.weak_alpha_Etilt)
 
     with open(args.pack, "r", encoding="utf-8") as f:
         pack = json.load(f)
@@ -368,7 +433,7 @@ def main() -> int:
         L0_km=float(args.L0_km),
         E0_GeV=float(args.E0),
         A=float(args.A),
-        alpha=float(args.alpha),
+        alpha=float(weak_alpha_Etilt),
         n=float(args.n),
         omega_1_per_km=float(args.omega),
         phi=float(args.phi),
@@ -407,7 +472,7 @@ def main() -> int:
     print(f"pack      : {args.pack}")
     print(f"baseline  : L={baseline_km:.1f} km")
     print(f"matter    : rho={args.rho} g/cm^3, Ye={args.Ye}")
-    print(f"kernel    : mode={kp.kernel} k_rt={kp.k_rt} A={kp.A} alpha={kp.alpha} n={kp.n} omega={kp.omega_1_per_km} phi={kp.phi} zeta={kp.zeta} kappa_gate={kp.kappa_gate} T0={kp.T0} mu={kp.mu} eta={kp.eta} breath_B={kp.breath_B} breath_w0={kp.breath_omega0_1_per_km} breath_gamma={kp.breath_gamma} thread_C={kp.thread_C} thread_w0={kp.thread_omega0_1_per_km} thread_gamma={kp.thread_gamma} thread_w_app={kp.thread_weight_app} thread_w_dis={kp.thread_weight_dis}")
+    print(f"kernel    : mode={kp.kernel} k_rt={kp.k_rt} A={kp.A} weak_alpha_Etilt={kp.alpha} n={kp.n} omega={kp.omega_1_per_km} phi={kp.phi} zeta={kp.zeta} kappa_gate={kp.kappa_gate} T0={kp.T0} mu={kp.mu} eta={kp.eta} breath_B={kp.breath_B} breath_w0={kp.breath_omega0_1_per_km} breath_gamma={kp.breath_gamma} thread_C={kp.thread_C} thread_w0={kp.thread_omega0_1_per_km} thread_gamma={kp.thread_gamma} thread_w_app={kp.thread_weight_app} thread_w_dis={kp.thread_weight_dis}")
     print("")
 
     for ch in pack["channels"]:
@@ -469,8 +534,22 @@ def main() -> int:
         pred_geo = sig_geo + bkg_sm
 
         # chi2 (debug only)
-        chi2_sm = chi2_gauss_loose(obs, pred_sm, systfrac=args.systfrac)
-        chi2_geo = chi2_gauss_loose(obs, pred_geo, systfrac=args.systfrac)
+        if args.chi2_mode == "poisson_dev":
+            if args.poisson_shape == "per_channel":
+                s_sm = _poisson_shape_scale(obs, pred_sm)
+                s_geo = _poisson_shape_scale(obs, pred_geo)
+                chi2_sm = chi2_poisson_deviance(obs, pred_sm * s_sm)
+                chi2_geo = chi2_poisson_deviance(obs, pred_geo * s_geo)
+            elif args.poisson_shape == "per_channel_common":
+                s = _poisson_shape_scale(obs, pred_sm)
+                chi2_sm = chi2_poisson_deviance(obs, pred_sm * s)
+                chi2_geo = chi2_poisson_deviance(obs, pred_geo * s)
+            else:
+                chi2_sm = chi2_poisson_deviance(obs, pred_sm)
+                chi2_geo = chi2_poisson_deviance(obs, pred_geo)
+        else:
+            chi2_sm = chi2_gauss_loose(obs, pred_sm, systfrac=args.systfrac, sigma_floor=args.sigma_floor)
+            chi2_geo = chi2_gauss_loose(obs, pred_geo, systfrac=args.systfrac, sigma_floor=args.sigma_floor)
         dchi2 = chi2_sm - chi2_geo
         totals.append((name, chi2_sm, chi2_geo, dchi2))
 

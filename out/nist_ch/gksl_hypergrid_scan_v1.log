@@ -1,0 +1,5 @@
+[OK] wrote: .\out\nist_ch\GKSL_HYPERGRID_SCAN_V1.csv
+[OK] wrote: .\out\nist_ch\GKSL_HYPERGRID_SCAN_V1.md
+[OK] wrote: .\out\nist_ch\MODEL_SCORECARD_GKSL_DYNAMIC_V3.csv
+[OK] wrote: .\out\nist_ch\MODEL_SCORECARD_GKSL_DYNAMIC_V3.md
+best: scope=by_channel|form=tilt_abs_quad|L0=1|gamma=1

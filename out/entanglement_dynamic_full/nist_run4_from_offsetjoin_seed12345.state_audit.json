@@ -1,0 +1,64 @@
+{
+  "state_mode": "gap_proxy",
+  "features_used": {
+    "gap_feature": {
+      "00": 2.0,
+      "01": 2.0,
+      "10": 2.0,
+      "11": 43.0
+    },
+    "jitter_feature": {
+      "00": 1.0,
+      "01": 1.0,
+      "10": 1.0,
+      "11": 28.0
+    }
+  },
+  "coeffs": {
+    "k_gap": 0.0,
+    "k_jitter": 0.0,
+    "gap_scale": 1.0,
+    "jitter_scale": 1.0,
+    "gamma_floor_mult": 0.0
+  },
+  "per_setting_state": {
+    "00": {
+      "a_set": 0,
+      "b_set": 0,
+      "n_rows": 12570,
+      "dt_median": NaN,
+      "dt_mad": NaN,
+      "gap_median": 2.0,
+      "gap_mad": 1.0
+    },
+    "01": {
+      "a_set": 0,
+      "b_set": 1,
+      "n_rows": 12599,
+      "dt_median": NaN,
+      "dt_mad": NaN,
+      "gap_median": 2.0,
+      "gap_mad": 1.0
+    },
+    "10": {
+      "a_set": 1,
+      "b_set": 0,
+      "n_rows": 12980,
+      "dt_median": NaN,
+      "dt_mad": NaN,
+      "gap_median": 2.0,
+      "gap_mad": 1.0
+    },
+    "11": {
+      "a_set": 1,
+      "b_set": 1,
+      "n_rows": 636,
+      "dt_median": NaN,
+      "dt_mad": NaN,
+      "gap_median": 43.0,
+      "gap_mad": 28.0
+    }
+  },
+  "timing_columns_present": false,
+  "note": "If no timing columns are present, dt features are NaN and the runner uses gap_proxy features derived from coinc_idx ordering."
+}

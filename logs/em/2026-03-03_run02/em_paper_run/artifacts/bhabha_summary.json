@@ -1,0 +1,67 @@
+{
+  "chi2": {
+    "delta": 0.0,
+    "geo": 2040.1909305397733,
+    "ndof": 60,
+    "sm": 2040.1909305397733
+  },
+  "framing": {
+    "note": "EM paper-run telemetry (IO closure + schema stability) for the declared proxy model; not a physical-accuracy claim.",
+    "stability_not_accuracy": true
+  },
+  "integrity": {
+    "no_nan_inf": true,
+    "require_positive_ok": true
+  },
+  "io": {
+    "cov_choice": "total",
+    "cov_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\lep_bhabha_cov_total.csv",
+    "data_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\lep_bhabha_table18_clean.csv",
+    "data_loaded_from_paths": true
+  },
+  "pack": {
+    "meta": {
+      "inspire_record": "ins628491",
+      "notes": [
+        "sys_1 and sys_2 treated as independent fully-correlated sources across bins (outer-product).",
+        "stat errors treated as diagonal (symmetrized from +/-).",
+        "cov_total = cov_stat + cov_sys."
+      ],
+      "observable": "d(sigma)/dcos(theta)",
+      "process": "e+ e- -> e+ e- (Bhabha), differential cross section vs cos(theta)",
+      "source": "HEPData CSV export",
+      "table": "Table 18",
+      "units": {
+        "y": "pb"
+      }
+    },
+    "path": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\lep_bhabha_pack.json"
+  },
+  "params": {
+    "A": 0.0,
+    "L0_km": 810.0,
+    "R_max": 10.0,
+    "alpha": 7.5e-05,
+    "beta_nonneg": false,
+    "env_u": null,
+    "env_u0": 1e-08,
+    "freeze_betas": true,
+    "geo_gen": "lam2",
+    "geo_structure": "offdiag",
+    "omega0_geom": "fixed",
+    "phi": 1.5707963267948966,
+    "r_over_Rs": null,
+    "require_positive": false,
+    "shape_only": true,
+    "sqrt_s_GeV": 189.0,
+    "t_ref_GeV": 0.02,
+    "v_kms": null,
+    "zeta": 0.05
+  },
+  "telemetry": {
+    "baseline_import_grouped": false,
+    "baseline_import_used": false,
+    "group_method": "none",
+    "n_groups": 1
+  }
+}

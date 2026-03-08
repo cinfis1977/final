@@ -1,0 +1,97 @@
+{
+  "runner": "entanglement_dynamic_full_runner_v1.py",
+  "layer": "NEW WORK",
+  "no_fit_statement": true,
+  "seed_used_for_null_only": 12345,
+  "input_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\integration_artifacts\\entanglement_photon_bridge\\nist_run4_coincidences.csv",
+  "mapping": {
+    "observed_stream": "gap-valid coincidence rows",
+    "state_to_gamma": {
+      "alignment_lag": 0.0,
+      "window_jitter": 0.0,
+      "coherence_floor": 0.0
+    },
+    "telemetry_only_variables": [
+      "mismatch_load",
+      "rate_n"
+    ]
+  },
+  "per_setting": {
+    "00": {
+      "setting": "00",
+      "alignment_lag": 5858.0,
+      "window_jitter": 4035.0,
+      "mismatch_load": 0.3202380952380952,
+      "coherence_floor": 0.0,
+      "rate_n": 12600.0,
+      "gamma_base_km_inv": 8.105607513315096e-25,
+      "gamma_eff_km_inv": 8.105607513315096e-25,
+      "active_inputs": [
+        "alignment_lag",
+        "window_jitter"
+      ],
+      "active_mappings": [
+        "rate_n -> telemetry only",
+        "mismatch_load -> telemetry only"
+      ],
+      "no_proxy_status": "multi-state telemetry present; gamma mapping remains locked by coefficients"
+    },
+    "01": {
+      "setting": "01",
+      "alignment_lag": 5940.0,
+      "window_jitter": 4093.0,
+      "mismatch_load": 0.32556474705695193,
+      "coherence_floor": 0.0,
+      "rate_n": 12572.0,
+      "gamma_base_km_inv": 8.105607513315096e-25,
+      "gamma_eff_km_inv": 8.105607513315096e-25,
+      "active_inputs": [
+        "alignment_lag",
+        "window_jitter"
+      ],
+      "active_mappings": [
+        "rate_n -> telemetry only",
+        "mismatch_load -> telemetry only"
+      ],
+      "no_proxy_status": "multi-state telemetry present; gamma mapping remains locked by coefficients"
+    },
+    "10": {
+      "setting": "10",
+      "alignment_lag": 5643.0,
+      "window_jitter": 3938.0,
+      "mismatch_load": 0.3054607508532423,
+      "coherence_floor": 0.0,
+      "rate_n": 12892.0,
+      "gamma_base_km_inv": 8.105607513315096e-25,
+      "gamma_eff_km_inv": 8.105607513315096e-25,
+      "active_inputs": [
+        "alignment_lag",
+        "window_jitter"
+      ],
+      "active_mappings": [
+        "rate_n -> telemetry only",
+        "mismatch_load -> telemetry only"
+      ],
+      "no_proxy_status": "multi-state telemetry present; gamma mapping remains locked by coefficients"
+    },
+    "11": {
+      "setting": "11",
+      "alignment_lag": 256288.5,
+      "window_jitter": 182122.5,
+      "mismatch_load": 687.2547169811321,
+      "coherence_floor": 0.0,
+      "rate_n": 265.0,
+      "gamma_base_km_inv": 8.105607513315096e-25,
+      "gamma_eff_km_inv": 8.105607513315096e-25,
+      "active_inputs": [
+        "alignment_lag",
+        "window_jitter"
+      ],
+      "active_mappings": [
+        "rate_n -> telemetry only",
+        "mismatch_load -> telemetry only"
+      ],
+      "no_proxy_status": "multi-state telemetry present; gamma mapping remains locked by coefficients"
+    }
+  }
+}

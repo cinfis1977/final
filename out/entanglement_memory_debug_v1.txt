@@ -1,0 +1,29 @@
+=== ENTANGLEMENT MEMORY DEBUG (Bridge-E0 v1.2.1, NO FIT) ===
+in_csv=.\integration_artifacts\entanglement_photon_bridge\nist_run4_coincidences.csv
+cols=['coinc_idx', 'a_set', 'b_set', 'a_out', 'b_out', 'a_clickmask', 'b_clickmask', 'a_slot', 'b_slot']
+detected_cols: t=coinc_idx a_set=a_set b_set=b_set a_out=a_out b_out=b_out
+setting_map_A={'0': 0, '1': 1}
+setting_map_B={'0': 0, '1': 1}
+N_valid=38329 bad_parse=0 zero_gap=0 neg_gap_drop=0
+gap_min=1.0 gap_max=32664.0
+global_chsh: S=2.455041357825164 sig=0.05182386770624834 counts={'n00': 12600, 'n01': 12572, 'n10': 12892, 'n11': 265} E={'E00': 0.9992063492063492, 'E01': 0.998250079541839, 'E10': 0.9972075705864102, 'E11': 0.539622641509434, 'sigS': 0.05182386770624834}
+bin_try mode=log nbins=12 populated=12 chsh=10
+null_gap_shuffle={'n_ok': 182, 'z95_median': 2.6443008829666796, 'z95_p95': 72.18911653240232}
+null_outcome_shuffle={'n_ok': 165, 'z95_median': 1.7964181463883668, 'z95_p95': 5.7692252687717085}
+chosen_binning mode=log nbins=12 populated=12 chsh=10
+S_inf=2.6141623376478313 sigma_Sinf=0.10765592360550967 tail_bins=[10, 11]
+cal_bins=[5, 6] mode=signed g1=52.895 g2=128.73589164785554 d1=-0.32844805193354576 d2=-0.2185871164088935 tau_m=186.2524549443034 A=-0.4363195749394303
+hold_bins=[7, 8, 9]
+z_p95=1.9363439433203153 z_worst=1.9914293684831685 verdict=PASS
+bin#01 n=31 g=[1,2.37778] gmean=1.3871 S= sigS= counts={'n00': 9, 'n01': 12, 'n10': 10, 'n11': 0} flags(tail=0,cal=0,hold=0) pred= z=
+bin#02 n=42 g=[2.37778,5.65386] gmean=4.16667 S=2 sigS=inf counts={'n00': 15, 'n01': 11, 'n10': 15, 'n11': 1} flags(tail=0,cal=0,hold=0) pred= z=
+bin#03 n=106 g=[5.65386,13.4437] gmean=9.83962 S= sigS= counts={'n00': 35, 'n01': 36, 'n10': 35, 'n11': 0} flags(tail=0,cal=0,hold=0) pred= z=
+bin#04 n=236 g=[13.4437,31.9661] gmean=22.6229 S=1.97560976 sigS=inf counts={'n00': 68, 'n01': 85, 'n10': 82, 'n11': 1} flags(tail=0,cal=0,hold=0) pred= z=
+bin#05 n=600 g=[31.9661,76.0085] gmean=52.895 S=2.28571429 sigS=0.285714286 counts={'n00': 193, 'n01': 190, 'n10': 210, 'n11': 7} flags(tail=0,cal=1,hold=0) pred= z=
+bin#06 n=1329 g=[76.0085,180.732] gmean=128.736 S=2.39557522 sigS=0.266703374 counts={'n00': 430, 'n01': 452, 'n10': 437, 'n11': 10} flags(tail=0,cal=1,hold=0) pred= z=
+bin#07 n=3170 g=[180.732,429.741] gmean=302.694 S=2.20855774 sigS=0.119093521 counts={'n00': 1037, 'n01': 1038, 'n10': 1067, 'n11': 28} flags(tail=0,cal=0,hold=1) pred=2.52826164 z=-1.99142937
+bin#08 n=6310 g=[429.741,1021.83] gmean=710.347 S=2.40454822 sigS=0.131029203 counts={'n00': 2027, 'n01': 2102, 'n10': 2142, 'n11': 39} flags(tail=0,cal=0,hold=1) pred=2.60453622 z=-1.17929154
+bin#09 n=10741 g=[1021.83,2429.7] gmean=1664.17 S=2.4070332 sigS=0.0952474139 counts={'n00': 3558, 'n01': 3516, 'n10': 3594, 'n11': 73} flags(tail=0,cal=0,hold=1) pred=2.61410488 z=-1.44057512
+bin#10 n=11044 g=[2429.7,5777.29] gmean=3784.73 S=2.58855591 sigS=0.107007121 counts={'n00': 3668, 'n01': 3580, 'n10': 3722, 'n11': 74} flags(tail=1,cal=0,hold=0) pred= z=
+bin#11 n=4441 g=[5777.29,13737.2] gmean=8081.8 S=2.63976876 sigS=0.170714909 counts={'n00': 1453, 'n01': 1463, 'n10': 1494, 'n11': 31} flags(tail=1,cal=0,hold=0) pred= z=
+bin#12 n=279 g=[13737.2,32664] gmean=16450.2 S=2 sigS=inf counts={'n00': 107, 'n01': 87, 'n10': 84, 'n11': 1} flags(tail=0,cal=0,hold=0) pred= z=

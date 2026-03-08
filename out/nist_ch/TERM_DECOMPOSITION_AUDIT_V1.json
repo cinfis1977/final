@@ -1,0 +1,96 @@
+{
+  "provider": ".\\CODE\\ch_model_prob_provider_v1_GKSL_DETECTORFIRST_V2_DROPIN.py",
+  "profile_form": "tilt_abs_quad",
+  "gksl": {
+    "gamma_km_inv": 1.0,
+    "L0_km": 1.0
+  },
+  "dominant_term_counts_wide": {
+    "N_pp_00": 6
+  },
+  "mean_abs_J_delta_slot6": 35.40189149152194,
+  "mean_abs_J_delta_wide": 386.62393587015015,
+  "rows": [
+    {
+      "holdout_run": "01_11",
+      "window": "slot6",
+      "J_data": 122.0,
+      "J_model": 77.12690956530082,
+      "J_delta": -44.87309043469918,
+      "dominant_term": "N_pp_00",
+      "dominant_delta": -854.5039136190112
+    },
+    {
+      "holdout_run": "01_11",
+      "window": "slots5-7",
+      "J_data": 398.0,
+      "J_model": 0.9495367285054428,
+      "J_delta": -397.05046327149455,
+      "dominant_term": "N_pp_00",
+      "dominant_delta": -2527.6098583731728
+    },
+    {
+      "holdout_run": "01_11",
+      "window": "slots4-8",
+      "J_data": 550.0,
+      "J_model": -486.650369535274,
+      "J_delta": -1036.650369535274,
+      "dominant_term": "N_pp_00",
+      "dominant_delta": -4132.983792139607
+    },
+    {
+      "holdout_run": "02_54",
+      "window": "slot6",
+      "J_data": 8.0,
+      "J_model": 44.12954878866864,
+      "J_delta": 36.12954878866864,
+      "dominant_term": "N_pp_00",
+      "dominant_delta": 160.16503908868708
+    },
+    {
+      "holdout_run": "02_54",
+      "window": "slots5-7",
+      "J_data": 41.0,
+      "J_model": 123.46563526003568,
+      "J_delta": 82.46563526003568,
+      "dominant_term": "N_pp_00",
+      "dominant_delta": 810.0367248060302
+    },
+    {
+      "holdout_run": "02_54",
+      "window": "slots4-8",
+      "J_data": 176.0,
+      "J_model": 166.78725424121177,
+      "J_delta": -9.21274575878823,
+      "dominant_term": "N_pp_00",
+      "dominant_delta": 1906.2061233257464
+    },
+    {
+      "holdout_run": "03_43",
+      "window": "slot6",
+      "J_data": 13.0,
+      "J_model": -12.203035251197994,
+      "J_delta": -25.203035251197996,
+      "dominant_term": "N_pp_00",
+      "dominant_delta": 465.5010984340147
+    },
+    {
+      "holdout_run": "03_43",
+      "window": "slots5-7",
+      "J_data": 49.0,
+      "J_model": -139.86101084610792,
+      "J_delta": -188.86101084610792,
+      "dominant_term": "N_pp_00",
+      "dominant_delta": 1426.1012398275116
+    },
+    {
+      "holdout_run": "03_43",
+      "window": "slots4-8",
+      "J_data": 151.0,
+      "J_model": -454.5033905492005,
+      "J_delta": -605.5033905492005,
+      "dominant_term": "N_pp_00",
+      "dominant_delta": 2402.3050275608803
+    }
+  ]
+}

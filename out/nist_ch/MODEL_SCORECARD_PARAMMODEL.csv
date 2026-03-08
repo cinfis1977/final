@@ -1,0 +1,13 @@
+run_id,label,window,slots,bitmask_hex,trials_valid,J_data,J_model,j_data_per_1M,j_model_per_1M,delta_J,delta_j_per_1M,sign_ok,provider,emp_N_pp_ab,emp_N_p0_abp,emp_N_0p_apb,emp_N_pp_apbp
+01_11,real_run,slot6,6,0x20,337818518,122,122.341,0.361141,0.362149,0.340699,0.00100853,YES,PARAMMODEL v4.1 (bridge; alpha_pair=1.00986),2416,1101,1177,16
+01_11,real_run,slots5-7,5-7,0x70,337818518,398,416.298,1.17815,1.23231,18.2979,0.054165,YES,PARAMMODEL v4.1 (bridge; alpha_pair=1.00986),7248,3314,3473,63
+01_11,real_run,slots4-8,4-8,0xf8,337818518,550,712.828,1.62809,2.11009,162.828,0.481998,YES,PARAMMODEL v4.1 (bridge; alpha_pair=1.00986),12082,5580,5836,116
+02_54,real_run,slot6,6,0x20,203681460,8,8.1871,0.039277,0.0401956,0.187104,0.000918611,YES,PARAMMODEL v4.1 (bridge; alpha_pair=0.98749),1348,641,686,13
+02_54,real_run,slots5-7,5-7,0x70,203681460,41,-7.77344,0.201295,-0.0381647,-48.7734,-0.239459,NO,PARAMMODEL v4.1 (bridge; alpha_pair=0.98749),3983,1882,2022,38
+02_54,real_run,slots4-8,4-8,0xf8,203681460,176,-22.3116,0.864094,-0.109542,-198.312,-0.973636,NO,PARAMMODEL v4.1 (bridge; alpha_pair=0.98749),6653,3095,3312,70
+03_31,training_stub,slot6,6,0x20,363,0,0,0,0,0,0,YES,PARAMMODEL v4.1 (bridge; alpha_pair=1),0,0,0,0
+03_31,training_stub,slots5-7,5-7,0x70,363,0,0,0,0,0,0,YES,PARAMMODEL v4.1 (bridge; alpha_pair=1),0,0,0,0
+03_31,training_stub,slots4-8,4-8,0xf8,363,0,0,0,0,0,0,YES,PARAMMODEL v4.1 (bridge; alpha_pair=1),0,0,0,0
+03_43,real_run,slot6,6,0x20,107109594,13,13.1155,0.121371,0.12245,0.115531,0.00107863,YES,PARAMMODEL v4.1 (bridge; alpha_pair=1.01146),783,370,391,9
+03_43,real_run,slots5-7,5-7,0x70,107109594,49,57.7422,0.457475,0.539094,8.74218,0.081619,YES,PARAMMODEL v4.1 (bridge; alpha_pair=1.01146),2348,1082,1187,30
+03_43,real_run,slots4-8,4-8,0xf8,107109594,151,103.244,1.40977,0.963912,-47.7558,-0.445859,YES,PARAMMODEL v4.1 (bridge; alpha_pair=1.01146),3953,1801,1947,54

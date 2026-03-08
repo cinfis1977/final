@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "name": "STRONG C5A PDG sigma_tot table (paths + derived diag-cov)",
+    "note": "Real-data reproduction pack for paper-facing IO. Covariance is a diagonal matrix derived from the per-point quoted errors; used to exercise the cov-path branch, not a claim of correlation modeling or physical accuracy."
+  },
+  "model": {
+    "s0_GeV2": 1.0,
+    "dt_max": 0.05,
+    "nb": 600,
+    "b_max": 12.0,
+    "sigma_norm_mb": 1.0
+  },
+  "geo": {
+    "A": 0.0,
+    "template": "cos",
+    "phi0": 0.0,
+    "omega": 1.0
+  },
+  "paths": {
+    "data_csv": "../../../../data/hepdata/pdg_sigma_tot_clean_for_runner.csv",
+    "cov_sigma_tot_csv": "pdg_sigma_tot_cov_diag.csv"
+  },
+  "columns": {
+    "sqrts_GeV": "sqrt_s",
+    "sigma_tot_mb": "sigma_tot"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "runner": "run_entanglement_nist_run4_chsh_audit_paper_v1.py",
+  "layer": "paper-faithful",
+  "claim_boundary": {
+    "does": "Runs the validated NIST run4 coincidence audit and reports E(a,b), CHSH S, and a no-fit null benchmark.",
+    "does_not": "Does not claim a full first-principles dynamic derivation of Bell correlations from the unified model."
+  },
+  "inputs": {
+    "in_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\integration_artifacts\\entanglement_photon_bridge\\nist_run4_coincidences.csv",
+    "sha256": "464a03a7d51d3e3997f58b33030e8b0a7c80661bbf09fa517ec4dcaa6040a497"
+  },
+  "counts": {
+    "00": 12600,
+    "01": 12572,
+    "10": 12892,
+    "11": 265
+  },
+  "outcomes": {
+    "00": {
+      "pp": 6309,
+      "pm": 2,
+      "mp": 3,
+      "mm": 6286
+    },
+    "01": {
+      "pp": 6338,
+      "pm": 2,
+      "mp": 9,
+      "mm": 6223
+    },
+    "10": {
+      "pp": 6460,
+      "pm": 11,
+      "mp": 7,
+      "mm": 6414
+    },
+    "11": {
+      "pp": 106,
+      "pm": 29,
+      "mp": 32,
+      "mm": 98
+    }
+  },
+  "observables": {
+    "E": {
+      "00": 0.9992063492063492,
+      "01": 0.998250079541839,
+      "10": 0.9972075705864102,
+      "11": 0.539622641509434
+    },
+    "S_signed": 2.455041357825164,
+    "S_abs": 2.455041357825164
+  },
+  "null_benchmark": {
+    "null_trials": 20000,
+    "seed": 20260307,
+    "observed_S_abs": 2.455041357825164,
+    "null_mean_S_abs": 0.050698970231270804,
+    "null_p95_S_abs": 0.12499017767925512,
+    "null_pvalue_S_abs": 0.0
+  },
+  "no_fit_statement": "No parameter fit or tuning is performed in this runner."
+}

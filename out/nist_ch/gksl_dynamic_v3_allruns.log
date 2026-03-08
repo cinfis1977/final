@@ -1,0 +1,4 @@
+[OK] wrote: out\nist_ch\model_params_gksl_dynamic_v3_allruns.json
+[OK] wrote: out\nist_ch\gksl_predictive_v3_report.json
+train_runs: ['01_11', '02_54', '03_43']
+holdout_runs: []

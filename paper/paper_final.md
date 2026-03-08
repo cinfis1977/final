@@ -1,16 +1,22 @@
-# Unified Equation (GKSL) Geometric Modulation (one-for-all implementation) - Ahmet Özbalık - research notes & reproducible runs - Weak, EM, Strong, Dark Matter, GW (LIGO), Mass Spectrometry, Entanglement (CHSH), Photon (birefringence/decay) - Internal PASS where tested; broader physical claim not yet established; EM conditioning under study; GW PENDING (band calibration); DM PENDING (results-to-paper embed)
+# Unified Equation (GKSL) Geometric Modulation (one-for-all implementation) - Ahmet Özbalık - research notes and current performance runbook - Weak, EM, Strong, Dark Matter, GW (LIGO), Mass Spectrometry, Entanglement (Bell/CHSH/CH), Photon (birefringence/propagation) - current performance scoreboard: WEAK / STRONG / DM / MS / LIGO = performance pass; EM = not established; Entanglement/Photon = bridge/audit achieved, first-principles dynamic performance closure pending
 
 **One-for-all implementation (what this means):** this draft uses a single **locked** base parameterization (a small set of “physical” knobs) plus a **deterministic sector map** that generates each sector’s runner parameters from that same base. The intent is to avoid per-sector tuning and make cross-sector checks auditable: if the base and map are fixed, each sector run is a reproducible consequence of the same upstream choices.
 
 > This is a falsification-first, preregistered working-paper draft: the pipeline and artifacts are provided end-to-end, and the strongest results are clearly separated from follow-up tests.
 
 > **Scope / status (read carefully).**
-> This document is a **falsification-first, preregistered** research synthesis for the unified-equation / gauge-geometry program. It now includes validated empirical sectors for weak, strong, EM, dark matter, and gravitational-wave tests, plus an **entanglement bridge sector** (Bell/CHSH audit on NIST run4) and a **photon-decay / propagation bridge sector** (preregistered cosmic birefringence accumulation tests).
+> This document is a **falsification-first, preregistered** research synthesis for the unified-equation / gauge-geometry program. In the current revision, the explicit **performance-scored sectors** are weak, strong, dark matter, gravitational-wave (LIGO), and mass spectrometry; **EM is included as a tested but currently non-passing branch**. The **entanglement** and **photon** lines are retained as **bridge/audit sectors** and are **not part of the current performance scoreboard**.
+> 
+> **Entanglement status in one line:** the current repo now has (i) a CHSH/NIST audit line with a no-fit **decorrelation** null benchmark, (ii) a separate preregistered **memory-statistic** diagnostic, and (iii) a **fully re-verified** data-side **CH/Eberhard J** audit branch at **slots 4–8** that yields **J>0 across three independent NIST runs**. What is **not** yet present is a model-generated Bell predictor from locked first-principles dynamics. Narrower windows remain future first-principles scorecard targets, not current embedded evidence.
+> 
+> **Photon status in one line:** the current repo has a locked accumulation-law / sky-fold birefringence bridge that runs cleanly and returns **null-compatible** statistics; what is **not** yet present is a substrate-derived, model-generated photon propagation predictor that fixes the birefringence amplitude from the theory itself.
+> 
+> **Therefore:** these two sectors are now best read as **audits that succeeded at the data/bridge layer but remain open at the first-principles performance layer**. Their closure path is no longer “find a nicer audit,” but “build and lock the forward dynamic model, then evaluate it with no-fit scorecards.”
 > 
 > **Real-data mass-spectrometry (new):** we include a **fit-free, preregistered** analysis of **real Bruker/CompassXport-exported mzML** full-scan runs to test **setting-conditioned separation** and a **multi-target target-specific signature** under a locked success threshold (`good_ppm=3`) with holdout + third-arm consistency.
 
 > **Headlines (mass-spectrometry sector).**
-> **A) real Bruker mzML (target-specific; fit-free prereg PASS):** Using CompassXport-exported, full-scan mzML runs, a scan-resolved pipeline produces per-scan mass estimates and a normalized ion-load proxy $g$. A multi-target “target-specific” test with a locked success threshold **`good_ppm=3`** yields a preregistered **PASS** with strong holdout + third-arm stability (see §4.9.10 and the signed artefacts under `out/particle_specific_final_goodppm3_lock/`).
+> **A) real Bruker mzML (target-specific; fit-free prereg performance pass):** Using CompassXport-exported, full-scan mzML runs, a scan-resolved pipeline produces per-scan mass estimates and a normalized ion-load proxy $g$. A multi-target “target-specific” test with a locked success threshold **`good_ppm=3`** yields a preregistered **performance pass** with strong holdout + third-arm stability (see §4.9.10 and the signed artefacts under `out/particle_specific_final_goodppm3_lock/`).
 
 > **Important scope note (data provenance).** The Mass Spectrometer section below is based on **real instrument exports (mzML)** and is evaluated under a **preregistered lock**; earlier toy demonstrations are intentionally omitted in this version to keep the write-up fully aligned with the current, real-data pipeline.
 > - **real mzML addendum:** Bruker/CompassXport‑exported, full‑scan mzML runs analyzed fit‑free under a locked prereg gate (good_ppm=3) to test setting-conditioned separation and target‑dependent “target-specific” structure.
@@ -21,10 +27,49 @@
 >
 > The broader program also includes **GW/LIGO ringdown** and **DM/SPARC** modules implemented under the same preregistered discipline, but those sectors are **only summarized** here (the detailed write-ups/log bundles are not embedded in this draft).
 >
-> Throughout, **PASS** means *not falsified under the stated preregistered test definition* (it is not a proof of truth); **TENSION** flags sensitivity to conditioning/baseline/covariance choices that motivates the next preregistered checks; **INCONCLUSIVE** means the test is not yet decisive because the baseline/covariance/selection is not stable enough.
+> Throughout, the paper-level labels are now **performance-facing**: **performance pass** means the declared preregistered performance criterion is met on the stated real-data branch; **not established** means the tested branch does not clear that criterion; **not scored here** means the line is kept for context but is outside the current performance scoreboard. **TENSION** still flags sensitivity to conditioning / baseline / covariance choices that motivates the next preregistered checks.
 
 > **Revision note (entanglement + photon integration into the unified-equation program).**  
 > In this revision, the entanglement (CHSH/NIST audit) and photon (decay/birefringence) analyses are treated not as isolated add-ons but as sectors of the same cross-sector open-system program used elsewhere in the project. The paper now records the project-level integration chain explicitly: (i) a shared GKSL-style **unified-equation** sector insertion contract, (ii) an optional microphysics bridge $n\,\sigma\,v \rightarrow \gamma$, and (iii) independent equivalence tests confirming that the declared mathematics is wired consistently into the runner implementations. A new **Sector Hook Map** subsection further lists the sector-level observables, $H_s/\mathcal D_s$ roles, microphysics candidates, runner/test anchors, and validation status (validated vs scaffolding) so the integration can be checked sector by sector.
+
+
+## Performance scoreboard and criteria (current)
+
+This paper uses **performance pass** only for sectors where a **preregistered, quantitative** performance criterion is satisfied on the stated real-data branch (against a frozen baseline / null). All other tracks are labeled **not established** or **not scored here**.
+
+**Performance-scored sectors (current revision)**
+
+- **WEAK (NOvA + MINOS + T2K penalty):** performance score is  
+  `TOTAL = dχ²_NOvA + dχ²_MINOS − (T2K penalty)` and must be **> 0** at the locked point.  
+  Current locked run: `dχ²_NOvA = −0.123`, `dχ²_MINOS = +1.005`, `T2K penalty = 0.392623` → **TOTAL = 0.489377** (**performance pass**).
+
+- **STRONG (PDG σ_tot + ρ):** performance score is `Δχ²_total = Δχ²(σ_tot, pp+p̄p) + Δχ²(ρ, both)` and must be **> 0** at the locked point.  
+  Current locked run: `Δχ²(σ_tot) = +3.235630 + 0.209162`, `Δχ²(ρ) = −0.655891` → **Δχ²_total ≈ +2.788901** (**performance pass**).
+
+- **DM (SPARC/RAR):** performance criterion is cross-validated improvement stability: `telemetry.all_folds_delta_test_positive = true` under locked `A, α, kfold, seed` (**performance pass**).
+
+- **MS (real mzML target-specific):** preregistered **locked gate** `good_ppm=3` with holdout + third-arm stability criteria **C1–C3** (see §4.9.10/§4.9.14). When all criteria are true, verdict is **performance pass**.
+
+- **LIGO (GW170814 ringdown-only null):** performance criterion is **small offsource probability** for the declared correlation statistic (the canonical “EXACT” branch uses `p_abs_corr` and `p_min_abs_corr` with joint statistic `p_joint_abs_and_minabs`). The recorded canonical reference run has `p_joint_abs_and_minabs = 0.0`, `p_abs_corr ≈ 0.0295`, `p_min_abs_corr ≈ 0.0435` (**performance pass**).
+
+**Not established (performance)**
+
+- **EM (LEP Bhabha, LEP μμ):** tested branches yield `Δχ² = 0` at the locked runs (no measured performance advantage over the declared baseline), so **performance is not established** in this revision.
+
+**Not scored here (kept for context / audits)**
+
+- **Entanglement (CHSH/NIST audit)** and **photon/birefringence** remain bridge/audit tracks in this revision and are **not part of the current performance scoreboard**.
+
+
+**Reader-facing status note for the open sectors**
+
+- **Entanglement has reached:** executable CHSH audit, executable memory diagnostic, and executable data-side CH/Eberhard Bell-inequality audit.
+- **Photon has reached:** executable accumulation-law bridge tests and sky-fold falsifiers with null-compatible outputs.
+- **Entanglement is still missing for full closure:** a locked first-principles Bell forward model (`H_s`, `\mathcal D_s`, measurement map, `J_model` / `E^{model}_{ab}`).
+- **Photon is still missing for full closure:** a locked first-principles photon forward model that predicts the birefringence/propagation amplitude from substrate variables instead of treating it as a bridge coefficient.
+
+The detailed todo lists for closing these two sectors are given in **§4.10.6** (entanglement) and **§4.11.6** (photon).
+
 
 ## Project brief and current claim boundary (reader-facing)
 
@@ -34,6 +79,8 @@ This project is a falsification-first, cross-sector open-system program. A singl
 
 - This draft does **not** claim that the full model is physically proven.
 - It **does** claim that several sector-level components survive the current internal falsification tests under locked conditions.
+- For **Entanglement**, the project has now reached executable CHSH audit, executable memory diagnostic, and executable data-side CH/Eberhard Bell audit, with the **current embedded Bell-audit branch anchored to the fully re-verified slots 4–8 window**; it has **not** yet reached a locked first-principles Bell predictor.
+- For **Photon**, the project has now reached executable accumulation-law / sky-fold bridge tests with null-compatible outputs; it has **not** yet reached a locked first-principles photon propagation predictor.
 - Broader physical claims, cross-domain claims, or direct-observable claims require additional independent real data and, in some sectors, more direct observables than the present proxy layers.
 
 **Mass-spectrometry addendum status in this revision:**
@@ -51,7 +98,7 @@ This revision intentionally uses **unified equation** terminology (formerly “m
 - The **microphysics hook** $\Gamma=n\sigma v$, $\gamma=\Gamma/c$ is a shared wiring/scaffolding layer. It is validated as code-to-math plumbing, but not claimed as a completed universal derivation.
 - The **entanglement line** is a **Bell-audit / pipeline validation** on a known Bell-violating dataset (plus unified-equation hooks), not a first-principles Bell-violation derivation from the substrate.
 - The **photon/birefringence line** is a preregistered **scaffolding/falsification testbed** (accumulation law + bridge wiring), not a final calibrated cosmic birefringence parameter extraction.
-- Status labels are strict: **PASS = not falsified for the declared test**; **PENDING = internal/pipeline support exists but a key calibration, holdout, or full paper embedding is still open**.
+- Status labels in this paper are **performance-facing**: **performance pass** means the declared preregistered performance criterion was met on the stated real-data branch; **not established** means the tested branch did not clear that criterion; **not scored here** means the line is retained for context but is outside the current performance scoreboard.
 
 ## Physical picture of the model (read this first)
 
@@ -866,7 +913,7 @@ The table below is the explicit “sector-by-sector mathematics hook” catalog 
 | Sector | Primary observable(s) | Unified-equation hook ($H_s$, $\mathcal D_s$) | Microphysics candidate ($n,\sigma,v$) | Runner / test anchor | Status |
 |---|---|---|---|---|---|
 | **Weak (oscillation)** | $P_{\alpha\to\beta}(L,E)$, $\Delta\chi^2$ on NOvA/MINOS/T2K packs | $H_s$: vacuum + matter + geometric mass-basis deformation $H_{\mathrm{geo}}$; $\mathcal D_s$: optional dephasing/damping channel | $n$: matter/electron density $n_e$; $\sigma$: weak interaction proxy/effective scattering scale; $v\!\approx\!c$ | `nova_mastereq_forward_kernel_BREATH_THREAD_v2.py`; `test_equivalence_weak_runner.py`; `test_equivalence_weak_golden_outputs.py` | **Validated (prereg real-data path)** |
-| **Mass spectrometry (ESI FT-ICR)** | m/z shift, setting-conditioned separation, target-specific holdout PASS | $\mathcal D_s$-dominant correction (effective dephasing/load damping); optional $H_s$-like phase/frequency bias term | $n$: ion-load / packet density proxy (TIC-based); $\sigma$: effective ion-ion interaction surrogate; $v$: cyclotron/packet speed proxy | `ms_sector.py` + locked mzML prereg runner family (§4.9.10 artefacts); microphysics hooks via `microphysics.py` | **Validated (observable pipeline)** / **Microphysics: scaffolding** |
+| **Mass spectrometry (ESI FT-ICR)** | m/z shift, setting-conditioned separation, target-specific holdout performance pass | $\mathcal D_s$-dominant correction (effective dephasing/load damping); optional $H_s$-like phase/frequency bias term | $n$: ion-load / packet density proxy (TIC-based); $\sigma$: effective ion-ion interaction surrogate; $v$: cyclotron/packet speed proxy | `ms_sector.py` + locked mzML prereg runner family (§4.9.10 artefacts); microphysics hooks via `microphysics.py` | **Validated (observable pipeline)** / **Microphysics: scaffolding** |
 | **EM (Bhabha / $\mu^+\mu^-$)** | $\sigma(\sqrt{s})$, angular dependence, residuals vs baseline | $H_s$: coherent bridge deformation; $\mathcal D_s$: optional absorptive/junction-filter correction $J(\tau;\kappa_{\mathrm{junc}})$ | $n$: target/luminosity density proxy; $\sigma$: QED process cross section; $v_{\mathrm{rel}}\!\approx\!c$ | `em_sector.py`; `test_equivalence_em_bhabha_golden_outputs.py`; `test_equivalence_em_mumu_golden_outputs.py` | **Validated (golden/equivalence)** |
 | **Strong (hadronic)** | $\sigma_{\mathrm{tot}}$, $\rho$ ratio, ridge-style/elastic observables (sector-dependent) | $H_s$: phase-like coherent deformation; $\mathcal D_s$: absorptive/attenuative channel for hadronic broadening | $n$: effective hadronic medium/occupancy proxy; $\sigma$: hadronic cross section; $v$: relative beam speed | `strong_sector.py`; `test_equivalence_strong_sigma_tot_golden_outputs.py`; `test_equivalence_strong_rho_golden_outputs.py` | **Validated (golden/equivalence)** |
 | **Dark matter (SPARC / RAR)** | Rotation curves, residual structure, profile-consistency metrics | $H_s$-dominant effective potential/geometry contribution; $\mathcal D_s$ typically off or secondary in current mapping | $n$: halo mass density proxy; $\sigma$: DM self-/baryon-coupling surrogate (model-dependent); $v$: halo orbital speed | `dm_sector.py`; `test_equivalence_dm_golden_outputs.py` | **Validated (observable mapping)** / **Microphysics: scaffolding** |
@@ -902,7 +949,7 @@ These tests verify that the `use_microphysics=True` path produces the same evolu
 - `test_microphysics_wiring_equivalence.py`
 - `test_microphysics_scaffold.py`
 
-At the integration snapshot corresponding to this paper revision, the full integration suite is recorded as **37 passed**, with the newly added entanglement + photon equivalence checks reported as **6/6 PASS**. This is the main evidence that the cross-sector unified-equation narrative is not only conceptual prose, but also faithfully implemented.
+At the integration snapshot corresponding to this paper revision, the full integration suite is recorded as **37 passed**, with the newly added entanglement + photon equivalence checks reported as **6/6 OK**. This is the main evidence that the cross-sector unified-equation narrative is not only conceptual prose, but also faithfully implemented.
 
 ### Boxed long form (what the one-line hides)
 
@@ -1096,103 +1143,54 @@ This draft uses two evidence levels that must not be conflated:
 In other words: a model can be **correct/useful as a detector/template family** without yet being **localization-accurate**.
 
 ### 1.3.3 Completion snapshot (this draft)
+
 - **EM sector:** re-run under the updated CurvedCube (v6) configuration using LEP Bhabha (Table 18) with an imported baseline curve. Under a preregistered, scan-free bridge, full-covariance runs show $\Delta\chi^2>0$ for $A=+10^5$ and a strong sign-flip falsifier; pivot-centered holdouts (diag_total shown) also pass. No discovery claim is made; robustness upgrades (full-cov pivot holdouts + cross-channel transfer) are listed in §4.7.
-- **Mass spectrometry (real Bruker/CompassXport mzML; prereg-locked, fit-free):** scan-resolved per-scan mass estimate pipeline + setting separation; **multi-target target-specific test** with locked `good_ppm=3` yields prereg **PASS** with holdout + third-arm stability (median_abs_delta 0.116/0.119; rank_corr_abs 0.965; MAD rank_corr 0.836; third-arm rank_corr 0.853; 12/12 nonzero targets). See §4.9.10 and signed artefacts under `out/particle_specific_final_goodppm3_lock/`.
-- Entanglement sector — preregistered Bell/CHSH audit on NIST run4 (Bridge-E0, no-fit); HDF5-export path passes with GLOBAL_CHSH ≈ 2.455 and z ≈ 1.991 (see §4.10).
-- Photon-decay / propagation bridge sector — preregistered cosmic birefringence accumulation and sky-fold falsifier tests (no-fit); current locked results are null-compatible and constrain the effect (see §4.11).
+- **Mass spectrometry (real Bruker/CompassXport mzML; prereg-locked, fit-free):** scan-resolved per-scan mass estimate pipeline + setting separation; **multi-target target-specific test** with locked `good_ppm=3` yields prereg **performance pass** with holdout + third-arm stability (median_abs_delta 0.116/0.119; rank_corr_abs 0.965; MAD rank_corr 0.836; third-arm rank_corr 0.853; 12/12 nonzero targets). See §4.9.10 and signed artefacts under `out/particle_specific_final_goodppm3_lock/`.
+- **Entanglement sector (updated status):**
+  - the current executable **CHSH/NIST** audit on the HDF5-derived run4 coincidence export reports $|S|=2.455041357825164$ under a **decorrelation** surrogate null benchmark;
+  - the separate preregistered **memory-statistic** runner reruns cleanly with `z_p95 = 1.9363439433203153` and `z_worst = 1.9914293684831685`;
+  - the data-side **CH/Eberhard J** audit gives **J>0** on all three main NIST runs on the **fully re-verified slots 4–8 branch** (`01_11 → 550`, `02_54 → 176`, `03_43 → 151`); narrower windows remain available in run logs but are not relied on in this revision.
+  These are real accomplishments, but they are still **audit/diagnostic accomplishments**, not a first-principles Bell derivation.
+- **Photon sector (updated status):**
+  - the locked birefringence/propagation bridge is executable and null-compatible;
+  - the current prereg outputs remain consistent with *no strong effect detected* rather than a claimed signal;
+  - the sector therefore contributes a valid **discipline layer / falsification layer**, but not yet a first-principles photon prediction.
+- **Shared status of Entanglement + Photon:** both sectors have now progressed beyond “untested ideas” and into **bridge/audit execution with concrete artefacts**, but both stop short of the paper-wide target of a **math-principled, model-faithful, dynamic performance closure**.
 - **GW sector:** ringdown-only pipeline + cubic-lattice response implemented; *detection-grade exploration* is underway. A separate localization-grade claim is explicitly deferred (see §6.7).
 - **Weak/Strong/DM sectors:** the unified-equation interface + CLI mapping are documented; quantitative sector-wide result tables are partly complete and flagged where additional runs are required.
-
 ### 1.3.4 What remains for a publication-quality claim set
+
+
 Across sectors, the minimum “paper-ready” checklist is:
 1) **one canonical run command per sector** (frozen defaults),
 2) a **result table** (best-fit params, likelihood deltas, p-values as applicable),
 3) a **robustness paragraph** (what knobs were varied and what changed), and
 4) clear labeling of which claims are **primary** (detection-grade) vs **future work** (localization-grade, multi-event population claims, etc.).
 
+For the two open bridge/audit sectors, that general checklist is **not sufficient**. A publication-quality, first-principles closure additionally requires:
+
+5) a **locked mathematical specification** of the sector forward model,
+6) a **forward solver** that produces observables from theory rather than from data-derived templates,
+7) a **locked no-fit parameter file**,
+8) a **multi-run / multi-window scorecard** comparing model output to observed output, and
+9) an explicit statement of what counts as a **performance pass** for that sector.
+
+The detailed closure checklists are recorded in **§4.10.6** (Entanglement) and **§4.11.6** (Photon).
+
 ## 1.4 Sector objectives, current status, and missing tests (reader-facing)
 
-This short snapshot answers the reader’s practical questions:
-*what was each sector meant to test, what was achieved, and what is
-still missing before a publishable claim.*
+This snapshot is aligned to the **current performance scoreboard** used in the updated runbook.
 
-<table style="border-collapse:collapse; width:100%; font-size:14px;">
- <thead>
- <tr>
- <th style="border:1px solid #ddd; padding:8px; text-align:left;">Sector</th>
- <th style="border:1px solid #ddd; padding:8px; text-align:left;">What we tried to test</th>
- <th style="border:1px solid #ddd; padding:8px; text-align:left;">What is achieved <em>in this draft</em></th>
- <th style="border:1px solid #ddd; padding:8px; text-align:left;">Missing tests / why not yet 100%</th>
- </tr>
- </thead>
- <tbody>
- <tr>
- <td style="border:1px solid #ddd; padding:8px;"><b>Weak</b> (T2K profile + MINOS/NOvA spectra)</td>
- <td style="border:1px solid #ddd; padding:8px;">
- Insert the unified-equation GEO term into a realistic oscillation likelihood <b>without scanning $\delta_{\mathrm{CP}}$</b>: predict $\delta_{\mathrm{CP}}^{\mathrm{geo}}$ from geometry (CurvedCube holonomy), then evaluate T2K profile penalty and MINOS/NOvA spectral $\chi^2$.
- </td>
- <td style="border:1px solid #ddd; padding:8px;">
- Single‑shot CurvedCube prediction with <b>zero scan</b>:
- for IO/IH the predicted $\delta_{\mathrm{CP}}^{\mathrm{geo}}\approx-1.316$ sits inside the T2K valley
- ($\Delta\chi^2_{\mathrm{T2K}}\approx 0.048$ for IH+wRC; $\approx 0.006$ for IH+woRC).
- MINOS/NOvA spectral deltas are small ($\Delta\chi^2\sim10^{-2}$) at this preregistered point.
- </td>
- <td style="border:1px solid #ddd; padding:8px;">
- (1) Replicate the same prediction point with alternative releases / profile variants (cross‑checks).<br>
- (2) Add preregistered ablations: gate0 invariance, geometry weight flips, and k$_{rt}$ convergence.<br>
- (3) If claiming “improves spectra”, require non‑tiny $\Delta\chi^2$ in MINOS/NOvA <em>without</em> degrading T2K.
- </td>
- </tr>
- <tr>
- <td style="border:1px solid #ddd; padding:8px;"><b>Strong</b> (ATLAS 13 TeV pp elastic)</td>
- <td style="border:1px solid #ddd; padding:8px;">
- Test baseline×modulation under full covariance on high‑precision $d\sigma/dt$, with preregistered robustness (|t| splits / jackknife).
- </td>
- <td style="border:1px solid #ddd; padding:8px;">
- <em>Legacy reference only:</em> older locked runs showed sizeable $\Delta\chi^2$ improvements under total covariance. These numbers are retained as historical context but are <b>not yet re‑run</b> with the updated CurvedCube/ordering fixes.
- </td>
- <td style="border:1px solid #ddd; padding:8px;">
- Re‑run the strong pipeline with the updated geometry implementation; report (i) fixed canonical run, (ii) preregistered robustness, (iii) scan‑penalty accounting.
- </td>
- </tr>
- <tr>
- <td style="border:1px solid #ddd; padding:8px;"><b>EM</b> ($\mu\mu$ null + LEP Bhabha)</td>
- <td style="border:1px solid #ddd; padding:8px;">
- Validate EM implementation (null) then stress‑test baseline import on a precision distribution.
- </td>
- <td style="border:1px solid #ddd; padding:8px;">
- <b>Updated status:</b> EM has been re-run under the updated CurvedCube (v6) configuration. Bhabha (Table 18) is documented in §3–§4 with full-covariance results, a sign-flip falsifier, and pivot-centered holdout checks. The $\mu\mu$ channel remains a <em>consistency</em> check only until an amplitude convention (e.g. $A_{\mathrm{eff}}^{(\delta)}$) is transferred cross-channel. Remaining required robustness: full-cov pivot holdouts + cross-channel transfer (listed in §4.7).
- </td>
- <td style="border:1px solid #ddd; padding:8px;">
- Re‑run EM with the updated geometry; verify covariance variants, nuisance stability, and overfit controls before interpreting improvements as physical.
- </td>
- </tr>
- <tr>
- <td style="border:1px solid #ddd; padding:8px;"><b>GW</b> (ringdown pipeline)</td>
- <td style="border:1px solid #ddd; padding:8px;">
- Connect the cubic‑lattice response to detector‑projected templates; test for correlated structure vs off‑source null using artefact diagnostics.
- </td>
- <td style="border:1px solid #ddd; padding:8px;">
- Pipeline exists end‑to‑end and supports falsification diagnostics; included here as part of the “single substrate, many sectors” program.
- </td>
- <td style="border:1px solid #ddd; padding:8px;">
- Multi‑event robustness, plus/cross basis degeneracy resolution, and population‑level controls.
- </td>
- </tr>
- <tr>
- <td style="border:1px solid #ddd; padding:8px;"><b>DM</b> (SPARC/RAR)</td>
- <td style="border:1px solid #ddd; padding:8px;">
- Test env‑scaled GEO modulation + thread UV completion against RAR with out‑of‑sample validation.
- </td>
- <td style="border:1px solid #ddd; padding:8px;">
- Model + CLI + recommended CV/systematics list included; included as part of the multi‑sector substrate program.
- </td>
- <td style="border:1px solid #ddd; padding:8px;">
- Execute galaxy‑level CV, systematics ($\Upsilon$, distance, inclination), baseline comparisons (AIC/BIC), grid stability.
- </td>
- </tr>
- </tbody>
-</table>
+| Sector | Current performance status | What is established now | Remaining work / scope limits |
+|---|---|---|---|
+| Weak (T2K/NOvA/MINOS) | **performance pass** | The locked single-shot point yields a positive combined score (`TOTAL SCORE = 0.489377`). | Best next step is an independent validation / release-holdout confirmation and figure polishing. |
+| Strong (sigma_tot + rho) | **performance pass** | The locked strong rerun gives a positive net `Delta chi2` after combining sigma_tot and rho. | The rho branch still carries tension, so the paper should describe this as a net-positive but mixed strong result. |
+| EM (LEP Bhabha + MuMu) | **not established** | The tested Bhabha and MuMu branches both return `Delta chi2 = 0`, so no performance superiority is established in the current branch. | Either find a genuinely positive preregistered branch or keep EM explicitly labeled as non-passing in the paper. |
+| GW / LIGO ringdown | **performance pass** | The canonical exact GW170814 branch is locally re-confirmed as a passing performance result on the current exact run path. | Remaining work is presentation / figure cleanup, not a missing performance result. |
+| DM / SPARC | **performance pass** | The current DM rerun is positive at the locked k-fold criterion (`all_folds_delta_test_positive = true`). | Remaining work is concise in-paper figure/table embedding only. |
+| FT-ICR mass spectrometry (target-specific) | **performance pass** | Both the `internal_only` strict branch and the `full` ablation branch pass the locked prereg criteria with stateful dynamics confirmed. | This remains a target-specific cross-domain robustness result, not a fundamental-particle claim. |
+| Entanglement (NIST CHSH/CH audit) | **not scored here** | Current repo state has three executable layers: (i) CHSH/NIST audit with $|S|=2.455041357825164$ under a decorrelation surrogate null, (ii) a separate preregistered memory-statistic diagnostic, and (iii) a **fully re-verified** data-side CH/Eberhard audit branch at **slots 4–8** with **J>0** across the three main NIST runs. | **Open first-principles closure:** define and lock the Bell forward model (`H_s`, `\mathcal D_s`, measurement map), produce model-generated `J_model`/`E^{model}_{ab}`, lock parameters, and run the 3-run × 3-window no-fit scorecard in §4.10.6. |
+| Photon (birefringence / propagation bridge) | **not scored here** | The locked accumulation-law and sky-fold falsifier pipelines execute cleanly and currently return **null-compatible** outputs; this establishes a functioning bridge observable and falsification layer, not a claimed effect extraction. | **Open first-principles closure:** derive the photon propagation amplitude from substrate variables, replace bridge-only `$\alpha(z)=\beta I(z)$` usage with a theory-generated forward model, then run the locked multi-catalog / holdout scorecard described in §4.11.6. |
 
 ## 2. Framework
 
@@ -2517,8 +2515,8 @@ Using `--cov diag_total` (explicit diagonalized check), we obtain:
 
 Jury-language reading:
 
-- **PASS (not falsified)**: GEO improves residuals in both bands for $A=+10^5$.
-- **PASS (sign falsification)**: sign-flip is consistently worse on TEST.
+- **Historical branch-level positive sign:** GEO improves residuals in both bands for $A=+10^5$.
+- **Sign-falsification check cleared:** sign-flip is consistently worse on TEST.
 - **Caveat**: full-covariance pivot-centered holdouts are the next required robustness step (planned below).
 
 ### 4.6 Parameter definitions and CLI mapping (EM)
@@ -2552,7 +2550,7 @@ This EM track is deliberately framed as a **clean consistency + sign-falsifier**
 - **Holdouts are the real judge.** Full-sample $\Delta\chi^2>0$ can still be a shape-flex artifact. This is why Sec. 4.5 uses **predictive band holdouts** with frozen group normalizations and **pivot-centering** to remove DC-like components. In the current state, the geometry deformation remains favored in the full sample and in several holdouts, but the strongest full-cov holdout set remains an *open prereg robustness step* (Sec. 4.8).
 
 - **Interpretation discipline.** Until the full-cov holdouts are completed and shown stable, the EM result should be read as: 
- **PASS (not falsified) + TENSION (numerical/covariance sensitivity under investigation).**
+ **historical branch-level positive sign + TENSION (numerical / covariance sensitivity under investigation).**
 
 ### 4.8 Planned EM upgrades (scan-free)
 
@@ -2564,7 +2562,7 @@ Concrete next preregistered steps:
 3) **Baseline upgrade:** replace BHAGEN-derived curve with an official collaboration SM prediction pipeline (radiative/acceptance-matched) if available.
 4) **Systematics upgrade:** replace the 2-source correlated model with published nuisance breakdown if available.
 
-Until (1)–(2) are completed, the EM sector is best labeled as **PASS (not falsified) + HINT (dataset‑conditional)** rather than a discovery claim.
+Until (1)-(2) are completed, the EM sector is best labeled as **not established (historical hint only; dataset-conditional)** rather than a discovery claim.
 
 ## 4.9 Mass Spectrometer sector (real Bruker mzML; fit-free, prereg-locked target-specific test)
 
@@ -2573,7 +2571,7 @@ Until (1)–(2) are completed, the EM sector is best labeled as **PASS (not fals
 - $p_{\mathrm{success}}(g)$: near-target success probability as a function of ion-load proxy $g$,
 - $\mathrm{MAD}_{\mathrm{success}}(g)$: robust width among successes.
 
-A preregistered lock is applied (not tuned per-target), and a **final PASS/FAIL verdict** is produced under fixed criteria (C1–C3). This section supersedes earlier toy-only demonstrations and is the canonical Mass Spectrometer write-up in this document.
+A preregistered lock is applied (not tuned per-target), and a **final performance pass / not established verdict** is produced under fixed criteria (C1–C3). This section supersedes earlier toy-only demonstrations and is the canonical Mass Spectrometer write-up in this document.
 
 ### 4.9.1 Real-data validation (Bruker mzML) — setting separation and target-specific multi-target test (fit-free)
 
@@ -2660,7 +2658,7 @@ Empirically, for this dataset family:
 
 ### Results (locked, fit-free; real mzML)
 
-**Paper-ready results paragraph.** Using CompassXport-exported Bruker full‑scan mzML runs (A1–B2 discovery; A1–B3 holdout; A2–B3 third‑arm), we applied a strictly **no‑fit** preregistered multi‑target signature test. For each target m/z, scans are binned by the normalized ion‑load proxy $g$ (quantile anchors from TIC), and we compute $p_{\mathrm{success}}(g)$—the fraction of scans meeting the locked “good” gate `good_ppm=3` within `window_ppm=30`—along with a width proxy (MAD among successes). With `topK=12` auto‑targets, the target‑wise signature is stable across holdout and third‑arm checks: median $|\Delta p_{\mathrm{success}}|$=0.116 (A1–B2) and 0.119 (A1–B3), holdout rank correlation 0.965; MAD rank correlation 0.836 with the same top‑MAD target (T01); and third‑arm rank correlations 0.853/0.853 with the same top target (T03). Under preregistered criteria C1–C3 this yields a final verdict **PASS**, with signed artifacts written to `out/particle_specific_final_goodppm3_lock/`.
+**Paper-ready results paragraph.** Using CompassXport-exported Bruker full‑scan mzML runs (A1–B2 discovery; A1–B3 holdout; A2–B3 third‑arm), we applied a strictly **no‑fit** preregistered multi‑target signature test. For each target m/z, scans are binned by the normalized ion‑load proxy $g$ (quantile anchors from TIC), and we compute $p_{\mathrm{success}}(g)$—the fraction of scans meeting the locked “good” gate `good_ppm=3` within `window_ppm=30`—along with a width proxy (MAD among successes). With `topK=12` auto‑targets, the target‑wise signature is stable across holdout and third‑arm checks: median $|\Delta p_{\mathrm{success}}|$=0.116 (A1–B2) and 0.119 (A1–B3), holdout rank correlation 0.965; MAD rank correlation 0.836 with the same top‑MAD target (T01); and third‑arm rank correlations 0.853/0.853 with the same top target (T03). Under preregistered criteria C1–C3 this yields a final verdict **performance pass**, with signed artifacts written to `out/particle_specific_final_goodppm3_lock/`.
 
 Using `topK=12` targets and the lock above, the run outputs (written under `out/particle_specific_final_goodppm3_lock/`) report:
 
@@ -2671,7 +2669,7 @@ Using `topK=12` targets and the lock above, the run outputs (written under `out/
 - **Width (MAD) stability:** rank correlation $0.836364$ and the top-MAD target matches (T01 vs T01)
 - **Third-arm consistency** (A2–B3): rank correlations $0.853147/0.853147$; top target matches across all three arms (T03)
 
-**Preregistered final verdict (good_ppm=3): PASS.**
+**Preregistered final verdict (good_ppm=3): performance pass.**
 
 #### What this does and does not mean
 
@@ -2682,11 +2680,11 @@ Using `topK=12` targets and the lock above, the run outputs (written under `out/
   - repeating across chemically distinct mixtures,
   - verifying that the signature follows the expected mass ordering under known calibrants.
 
-This addendum is therefore positioned as: **PASS (not falsified) for target-specific behavior in real mzML**, with clear next falsifiers.
+This addendum is therefore positioned as: **performance pass for target-specific behavior in real mzML**, with clear next falsifiers.
 
 ### 4.9.11 Preregistered follow-up plan — bridging to species/charge (no-fit)
 
-The real-mzML PASS above is an **operational target-specific signature** in the instrument readout: different target $m/z$ windows exhibit different, stable $p_{\mathrm{success}}(g)$ and $\mathrm{MAD}_{\mathrm{success}}(g)$ patterns across setting comparisons and holdouts.
+The real-mzML performance-pass result above is an **operational target-specific signature** in the instrument readout: different target $m/z$ windows exhibit different, stable $p_{\mathrm{success}}(g)$ and $\mathrm{MAD}_{\mathrm{success}}(g)$ patterns across setting comparisons and holdouts.
 
 What it is **not yet** (and what this plan targets) is a **species-resolved physical explanation** (charge state, isotope envelope, adduct class, or vibrational/energy-transition mapping). The next step is to preregister a minimal, decisive bridge that either (a) strengthens the “species/charge-linked” interpretation or (b) falsifies it by exposing a purely global/pipeline artifact.
 
@@ -2695,7 +2693,7 @@ These parameters are now part of the prereg lock:
 
 - `good_ppm = 3`
 - `window_ppm = 30`
-- `tail3_ppm = -300000` (diagnostic only; does not decide PASS/FAIL)
+- `tail3_ppm = -300000` (diagnostic only; does not decide performance pass / not established)
 - `min_n = 8`
 - `max_bins = 8`
 - Target set: `out/particle_specific_cytofull_A1_B2_direct/targets_used.csv` (12 targets)
@@ -2715,7 +2713,7 @@ For each target $t$, compute:
 - $\Delta p_{\mathrm{success}}(t) = \mathrm{median}_b\left[p_{\mathrm{success}}^{(B)}(t,b) - p_{\mathrm{success}}^{(A)}(t,b)\right]$
 - A width/robustness metric from successful scans, $\mathrm{MAD}_{\mathrm{success}}(t,b)$, and its target-wise stability across runs via the log-ratio summary used in §4.9.10.
 
-#### Decision rule (PASS/FAIL; preregistered)
+#### Decision rule (performance pass / not established; preregistered)
 Using the same gate as the locked final artefact:
 
 **C1 (p_success signature + holdout stability)**
@@ -2734,68 +2732,20 @@ Using the same gate as the locked final artefact:
 - rank correlations $\ge 0.80$ between discovery↔third-arm and holdout↔third-arm,
 - the top-$|\Delta p_{\mathrm{success}}|$ target matches across all three arms.
 
-Final verdict: **PASS** iff C1 & C2 & C3 are all true; otherwise **FAIL**.
+Final verdict: **performance pass** iff C1 & C2 & C3 are all true; otherwise **not established**.
 
-#### Reproducible commands (real mzML → target-specific verdict)
+#### Reproducible commands (real mzML -> target-specific verdict)
 
-> These are the “no guessing” commands for the real‑data addendum. The mzML→points step uses a **no‑deps** reader (no `pyteomics` needed).  
-> Copy/paste from PowerShell at the project root.
+The older mzML-specific command block has been removed from the main paper to avoid carrying obsolete or duplicate CLI steps.
 
-```powershell
-# 0) (Optional) List mzMLs to copy paths
-powershell -NoProfile -ExecutionPolicy Bypass -File .\DIAG_find_mzml_files.ps1
-
-# 1) (Optional sanity) Convert one mzML to a points/peaks CSV (scan,mz,intensity,setting)
-powershell -NoProfile -ExecutionPolicy Bypass -File .\RUN_mzml_to_points_csv_nodeps_v1_0.ps1 `
-  -InMzml ".\data\cyto_full\190226_Cyto_1_FD_500ng.mzML" `
-  -OutCsv ".\out\mzml_points\A1_points.csv" `
-  -Setting "Mode A" `
-  -MsLevel 1 -TopNPerScan 5000 -MinIntensity 0
-
-# 2) Locked runs at good_ppm=3 (discovery / holdout / third-arm)
-powershell -NoProfile -ExecutionPolicy Bypass -File .\RUN_particle_specific_from_mzmls_v1_0.ps1 `
-  -ModeA_Mzml ".\data\cyto_full\190226_Cyto_1_FD_500ng.mzML" `
-  -ModeB_Mzml ".\data\cyto_full\190226_Cyto_2_FD_500ng.mzML" `
-  -OutDir ".\out\particle_specific_sweep_goodppm_3_A1_B2" `
-  -TopNPerScan 5000 -MinIntensity 0 `
-  -AutoTargetsTopK 12 -WindowPpm 30 -GoodPpm 3 -Tail3Ppm -300000 `
-  -MinN 8 -MaxBins 8 -ClipG
-
-powershell -NoProfile -ExecutionPolicy Bypass -File .\RUN_particle_specific_from_mzmls_v1_0.ps1 `
-  -ModeA_Mzml ".\data\cyto_full\190226_Cyto_1_FD_500ng.mzML" `
-  -ModeB_Mzml ".\data\cyto_full\190226_Cyto_3_FD_500ng.mzML" `
-  -OutDir ".\out\particle_specific_sweep_goodppm_3_A1_B3_holdout" `
-  -TopNPerScan 5000 -MinIntensity 0 `
-  -AutoTargetsTopK 12 -WindowPpm 30 -GoodPpm 3 -Tail3Ppm -300000 `
-  -MinN 8 -MaxBins 8 -ClipG
-
-powershell -NoProfile -ExecutionPolicy Bypass -File .\RUN_particle_specific_from_mzmls_v1_0.ps1 `
-  -ModeA_Mzml ".\data\cyto_full\190226_Cyto_2_FD_500ng.mzML" `
-  -ModeB_Mzml ".\data\cyto_full\190226_Cyto_3_FD_500ng.mzML" `
-  -OutDir ".\out\particle_specific_cytofull_A2_B3_good3" `
-  -TopNPerScan 5000 -MinIntensity 0 `
-  -AutoTargetsTopK 12 -WindowPpm 30 -GoodPpm 3 -Tail3Ppm -300000 `
-  -MinN 8 -MaxBins 8 -ClipG
-
-# 3) Finalize the prereg lock report from those three run folders
-powershell -NoProfile -ExecutionPolicy Bypass -File .\RUN_finalize_particle_specific_goodppm3_lock_from_runs_v1_0.ps1 `
-  -PairB2Dir ".\out\particle_specific_sweep_goodppm_3_A1_B2" `
-  -PairB3Dir ".\out\particle_specific_sweep_goodppm_3_A1_B3_holdout" `
-  -ThirdArmDir ".\out\particle_specific_cytofull_A2_B3_good3" `
-  -TargetsCsv ".\out\particle_specific_cytofull_A1_B2_direct\targets_used.csv" `
-  -OutDir ".\out\particle_specific_final_goodppm3_lock"
-```
-
-#### Secondary diagnostics (non-decisive, but required to report)
-- **Scan confound check:** verify that setting differences are not explained by scan-index drift alone (see the scan-confound report scripts used in this draft).
-- **g-distribution overlap:** ensure the two settings have comparable $g$ coverage (balanced bins). Report any bin-drop fractions.
-- **Charge/envelope plausibility (exploratory, post-verdict):** for each target $m/z$, attempt a charge-state consistency check using local peak spacing (no fitting; purely rule-based). This is explicitly exploratory and does not alter the verdict.
-
-This follow-up plan is intentionally narrow: it either **reproduces** the target-dependent signature on new, untouched mzML runs under a locked gate, or it **falsifies** the interpretation by failing holdout/third-arm stability.
+Use **Section 8** for the current canonical performance commands:
+- `internal_only` strict branch
+- `full` ablation branch
+- shared locked finalizer / aggregator steps
 
 ### 4.9.12 Internal occupancy-gate and two-center boundary addendum (derived from the same locked real-mzML export; diagnostic-only)
 
-This addendum extends the canonical real-mzML target-specific PASS with a locked internal branch test performed on the derived real-data points exports (from the same locked real-mzML export stream) and the frozen target registry. It is included here because it now survives the current internal falsification ladder, but it remains a diagnostic-only Mass Spectrometer extension. It is not a new sector, and it does not replace the primary real-mzML result above.
+This addendum extends the canonical real-mzML target-specific performance pass with a locked internal branch test performed on the derived real-data points exports (from the same locked real-mzML export stream) and the frozen target registry. It is included here because it now survives the current internal falsification ladder, but it remains a diagnostic-only Mass Spectrometer extension. It is not a new sector, and it does not replace the primary real-mzML result above.
 
 #### (A) Minimal adapter hook into the unified equation (explicit attachment)
 
@@ -2939,7 +2889,7 @@ Under four separate rebuild runs (`A1_B2 ModeA`, `A1_B2 ModeB`, `A1_B2_direct Mo
 - `classification_changes = 0`
 - `confidence_changes = 1`
 - `shell_monotonicity = OK`
-- verdict: `PASS-DIAGNOSTIC-REBUILD`
+- verdict: `OK-DIAGNOSTIC-REBUILD`
 
 The explicit rollup answer was that the observed two-center skeleton is not only a pooled-data effect; the same classification skeleton survives in each arm individually.
 
@@ -3044,364 +2994,432 @@ These are therefore retained as **working adapter insertions** in the present pa
 - if future work is opened again from this point, it should either use a genuinely new independent real-data family or a more direct observable.
 
 
-### 4.9.14 Reproducible real-data run commands (current Mass Spectrometer closure set)
+### 4.9.14 Current Mass Spectrometer performance commands
 
-This subsection records the real-data runs that fed the present Mass Spectrometer closure state. Derived-only pair-layer sweeps (Track 1-8 on already-derived CSV layers) are intentionally omitted here; what follows are the runs that touched raw MS points or the final locked 3-arm pack.
+The obsolete pre-freeze CLI history has been removed from the main paper to avoid carrying outdated run commands.
 
-#### 4.9.14.A Single-center full 3-arm occgate closure (exact local CLI)
+The **current** canonical Mass Spectrometer performance commands are maintained in **Section 8**:
+- `internal_only` strict branch
+- `full` ablation branch
+- shared locked finalizer / aggregator steps
 
-This is the exact full-run command for the locked 3-arm occupancy-gate closure at `rho = 0.10`.
+This keeps the paper aligned with the updated repo-root runbook and avoids duplicate command blocks with conflicting paths.
+
+
+### 4.10.1. What this sector now contains (three distinct lines; do not mix)
+
+The entanglement line in the current repo has **three distinct executable sub-tracks**:
+
+1. **CHSH/NIST audit (Bridge/Audit):** a locked event-building + CHSH calculation on the HDF5-derived NIST run4 coincidence export.
+2. **Preregistered “memory” diagnostic:** a separate gap-binned holdout test on the same coincidence stream.
+3. **Data-side CH/Eberhard Bell audit:** direct computation of the Clauser–Horne / Eberhard statistic
+   $$
+   J = N(++|ab) - N(+0|ab') - N(0+|a'b) - N(++|a'b')
+   $$
+   on the HDF5 build files, with the **current embedded audit branch fixed to the fully re-verified slots 4–8 window**. Narrower windows are retained as future first-principles scorecard targets rather than current paper-facing evidence.
+
+These three lines are **not** the same claim. Together they show that the data path is rich and executable; they do **not** yet amount to a first-principles Bell derivation from the unified lattice dynamics.
+
+### 4.10.2. Current executable evidence (what is actually established now)
+
+#### A. CHSH/NIST audit (current executable wrapper)
+
+The current paper-faithful CHSH wrapper reports, on the accepted HDF5-derived run4 coincidence export:
+
+- $|S| = 2.455041357825164$
+- a **decorrelation** surrogate null benchmark with
+  - `null_mean_S_abs = 0.050698970231270804`
+  - `null_p95_S_abs = 0.12499017767925512`
+  - `null_pvalue_S_abs = 0.0`
+
+This benchmark is useful as a **pipeline / decorrelation audit**: once A–B outcome alignment is broken inside setting classes, the signal collapses toward zero.  
+It is **not** a Bell-bound significance test around $|S|=2$.
+
+#### B. Preregistered “entanglement memory” diagnostic
+
+The separate preregistered memory-statistic runner, on the same NIST coincidence CSV, reruns with:
+
+- `z_p95 = 1.9363439433203153`
+- `z_worst = 1.9914293684831685`
+
+The runner’s own z-definition is
+$$
+z = \frac{S - \mathrm{pred}}{\sqrt{\sigma_S^2 + \sigma_{S,\infty}^2}},
+$$
+computed on holdout bins after a data-derived empirical template is constructed from the same run.  
+This is therefore a **diagnostic / empirical-template** test, not a first-principles Bell test.
+
+#### C. Data-side CH/Eberhard audit (three independent NIST runs)
+
+Using the corrected global-settings mapping (`1->0`, `2->1`), the **current embedded Bell-audit branch** in this paper is the **fully re-verified `slots 4–8` window**. On that branch, the observed CH/Eberhard statistic is positive on all three main NIST runs:
+
+| Run | slots4–8 |
+|---|---:|
+| `01_11` | 550 |
+| `02_54` | 176 |
+| `03_43` | 151 |
+
+For this same `slots 4–8` branch, split summaries are:
+
+| Run | trials_valid | dropped_invalid | J_overall | J/1M | splits_pos | splits_neg | J_min_split | J_max_split |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| `01_11` | 337,818,518 | 121 | 550 | 1.628093 | 10 | 0 | 1 | 114 |
+| `02_54` | 203,681,460 | 2 | 176 | 0.864094 | 8 | 2 | -24 | 61 |
+| `03_43` | 107,109,594 | 2 | 151 | 1.409771 | 7 | 3 | -40 | 84 |
+
+This is the strongest **data-side Bell inequality** result currently embedded in the paper for this sector.
+
+**Important scope note.** Narrower windows (`slot6`, `slots5–7`) exist in run logs and remain part of the future first-principles evaluation matrix described in §4.10.6, but they are **not** relied on as current paper-facing evidence in this revision.
+
+### 4.10.3. Claim boundary (what these results do and do not establish)
+
+**Established now**
+- The entanglement data path is executable and nontrivial.
+- The current repo can recover a strong CHSH audit signal on the accepted NIST run4 coincidence export.
+- The current repo can compute positive CH/Eberhard `J` across three independent NIST runs on the **fully re-verified slots 4–8 audit branch**.
+- The separate memory-statistic runner is reproducible and produces stable, bounded holdout z-statistics on the same coincidence stream.
+
+**Not established now**
+- A Bell-bound significance test from the current CHSH wrapper (because its current null is decorrelation-centered, not Bell-bound-centered).
+- A first-principles Bell mechanism derived from the unified-equation dynamics.
+- A model-generated `E^{model}_{ab}` or `J_model` obtained from locked first-principles dynamics.
+
+### 4.10.4. Why this sector is still not on the performance scoreboard
+
+This sector is still **not scored here** because the current executable successes are all **data-side / audit-side / diagnostic-side**:
+
+- The CHSH wrapper proves that the pipeline does not destroy a Bell signal, but its null is a decorrelation surrogate.
+- The memory runner uses a data-derived empirical template (`pred`) rather than a theory-generated Bell predictor.
+- The CH/Eberhard `J` results are genuine data-side Bell-audit outputs, but they are not yet paired with a locked first-principles `J_model`.
+
+So the missing piece is no longer “find another dataset” or “make the audit nicer.”  
+The missing piece is: **build the Bell forward model and evaluate it under locked no-fit rules.**
+
+### 4.10.5. Preregistered “entanglement memory” pipeline (exact rerun provenance)
+
+This is a **separate preregistered check** from the CHSH and CH/Eberhard Bell audits.
+
+#### 4.10.5.1 Executable wrapper and locked knobs
 
 ```powershell
-py -3 -X utf8 .\multi_target_particle_specific_v1_0_occgate_v1_PREPAPER.py `
-  --inputs `
-    .\out\particle_specific_cytofull_A1_B2\ModeA_points.csv `
-    .\out\particle_specific_cytofull_A1_B2\ModeB_points.csv `
-    .\out\particle_specific_cytofull_A1_B2_direct\ModeB_holdout_points.csv `
-  --targets_csv .\out\particle_specific_cytofull_A1_B2_direct\targets_used.csv `
-  --out_dir .\out\particle_specific_cytofull_A1_B2_occgate_rho010_3arm `
-  --setting_from filename `
-  --baseline ModeA_points `
-  --enable_occ_gate `
-  --occ_rho 0.10
+Set-Location 'C:\Dropbox\projects\new_master_equation_with_gauge_structure_test'
+powershell -NoProfile -ExecutionPolicy Bypass -File .\run_prereg_entanglement_memory_from_coinc_csv_v1_DROPIN_SELFCONTAINED.ps1 `
+  -InCsv '.\out\nist_run4_coincidences.csv' `
+  -NBins 12 `
+  -LogGapBins `
+  -KSigma 2.0 `
+  -GlobalCHSHCheck `
+  -NullGapShuffle `
+  -NullOutcomeShuffle `
+  -NullReps 200 `
+  -OutCsv 'out\entanglement_memory_prereg_v1.csv'
 ```
 
-Expected closure outputs:
-- `alltargets_bin_success_width_stats_occgate.csv`
-- `alltargets_delta_success_width_pairs_occgate.csv`
-- `targets_summary_occgate.csv`
+**Primary artefacts**
+- `out\entanglement_memory_prereg_v1.csv`
+- `out\entanglement_memory_debug_v1.txt`
 
-#### 4.9.14.B Single-center memory-safe streaming cross-check (exact local CLI; auxiliary)
+**Recorded hashes**
+- `entanglement_memory_prereg_v1.csv` SHA-256: `D7BD51EF11D93DFB6F09856D1819ED560D9F6FE37A01CE82D66D289FDF3F9378`
+- `entanglement_memory_debug_v1.txt` SHA-256: `843B9F7E70C9728FFAEFFDBB7B335F4685A66D969D316444899726B492A9C28A`
 
-This auxiliary real-data cross-check was the memory-safe streaming fallback used to confirm that the occupancy-gate factor stayed mild across all 3 raw-data arms.
+#### 4.10.5.2 Interpretation rule
 
-```powershell
-Copy-Item .\out\particle_specific_cytofull_A1_B2_direct\targets_used.csv .\targets_used.csv
-Copy-Item .\out\particle_specific_cytofull_A1_B2\ModeA_points.csv .\ModeA_points.csv
-Copy-Item .\out\particle_specific_cytofull_A1_B2\ModeB_points.csv .\ModeB_points.csv
-Copy-Item .\out\particle_specific_cytofull_A1_B2_direct\ModeB_holdout_points.csv .\ModeB_holdout_points.csv
-py -3 -X utf8 .\single_center_occgate_streaming_rho010_3arm_DROPIN.py
-```
+This runner may be described as:
+- an executable preregistered **memory-statistic diagnostic**, and
+- a check that the coincidence stream admits a bounded gap-binned empirical template.
 
-Expected auxiliary output:
-- `single_center_occgate_streaming_rho010_3arm.csv`
+It may **not** be described as:
+- a Bell significance test,
+- a Bell-bound proof,
+- or a first-principles entanglement derivation.
 
-#### 4.9.14.C Two-center pre-freeze combined raw rebuild (exact local CLI; infer-threshold diagnostic)
+### 4.10.6. Todo list for full first-principles dynamic performance closure (Bell sector)
 
-This is the exact recoverable pre-freeze raw-data rebuild command preserved in the mounted artifact set. It is the infer-threshold diagnostic rebuild that generated the first combined raw-data comparison.
+The following list is the current working checklist for turning this sector from **audit-positive** into a **full first-principles dynamic performance** sector.
 
-```powershell
-py -3 -X utf8 .\rebuild_two_center_diagnostic_from_raw.py `
-  --targets_csv .\targets_used.csv `
-  --current_two_center_csv .\Two_Center_Shadow_Pair_Classification_Track5_v1_PREPAPER_live.csv `
-  --raw_points `
-    .\out\particle_specific_cytofull_A1_B2\ModeA_points.csv `
-    .\out\particle_specific_cytofull_A1_B2\ModeB_points.csv `
-    .\out\particle_specific_cytofull_A1_B2_direct\ModeB_holdout_points.csv `
-  --out_dir .\out\two_center_rebuild_from_raw `
-  --confidence_quantile 0.25
-```
+#### Phase 0 — lock the target
+- **Primary observable:** `J (CH/Eberhard)`
+- **Secondary observable:** `CHSH S`
+- **Primary datasets:** `01_11`, `02_54`, `03_43`
+- **Primary windows:** `slot6`, `slots5-7`, `slots4-8`
 
-Expected outputs:
-- `rebuilt_target_windows.csv`
-- `rebuilt_two_center_pair_metrics.csv`
-- `rebuilt_vs_current_comparison.csv`
-- `rebuilt_two_center_verdict.md`
+#### Phase 1 — write the sector mathematics
+Produce a locked specification that states:
+1. the state space,
+2. the coherent generator $H_s$,
+3. the dissipative/decoherence generator $\mathcal D_s$,
+4. the measurement map from state to Bell outcome probabilities.
 
-#### 4.9.14.D Two-center frozen arm-by-arm rebuild (exact automation launcher preserved; standalone frozen driver filename not preserved)
+Required artefact:
+- `bell_first_principles_spec_v1.md`
 
-The stricter frozen arm-by-arm rebuild was executed as a local Codex automation step. The mounted artifact set preserves the outputs, the frozen thresholds, and the archived comparator, but it does not preserve the generated standalone frozen driver filename. To avoid fabricating a missing script name, this paper records the exact launcher plus the exact preserved run contract.
+#### Phase 2 — build the forward Bell solver
+Produce a solver that outputs model-side Bell probabilities directly from the theory:
+- $P(++|ab)$
+- $P(+0|ab')$
+- $P(0+|a'b)$
+- $P(++|a'b')$
 
-```bash
-codex --full-auto
-```
+Required artefact:
+- `bell_dynamic_forward_model_v1.py`
 
-Preserved run contract:
-- inputs:
-  - `out/particle_specific_cytofull_A1_B2/ModeA_points.csv`
-  - `out/particle_specific_cytofull_A1_B2/ModeB_points.csv`
-  - `out/particle_specific_cytofull_A1_B2_direct/ModeB_holdout_points.csv`
-  - `out/particle_specific_cytofull_A1_B2_direct/targets_used.csv`
-  - `track8_current_layer_generated_frozen.csv`
-- frozen thresholds:
-  - `width_scale = 1.0`
-  - `corridor_min = 0.25`
-  - `reject_max = 0.75`
-  - `leak_ratio_max = 0.90`
-  - `sep_s0 = 0.11`
-  - `confidence_quantile = 0.25`
-- runs:
-  - `A1_B2 ModeA`
-  - `A1_B2 ModeB`
-  - `A1_B2_direct ModeB_holdout`
-  - `Combined_A1_B2_plus_holdout`
-- preserved output pack:
-  - `arm_by_arm_rebuild_frozen_20260227.zip`
+This solver must not read observed Bell counts when generating the prediction.
 
-#### 4.9.14.E Two-center weak-stable pair falsifier and global frozen-edge hard falsifier (exact automation launcher preserved; standalone driver filenames not preserved)
+#### Phase 3 — synthetic mechanism gate
+Before touching real data, test whether the locked forward model can generate Bell-direction signal in a synthetic setting.
 
-The pair-focused raw-window falsifier and the final single-global-edge hard falsifier were also executed as local Codex automation steps. Their output packs are preserved, but the generated standalone driver filenames are not present in the mounted artifact set, so only the exact launcher and the preserved input/output contract are recorded here.
+Required artefact:
+- `test_bell_forward_mechanism_v1.py`
 
-```bash
-codex --full-auto
-```
+Gate:
+- if the locked model cannot even produce Bell-direction signal synthetically, the mechanism fails before real-data evaluation.
 
-Preserved weak-stable pair falsifier contract:
-- raw-data arms: `ModeA`, `ModeB`, `ModeB_holdout`, and the combined pool
-- fixed pair focus: `T05 <-> T12` and `T09 <-> T08`
-- preserved output pack:
-  - `weakstable_pair_falsifier_20260227.zip`
+#### Phase 4 — separate data parser from forward model
+Keep:
+- `nist_ch_data_observed_builder_v1.py` → observed counts / observed `J`
+- `bell_dynamic_forward_model_v1.py` → model probabilities / `J_model`
 
-```bash
-codex --full-auto
-```
+The forward model must not seed itself from observed Bell counts.
 
-Preserved global-edge hard falsifier contract:
-- same raw-data arms and the same two weak-stable boundary pairs
-- one single archived frozen edge from the comparator (no per-run edge recalculation)
-- preserved output pack:
-  - `weakstable_pair_globaledge_20260227.zip`
+#### Phase 5 — lock parameters
+Required artefact:
+- `bell_params_locked_v1.json`
 
-These two automation-run families are intentionally documented this way because the output artifacts are preserved but the exact generated `.py` filenames are not. This keeps the paper honest while still recording the real-data launch path used in practice.
+This file must contain the full first-principles Bell parameters and their hash must stay fixed throughout evaluation.
 
-## 4.10. Entanglement sector (NIST run4, Bridge-E0, no-fit prereg audit)
-> **Interpretation note:** This section is a **Bell-audit pipeline validation** (CHSH reconstruction on the known NIST run4 Bell-violating export path) and a unified-equation hook integration check. It is **not** a first-principles derivation of Bell violation from the substrate.
+#### Phase 6 — first real-data evaluation
+Required artefact:
+- `run_bell_first_principles_eval_v1.py`
 
-This section upgrades the earlier qualitative “entangled bubble pair” discussion into a **strict, data-facing, falsification-first entanglement test** using the NIST run4 Bell dataset in the Bridge-E0 pipeline. The key point is methodological: we do **not** fit free parameters to the Bell score. We use a locked coincidence construction and a preregistered null benchmark, then ask whether the observed CHSH violation survives the audit.
+First locked eval target:
+- `03_43`, `slots4-8`
 
-### 4.10.1. Role of this sector in the unified-equation program
+Required outputs:
+- `*_summary.json`
+- `*_state_audit.json`
+- `*_telemetry.json`
 
-In the broader framework, this sector tests whether the model family can at least remain compatible with a standard, externally validated nonlocality benchmark after our event-building and counting pipeline is fixed. Concretely, this sector is a **pipeline-integrity + compatibility test**:
+Summary must include:
+- `J_observed`
+- `J_model`
+- `delta_J`
+- params hash
 
-- **Pass condition:** the locked event-building + CHSH audit reproduces a statistically positive Bell violation on the accepted NIST run4 coincidence export.
-- **Fail condition:** the same locked pipeline collapses to a non-violating or sign/pathology result on the canonical export.
+#### Phase 7 — multi-run / multi-window scorecard
+Run the locked evaluation on:
 
-This is not yet a full geometric derivation of Bell correlations from the lattice/bubble dynamics. It is the correct preregistered first step: **prove the pipeline does not destroy the signal** before attempting any deeper mechanism claims.
+- runs: `01_11`, `02_54`, `03_43`
+- windows: `slot6`, `slots5-7`, `slots4-8`
 
-### 4.10.2. Data object and format discipline (important)
+Required artefacts:
+- `BELL_FIRSTPRINCIPLES_SCORECARD_v1.csv`
+- `BELL_FIRSTPRINCIPLES_SCORECARD_v1.md`
 
-The valid entanglement audit here is tied to the **HDF5-derived NIST run4 coincidence export** (the CSV produced from the known-good HDF5 route). We explicitly do **not** use the incompatible prescreen coincidence CSV batch for the Bridge-E0 claim.
+Minimum columns:
+- run
+- window
+- `J_observed`
+- `J_model`
+- `sign_match`
+- `abs_delta_J`
+- params hash
 
-Why this matters:
+#### Phase 8 — performance-pass gate
+Only after the locked scorecard exists may this sector be considered for performance scoring.
 
-- The prescreen CSV (`02_54_coinc_slotfix.csv`) can produce a diagnostic outcome like $S=-2.0$, which indicates a **format/mapping mismatch** (especially setting-dependent slot→outcome interpretation), not a physics failure.
-- The HDF5-derived coincidence CSV preserves the intended field semantics for the Bridge-E0 CHSH audit.
+Minimum gate:
+- locked first-principles forward model exists,
+- no-fit param lock exists,
+- 3-run × 3-window scorecard exists,
+- pass criterion is declared **before** reading the scorecard.
 
-So the entanglement claim in this paper is attached to the **correct export path** only.
+Until then, the honest label is:
+> **audit-positive Bell sector, first-principles dynamic closure pending.**
 
-### 4.10.3. CHSH observable and counting definitions
+### 4.10.7. What should not be counted as closure
 
-Let the four analyzer-setting pairs be indexed as
-$$
-ab \in \{00,01,10,11\}.
-$$
+The following do **not** count as a first-principles Bell performance closure:
 
-For each setting pair, let the coincidence outcomes be binary and encoded into the usual correlator form. Denote the setting-conditioned coincidence counts
-$$
-N_{ab}^{++},\; N_{ab}^{+-},\; N_{ab}^{-+},\; N_{ab}^{--},
-$$
-and total
-$$
-N_{ab}=N_{ab}^{++}+N_{ab}^{--}+N_{ab}^{+-}+N_{ab}^{-+}.
-$$
+- a data-derived empirical template,
+- slot-seeded or run-seeded Bell providers,
+- bridge reconstruction that reuses observed Bell counts,
+- post-hoc choice of the “best” slot window,
+- current CHSH decorrelation-null significance,
+- current memory-runner `PASS`,
+- current data-side `J>0` by itself.
 
-The setting-wise correlator is
-$$
-E_{ab} = \frac{N_{ab}^{++}+N_{ab}^{--}-N_{ab}^{+-}-N_{ab}^{-+}}{N_{ab}}.
-$$
-
-The CHSH combination (signed convention may differ by encoding order) is
-$$
-S = E_{00}+E_{01}+E_{10}-E_{11},
-$$
-and the reported physics quantity is $|S|$.
-
-Classically (local-hidden-variable bound),
-$$
-|S| \le 2.
-$$
-
-The question is whether the locked pipeline returns $|S|>2$ with positive significance on the accepted NIST run4 coincidence export.
-
-### 4.10.4. Preregistered no-fit significance test
-
-We use a preregistered, no-fit significance audit:
-
-1. Build coincidences with locked Bridge-E0 rules from the HDF5 source.
-2. Compute the observed $S_{\mathrm{obs}}$.
-3. Generate null surrogates under a label-preserving / setting-consistent randomization rule (locked in script).
-4. Form the null distribution of $S$.
-5. Report:
-   - one-sided null p-value (for Bell-violation direction),
-   - z-score derived from the null ensemble,
-   - stability diagnostics across seeds/trials.
-
-No regression fitting is used. No “optimize-until-pass” step is allowed.
-
-### 4.10.5. NIST run4 result (Bridge-E0 prereg audit)
-
-Using the accepted HDF5-derived coincidence CSV route, the locked prereg audit returns:
-
-- $S_{\mathrm{obs}} = 2.455001027$
-- null mean $\mu_0 \approx 1.999999713$
-- null std $\sigma_0 \approx 0.228559614$
-- one-sided $p \approx 0.023236$
-- $z \approx 1.991$
-
-Interpretation:
-
-- The pipeline preserves a **positive Bell violation** relative to the local bound.
-- The null benchmark places the result at roughly **2-sigma** (preregistered, no-fit).
-- This is a **PASS** for the entanglement-sector audit in the falsification-first sense.
-
-### 4.10.6. What this pass does and does not claim
-
-**What it does claim**
-
-- The locked Bridge-E0 counting/audit pipeline is compatible with a genuine Bell-violation dataset.
-- The data-processing chain used in this sector does not trivially wash out entanglement signatures.
-- The broader program can legitimately include an entanglement-facing empirical checkpoint.
-
-**What it does not claim**
-
-- It does **not** yet derive Bell correlations from the geometric lattice dynamics.
-- It does **not** prove a unique microscopic entanglement mechanism.
-- It does **not** validate any prescreen CSV format that is semantically mismatched to Bridge-E0.
-
-This is exactly the kind of scoped claim we want in a preregistered falsification workflow.
-
-### 4.10.7. Connection to the “memory” idea (careful wording)
-
-Earlier conversations framed entanglement in terms of a possible shared-field or residual-memory picture (e.g., finite-time correlation support after direct coupling). The present section does **not** test that mechanism directly. Instead, it establishes the prerequisite empirical fact:
-
-> our locked event-processing and CHSH audit can pass a real Bell benchmark.
-
-That is the correct foundation before attempting any stronger mechanism-level derivation (shared mediator field, damped common mode, finite-memory kernel, etc.).
-
-### 4.10.8. Immediate next falsifiers for this sector
-
-The strongest next steps are:
-1. **Weihs audit repair** (offset/format bugfix) using the same prereg rules.
-2. **Cross-dataset invariance:** run the same no-fit CHSH audit on additional Bell datasets with no retuning.
-3. **Mapping robustness:** explicitly enumerate and lock setting-dependent slot→outcome mappings where data format requires it, then preregister before rerun.
-4. **Mechanism layer (later):** only after repeated empirical passes, attempt a true model-generated correlator $E_{ab}^{\text{model}}$ comparison.
-
-This keeps the project aligned with the user’s stated rule: **falsification first, no p-hacking, no fit-driven storytelling**.
 
 ## 4.11. Photon-decay / propagation bridge sector (preregistered cosmic birefringence accumulation tests)
-> **Interpretation note:** This section reports **preregistered accumulation-law / consistency / bridge-wiring** checks for the photon propagation/birefringence line. It is a **scaffolding + falsification testbed** in this revision, not a final calibrated cosmic birefringence parameter claim.
 
-This section formalizes the photon-facing part of the program in a way that is testable now. Earlier discussions used “photon decay” language as a conceptual motivation (phase/energy leakage during propagation). The current data-facing implementation is a **propagation bridge observable**:
+> **Interpretation note:** this section records what the current photon line actually is: a **preregistered bridge observable** for propagation / birefringence-like accumulation, together with null-friendly falsifiers. It is not yet a first-principles photon propagation derivation.
 
-- a tiny polarization-rotation accumulation law along line of sight,
-- tested on real cosmological polarization compilations,
-- with **locked, no-fit, preregistered** statistics.
+### 4.11.1. What is currently implemented
 
-So this is the empirical bridge sector for the photon-decay/progression idea, not yet a direct microscopic decay-rate derivation.
-
-### 4.11.1. Observable definition (rotation accumulation)
-
-We model a polarization-angle rotation contribution
+The current photon line is built around a locked accumulation observable
 $$
-\alpha(z) = \beta\, I(z),
+\alpha(z)=\beta\,I(z),
+\qquad
+I(z)=\int_0^z \frac{dz'}{(1+z')E(z')},
 $$
-where $\beta$ is a single locked amplitude (not fit in the prereg tests), and
+with flat-$\Lambda$CDM kernel
 $$
-I(z)=\int_0^z \frac{dz'}{(1+z')E(z')}
+E(z)=\sqrt{\Omega_m(1+z)^3+\Omega_\Lambda+\Omega_r(1+z)^4},
 $$
-is the propagation accumulation kernel in flat $\Lambda$CDM with
-$$
-E(z)=\sqrt{\Omega_m(1+z)^3+\Omega_\Lambda+\Omega_r(1+z)^4}.
-$$
-
-In the prereg runs used here, the kernel is locked to
+and the current prereg runs use
 $$
 \Omega_m=0.315,\quad \Omega_\Lambda=0.685,\quad \Omega_r=0.
 $$
 
-This choice is not fit to the birefringence data. It is fixed in advance as part of the test protocol.
+This is a **bridge observable**:
+- it asks whether a tiny redshift-accumulating polarization rotation is visible under a locked no-fit rule,
+- it does **not** yet derive the amplitude from the substrate dynamics.
 
-### 4.11.2. Why this is a photon-decay “bridge”
-
-The original physical intuition was that photon propagation may carry a small cumulative phase effect (or phase/energy bookkeeping leakage in the broader geometric picture). A direct decay-law test is not yet available in the current pipeline, so we use a safer, falsifiable projection:
-
-- If a propagation-linked effect exists, a redshift-integrated kernel like $I(z)$ is a natural first observable.
-- If the effect is absent, locked no-fit tests should return null-compatible statistics.
-
-Thus, the birefringence accumulation analysis is a **bridge observable**: it probes the propagation-side consequence of the photon-sector idea without overclaiming a full microscopic derivation.
-
-### 4.11.3. Preregistered test A (accumulation correlation; no fit)
-
-For a dataset with measured polarization rotation angles $\alpha_i$ and uncertainties $\sigma_i$ at redshifts $z_i$, define the kernel values $I_i = I(z_i)$.
-
-We run a preregistered, no-fit correlation-style test:
-
-- **Null:** no monotonic accumulation signal relative to the locked kernel $I(z)$.
-- **Statistic:** correlation / signed trend statistic locked in the script.
-- **Calibration:** permutation or equivalent null generation (locked).
-- **Outputs:** p-value(s) for signed and absolute variants.
-
-No regression coefficient is fitted to maximize significance.
-
-### 4.11.4. Preregistered test B (sky-fold anisotropy falsifier)
-
-A second locked test probes whether any apparent signal is actually a sky-geometry artifact. The sample is split by a preregistered sky-fold rule (hemisphere / angular partition fixed in code), and a contrast statistic is evaluated under a null randomization.
-
-This gives a **falsifier** for accidental directional structure:
-
-- If significance appears only in a specific sky split and is unstable, it is likely not a robust propagation law.
-- If no significance appears, that is consistent with null and still scientifically useful.
-
-### 4.11.5. Results (locked prereg runs)
+### 4.11.2. Current locked prereg results
 
 The current locked prereg outputs are null-compatible:
 
-**Accumulation test (no-fit)**
-
-- signed p-value $\approx 0.3603$
+- signed accumulation p-value $\approx 0.3603$
 - absolute-metric p-value $\approx 0.3936$
+- sky-fold falsifier p-value $\approx 0.1536$
 
-**Sky-fold anisotropy falsifier**
+So the current photon sector establishes:
+- the pipeline is executable,
+- the accumulation kernel is wired and auditable,
+- the current locked tests do **not** manufacture a false positive.
 
-- p-value $\approx 0.1536$
+It does **not** establish a detected birefringence effect.
 
-Interpretation:
+### 4.11.3. What this sector currently claims
 
-- No statistically compelling birefringence accumulation signal is detected in the present locked tests.
-- No robust sky-fold anisotropy signal is detected either.
-- Therefore, the photon bridge sector is currently a **null result**, but a **successful falsification-style execution** (the pipeline ran correctly and did not manufacture a false positive).
+**Established now**
+- A locked no-fit photon bridge observable exists and runs.
+- The accumulation-law and sky-fold falsifier are executable and produce null-compatible outputs.
+- The photon line therefore contributes a valid falsification / discipline layer in the current repo.
 
-### 4.11.6. Why this still counts as progress
+**Not established now**
+- A substrate-derived prediction of the birefringence / propagation amplitude.
+- A first-principles photon dynamic forward model.
+- A performance-scored photon sector.
 
-In this program, a null result is informative because the methodology is preregistered and no-fit:
+### 4.11.4. Why this sector is still not on the performance scoreboard
 
-- It constrains the size of any propagation-linked effect in this observable.
-- It validates the pipeline and locked-kernel implementation.
-- It prevents premature theory inflation from weak or post-selected signals.
+The current photon line remains **not scored here** because the present observable is still a bridge form:
+$$
+\alpha(z)=\beta I(z).
+$$
 
-This is exactly the behavior we want before adding more complex structure (anisotropic kernels, energy dependence, source-population stratification, etc.).
+What is missing is not “another permutation test.”  
+What is missing is a theory-generated photon predictor that fixes the amplitude and propagation law from the unified model itself.
 
-### 4.11.7. Relationship to future direct photon-decay tests
+In other words:
+- current photon success = **clean bridge execution with null-compatible output**;
+- missing for closure = **model-generated forward prediction**.
 
-The long-term photon sector may include more direct observables (energy attenuation, spectral distortions, lifetime-like constraints, or source-class-specific transport effects). When those are implemented, the present birefringence accumulation sector remains valuable as:
+### 4.11.5. Why the current null result still matters
 
-1. a locked baseline transport observable,
-2. a null benchmark for pipeline sanity,
-3. a cross-check against overfitting in future photon-sector extensions.
+The null-compatible result is still useful because it:
+- constrains any effect in the currently tested bridge observable,
+- validates the runner and kernel plumbing,
+- prevents overclaiming,
+- and gives a locked baseline against which future dynamic photon models can be tested.
 
-In other words, this section is the photon-sector **discipline layer**.
+So this sector is not “empty”; it is **unfinished**.
 
-### 4.11.8. Immediate next falsifiers for this sector
+### 4.11.6. Todo list for full first-principles dynamic performance closure (Photon sector)
 
-The strongest preregistered follow-ups are:
+#### Phase 0 — lock the photon target
+- **Primary observable:** photon propagation / polarization rotation
+- **Current bridge observable:** $\alpha(z)$
+- **Primary test family:** accumulation-law statistic + sky-fold falsifier
+- **Future performance target:** model-generated photon prediction vs observed catalog outputs
 
-1. **Holdout datasets:** quasar polarization compilations or tighter tomography samples (no retuning of kernel form).
-2. **Subsample robustness:** rerun by redshift bins and source classes with preregistered splits.
-3. **Sign convention audit:** lock angle-wrap and sign conventions across all catalogs before rerun.
-4. **Energy/frequency stratification:** only if data quality supports it, add a preregistered frequency-dependent extension.
+#### Phase 1 — write the sector mathematics
+Produce a locked specification that states:
+1. the photon-sector state space,
+2. the coherent generator $H_s$,
+3. the dissipative/decoherence generator $\mathcal D_s$,
+4. the map from theory state to polarization / propagation observable.
 
-Again, the rule is unchanged: **no fit-driven claim; nulls are acceptable; robustness beats excitement**.
+Required artefact:
+- `photon_first_principles_spec_v1.md`
 
+#### Phase 2 — derive the propagation amplitude from the substrate
+Replace the current bridge-only role of $\beta$ with a theory-generated quantity:
+- derive the propagation/birefringence amplitude from locked substrate variables,
+- do **not** calibrate it from the birefringence dataset being tested.
+
+Required artefact:
+- `photon_dynamic_forward_model_v1.py`
+
+#### Phase 3 — synthetic mechanism gate
+Before using real cosmological data, test whether the locked photon model produces:
+- a nontrivial effect when the mechanism is ON,
+- and a null/near-null effect under explicit null settings.
+
+Required artefact:
+- `test_photon_forward_mechanism_v1.py`
+
+#### Phase 4 — separate data interface from forward model
+Keep:
+- catalog/data parsing in a dedicated observed-data builder,
+- model prediction in a separate forward solver.
+
+The forward solver must not infer its amplitude from the observed polarization rotations it is supposed to explain.
+
+#### Phase 5 — lock parameters
+Required artefact:
+- `photon_params_locked_v1.json`
+
+This file must contain the full first-principles photon parameters and remain hash-stable during evaluation.
+
+#### Phase 6 — first real-data evaluation
+Required artefact:
+- `run_photon_first_principles_eval_v1.py`
+
+Required outputs:
+- `*_summary.json`
+- `*_state_audit.json`
+- `*_telemetry.json`
+
+Summary must include:
+- observed statistic(s),
+- model statistic(s),
+- delta / residual summary,
+- params hash
+
+#### Phase 7 — multi-catalog / holdout scorecard
+Evaluate the locked model on preregistered catalog families or holdout splits.
+
+Required artefacts:
+- `PHOTON_FIRSTPRINCIPLES_SCORECARD_v1.csv`
+- `PHOTON_FIRSTPRINCIPLES_SCORECARD_v1.md`
+
+Minimum columns:
+- catalog / split
+- observed statistic
+- model statistic
+- sign / direction match
+- residual summary
+- params hash
+
+#### Phase 8 — performance-pass gate
+Only after the locked forward photon model exists, and only after the multi-catalog scorecard is frozen, can this sector be considered for performance scoring.
+
+Until then, the honest label is:
+> **audit/bridge photon sector, first-principles dynamic closure pending.**
+
+### 4.11.7. What should not be counted as closure
+
+The following do **not** count as a first-principles photon performance closure:
+
+- a bridge law that leaves the amplitude as a dataset-facing coefficient,
+- null-compatible permutation results by themselves,
+- a sky-fold falsifier by itself,
+- any run where the amplitude is effectively recovered from the same dataset being evaluated,
+- any exploratory scan presented as a locked prediction.
+
+### 5.1 Weak sector
 ### 5.1 Weak sector (neutrino oscillations; NOvA pack)
 
 **Goal.** Demonstrate that the unified-equation geometric modulation can be inserted into a realistic oscillation likelihood (matter effects, multiple channels, nuisance handling) and that the pipeline is stable under scan / profiling.
@@ -3436,7 +3454,7 @@ Note: in the reproducibility block the sweep script passes these flags through t
 
 This section replaces the previous (obsolete) ATLAS‑elastic placeholder. The strong‑sector program here is intentionally **minimal and falsification‑first**:
 
-* **PASS / consistency:** in clean phase‑sensitive observables (CNI) the geometry phase must **not** degrade the published baseline.
+* **Consistency criterion:** in clean phase-sensitive observables (CNI) the geometry phase must **not** degrade the published baseline.
 * **DISCOVERY / residual reduction:** in energy‑axis observables (σ_tot(√s), ρ(√s)), geometry must reduce residuals **without scanning**. If it cannot, strong remains “consistent but non‑explanatory”.
 
 We report only **single‑shot, preregistered** runs (no fitting of strong data).
@@ -3698,28 +3716,11 @@ Interpretation: σ_tot‑driven modulation alone does not automatically improve 
 
 ---
 
-#### 5.2.6 Reproducibility: scripts, data, prereg commands
+#### 5.2.6 Reproducibility: current strong-sector command source
 
-All strong prereg runs are captured by a single PowerShell runbook:
+The legacy strong-sector runbook references have been removed from the main text to avoid preserving obsolete command names.
 
-* `STRONG_prereg_runbook_AIAR_FIX3.ps1`
-
-Key inputs (expected under `./data/hepdata/`):
-
-* `pdg_sigma_tot_clean_for_runner.csv`
-* `pdg_rho_clean_for_runner.csv`
-* `totem13_cni_ins1654549_pack_v2.json`
-
-Key runners (drop‑in files referenced by the runbook):
-
-* `strong_sigma_tot_energy_scan_v2_AIAR_FIX2.py`
-* `strong_rho_energy_scan_v3_AIAR_FIX2.py`
-* `strong_rho_from_sigmatot_dispersion_v1_AIAR_FIX2.py`
-* `strong_elastic_cni_rho_bridge_v1_ENV_AIAR_FIX2.py`
-
-(Commands are listed verbatim in the runbook; a shortened version is included below.)
-
----
+Use **Section 8** for the current canonical strong performance commands and paths.
 
 ### 5.3 Cross‑sector parameter locking
 
@@ -3730,6 +3731,16 @@ Across weak/EM/strong, we keep a minimal set of global geometry knobs fixed (e.g
 - **EM (Bhabha):** a shape-level multiplicative deformation on an imported baseline, enforced as **shape-only** (per-group zero-mean) and, in the strongest holdout checks, **pivot-centering** to remove DC normalization components without re-fitting nuisance normalizations.
 
 A recurring practical point is that the raw amplitude parameter $A$ is not a universal “physical strength” by itself: the meaningful quantity is an **effective amplitude** (e.g. $A_{\mathrm{eff}}\sim A\alpha g_{\mathrm{gen}}\sin\phi$ or directly $\mathrm{RMS}[\delta]$), which should be used when transporting a locked hypothesis across panels.
+
+
+### 4.11.8 Copilot execution note (closure for this revision)
+
+This revision treats the photon line as a **bridge/scaffolding checkpoint** only (not a performance-scored sector). The copilot-driven consolidation for this sector resulted in the following scope decision:
+
+- **Closed for paper-pass scope:** Photon birefringence/propagation is **not** scored on the current performance scoreboard; no additional paper-facing runs are required in this revision due to lack of additional independent datasets in the current repo snapshot.
+- **Execution status:** the preregistered bridge tests and equivalence wiring are treated as executed/validated for this revision’s scope (null-compatible outcomes are still useful constraints).
+- **Open administrative note (not a blocker):** a historical provenance note for the **sky-fold** artifact remains to be written, but it does not affect the present paper-pass boundary.
+- **Internal tracking artefacts (closure notes):** `ENT_PHOTON_FINAL_AUDIT_NOTE.md`, `ENT_PHOTON_PYRAMID_STATUS.md`, `ENT_PHOTON_PERFORMANCE_TRANSITION.md`.
 
 ## 6. Gravitational-wave sector (ringdown-only): cubic-lattice response + detector projection
 
@@ -4266,20 +4277,20 @@ Large $\Delta\chi^2$ improvements are suggestive, but mapping them to “σ sign
 
 #### 7.4.1 Locked prereg verdict (scan-free rerun; fixed $A,\alpha$; seed=2026)
 
-To remove the common ambiguity “PASS = the script ran” versus “PASS = not falsified”, we define a **scan-free** prereg check for the DM/SPARC track:
+To remove the common ambiguity between a mere script-success and a true performance verdict, we define a **scan-free** prereg check for the DM/SPARC track:
 
 - **Fixed parameters (frozen):** $A=0.1778279410$, $\alpha=0.001$ (chosen from the stable mode seen across prior CV seeds, then frozen).
 - **Holdout protocol:** 5-fold CV with `seed=2026`.
-- **Verdict rule:** **PASS** iff *all* folds satisfy $\Delta\chi^2_{\mathrm{test}}>0$, where  
+- **Verdict rule:** **performance pass** iff *all* folds satisfy $\Delta\chi^2_{\mathrm{test}}>0$, where  
 $$
   \Delta\chi^2_{\mathrm{test}}\equiv \chi^2_{\mathrm{base},test}-\chi^2_{\mathrm{geo},test}.
 $$
 
-- **Auxiliary-DOF ablation (informational, not required for PASS):** run both `env_model thread` (STIFF+GATE galaxy-closed) and `env_model none`. If they match, the UV completion is effectively decoupled at galaxy scale and the improvement is driven by the GEO modulation itself.
+- **Auxiliary-DOF ablation (informational, not required for the performance verdict):** run both `env_model thread` (STIFF+GATE galaxy-closed) and `env_model none`. If they match, the UV completion is effectively decoupled at galaxy scale and the improvement is driven by the GEO modulation itself.
 
 **Rapora / jüri diline tek satır DM verdict (copy-paste)**
 
-DM (SPARC/RAR) — PASS (scan-free): Fixed A=0.1778279410, α=0.001, kfold=5, seed=2026; all folds have Δχ²_test > 0. Thread/STIFFGATE decoupled in galaxy regime (gate@S_hi≈1e−6) and gives identical Δχ² as env_model=none → DM pass does not rely on auxiliary DOF.
+DM (SPARC/RAR) — performance pass (scan-free): Fixed A=0.1778279410, α=0.001, kfold=5, seed=2026; all folds have Δχ²_test > 0. Thread/STIFFGATE decoupled in galaxy regime (gate@S_hi≈1e−6) and gives identical Δχ² as env_model=none → DM pass does not rely on auxiliary DOF.
 
 **Locked run commands (no scan)**
 
@@ -4494,389 +4505,456 @@ Some GW configurations enable an auxiliary DOF layer (“gauge plane”) with it
 | `--kappa_shear` | $\kappa_{\mathrm{shear}}$ | Shear stiffness in the auxiliary layer PDE. | dimensionless |
 | `--gate_threshold` | — | Gate threshold for hard/soft opening. | dimensionless |
 
-## 8. Reproducibility (locked prereg run commands)
+## 8. Performance run commands (current)
 
-All commands below are **scan‑free** and intended to be run from the **repository root** (no absolute local paths).  
-A “NULL” run means the geometry modulation is disabled via **A=0** (all other knobs kept identical).
-
-### 8.0 One-for-all coupling map (locked)
-
-We define a single sector-independent pair $(A_{\mathrm{phys}},\alpha_{\mathrm{phys}})$ and convert it to each runner’s internal normalization by a fixed, deterministic map:
-
-$$
-(A_{\mathrm{sector}},\alpha_{\mathrm{sector}})=\big(k_A^{\mathrm{sector}}\,A_{\mathrm{phys}},\;k_\alpha^{\mathrm{sector}}\,\alpha_{\mathrm{phys}}\big).
-$$
-
-**Chat-locked base values:** $A_{\mathrm{phys}}=-0.003,\;\alpha_{\mathrm{phys}}=0.001$.  
-**Fixed conversion constants (locked; no scan):**
-
-- **STRONG:** $k_A=1$  ($\alpha$ unused by these runners)
-- **WEAK:** $k_A=2/3,\;k_\alpha=700$  → $A=-0.002$, $\alpha=0.7$
-- **DM:** $k_A=-59.27598033463076,\;k_\alpha=1$  → $A=0.1778279410038923$, $\alpha=0.001$
-- **EM:** $k_A=-3.3333333333333336\times 10^7$, $k_\alpha=0.075$  → $A=+10^5$, $\alpha=7.5\times10^{-5}$ when $A_{\mathrm{phys}}=-0.003$
-
-Run this PowerShell prelude **once** (same session) before the sector commands:
-
-```powershell
-# ---- one-for-all base ----
-$A_phys = -0.003
-$alpha_phys = 0.001
-
-# ---- deterministic map ----
-$A_STRONG = 1.0 * $A_phys
-
-$A_WEAK = (2.0/3.0) * $A_phys
-$alpha_WEAK = 700.0 * $alpha_phys
-
-$A_DM = (-59.27598033463076) * $A_phys
-$alpha_DM = 1.0 * $alpha_phys
-
-$A_EM = (-33333333.333333336) * $A_phys    # -> +100000
-
-*(Parameterization note.)* In the EM sector, the numerically large internal amplitude `A_EM` is not interpreted as a standalone physical scale. The effective modulation is controlled by the **product-level** quantity (e.g. `A_EM × α_map`), so many (`A_EM`, `α_map`) pairs can be algebraically equivalent at fixed product. The no-scan claim in this draft refers to fixing the **effective** modulation used by the preregistered runner, not to treating `A_EM` and `α_map` as independently meaningful physics parameters.
-$A_EM_NEG = -1.0 * $A_EM
-$alpha_EM = 0.075 * $alpha_phys            # -> 7.5e-05
-```
-
-### 8.1 WEAK — single parameter-set across NOvA + MINOS, with T2K as official penalty term
-**Locked dataset choice (this chat):** we treat `t2k_channels_real_approx.json` as the *“good-enough real”* T2K spectrum pack (forward mode), because the ROOT-profile/penalty workflow was not used here.
-
-```powershell
-# ============================================================
-# WEAK — NOvA / T2K (approx-real) / MINOS (single-shot)
-# ============================================================
-
-# NOvA (appearance FHC) — BREATH+THREAD validation (current run shows mild tension)
-py -3 .\nova_mastereq_forward_kernel_BREATH_THREAD_fixedbyclaude.py `
-  --pack .\nova_channels.json `
-  --kernel rt --k_rt 180 `
-  --A $A_WEAK --alpha $alpha_WEAK --n 0 --E0 1 `
-  --omega0_geom fixed --L0_km 810 `
-  --phi 1.57079632679 --zeta 0.05 `
-  --rho 2.8 --kappa_gate 0 --T0 1 --mu 0 --eta 0 `
-  --bin_shift_app 2 --bin_shift_dis 0 `
-  --breath_B 0.3 --breath_w0 0.0038785094488762877 --breath_gamma 0.2 `
-  --thread_C 1.0 --thread_w0 -1 --thread_gamma 0.2 `
-  --thread_weight_app 0 --thread_weight_dis 1 `
-  --out .\out\WEAK\nova_BREATH_THREAD_test.csv
-
-# T2K — “approx-real” forward pack
-py -3 .\nova_mastereq_forward_kernel_BREATH_THREAD_fixedbyclaude.py `
-  --pack .\t2k_channels_real_approx.json `
-  --kernel rt --k_rt 180 `
-  --A $A_WEAK --alpha $alpha_WEAK --n 0 --E0 1 `
-  --omega0_geom fixed --L0_km 295 `
-  --phi 1.57079632679 --zeta 0.05 `
-  --rho 2.6 --kappa_gate 0 --T0 1 --mu 0 --eta 0 `
-  --bin_shift_app 0 --bin_shift_dis 0 `
-  --breath_B 0.3 --breath_w0 0.00387850944887629 --breath_gamma 0.2 `
-  --thread_C 1.0 --thread_w0 0.00387850944887629 --thread_gamma 0.2 `
-  --thread_weight_app 0 --thread_weight_dis 1 `
-  --out .\out\WEAK\t2k_BREATH_THREAD_validation_APPROXREAL.csv
-
-# MINOS — disappearance (single-shot)
-py -3 .\nova_mastereq_forward_kernel_BREATH_THREAD_v2.py `
-  --pack .\minos_channels.json --out NUL `
-  --kernel rt --k_rt 180 `
-  --A $A_WEAK --alpha $alpha_WEAK --n 0 --E0 1 `
-  --omega0_geom fixed --L0_km 810 `
-  --phi 1.57079632679 --zeta 0.05 `
-  --rho 2.6 --kappa_gate 0 --T0 1 --mu 0 --eta 0 `
-  --breath_B 0.3 --breath_w0 0.0038785 --breath_gamma 0.2 `
-  --thread_C 1.5 --thread_w0 -1 --thread_gamma 0.1 `
-  --thread_weight_app 0 --thread_weight_dis 1
-```
-
-**What to read from the outputs (mechanical checks):**
-
-- `A=0` “null” should reproduce SM (Δχ² ≈ 0) if you run a null variant.
-- For the commands above, the chat-logged forward summaries were:
-  - T2K: total Δχ² = **+0.671**
-  - MINOS: Δχ² = **+1.005**
-  - NOvA: Δχ² = **−0.479** (this is the current weak “tension” we revisit later)
-
-### 8.2 STRONG — sector-total verdict (σ_tot drives PASS; ρ may be flagged as “tension”)
-```powershell
-# ============================================================
-# STRONG — PDG σ_tot and ρ (no-fit baseline; single-shot GEO)
-# ============================================================
-
-# σ_tot(sqrt(s))  — PASS in this chat (Δχ² > 0)
-py -3 .\strong_sigma_tot_energy_scan_v2.py `
-  --data .\data\hepdata\pdg_sigma_tot_clean_for_runner.csv `
-  --A $A_STRONG `
-  --env_mode eikonal --sqrts_ref_GeV 13000 `
-  --delta_geo_ref -1.315523 --c1_abs 0.725147 `
-  --template cos `
-  --out .\out_sigmatot_GEO_Aneg003.csv `
-  --chi2_out .\out_sigmatot_GEO_Aneg003_chi2.json
-
-# ρ(sqrt(s)) — “investigating bridge / model gap” tension in this chat (Δχ² < 0)
-py -3 .\strong_rho_energy_scan_v3.py `
-  --data .\data\hepdata\pdg_rho_clean_for_runner.csv `
-  --channel both `
-  --A $A_STRONG `
-  --env_mode eikonal --sqrts_ref_GeV 13000 `
-  --delta_geo_ref -1.315523 --c1_abs 0.725147 `
-  --template cos `
-  --out .\out_rho_GEO_eikonal_Aneg003.csv `
-  --chi2_out .\out_rho_GEO_eikonal_Aneg003_chi2.json
-```
-
-**Verdict rule used in this chat:** “STRONG overall PASS” is driven by σ_tot improvement; ρ is tracked as a *tension / bridge-missing* indicator (not a sector-killer by itself).
-
-### 8.3 EM — LEP Bhabha shape-only bridge (prereg)
-We locked EM on **shape-only** tests with **frozen per-group normalizations** (no refitting of betas between SM and GEO), and explicit **A sign-flip falsification** runs.
-
-```powershell
-# ============================================================
-# EM / Bhabha — TOTAL cov
-# ============================================================
-
-# (1a) NULL  A=0
-py -3 .\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
-  --pack .\lep_bhabha_pack.json `
-  --cov total `
-  --baseline_csv .\bhagen_cos09_v4_baseline_L0_Sp1.csv `
-  --baseline_col sm_pred_pb --baseline_group_col group_id `
-  --A 0 --alpha $alpha_EM --phi 1.57079632679 `
-  --geo_structure offdiag --geo_gen lam2 `
-  --omega0_geom fixed --L0_km 810 `
-  --zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
-  --shape_only --freeze_betas --beta_nonneg `
-  --out .\out\EM\bhabha_total_A0.csv
-
-# (1b) GEO  A=+1e5
-py -3 .\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
-  --pack .\lep_bhabha_pack.json `
-  --cov total `
-  --baseline_csv .\bhagen_cos09_v4_baseline_L0_Sp1.csv `
-  --baseline_col sm_pred_pb --baseline_group_col group_id `
-  --A $A_EM --alpha $alpha_EM --phi 1.57079632679 `
-  --geo_structure offdiag --geo_gen lam2 `
-  --omega0_geom fixed --L0_km 810 `
-  --zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
-  --shape_only --freeze_betas --beta_nonneg `
-  --out .\out\EM\bhabha_total_A1e5.csv
-
-# (1c) SIGN-FLIP  A=-1e5
-py -3 .\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
-  --pack .\lep_bhabha_pack.json `
-  --cov total `
-  --baseline_csv .\bhagen_cos09_v4_baseline_L0_Sp1.csv `
-  --baseline_col sm_pred_pb --baseline_group_col group_id `
-  --A $A_EM_NEG --alpha $alpha_EM --phi 1.57079632679 `
-  --geo_structure offdiag --geo_gen lam2 `
-  --omega0_geom fixed --L0_km 810 `
-  --zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
-  --shape_only --freeze_betas --beta_nonneg `
-  --out .\out\EM\bhabha_total_Aneg1e5.csv
-
-# ============================================================
-# EM / Bhabha — DIAG_TOTAL cov
-# ============================================================
-
-# (2a) NULL  A=0
-py -3 .\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
-  --pack .\lep_bhabha_pack.json `
-  --cov diag_total `
-  --baseline_csv .\bhagen_cos09_v4_baseline_L0_Sp1.csv `
-  --baseline_col sm_pred_pb --baseline_group_col group_id `
-  --A 0 --alpha $alpha_EM --phi 1.57079632679 `
-  --geo_structure offdiag --geo_gen lam2 `
-  --omega0_geom fixed --L0_km 810 `
-  --zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
-  --shape_only --freeze_betas --beta_nonneg `
-  --out .\out\EM\bhabha_diag_A0.csv
-
-# (2b) GEO  A=+1e5
-py -3 .\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
-  --pack .\lep_bhabha_pack.json `
-  --cov diag_total `
-  --baseline_csv .\bhagen_cos09_v4_baseline_L0_Sp1.csv `
-  --baseline_col sm_pred_pb --baseline_group_col group_id `
-  --A $A_EM --alpha $alpha_EM --phi 1.57079632679 `
-  --geo_structure offdiag --geo_gen lam2 `
-  --omega0_geom fixed --L0_km 810 `
-  --zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
-  --shape_only --freeze_betas --beta_nonneg `
-  --out .\out\EM\bhabha_diag_A1e5.csv
-
-# (2c) SIGN-FLIP  A=-1e5  (this run was explicitly checked in this chat)
-py -3 .\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
-  --pack .\lep_bhabha_pack.json `
-  --cov diag_total `
-  --baseline_csv .\bhagen_cos09_v4_baseline_L0_Sp1.csv `
-  --baseline_col sm_pred_pb --baseline_group_col group_id `
-  --A $A_EM_NEG --alpha $alpha_EM --phi 1.57079632679 `
-  --geo_structure offdiag --geo_gen lam2 `
-  --omega0_geom fixed --L0_km 810 `
-  --zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
-  --shape_only --freeze_betas --beta_nonneg `
-  --out .\out\EM\bhabha_diag_Aneg1e5.csv
-
-# ============================================================
-# EM / μμ (LEP)
-# ============================================================
-
-# (3a) NULL  A=0
-py -3 .\em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
-  --pack .\lep_mumu_pack.json `
-  --cov total `
-  --A 0 --alpha $alpha_EM --phi 1.57079632679 `
-  --geo_structure offdiag --geo_gen lam2 `
-  --omega0_geom fixed --L0_km 810 `
-  --zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
-  --shape_only --freeze_betas --beta_nonneg --require_positive `
-  --out .\out\EM\mumu_total_A0.csv
-
-# (3b) GEO  A=+1e5
-py -3 .\em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
-  --pack .\lep_mumu_pack.json `
-  --cov total `
-  --A $A_EM --alpha $alpha_EM --phi 1.57079632679 `
-  --geo_structure offdiag --geo_gen lam2 `
-  --omega0_geom fixed --L0_km 810 `
-  --zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
-  --shape_only --freeze_betas --beta_nonneg --require_positive `
-  --out .\out\EM\mumu_total_A1e5.csv
-
-# (3c) GEO diag  A=+1e5
-py -3 .\em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
-  --pack .\lep_mumu_pack.json `
-  --cov diag_total `
-  --A $A_EM --alpha $alpha_EM --phi 1.57079632679 `
-  --geo_structure offdiag --geo_gen lam2 `
-  --omega0_geom fixed --L0_km 810 `
-  --zeta 0.05 --R_max 10 --t_ref_GeV 0.02 `
-  --shape_only --freeze_betas --beta_nonneg --require_positive `
-  --out .\out\EM\mumu_diag_A1e5.csv
-```
-
-### 8.4 GW/LIGO — basis/pattern generation only (PLUS/CROSS; no data input)
-
-> **Scope note (repo snapshot):** The locked GW/LIGO prereg in this repository is limited to deterministic **pattern generation** (PLUS/CROSS) used as basis components. The optional “hybrid basis builder” and “GW170814 ringdown confirmation” runners are **omitted here** because the corresponding scripts are not present in the repo snapshot used for this paper.
-
-```powershell
-# ============================================================
-# LIGO — Basis üretimi (pattern-only)
-# ============================================================
-mkdir out\gate0_split -ErrorAction SilentlyContinue
-
-# PLUS
-py -3 .\improved_simulation_STABLE_v17_xy_quadrupole_drive_ANISO_PHYS_TENSOR_PHYS_FIXED4.py `
-  --out_csv out\gate0_split\PLUS.csv `
-  --nx 6 --dt 0.00005 --duration 0.2 `
-  --drive_pattern quad_plus_xy `
-  --readout_split x
-
-# CROSS
-py -3 .\improved_simulation_STABLE_v17_xy_quadrupole_drive_ANISO_PHYS_TENSOR_PHYS_FIXED4.py `
-  --out_csv out\gate0_split\CROSS.csv `
-  --nx 6 --dt 0.00005 --duration 0.2 `
-  --drive_pattern quad_cross_xy `
-  --readout_split x
-```
-
-### 8.5 DM — SPARC/RAR (scan‑free; fixed A, fixed α; kfold=5)
-```powershell
-# ============================================================
-# DM — SPARC (k-fold holdout CV; A and alpha fixed; no scanning)
-# ============================================================
-
-# THREAD env (STIFFGATE)
-py -3 dm_holdout_cv_thread_STIFFGATE.py `
-  --points_csv .\data\sparc\sparc_points.csv `
-  --model geo_add_const --g0 1.2e-10 `
-  --env_model thread `
-  --thread_mode down --thread_q 0.6 --thread_xi 0.5 --thread_norm median `
-  --thread_gate_p 4 --thread_k2 1.0 `
-  --thread_calibrate_from_galaxy --gal_hi_p 99.9 --gal_gate_eps 1e-6 --thread_Sc_factor 10 `
-  --A_min $A_DM --A_max $A_DM --nA 1 `
-  --alpha_min $alpha_DM --alpha_max $alpha_DM --nAlpha 1 `
-  --kfold 5 --seed 2026 `
-  --out_csv .\out\dm_cv_thread_STIFFGATE_FIXED_A01778_a0001_seed2026_k5.csv
-
-# NO-ENV baseline
-py -3 dm_holdout_cv_thread.py `
-  --points_csv .\data\sparc\sparc_points.csv `
-  --model geo_add_const --g0 1.2e-10 `
-  --env_model none `
-  --A_min $A_DM --A_max $A_DM --nA 1 `
-  --alpha_min $alpha_DM --alpha_max $alpha_DM --nAlpha 1 `
-  --kfold 5 --seed 2026 `
-  --out_csv .\out\dm_cv_NONE_FIXED_A01778_a0001_seed2026_k5.csv
-```
-
-**Mechanical check:** both runs print per-fold `train Δχ²` and `test Δχ²`. The *comparison* is between `env_model thread` and `env_model none` with the same fixed `(A, α)`.
-
-### 8.6. Entanglement sector — latest working run commands (NIST run4, Bridge-E0)
-
-These are the locked, last-known working commands for the **valid** NIST run4 entanglement audit path (HDF5 export $\rightarrow$ coincidence CSV $\rightarrow$ prereg CHSH audit). We intentionally exclude the prescreen `02_54_coinc_slotfix.csv` route from the claim because that file format is not Bridge-E0 compatible and can yield diagnostic $S=-2$ mapping failures.
-
-#### 8.6.1. Build coincidence CSV from the accepted NIST run4 HDF5 source
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\run_nist_hdf5_to_coinc_csv_bridgeE0_v1_DROPIN_SELFCONTAINED.ps1 `
-  -H5Path ".\data\nist\03_43_run4_afterfixingModeLocking.build.hdf5" `
-  -OutDir "out" `
-  -Prefix "nist_run4"
-```
-
-Expected main output:
-
-- `out\nist_run4_coincidences.csv`
-
-#### 8.6.2. Run preregistered no-fit CHSH audit on the coincidence CSV
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\run_nist_coinc_csv_prereg_chsh_bridgeE0_v1_DROPIN_SELFCONTAINED.ps1 `
-  -InCsv ".\out\nist_run4_coincidences.csv" `
-  -Trials 20000 `
-  -Seed 12345 `
-  -OutDir "out" `
-  -Prefix "nist_run4_prereg"
-```
-
-Expected PASS-style summary (representative):
-
-- `GLOBAL_CHSH ≈ 2.455001027`
-- `NULL z ≈ 1.991`
-- `PASS (z >= 1.96)`
+**Project root (workdir):** `C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git`  
+**Rule:** The word **pass** is used **only** for **performance**.
 
 ---
 
-### 8.7. Photon-decay / propagation bridge sector — latest working run commands
+#### Summary (performance-only)
 
-These are the locked, last-known working prereg commands for the photon-facing bridge tests (cosmic birefringence accumulation + sky-fold falsifier). They are the current data-facing implementation of the photon-sector idea.
+- **WEAK:** **performance pass**
+- **STRONG:** **performance pass** *(rho tension exists, but net improvement is positive)*
+- **EM:** **not a performance pass** *(closure ok; Delta chi2 = 0 in both branches)*
+- **DM:** **performance pass**
+- **MS:** **performance pass** *(internal_only strict run and full ablation both passed)*
+- **LIGO:** **performance pass** *(canonical exact branch; locally re-confirmed at OFF20K exact; OFF100K is optional stronger rerun)*
 
-#### 8.7.1. Accumulation prereg test (no-fit)
+---
 
+#### Global criteria used (performance)
+
+- **WEAK:** `TOTAL SCORE > 0`
+- **STRONG:** net `Delta chi2 total > 0` (sigma_tot + rho combined)
+- **DM:** `telemetry.all_folds_delta_test_positive = true` (k-fold test improvement)
+- **MS:** prereg final verdict `PASS` (performance) and dynamics stateful integrity true
+- **LIGO:** canonical exact GW170814 branch has strong null p-metrics (key: `p_joint_abs_and_minabs`)
+
+---
+
+### 1) WEAK — performance
+
+#### Why performance pass
+Observed in-session:
+- `TOTAL SCORE = 0.489377` (positive)
+
+#### Run command
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\run_prereg_birefringence_accumulation_v1_DROPIN_SELFCONTAINED_FIX.ps1 `
-  -AbsTest `
-  -OutCsv "out\birefringence_accumulation_prereg_v1.csv"
+Set-Location C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git
+
+py -3 .\score_nova_minos_t2k_penalty.py `
+  --runner .\nova_mastereq_forward_kernel_BREATH_THREAD_v2.py `
+  --pack_nova .\nova_channels.json `
+  --pack_minos .\minos_channels.json `
+  --runner_args "--kernel rt --k_rt 180 --A -0.002 --alpha 0.7 --n 0 --E0 1 --omega0_geom fixed --phi 1.57079632679 --zeta 0.05 --rho 2.6 --kappa_gate 0 --T0 1 --mu 0 --eta 0 --breath_B 0.3 --breath_w0 0.0038785 --breath_gamma 0.2 --thread_C 1.5 --thread_w0 -1 --thread_gamma 0.1 --thread_weight_app 0 --thread_weight_dis 1" `
+  --t2k_penalty_cli .\t2k_penalty_cli.py `
+  --t2k_profiles .\t2k_release_extract\t2k_frequentist_profiles.json `
+  --hierarchy NH `
+  --rc wRC `
+  --s2th23 0.55 `
+  --dm2 0.0025 `
+  --dcp -1.5
 ```
 
-Expected null-compatible outputs (representative):
+---
 
-- signed p-value $\approx 0.3603$
-- absolute p-value $\approx 0.3936$
+### 2) STRONG — performance
 
-#### 8.7.2. Sky-fold anisotropy falsifier (no-fit)
+#### Why performance pass
+In-session verified:
+- sigma_tot: `pp dchi2 = +3.235630`, `pbarp dchi2 = +0.209162`
+- rho: `dchi2 = -0.6558912131`
+- **Net:** `Delta chi2 total = +2.7889007869` (positive)
 
+#### Run commands
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\run_prereg_birefringence_skyfold_v1_DROPIN_SELFCONTAINED_FIX.ps1 `
-  -OutCsv "out\birefringence_skyfold_prereg_v1.csv"
+Set-Location C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git
+New-Item -ItemType Directory -Force .\LOCAL_RUNS\STRONG | Out-Null
+
+# sigma_tot NULL
+py -3 .\strong_sigma_tot_energy_scan_v2.py `
+  --data .\data\hepdata\pdg_sigma_tot_clean_for_runner.csv `
+  --channel both `
+  --A 0 `
+  --env_mode none `
+  --out .\LOCAL_RUNS\STRONG\sigmatot_NULL.csv `
+  --chi2_out .\LOCAL_RUNS\STRONG\sigmatot_NULL_chi2.json
+
+# sigma_tot GEO
+py -3 .\strong_sigma_tot_energy_scan_v2.py `
+  --data .\data\hepdata\pdg_sigma_tot_clean_for_runner.csv `
+  --channel both `
+  --A -0.003 `
+  --env_mode eikonal `
+  --template cos `
+  --sqrts_ref_GeV 13000 `
+  --delta_geo_ref -1.315523 `
+  --c1_abs 0.725147 `
+  --out .\LOCAL_RUNS\STRONG\sigmatot_GEO_Aneg003.csv `
+  --chi2_out .\LOCAL_RUNS\STRONG\sigmatot_GEO_Aneg003_chi2.json
+
+# rho NULL
+py -3 .\strong_rho_energy_scan_v3.py `
+  --data .\data\hepdata\pdg_rho_clean_for_runner.csv `
+  --channel both `
+  --A 0 `
+  --env_mode none `
+  --out .\LOCAL_RUNS\STRONG\rho_NULL.csv `
+  --chi2_out .\LOCAL_RUNS\STRONG\rho_NULL_chi2.json
+
+# rho GEO
+py -3 .\strong_rho_energy_scan_v3.py `
+  --data .\data\hepdata\pdg_rho_clean_for_runner.csv `
+  --channel both `
+  --A -0.003 `
+  --env_mode eikonal_amp `
+  --sqrts_ref_GeV 13000 `
+  --delta_geo_ref -1.315523 `
+  --c1_abs 0.725147 `
+  --template cos `
+  --out .\LOCAL_RUNS\STRONG\rho_GEO_Aneg003.csv `
+  --chi2_out .\LOCAL_RUNS\STRONG\rho_GEO_Aneg003_chi2.json
 ```
 
-Expected null-compatible output (representative):
+---
 
-- sky-fold p-value $\approx 0.1536$
+### 3) EM — not a performance pass (closure ok)
 
-#### 8.7.3. Interpretation note (important)
+#### Why not a performance pass
+Both branches have `Delta chi2 = 0`:
+- Bhabha: `chi2_SM == chi2_GEO`
+- MuMu: `chi2_SM == chi2_GEO`
 
-The photon-sector prereg commands currently produce **null-compatible** results. This is still a valid PASS for the falsification protocol because the scripts run correctly, the test statistic is locked in advance, and no post-hoc fit is used to force a signal.
+#### Run commands (for record)
+```powershell
+Set-Location C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git
+New-Item -ItemType Directory -Force .\LOCAL_RUNS\EM | Out-Null
+
+# Bhabha
+py -3 .\em_bhabha_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
+  --pack .\data\hepdata\lep_bhabha_pack.json `
+  --cov total `
+  --A 0 `
+  --out .\LOCAL_RUNS\EM\bhabha_pred.csv `
+  --out_json .\LOCAL_RUNS\EM\bhabha_summary.json
+
+# MuMu
+py -3 .\em_mumu_forward_shapeonly_env_guarded_freezebetas_groupaware.py `
+  --pack .\data\hepdata\lep_mumu_pack.json `
+  --cov total `
+  --A 0 `
+  --out .\LOCAL_RUNS\EM\mumu_pred.csv `
+  --out_json .\LOCAL_RUNS\EM\mumu_summary.json
+```
+
+---
+
+### 4) DM — performance
+
+#### Precondition (bundle fix already done)
+`thread_env_model.py` must exist at the project root.
+
+#### Why performance pass
+Rerun produces `dm_cv_thread_STIFFGATE_summary.json` with:
+- `telemetry.all_folds_delta_test_positive = true`
+
+#### Run command
+```powershell
+Set-Location C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git
+New-Item -ItemType Directory -Force .\LOCAL_RUNS\DM | Out-Null
+
+py -3 .\run_dm_paper_run.py `
+  --out_dir .\LOCAL_RUNS\DM\dm_paper_pass_A01778_a0001 `
+  --points_csv .\data\sparc\sparc_points.csv `
+  --kfold 5 `
+  --seed 2026 `
+  --A 0.1778279410 `
+  --alpha 0.001
+```
+
+---
+
+### 5) MS — performance
+
+#### A) internal_only strict run — performance pass
+
+##### Why performance pass
+Final prereg file shows:
+- `final_verdict = "PASS"` (performance)
+- `C1_psuccess = true`
+- `C2_mad = true`
+- `C3_thirdarm = true`
+
+Aggregator shows:
+- `prereg_all_pass = true`
+- `dynamics_stateful_all = true`
+
+##### Run commands (internal_only; validated)
+```powershell
+Set-Location C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git
+
+$runId = "ms_strict_raw_common_local"
+
+New-Item -ItemType Directory -Force ".\out\MS\$runId\internal_only\A1_B2" | Out-Null
+New-Item -ItemType Directory -Force ".\out\MS\$runId\internal_only\A1_B3_holdout" | Out-Null
+New-Item -ItemType Directory -Force ".\out\MS\$runId\internal_only\A2_B3_thirdarm" | Out-Null
+New-Item -ItemType Directory -Force ".\out\MS\$runId\internal_only\final" | Out-Null
+
+# A1_B2
+py -3 .\ms_particle_specific_dynamic_runner_v1_0_DROPIN.py `
+  --inputs .\data\MS\particle_specific_cytofull_A1_B2\ModeA_points.csv .\data\MS\particle_specific_cytofull_A1_B2\ModeB_points.csv `
+  --out_dir ".\out\MS\$runId\internal_only\A1_B2" `
+  --targets_csv .\data\MS\particle_specific_cytofull_A1_B2_direct\targets_used.csv `
+  --baseline ModeA_points `
+  --ablation internal_only `
+  --alpha 0.30 `
+  --alpha_g_floor 0.25 `
+  --window_ppm 30 `
+  --good_ppm 3 `
+  --tail3_ppm -300000 `
+  --min_n 8 `
+  --max_bins 8 `
+  --prereg_observable raw_ppm `
+  --drift_state_mode telemetry_only_commonbaseline `
+  --require_stateful_dynamics
+
+# A1_B3_holdout
+py -3 .\ms_particle_specific_dynamic_runner_v1_0_DROPIN.py `
+  --inputs .\data\MS\particle_specific_cytofull_A1_B2\ModeA_points.csv .\data\MS\particle_specific_cytofull_A1_B2_direct\ModeB_holdout_points.csv `
+  --out_dir ".\out\MS\$runId\internal_only\A1_B3_holdout" `
+  --targets_csv .\data\MS\particle_specific_cytofull_A1_B2_direct\targets_used.csv `
+  --baseline ModeA_points `
+  --ablation internal_only `
+  --alpha 0.30 `
+  --alpha_g_floor 0.25 `
+  --window_ppm 30 `
+  --good_ppm 3 `
+  --tail3_ppm -300000 `
+  --min_n 8 `
+  --max_bins 8 `
+  --prereg_observable raw_ppm `
+  --drift_state_mode telemetry_only_commonbaseline `
+  --require_stateful_dynamics
+
+# A2_B3_thirdarm
+py -3 .\ms_particle_specific_dynamic_runner_v1_0_DROPIN.py `
+  --inputs .\data\MS\particle_specific_cytofull_A2_B3\ModeA_points.csv .\data\MS\particle_specific_cytofull_A1_B2_direct\ModeB_holdout_points.csv `
+  --out_dir ".\out\MS\$runId\internal_only\A2_B3_thirdarm" `
+  --targets_csv .\data\MS\particle_specific_cytofull_A1_B2_direct\targets_used.csv `
+  --baseline ModeA_points `
+  --ablation internal_only `
+  --alpha 0.30 `
+  --alpha_g_floor 0.25 `
+  --window_ppm 30 `
+  --good_ppm 3 `
+  --tail3_ppm -300000 `
+  --min_n 8 `
+  --max_bins 8 `
+  --prereg_observable raw_ppm `
+  --drift_state_mode telemetry_only_commonbaseline `
+  --require_stateful_dynamics
+
+# Finalizer
+py -3 .\runners\finalize_particle_specific_goodppm_lock_from_runs_v1_0.py `
+  --root . `
+  --pair_b2_dir ".\out\MS\$runId\internal_only\A1_B2" `
+  --pair_b3_dir ".\out\MS\$runId\internal_only\A1_B3_holdout" `
+  --third_arm_dir ".\out\MS\$runId\internal_only\A2_B3_thirdarm" `
+  --targets_csv .\data\MS\particle_specific_cytofull_A1_B2_direct\targets_used.csv `
+  --out_dir ".\out\MS\$runId\internal_only\final" `
+  --good_ppm 3 `
+  --window_ppm 30 `
+  --tail3_ppm -300000 `
+  --min_n 8 `
+  --max_bins 8 `
+  --mode_a_points .\data\MS\particle_specific_cytofull_A1_B2\ModeA_points.csv `
+  --mode_b2_points .\data\MS\particle_specific_cytofull_A1_B2\ModeB_points.csv `
+  --mode_b3_points .\data\MS\particle_specific_cytofull_A1_B2_direct\ModeB_holdout_points.csv `
+  --mode_a2_points .\data\MS\particle_specific_cytofull_A2_B3\ModeA_points.csv
+
+# Aggregator
+py -3 .\ms_dynamics_integrity_aggregate_v1_DROPIN.py --run_id $runId
+```
+
+#### B) full ablation — performance pass
+
+##### Why performance pass
+In-session validated:
+
+###### Final prereg
+- `final_verdict = "PASS"` (performance)
+- `C1_psuccess = true`
+- `C2_mad = true`
+- `C3_thirdarm = true`
+
+###### Aggregator
+- `prereg_all_pass = true`
+- `dynamics_stateful_all = true`
+
+###### Telemetry
+Across all three full arms:
+- `ablation = "full"`
+- `internal_dynamics_used = true`
+- `thread_env_used = true`
+- `stateful_steps_total = 527`
+
+This confirms that the full branch passed with thread environment enabled.
+
+##### Run commands (full; validated)
+```powershell
+Set-Location C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git
+
+$runId = "ms_strict_raw_common_full_local"
+
+New-Item -ItemType Directory -Force ".\out\MS\$runId\full\A1_B2" | Out-Null
+New-Item -ItemType Directory -Force ".\out\MS\$runId\full\A1_B3_holdout" | Out-Null
+New-Item -ItemType Directory -Force ".\out\MS\$runId\full\A2_B3_thirdarm" | Out-Null
+New-Item -ItemType Directory -Force ".\out\MS\$runId\full\final" | Out-Null
+
+# A1_B2
+py -3 .\ms_particle_specific_dynamic_runner_v1_0_DROPIN.py `
+  --inputs .\data\MS\particle_specific_cytofull_A1_B2\ModeA_points.csv .\data\MS\particle_specific_cytofull_A1_B2\ModeB_points.csv `
+  --out_dir ".\out\MS\$runId\full\A1_B2" `
+  --targets_csv .\data\MS\particle_specific_cytofull_A1_B2_direct\targets_used.csv `
+  --baseline ModeA_points `
+  --ablation full `
+  --alpha 0.30 `
+  --alpha_g_floor 0.25 `
+  --window_ppm 30 `
+  --good_ppm 3 `
+  --tail3_ppm -300000 `
+  --min_n 8 `
+  --max_bins 8 `
+  --prereg_observable raw_ppm `
+  --drift_state_mode telemetry_only_commonbaseline `
+  --require_stateful_dynamics
+
+# A1_B3_holdout
+py -3 .\ms_particle_specific_dynamic_runner_v1_0_DROPIN.py `
+  --inputs .\data\MS\particle_specific_cytofull_A1_B2\ModeA_points.csv .\data\MS\particle_specific_cytofull_A1_B2_direct\ModeB_holdout_points.csv `
+  --out_dir ".\out\MS\$runId\full\A1_B3_holdout" `
+  --targets_csv .\data\MS\particle_specific_cytofull_A1_B2_direct\targets_used.csv `
+  --baseline ModeA_points `
+  --ablation full `
+  --alpha 0.30 `
+  --alpha_g_floor 0.25 `
+  --window_ppm 30 `
+  --good_ppm 3 `
+  --tail3_ppm -300000 `
+  --min_n 8 `
+  --max_bins 8 `
+  --prereg_observable raw_ppm `
+  --drift_state_mode telemetry_only_commonbaseline `
+  --require_stateful_dynamics
+
+# A2_B3_thirdarm
+py -3 .\ms_particle_specific_dynamic_runner_v1_0_DROPIN.py `
+  --inputs .\data\MS\particle_specific_cytofull_A2_B3\ModeA_points.csv .\data\MS\particle_specific_cytofull_A1_B2_direct\ModeB_holdout_points.csv `
+  --out_dir ".\out\MS\$runId\full\A2_B3_thirdarm" `
+  --targets_csv .\data\MS\particle_specific_cytofull_A1_B2_direct\targets_used.csv `
+  --baseline ModeA_points `
+  --ablation full `
+  --alpha 0.30 `
+  --alpha_g_floor 0.25 `
+  --window_ppm 30 `
+  --good_ppm 3 `
+  --tail3_ppm -300000 `
+  --min_n 8 `
+  --max_bins 8 `
+  --prereg_observable raw_ppm `
+  --drift_state_mode telemetry_only_commonbaseline `
+  --require_stateful_dynamics
+
+# Finalizer
+py -3 .\runners\finalize_particle_specific_goodppm_lock_from_runs_v1_0.py `
+  --root . `
+  --pair_b2_dir ".\out\MS\$runId\full\A1_B2" `
+  --pair_b3_dir ".\out\MS\$runId\full\A1_B3_holdout" `
+  --third_arm_dir ".\out\MS\$runId\full\A2_B3_thirdarm" `
+  --targets_csv .\data\MS\particle_specific_cytofull_A1_B2_direct\targets_used.csv `
+  --out_dir ".\out\MS\$runId\full\final" `
+  --good_ppm 3 `
+  --window_ppm 30 `
+  --tail3_ppm -300000 `
+  --min_n 8 `
+  --max_bins 8 `
+  --mode_a_points .\data\MS\particle_specific_cytofull_A1_B2\ModeA_points.csv `
+  --mode_b2_points .\data\MS\particle_specific_cytofull_A1_B2\ModeB_points.csv `
+  --mode_b3_points .\data\MS\particle_specific_cytofull_A1_B2_direct\ModeB_holdout_points.csv `
+  --mode_a2_points .\data\MS\particle_specific_cytofull_A2_B3\ModeA_points.csv
+
+# Aggregator
+py -3 .\ms_dynamics_integrity_aggregate_v1_DROPIN.py --run_id $runId
+```
+
+---
+
+### 6) LIGO — performance (canonical exact branch)
+
+#### Why performance pass (locally re-confirmed)
+Exact OFF20K rerun produced:
+- `p_joint_abs_and_minabs = 0.0`
+- `p_abs_corr = 0.0295`
+- `p_min_abs_corr = 0.0435`
+
+#### Canonical exact OFF20K run command (validated)
+```powershell
+Set-Location C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git
+
+py -3 .\gw170814_ringdown_only_null_v1_FIXED_v7_consistency_3det_projected_peakalign_v6_fixedlags.py `
+  --h1_hdf5 ".\data\gw\H-H1_GWOSC_4KHZ_R1-1186741846-32.hdf5" `
+  --l1_hdf5 ".\data\gw\L-L1_GWOSC_4KHZ_R1-1186741846-32.hdf5" `
+  --v1_hdf5 ".\data\gw\V-V1_GWOSC_4KHZ_R1-1186741846-32.hdf5" `
+  --model_csv ".\out\LIGO\MODEL_BASIS_HYBRID_lam1e+09.csv" `
+  --model_col_plus h_plus_proxy `
+  --model_col_cross h_cross_proxy `
+  --model_t0peak_col h_plus_proxy `
+  --auto_event gw170814 `
+  --center_guess_gps 1186741861.0 `
+  --anchor_band 150,500 `
+  --analysis_band 150,500 `
+  --fixed_anchor_lag_s -0.008 `
+  --fixed_anchor_lag_h1_v1_s 0.006 `
+  --max_model_lag_s 0.0 `
+  --ringdown_start_s 0.002 `
+  --ringdown_dur_s 0.02 `
+  --time_scales 1 `
+  --psi_deg 45 `
+  --seed 777 `
+  --offsource_n 20000 `
+  --no_sign_flip `
+  --out_prefix ".\out\LIGO\gw170814_HYB_lam1e9_psi45_OFF20K_seed777_EXACT"
+```
+
+#### Optional: canonical exact OFF100K (stronger, slower)
+```powershell
+Set-Location C:\Dropbox\projects\new_master_equation_with_gauga_structure_test_git
+
+py -3 .\gw170814_ringdown_only_null_v1_FIXED_v7_consistency_3det_projected_peakalign_v6_fixedlags.py `
+  --h1_hdf5 ".\data\gw\H-H1_GWOSC_4KHZ_R1-1186741846-32.hdf5" `
+  --l1_hdf5 ".\data\gw\L-L1_GWOSC_4KHZ_R1-1186741846-32.hdf5" `
+  --v1_hdf5 ".\data\gw\V-V1_GWOSC_4KHZ_R1-1186741846-32.hdf5" `
+  --model_csv ".\out\LIGO\MODEL_BASIS_HYBRID_lam1e+09.csv" `
+  --model_col_plus h_plus_proxy `
+  --model_col_cross h_cross_proxy `
+  --model_t0peak_col h_plus_proxy `
+  --auto_event gw170814 `
+  --center_guess_gps 1186741861.0 `
+  --anchor_band 150,500 `
+  --analysis_band 150,500 `
+  --fixed_anchor_lag_s -0.008 `
+  --fixed_anchor_lag_h1_v1_s 0.006 `
+  --max_model_lag_s 0.0 `
+  --ringdown_start_s 0.002 `
+  --ringdown_dur_s 0.02 `
+  --time_scales 1 `
+  --psi_deg 45 `
+  --seed 777 `
+  --offsource_n 100000 `
+  --no_sign_flip `
+  --out_prefix ".\out\LIGO\gw170814_HYB_lam1e9_psi45_OFF100K_seed777_EXACT"
+```
 
 ## 9. Theoretical implications and philosophy: Topological Field Theory framing (future-work, topology-first)
 
@@ -4966,58 +5044,59 @@ A publishable claim would require a prereg observational target and a controlled
 ## 10. Summary and open tests
 
 ### 10.1 What the paper establishes now
-- A single **unified-equation modulation interface** (parameters + CLI) reused across weak/strong/EM/DM/GW, now explicitly extended with entanglement and photon bridge sectors and a target-specific FT-ICR cross-domain line.
-- A GW ringdown-only pipeline that connects a **cubic-lattice + bubble-thread** simulation output to detector-projected templates and off-source p-values.
-- A reproducibility section containing canonical run commands (or explicit placeholders where the canonical “paper run” is not yet frozen).
+- A single **unified-equation modulation interface** (parameters + CLI) reused across weak / strong / EM / DM / GW, explicitly extended with entanglement and photon bridge lines and a target-specific FT-ICR cross-domain branch.
+- A **current performance-run section** (Sec. 8) with repo-root commands synchronized to the updated runbook for WEAK / STRONG / EM / DM / MS / LIGO.
+- An explicit **performance-only scoreboard** that now separates sectors with a cleared locked criterion from sectors that are currently non-passing or outside the present scoring frame.
 
-**Sector status snapshot (as of this revision).** 
-All verdicts below are under **single-shot preregistered** definitions (no scan/fit). “PASS” means *not falsified*; “PENDING” means internal/pipeline support exists but a key calibration/holdout/full embedding is still open. Neither is a proof.
+**Sector status snapshot (current performance revision).**  
+This table is **performance-only**.  
+- **performance pass** = the declared preregistered performance criterion is met on the stated real-data branch.  
+- **not established** = the tested branch does not clear that performance criterion.  
+- **not scored here** = the line remains in the draft for context, but it is outside the current performance scoreboard.
 
-| Sector | Current verdict | Evidence in this document | Notes |
+| Sector | Current status | Evidence in this document | Notes |
 |---|---|---|---|
-| Weak (T2K/NOvA/MINOS) | **PASS** | Sec. 5.1 + Appendix A logs | Uses CurvedCube kernel + holonomy/du_phase mapping into $H_{\mathrm{geo}}$. |
-| EM (LEP Bhabha) | **PASS + TENSION** | Sec. 4 (full-sample + holdouts) + Sec. 4.7 | Positive $\Delta\chi^2$ at the prereg point; remaining sensitivity to covariance/conditioning requires the planned full-cov holdouts. |
-| Strong (CNI + $\sigma_{\mathrm{tot}}$ + $\rho$) | **PASS** | Sec. 5.2 (CNI gate + energy panels) | Strong data motivates the absorptive/dispersive split $(A_I,A_R)$; reported at a fixed prereg point. |
-| GW / LIGO ringdown | **PENDING** (calibration open) | Sec. 6 (method stub) + reproducibility hooks | Internal pipeline status exists, but frequency calibration and external-facing figures are not yet closed. |
-| DM / SPARC | **PENDING** (paper embedding open) | Sec. 7 (method stub) + reproducibility hooks | Internal package status is carried forward; full result bundles/figures should be embedded in-paper. |
-| Entanglement (NIST CHSH audit) | **PASS** (pipeline/audit validation) | Sec. 4.10 + reproducibility hooks | Confirms CHSH/Bell audit path on the known NIST run4 export; not a first-principles Bell derivation claim. |
-| Photon (birefringence accumulation) | **PASS** (scaffolding/prereg line) | Sec. 4.11 + reproducibility hooks | Accumulation-law and bridge wiring are integrated; final calibrated cosmic birefringence estimate is deferred. |
-| FT-ICR mass spectrometry (target-specific) | **PASS** (cross-domain robustness) | Sec. 4.9 + signed artefacts | Operational target-specific signature under prereg lock; legacy `particle_specific` filenames retained for reproducibility. |
+| Weak (T2K/NOvA/MINOS) | **performance pass** | Sec. 5.1 + Sec. 8 | Current locked combined score is positive (`TOTAL SCORE = 0.489377`). |
+| Strong (sigma_tot + rho) | **performance pass** | Strong sector reruns + Sec. 8 | Net `Delta chi2` is positive after combining sigma_tot and rho; rho still carries tension. |
+| EM (LEP Bhabha + MuMu) | **not established** | Sec. 3-4 + Sec. 8 | The tested Bhabha and MuMu branches both return `Delta chi2 = 0`; no current performance superiority is established. |
+| GW / LIGO ringdown | **performance pass** | Sec. 6 + Sec. 8 | The canonical exact GW170814 branch is locally re-confirmed as a passing performance result. |
+| DM / SPARC | **performance pass** | Sec. 7 + Sec. 8 | The locked DM rerun clears the k-fold positive-delta criterion. |
+| FT-ICR mass spectrometry (target-specific) | **performance pass** | Sec. 4.9 + Sec. 8 | Both the `internal_only` strict branch and the `full` ablation branch pass the locked prereg criteria. |
+| Entanglement (NIST CHSH audit) | **not scored here** | Sec. 4.10 | Retained as a bridge/audit line; not part of the current performance scoreboard. |
+| Photon (birefringence accumulation) | **not scored here** | Sec. 4.11 | Retained as a bridge/scaffolding line; not part of the current performance scoreboard. |
 
 ### 10.2 What is not yet a hard claim
-- **Sky localization** is not claimed as a completed result. The paper frames it as a pipeline extension with specific tests required ($\alpha,\delta,\psi$ scan + robustness + multiple-testing accounting).
-- **Entanglement** is not presented as a first-principles Bell-violation derivation; it is a **pipeline/audit validation** on a known Bell-violating NIST path.
-- **Photon birefringence** is not presented as a final calibrated cosmic birefringence parameter extraction; it is a **preregistered scaffolding/falsification line** in this revision.
-- **FT-ICR mass spectrometry** is not a fundamental-particle claim in this draft; it is a **target-specific cross-domain robustness check** (molecule/charge-state specific operational signature).
-- **GW and DM** are not yet treated as finished external-facing sectors in this paper version; they remain **PENDING** until calibration (GW) and full in-paper embedding (DM) are closed.
-- Cross-sector “universal parameter” claims are not made until each sector has a finalized result table and robustness notes.
-- The topological-field-theory discussion is an **interpretive/future-work framing**, not a derived gauge-bundle/holonomy formalism.
+- **Sky localization** is still not claimed as a completed result; it remains a pipeline extension that would need its own dedicated robustness and multiple-testing accounting.
+- **Entanglement** is not presented here as a completed first-principles Bell derivation; the current state is an **audit-positive Bell data sector** (CHSH audit + memory diagnostic + data-side CH/Eberhard `J>0`), while the missing step is the locked first-principles Bell forward model described in §4.10.6.
+- **Photon birefringence / propagation** is not presented here as a completed first-principles photon prediction; the current state is a **bridge/scaffolding sector with null-compatible outputs**, while the missing step is the locked first-principles photon forward model described in §4.11.6.
+- **FT-ICR mass spectrometry** is not a fundamental-particle claim in this draft; it remains a target-specific cross-domain robustness result.
+- **EM** does not currently establish a performance pass in the tested branches, so the present EM reading must remain explicitly limited.
+- Cross-sector “universal parameter” claims are not made until each **scored** sector has finalized paper-facing figures, tables, and robustness notes.
+- The topological-field-theory discussion remains an interpretive / future-work framing, not a completed derivation.
 
 ### 10.3 Open tests required for a publishable v1
-**Priority 1 — publication blockers**
+**Priority 1 - publication blockers**
+- **EM:** either produce a genuinely positive preregistered performance branch or keep EM explicitly framed as a negative / not-established sector.
+- **Paper structure:** finalize section ordering / numbering consistency and remove any remaining stale wording that implies the superseded older status framing.
+- **Figures:** replace remaining placeholders with the current outputs for the sectors already on the performance scoreboard.
 
-- **GW:** close the frequency calibration gap (dominant simulated power vs target ringdown band), then embed the calibration/robustness figures.
-- **EM:** complete and embed the strongest **full-cov pivot-centered holdout** (the current positive result is promising but not yet the strongest version).
-- **Paper structure:** finalize section order/numbering consistency and move oversized CLI-style material to a technical supplement.
+**Priority 2 - strengthens the paper substantially**
+- **Weak:** run an independent validation of the preregistered `du_phase` rule on a separate public dataset or non-overlapping holdout.
+- **LIGO:** add an optional exact OFF100K confirmation and extract a compact figure set from the already-working exact branch.
+- **DM:** embed a compact figure / table summary from the current positive locked rerun.
+- **FT-ICR:** keep the sector, but maintain the prose framing as target-specific cross-domain robustness and avoid over-extending the physical claim.
 
-**Priority 2 — strengthens the paper substantially**
+**Priority 3 - deeper theory (not required for the current release)**
+- Derive the substrate-to-operator bridge (sector hooks) from explicit substrate coordinates / DOFs.
+- Add dimensional-analysis support for the CT / RT dual-tension split.
+- Strengthen sector-level microphysics derivations beyond surrogate `(n, sigma, v)` mappings.
 
-- **FT-ICR:** keep the sector, but frame it consistently as **target-specific cross-domain robustness** in prose (legacy `particle_specific` filenames can remain).
-- **Weak:** run an **independent validation** of the preregistered `du_phase` rule on a separate public dataset / non-overlapping holdout to reduce post-hoc selection concerns.
-- **Figures:** fill remaining placeholders from existing outputs.
-
-**Priority 3 — deeper theory (not required for the current release)**
-
-- Derive the substrate-to-operator bridge (sector hooks) from explicit substrate coordinates/DOFs.
-- Add dimensional-analysis support for the CT/RT dual-tension split.
-- Strengthen sector-level microphysics derivations beyond surrogate $(n,\sigma,v)$ mappings.
-
-**Data requirement note:** Nearly all of the above can be completed with the current codebase and existing public datasets. The only likely extra public-data step is the independent weak-sector validation for `du_phase`.
+**Data requirement note:** Most of the remaining paper-facing work can be completed with the current codebase and existing public datasets. The most likely extra public-data step is the independent weak-sector validation (and any optional new EM branch only if that path is actively pursued).
 
 ## Appendix A — Removed (portable paper edition)
 
 Earlier drafts included verbatim console logs for local exploratory runs (including absolute machine paths).  
-For portability and to avoid confusing **run_ok** with **verdict PASS**, those logs were removed from the paper.  
+For portability and to avoid confusing **run_ok** with the actual **performance verdict**, those logs were removed from the paper.  
 The repository’s `repro/logs/` and `repro/run_summary.csv` should be treated as the canonical provenance record.
 
 ## Appendix C. Auto-extracted CLI inventory from `` (completeness aid)
@@ -5867,7 +5946,7 @@ zip
 
 ### Figure completion note (no new data required)
 
-Several sections include figure placeholders. These are not meant as missing evidence; they are an editorial backlog. All planned figures are generated from **already existing run outputs** (CSV summaries and previously produced plots). The journal-facing version will move the long CLI inventories to a technical supplement and will include the minimal figure set required to visually support (i) the strongest holdouts and (ii) the key failure modes marked **PENDING**.
+Several sections include figure placeholders. These are not meant as missing evidence; they are an editorial backlog. All planned figures are generated from **already existing run outputs** (CSV summaries and previously produced plots). The journal-facing version will move the long CLI inventories to a technical supplement and will include the minimal figure set required to visually support (i) the strongest holdouts and (ii) the key unresolved lines still called out in the current draft.
 
 ### Independent validation for the *du_phase* variant (release-holdout, public datasets)
 

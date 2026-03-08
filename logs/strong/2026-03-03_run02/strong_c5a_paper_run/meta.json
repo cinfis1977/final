@@ -1,0 +1,18 @@
+﻿{
+    "sector":  "strong",
+    "run_id":  "2026-03-03_run02",
+    "name":  "strong_c5a_paper_run",
+    "status":  "ok",
+    "start_utc":  "2026-03-03T00:29:48.7282432Z",
+    "end_utc":  "2026-03-03T00:29:50.3295968Z",
+    "git_head":  "636e3e11817e94d81654d68641bafb7fd0a52540",
+    "repo_root":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git",
+    "exe":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\.venv\\Scripts\\python.exe",
+    "args":  [
+                 "run_strong_c5a_paper_run.py",
+                 "--out_dir",
+                 "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\log_capture\\2026-03-03_run02\\strong_c5a"
+             ],
+    "cmd":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\.venv\\Scripts\\python.exe run_strong_c5a_paper_run.py --out_dir C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\log_capture\\2026-03-03_run02\\strong_c5a",
+    "artifacts_from":  "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\out\\log_capture\\2026-03-03_run02\\strong_c5a"
+}

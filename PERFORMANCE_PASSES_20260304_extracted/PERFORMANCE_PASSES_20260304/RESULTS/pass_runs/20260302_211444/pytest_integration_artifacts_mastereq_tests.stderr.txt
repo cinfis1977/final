@@ -1,0 +1,3 @@
+Unknown option: -n
+usage: C:\Users\ahmet\AppData\Local\Programs\Python\Python310\python.exe [option] ... [-c cmd | -m mod | file | -] [arg] ...
+Try `python -h' for more information.

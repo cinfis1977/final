@@ -1,0 +1,57 @@
+{
+  "args": {
+    "data_csv": "C:/Dropbox/projects/new_master_equation_with_gauga_structure_test_git/integration_artifacts/entanglement_photon_bridge/birefringence_holdouts_v1_TEMPLATE.csv",
+    "holdout_csv": null,
+    "out_prefix": "C:/Dropbox/projects/new_master_equation_with_gauga_structure_test_git/out/photon_dynamic_full/photon_fullmodel_locked_v1",
+    "z_col": "z",
+    "beta_col": "beta_deg",
+    "sigma_col": "sigma_deg",
+    "Om": 0.315,
+    "Ol": 0.685,
+    "Or": 0.0,
+    "I_steps": 20000,
+    "z_cal": 1100.0,
+    "beta_cal_deg": 0.342,
+    "sigma_cal_deg": 0.094,
+    "k_sigma": 2.0,
+    "abs_test": false,
+    "dm2": 0.0025,
+    "theta_deg": 33.0,
+    "L0_km": 810.0,
+    "E0_GeV": 2.0,
+    "steps": 340,
+    "gamma_km_inv": null,
+    "use_microphysics": true,
+    "n_cm3": 1e+16,
+    "coupling_x": 1.7,
+    "v_cm_s": 30000000000.0,
+    "k_I": 0.0,
+    "gamma_floor_mult": 0.0,
+    "baseline_mode": "bridge"
+  },
+  "io": {
+    "data_csv": "C:\\Dropbox\\projects\\new_master_equation_with_gauga_structure_test_git\\integration_artifacts\\entanglement_photon_bridge\\birefringence_holdouts_v1_TEMPLATE.csv",
+    "holdout_csv": null,
+    "cols": {
+      "z": "z",
+      "beta": "beta_deg",
+      "sigma": "sigma_deg"
+    }
+  },
+  "counts": {
+    "n_used": 2
+  },
+  "fit": {
+    "baseline_label": "Bridge(beta_pred)",
+    "chi2_zero": 8.573611974717627,
+    "chi2_bridge": 3.188499320541647,
+    "chi2_model": 0.3958161449816739,
+    "chi2_baseline_used": 3.188499320541647,
+    "delta_chi2": 2.7926831755599735
+  },
+  "calibration": {
+    "C_beta_locked_per_I": 0.3596391099081853,
+    "I_cal": 0.9509533045149386
+  },
+  "holdout_check": null
+}

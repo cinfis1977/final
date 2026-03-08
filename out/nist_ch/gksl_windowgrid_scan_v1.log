@@ -1,0 +1,8 @@
+[OK] wrote: .\out\nist_ch\GKSL_WINDOWGRID_SCAN_V1.csv
+[OK] wrote: .\out\nist_ch\GKSL_WINDOWGRID_SCAN_V1.md
+[OK] wrote: .\out\nist_ch\MODEL_SCORECARD_GKSL_DYNAMIC_WINDOWFIT_V1.csv
+[OK] wrote: .\out\nist_ch\MODEL_SCORECARD_GKSL_DYNAMIC_WINDOWFIT_V1.md
+[OK] wrote: .\out\nist_ch\model_params_gksl_dynamic_windowfit_v1_best.json
+[OK] wrote: .\out\nist_ch\gksl_dynamic_windowfit_v1_best.report.json
+best: form=abs_quad|L0=1000|gamma=0.01
+

@@ -1,0 +1,2 @@
+fold_rule,metric,weighting,n_total,n_pos,n_neg,statistic,p_value_signed,p_value_abs,n_perm,seed,verdict,in_csv,coord_col,beta_col,sigma_col
+sky_coord_deg >= 0,signed(beta),uniform,84,42,42,-12.5,0.0114,0.02395,20000,12345,ANISOTROPY_CANDIDATE,C:\Dropbox\projects\new_master_equation_with_gauge_structure_test\out\quasar_jet_matches_v1.csv,qso_dec_deg,delta_wrap90_deg,
