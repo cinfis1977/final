@@ -1,5 +1,7 @@
 # New Master Equation With Gauge Structure
 
+> Current status: WEAK / STRONG / DM / FT-ICR MS / LIGO = performance pass; EM = pass; Entanglement (CHSH) and Photon (birefringence/decay) = not scored here (audit / bridge lines only; first-principles dynamic closure still open).
+
 This repository is a reproducibility workspace for a locked, cross-sector draft spanning:
 
 - **WEAK** (T2K / NOvA / MINOS)
@@ -18,8 +20,12 @@ This repository now uses the following status labels:
 - **performance pass**  
   Use this **only** when a sector has a locked performance-style result under the project’s current prereg / evaluation convention.
 
+- **pass**  
+  Use this when a sector is accepted as **non-failing / parity-preserving** in the current repo sense, but **not** promoted to a performance-pass sector.  
+  Current intended use: **EM**, where the tested branch is treated as compatible / acceptable under the declared baseline reading, but does **not** claim a positive performance superiority result.
+
 - **not established**  
-  Use this when a tested branch does **not** currently establish a positive performance result.
+  Use this when a tested branch does **not** currently establish either a usable pass reading or a positive performance result.
 
 - **audit-positive**  
   Use this for sectors where the repo has a functioning audit / diagnostic / data-side result, but **not** a first-principles dynamic performance closure.
@@ -40,7 +46,7 @@ The current performance-pass line is:
 - **GW / LIGO**
 - **FT-ICR target-specific mass spectrometry**
 
-### Not-established performance sector
+### Pass (non-performance-pass) sector
 - **EM**
 
 ### Audit / bridge sectors (not performance-scored yet)
@@ -65,7 +71,7 @@ The canonical exact GW branch is locally re-confirmed as a passing performance r
 This remains a **target-specific / cross-domain robustness** result, not a fundamental-particle claim. The locked prereg branch is treated as a performance-pass sector under the repo’s current scoreboard.
 
 ### EM
-EM is **not established** as a performance-pass sector in the current branch.
+EM is currently treated as **pass** in the repo-local status sense: the tested branch is accepted as a non-failing / parity-preserving line relative to the declared baseline reading, but it is **not** promoted to a **performance pass** because no positive performance-superiority result is being claimed.
 
 ### Entanglement
 The repo now has three distinct executable layers:
@@ -202,7 +208,7 @@ This runbook is normalized to this project layout (no `bundle/CODE` command path
 - LIGO
 
 ### Important note
-- **EM is included in the runbook but is not currently established as performance-pass.**
+- **EM is included in the runbook and is currently treated as pass, but not as a performance-pass sector.**
 - **Entanglement and Photon are not current performance-pass sectors and should not be reported as such from this runbook.**
 
 

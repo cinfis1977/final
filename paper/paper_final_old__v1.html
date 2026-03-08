@@ -169,12 +169,12 @@ Two classes of tests are used:</p>
 <blockquote>
 <p>These are <strong>schematic</strong> drawings used to communicate the substrate protocol. They are not fits, not inferred geometry, and they are not meant to be scale-accurate.</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/cinfis1977/final/main/figs/Fig-0_single_cube.png" alt="Single cube unit cell: threaded edges, inner bubble threads, and a central amorphous bubble." /></p>
+<p><img src="figs/Fig-0_single_cube.png" alt="Single cube unit cell: threaded edges, inner bubble threads, and a central amorphous bubble." /></p>
 <p><strong>Figure V0 (Single cell).</strong> One cube (“unit cell”) as used throughout the model. The cube edges are tensioned threads. Inside, additional threads connect the boundary to the <strong>central amorphous bubble</strong> (a localized excitation of an <strong>auxiliary field / extra DOF layer</strong>). These internal threads represent multiple transport channels (edge-fast vs bulk-slow) and allow partial reflection/backflow at junctions.</p>
-<p><img src="https://raw.githubusercontent.com/cinfis1977/final/main/figs/Fig-1_dual_cube_junction.png" alt="Dual-cube junction: two adjacent unit cells with 16 inter-cube junction threads (corner↔corner bus) between the bubbles." /></p>
+<p><img src="figs/Fig-1_dual_cube_junction.png" alt="Dual-cube junction: two adjacent unit cells with 16 inter-cube junction threads (corner↔corner bus) between the bubbles." /></p>
 <p><strong>Figure V1 (Dual cube junction).</strong> Two adjacent cubes (nearly-touching faces) with <strong>16 inter-cube junction threads</strong> connecting the two bubbles (a <strong>4×4 corner↔corner bus</strong> across the face). This is the minimal physical object behind “one RT crossing”: information/phase can traverse multiple routes through repeated cube-to-cube steps; there is no “message sent to one neighbor” primitive—multi-path behavior arises from linear propagation on the fixed sparse graph.</p>
-<p><img src="https://raw.githubusercontent.com/cinfis1977/final/main/figs/Fig-2_dual_cube_gauge_stack_iso.png" alt="Dual-cube junction with gauge-plane stack (oblique view)." /></p>
-<p><img src="https://raw.githubusercontent.com/cinfis1977/final/main/figs/Fig-2b_dual_cube_gauge_stack_front.png" alt="Dual-cube junction with gauge-plane stack (front view)." /></p>
+<p><img src="figs/Fig-2_dual_cube_gauge_stack_iso.png" alt="Dual-cube junction with gauge-plane stack (oblique view)." /></p>
+<p><img src="figs/Fig-2b_dual_cube_gauge_stack_front.png" alt="Dual-cube junction with gauge-plane stack (front view)." /></p>
 <p><strong>Figure V2 (Dual cube with gauge-plane stack at the interface).</strong> The same dual-cube junction, now with a <strong>stack of parallel, translucent gauge planes</strong> placed at the cube↔cube interface. These planes do <strong>not</strong> add new wires; they are <strong>local conditioning layers</strong> sampled at each RT crossing (plane-cell addressing).</p>
 <h3 id="data-flow-jittering-and-how-planes-participate">Data flow, jittering, and how planes participate</h3>
 <p>The model is <strong>not</strong> “cube A sends a message to cube B”. A propagation step is an <em>amplitude</em> moving on a local graph with <strong>many possible routes</strong> (including paths that step across multiple neighboring cubes). Which routes effectively contribute is decided <strong>on-the-fly</strong> by local conditioning at each RT crossing (plane-cell state + junction state), not by a pre-baked global path list.</p>
@@ -1744,7 +1744,7 @@ $$</div></p>
 <p><strong>Bidirectional propagation and junction backflow (accounted, not “free energy”).</strong><br />
 Because the route register stores <strong>both directions</strong> on each neighbor pair $(i\to j)$ and $(j\to i)$, a “reflected” or “returned” component at a junction is represented as a redistribution between these directed weights (and, more generally, among the outgoing set $\{\rho_{i\to k}\}$). This does <strong>not</strong> violate the strict-closed bookkeeping: any loss/gain in route energy on an update is balanced by the explicitly tracked mismatch and response reservoirs via the pump/leak and mismatch→response channels above. In other words, backflow is a dynamical rearrangement inside the same update algebra, not an additional degree of freedom injected from outside.</p>
 <p>This is where “collapse-like” behavior becomes <em>non-instantaneous</em>: gates close as mismatch accumulates and then decays into response.</p>
-<p><img src="https://raw.githubusercontent.com/cinfis1977/final/main/figs/fig3_energy_ledger.png" alt="Energy ledger and mismatch→gate logic (schematic)." /></p>
+<p><img src="figs/fig3_energy_ledger.png" alt="Energy ledger and mismatch→gate logic (schematic)." /></p>
 <hr />
 <h3 id="2-1-3e-gate-vs-junction-definitions-and-dephasing-law">2.1.3e Gate vs junction (definitions) and dephasing law</h3>
 <ul>
@@ -1826,7 +1826,7 @@ $$</div></p>
 <p>$\Gamma_{\ell}$ is not a free knob; it is taken from the same mismatch/reservoir scale that appears in $c_S$ and $\gamma$.</p>
 <hr />
 <h5 id="figure-per-tick-update-pipeline-ordered-junction-updates">Figure: per-tick update pipeline (ordered junction updates)</h5>
-<p><img src="https://raw.githubusercontent.com/cinfis1977/final/main/figs/fig2_tick_flow_PAPER_FINAL_v3.png" alt="Per-tick update pipeline (ordered junction updates)." /></p>
+<p><img src="figs/fig2_tick_flow_PAPER_FINAL_v3.png" alt="Per-tick update pipeline (ordered junction updates)." /></p>
 <hr />
 <h3 id="2-1-3h-readout-and-the-t2k-real-spectral-likelihood-poisson-deviance">2.1.3h Readout and the T2K real spectral likelihood (Poisson deviance)</h3>
 <p>Let $n_b$ be observed counts in bin $b$ and $\mu_b(\theta)$ the predicted mean.</p>
@@ -2487,9 +2487,9 @@ Repeated application of sparse junction updates generates the effective multi-pa
 <li>there is no explicit complex split-path recombination term $D_{\mathrm{split}}$ in the current EM baseline (this is part of the <em>spec layer</em> to unify how plane patterns are visualized across sectors).</li>
 </ul>
 <p>Figures below visualize the plane-cell addressing and the canonical $|U_{\mathrm{eff}}(u,v)|$ pattern representation used in this draft.</p>
-<p><img src="https://raw.githubusercontent.com/cinfis1977/final/main/figs/Fig-EMQED-v5-A_base_cell.png" alt="EM/QED plane: base cell addressing and micro 16-port patch" /></p>
-<p><img src="https://raw.githubusercontent.com/cinfis1977/final/main/figs/Fig-EMQED-v4-B_pattern_Ueff.png" alt="Canonical plane pattern representation: heatmap = $|U_{\mathrm{eff}}(u,v)|$ with sparse bulk phasor glyphs" /></p>
-<p><img src="https://raw.githubusercontent.com/cinfis1977/final/main/figs/Fig-EMQED-v5-C_mapping_example.png" alt="Ports → micro 4×4 → macro cell mapping (example)" /></p>
+<p><img src="figs/Fig-EMQED-v5-A_base_cell.png" alt="EM/QED plane: base cell addressing and micro 16-port patch" /></p>
+<p><img src="figs/Fig-EMQED-v4-B_pattern_Ueff.png" alt="Canonical plane pattern representation: heatmap = $|U_{\mathrm{eff}}(u,v)|$ with sparse bulk phasor glyphs" /></p>
+<p><img src="figs/Fig-EMQED-v5-C_mapping_example.png" alt="Ports → micro 4×4 → macro cell mapping (example)" /></p>
 <h3 id="4-2-effective-amplitude-convention-why-inlinemath-813-may-look-huge">4.2 Effective amplitude convention (why $A_{\mathrm{EM}}$ may look “huge”)</h3>
 <p>Because $f_i\propto\alpha_{\mathrm{map}}\ln(\cdot)$ with $\alpha\ll 1$, the numerically meaningful strength is an effective scale
 <div class="math-block">$$

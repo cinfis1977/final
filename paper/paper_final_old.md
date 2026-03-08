@@ -1,11 +1,11 @@
-# Unified Equation (GKSL) Geometric Modulation (one-for-all implementation) - Ahmet Özbalık - research notes and current performance runbook - Weak, EM, Strong, Dark Matter, GW (LIGO), Mass Spectrometry, Entanglement (CHSH), Photon (birefringence/decay) - Current status: WEAK / STRONG / DM / FT-ICR MS / LIGO = performance pass; EM = pass; Entanglement (CHSH) and Photon (birefringence/decay) = not scored here (audit / bridge lines only; first-principles dynamic closure still open)
+# Unified Equation (GKSL) Geometric Modulation (one-for-all implementation) - Ahmet Özbalık - research notes and current performance runbook - Weak, EM, Strong, Dark Matter, GW (LIGO), Mass Spectrometry, Entanglement (Bell/CHSH/CH), Photon (birefringence/propagation) - current performance scoreboard: WEAK / STRONG / DM / MS / LIGO = performance pass; EM = not established; Entanglement/Photon = bridge/audit achieved, first-principles dynamic performance closure pending
 
 **One-for-all implementation (what this means):** this draft uses a single **locked** base parameterization (a small set of “physical” knobs) plus a **deterministic sector map** that generates each sector’s runner parameters from that same base. The intent is to avoid per-sector tuning and make cross-sector checks auditable: if the base and map are fixed, each sector run is a reproducible consequence of the same upstream choices.
 
 > This is a falsification-first, preregistered working-paper draft: the pipeline and artifacts are provided end-to-end, and the strongest results are clearly separated from follow-up tests.
 
 > **Scope / status (read carefully).**
-> This document is a **falsification-first, preregistered** research synthesis for the unified-equation / gauge-geometry program. In the current revision, the explicit **performance-scored sectors** are weak, strong, dark matter, gravitational-wave (LIGO), and mass spectrometry; **EM is included as a tested pass branch (parity / non-failing reading, not a performance-pass superiority claim)**. The **entanglement** and **photon** lines are retained as **bridge/audit sectors** and are **not part of the current performance scoreboard**.
+> This document is a **falsification-first, preregistered** research synthesis for the unified-equation / gauge-geometry program. In the current revision, the explicit **performance-scored sectors** are weak, strong, dark matter, gravitational-wave (LIGO), and mass spectrometry; **EM is included as a tested but currently non-passing branch**. The **entanglement** and **photon** lines are retained as **bridge/audit sectors** and are **not part of the current performance scoreboard**.
 > 
 > **Entanglement status in one line:** the current repo now has (i) a CHSH/NIST audit line with a no-fit **decorrelation** null benchmark, (ii) a separate preregistered **memory-statistic** diagnostic, and (iii) a **fully re-verified** data-side **CH/Eberhard J** audit branch at **slots 4–8** that yields **J>0 across three independent NIST runs**. What is **not** yet present is a model-generated Bell predictor from locked first-principles dynamics. Narrower windows remain future first-principles scorecard targets, not current embedded evidence.
 > 
@@ -54,7 +54,7 @@ This paper uses **performance pass** only for sectors where a **preregistered, q
 
 **Not established (performance)**
 
-- **EM (LEP Bhabha, LEP μμ):** tested branches yield `Δχ² = 0` at the locked runs (no measured performance advantage over the declared baseline), so the current repo reading is **pass (parity / non-failing)** rather than **performance pass**.
+- **EM (LEP Bhabha, LEP μμ):** tested branches yield `Δχ² = 0` at the locked runs (no measured performance advantage over the declared baseline), so **performance is not established** in this revision.
 
 **Not scored here (kept for context / audits)**
 
@@ -147,17 +147,17 @@ On the photon side, the same integration logic now covers both the photon-decay-
 
 > These are **schematic** drawings used to communicate the substrate protocol. They are not fits, not inferred geometry, and they are not meant to be scale-accurate.
 
-![Single cube unit cell: threaded edges, inner bubble threads, and a central amorphous bubble.](https://raw.githubusercontent.com/cinfis1977/final/main/figs/Fig-0_single_cube.png)
+![Single cube unit cell: threaded edges, inner bubble threads, and a central amorphous bubble.](figs/Fig-0_single_cube.png)
 
 **Figure V0 (Single cell).** One cube (“unit cell”) as used throughout the model. The cube edges are tensioned threads. Inside, additional threads connect the boundary to the **central amorphous bubble** (a localized excitation of an **auxiliary field / extra DOF layer**). These internal threads represent multiple transport channels (edge-fast vs bulk-slow) and allow partial reflection/backflow at junctions.
 
-![Dual-cube junction: two adjacent unit cells with 16 inter-cube junction threads (corner↔corner bus) between the bubbles.](https://raw.githubusercontent.com/cinfis1977/final/main/figs/Fig-1_dual_cube_junction.png)
+![Dual-cube junction: two adjacent unit cells with 16 inter-cube junction threads (corner↔corner bus) between the bubbles.](figs/Fig-1_dual_cube_junction.png)
 
 **Figure V1 (Dual cube junction).** Two adjacent cubes (nearly-touching faces) with **16 inter-cube junction threads** connecting the two bubbles (a **4×4 corner↔corner bus** across the face). This is the minimal physical object behind “one RT crossing”: information/phase can traverse multiple routes through repeated cube-to-cube steps; there is no “message sent to one neighbor” primitive—multi-path behavior arises from linear propagation on the fixed sparse graph.
 
-![Dual-cube junction with gauge-plane stack (oblique view).](https://raw.githubusercontent.com/cinfis1977/final/main/figs/Fig-2_dual_cube_gauge_stack_iso.png)
+![Dual-cube junction with gauge-plane stack (oblique view).](figs/Fig-2_dual_cube_gauge_stack_iso.png)
 
-![Dual-cube junction with gauge-plane stack (front view).](https://raw.githubusercontent.com/cinfis1977/final/main/figs/Fig-2b_dual_cube_gauge_stack_front.png)
+![Dual-cube junction with gauge-plane stack (front view).](figs/Fig-2b_dual_cube_gauge_stack_front.png)
 
 **Figure V2 (Dual cube with gauge-plane stack at the interface).** The same dual-cube junction, now with a **stack of parallel, translucent gauge planes** placed at the cube↔cube interface. These planes do **not** add new wires; they are **local conditioning layers** sampled at each RT crossing (plane-cell addressing).
 
@@ -1185,7 +1185,7 @@ This snapshot is aligned to the **current performance scoreboard** used in the u
 |---|---|---|---|
 | Weak (T2K/NOvA/MINOS) | **performance pass** | The locked single-shot point yields a positive combined score (`TOTAL SCORE = 0.489377`). | Best next step is an independent validation / release-holdout confirmation and figure polishing. |
 | Strong (sigma_tot + rho) | **performance pass** | The locked strong rerun gives a positive net `Delta chi2` after combining sigma_tot and rho. | The rho branch still carries tension, so the paper should describe this as a net-positive but mixed strong result. |
-| EM (LEP Bhabha + MuMu) | **pass** | The tested Bhabha and MuMu branches both return `Delta chi2 = 0`; the current repo reading keeps this sector as **pass (parity / non-failing)** rather than performance pass. | Upgrade to performance pass only if a genuinely positive preregistered branch is established; otherwise keep the scope explicitly limited to parity / non-failing status. |
+| EM (LEP Bhabha + MuMu) | **not established** | The tested Bhabha and MuMu branches both return `Delta chi2 = 0`, so no performance superiority is established in the current branch. | Either find a genuinely positive preregistered branch or keep EM explicitly labeled as non-passing in the paper. |
 | GW / LIGO ringdown | **performance pass** | The canonical exact GW170814 branch is locally re-confirmed as a passing performance result on the current exact run path. | Remaining work is presentation / figure cleanup, not a missing performance result. |
 | DM / SPARC | **performance pass** | The current DM rerun is positive at the locked k-fold criterion (`all_folds_delta_test_positive = true`). | Remaining work is concise in-paper figure/table embedding only. |
 | FT-ICR mass spectrometry (target-specific) | **performance pass** | Both the `internal_only` strict branch and the `full` ablation branch pass the locked prereg criteria with stateful dynamics confirmed. | This remains a target-specific cross-domain robustness result, not a fundamental-particle claim. |
@@ -1553,7 +1553,7 @@ Because the route register stores **both directions** on each neighbor pair $(i\
 
 This is where “collapse-like” behavior becomes *non-instantaneous*: gates close as mismatch accumulates and then decays into response.
 
-![Energy ledger and mismatch→gate logic (schematic).](https://raw.githubusercontent.com/cinfis1977/final/main/figs/fig3_energy_ledger.png)
+![Energy ledger and mismatch→gate logic (schematic).](figs/fig3_energy_ledger.png)
 
 ---
 
@@ -1652,7 +1652,7 @@ $\Gamma_{\ell}$ is not a free knob; it is taken from the same mismatch/reservoir
 
 ##### Figure: per-tick update pipeline (ordered junction updates)
 
-![Per-tick update pipeline (ordered junction updates).](https://raw.githubusercontent.com/cinfis1977/final/main/figs/fig2_tick_flow_PAPER_FINAL_v3.png)
+![Per-tick update pipeline (ordered junction updates).](figs/fig2_tick_flow.png)
 
 ---
 
@@ -2434,11 +2434,11 @@ Repeated application of sparse junction updates generates the effective multi-pa
 
 Figures below visualize the plane-cell addressing and the canonical $|U_{\mathrm{eff}}(u,v)|$ pattern representation used in this draft.
 
-![EM/QED plane: base cell addressing and micro 16-port patch](https://raw.githubusercontent.com/cinfis1977/final/main/figs/Fig-EMQED-v5-A_base_cell.png)
+![EM/QED plane: base cell addressing and micro 16-port patch](figs/Fig-EMQED-v5-A_base_cell.png)
 
-![Canonical plane pattern representation: heatmap = $|U_{\mathrm{eff}}(u,v)|$ with sparse bulk phasor glyphs](https://raw.githubusercontent.com/cinfis1977/final/main/figs/Fig-EMQED-v4-B_pattern_Ueff.png)
+![Canonical plane pattern representation: heatmap = $|U_{\mathrm{eff}}(u,v)|$ with sparse bulk phasor glyphs](figs/Fig-EMQED-v4-B_pattern_Ueff.png)
 
-![Ports → micro 4×4 → macro cell mapping (example)](https://raw.githubusercontent.com/cinfis1977/final/main/figs/Fig-EMQED-v5-C_mapping_example.png)
+![Ports → micro 4×4 → macro cell mapping (example)](figs/Fig-EMQED-v5-C_mapping_example.png)
 
 ### 4.2 Effective amplitude convention (why $A_{\mathrm{EM}}$ may look “huge”)
 
@@ -2562,7 +2562,7 @@ Concrete next preregistered steps:
 3) **Baseline upgrade:** replace BHAGEN-derived curve with an official collaboration SM prediction pipeline (radiative/acceptance-matched) if available.
 4) **Systematics upgrade:** replace the 2-source correlated model with published nuisance breakdown if available.
 
-Until a positive superiority branch is established, the EM sector is best labeled as **pass (parity / non-failing; dataset-conditional)** rather than a discovery claim.
+Until (1)-(2) are completed, the EM sector is best labeled as **not established (historical hint only; dataset-conditional)** rather than a discovery claim.
 
 ## 4.9 Mass Spectrometer sector (real Bruker mzML; fit-free, prereg-locked target-specific test)
 
@@ -4516,7 +4516,7 @@ Some GW configurations enable an auxiliary DOF layer (“gauge plane”) with it
 
 - **WEAK:** **performance pass**
 - **STRONG:** **performance pass** *(rho tension exists, but net improvement is positive)*
-- **EM:** **pass, but not a performance pass** *(closure ok; Delta chi2 = 0 in both branches)*
+- **EM:** **not a performance pass** *(closure ok; Delta chi2 = 0 in both branches)*
 - **DM:** **performance pass**
 - **MS:** **performance pass** *(internal_only strict run and full ablation both passed)*
 - **LIGO:** **performance pass** *(canonical exact branch; locally re-confirmed at OFF20K exact; OFF100K is optional stronger rerun)*
@@ -4619,7 +4619,7 @@ py -3 .\strong_rho_energy_scan_v3.py `
 
 ---
 
-### 3) EM — pass, but not a performance pass (closure ok)
+### 3) EM — not a performance pass (closure ok)
 
 #### Why not a performance pass
 Both branches have `Delta chi2 = 0`:
@@ -5058,7 +5058,7 @@ This table is **performance-only**.
 |---|---|---|---|
 | Weak (T2K/NOvA/MINOS) | **performance pass** | Sec. 5.1 + Sec. 8 | Current locked combined score is positive (`TOTAL SCORE = 0.489377`). |
 | Strong (sigma_tot + rho) | **performance pass** | Strong sector reruns + Sec. 8 | Net `Delta chi2` is positive after combining sigma_tot and rho; rho still carries tension. |
-| EM (LEP Bhabha + MuMu) | **pass** | Sec. 3-4 + Sec. 8 | The tested Bhabha and MuMu branches both return `Delta chi2 = 0`; current reading is parity / non-failing, not performance superiority. |
+| EM (LEP Bhabha + MuMu) | **not established** | Sec. 3-4 + Sec. 8 | The tested Bhabha and MuMu branches both return `Delta chi2 = 0`; no current performance superiority is established. |
 | GW / LIGO ringdown | **performance pass** | Sec. 6 + Sec. 8 | The canonical exact GW170814 branch is locally re-confirmed as a passing performance result. |
 | DM / SPARC | **performance pass** | Sec. 7 + Sec. 8 | The locked DM rerun clears the k-fold positive-delta criterion. |
 | FT-ICR mass spectrometry (target-specific) | **performance pass** | Sec. 4.9 + Sec. 8 | Both the `internal_only` strict branch and the `full` ablation branch pass the locked prereg criteria. |
@@ -5070,7 +5070,7 @@ This table is **performance-only**.
 - **Entanglement** is not presented here as a completed first-principles Bell derivation; the current state is an **audit-positive Bell data sector** (CHSH audit + memory diagnostic + data-side CH/Eberhard `J>0`), while the missing step is the locked first-principles Bell forward model described in §4.10.6.
 - **Photon birefringence / propagation** is not presented here as a completed first-principles photon prediction; the current state is a **bridge/scaffolding sector with null-compatible outputs**, while the missing step is the locked first-principles photon forward model described in §4.11.6.
 - **FT-ICR mass spectrometry** is not a fundamental-particle claim in this draft; it remains a target-specific cross-domain robustness result.
-- **EM** is currently treated as pass in the tested branches, but not as a performance-pass sector, so the present EM reading must remain explicitly limited.
+- **EM** does not currently establish a performance pass in the tested branches, so the present EM reading must remain explicitly limited.
 - Cross-sector “universal parameter” claims are not made until each **scored** sector has finalized paper-facing figures, tables, and robustness notes.
 - The topological-field-theory discussion remains an interpretive / future-work framing, not a completed derivation.
 

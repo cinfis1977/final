@@ -26,6 +26,35 @@
 > **Revision note (entanglement + photon integration into the unified-equation program).**  
 > In this revision, the entanglement (CHSH/NIST audit) and photon (decay/birefringence) analyses are treated not as isolated add-ons but as sectors of the same cross-sector open-system program used elsewhere in the project. The paper now records the project-level integration chain explicitly: (i) a shared GKSL-style **unified-equation** sector insertion contract, (ii) an optional microphysics bridge $n\,\sigma\,v \rightarrow \gamma$, and (iii) independent equivalence tests confirming that the declared mathematics is wired consistently into the runner implementations. A new **Sector Hook Map** subsection further lists the sector-level observables, $H_s/\mathcal D_s$ roles, microphysics candidates, runner/test anchors, and validation status (validated vs scaffolding) so the integration can be checked sector by sector.
 
+
+## Performance scoreboard and criteria (current)
+
+This paper uses **performance pass** only for sectors where a **preregistered, quantitative** performance criterion is satisfied on the stated real-data branch (against a frozen baseline / null). All other tracks are labeled **not established** or **not scored here**.
+
+**Performance-scored sectors (current revision)**
+
+- **WEAK (NOvA + MINOS + T2K penalty):** performance score is  
+  `TOTAL = dχ²_NOvA + dχ²_MINOS − (T2K penalty)` and must be **> 0** at the locked point.  
+  Current locked run: `dχ²_NOvA = −0.123`, `dχ²_MINOS = +1.005`, `T2K penalty = 0.392623` → **TOTAL = 0.489377** (**performance pass**).
+
+- **STRONG (PDG σ_tot + ρ):** performance score is `Δχ²_total = Δχ²(σ_tot, pp+p̄p) + Δχ²(ρ, both)` and must be **> 0** at the locked point.  
+  Current locked run: `Δχ²(σ_tot) = +3.235630 + 0.209162`, `Δχ²(ρ) = −0.655891` → **Δχ²_total ≈ +2.788901** (**performance pass**).
+
+- **DM (SPARC/RAR):** performance criterion is cross-validated improvement stability: `telemetry.all_folds_delta_test_positive = true` under locked `A, α, kfold, seed` (**performance pass**).
+
+- **MS (real mzML target-specific):** preregistered **locked gate** `good_ppm=3` with holdout + third-arm stability criteria **C1–C3** (see §4.9.10/§4.9.14). When all criteria are true, verdict is **performance pass**.
+
+- **LIGO (GW170814 ringdown-only null):** performance criterion is **small offsource probability** for the declared correlation statistic (the canonical “EXACT” branch uses `p_abs_corr` and `p_min_abs_corr` with joint statistic `p_joint_abs_and_minabs`). The recorded canonical reference run has `p_joint_abs_and_minabs = 0.0`, `p_abs_corr ≈ 0.0295`, `p_min_abs_corr ≈ 0.0435` (**performance pass**).
+
+**Not established (performance)**
+
+- **EM (LEP Bhabha, LEP μμ):** tested branches yield `Δχ² = 0` at the locked runs (no measured performance advantage over the declared baseline), so **performance is not established** in this revision.
+
+**Not scored here (kept for context / audits)**
+
+- **Entanglement (CHSH/NIST audit)** and **photon/birefringence** remain bridge/audit tracks in this revision and are **not part of the current performance scoreboard**.
+
+
 ## Project brief and current claim boundary (reader-facing)
 
 This project is a falsification-first, cross-sector open-system program. A single locked mathematical skeleton (the unified GKSL-style equation plus a deterministic sector map) is reused across weak, EM, strong, dark matter, gravitational-wave, mass-spectrometry, entanglement, and photon bridge tests. The practical goal is not to declare a universal proof from one dataset family, but to carry forward only the submodules that survive locked, fit-free, real-data tests under explicitly stated limits.
@@ -866,7 +895,7 @@ The table below is the explicit “sector-by-sector mathematics hook” catalog 
 | Sector | Primary observable(s) | Unified-equation hook ($H_s$, $\mathcal D_s$) | Microphysics candidate ($n,\sigma,v$) | Runner / test anchor | Status |
 |---|---|---|---|---|---|
 | **Weak (oscillation)** | $P_{\alpha\to\beta}(L,E)$, $\Delta\chi^2$ on NOvA/MINOS/T2K packs | $H_s$: vacuum + matter + geometric mass-basis deformation $H_{\mathrm{geo}}$; $\mathcal D_s$: optional dephasing/damping channel | $n$: matter/electron density $n_e$; $\sigma$: weak interaction proxy/effective scattering scale; $v\!\approx\!c$ | `nova_mastereq_forward_kernel_BREATH_THREAD_v2.py`; `test_equivalence_weak_runner.py`; `test_equivalence_weak_golden_outputs.py` | **Validated (prereg real-data path)** |
-| **Mass spectrometry (ESI FT-ICR)** | m/z shift, setting-conditioned separation, target-specific holdout PASS | $\mathcal D_s$-dominant correction (effective dephasing/load damping); optional $H_s$-like phase/frequency bias term | $n$: ion-load / packet density proxy (TIC-based); $\sigma$: effective ion-ion interaction surrogate; $v$: cyclotron/packet speed proxy | `ms_sector.py` + locked mzML prereg runner family (§4.9.10 artefacts); microphysics hooks via `microphysics.py` | **Validated (observable pipeline)** / **Microphysics: scaffolding** |
+| **Mass spectrometry (ESI FT-ICR)** | m/z shift, setting-conditioned separation, target-specific holdout performance pass | $\mathcal D_s$-dominant correction (effective dephasing/load damping); optional $H_s$-like phase/frequency bias term | $n$: ion-load / packet density proxy (TIC-based); $\sigma$: effective ion-ion interaction surrogate; $v$: cyclotron/packet speed proxy | `ms_sector.py` + locked mzML prereg runner family (§4.9.10 artefacts); microphysics hooks via `microphysics.py` | **Validated (observable pipeline)** / **Microphysics: scaffolding** |
 | **EM (Bhabha / $\mu^+\mu^-$)** | $\sigma(\sqrt{s})$, angular dependence, residuals vs baseline | $H_s$: coherent bridge deformation; $\mathcal D_s$: optional absorptive/junction-filter correction $J(\tau;\kappa_{\mathrm{junc}})$ | $n$: target/luminosity density proxy; $\sigma$: QED process cross section; $v_{\mathrm{rel}}\!\approx\!c$ | `em_sector.py`; `test_equivalence_em_bhabha_golden_outputs.py`; `test_equivalence_em_mumu_golden_outputs.py` | **Validated (golden/equivalence)** |
 | **Strong (hadronic)** | $\sigma_{\mathrm{tot}}$, $\rho$ ratio, ridge-style/elastic observables (sector-dependent) | $H_s$: phase-like coherent deformation; $\mathcal D_s$: absorptive/attenuative channel for hadronic broadening | $n$: effective hadronic medium/occupancy proxy; $\sigma$: hadronic cross section; $v$: relative beam speed | `strong_sector.py`; `test_equivalence_strong_sigma_tot_golden_outputs.py`; `test_equivalence_strong_rho_golden_outputs.py` | **Validated (golden/equivalence)** |
 | **Dark matter (SPARC / RAR)** | Rotation curves, residual structure, profile-consistency metrics | $H_s$-dominant effective potential/geometry contribution; $\mathcal D_s$ typically off or secondary in current mapping | $n$: halo mass density proxy; $\sigma$: DM self-/baryon-coupling surrogate (model-dependent); $v$: halo orbital speed | `dm_sector.py`; `test_equivalence_dm_golden_outputs.py` | **Validated (observable mapping)** / **Microphysics: scaffolding** |
@@ -902,7 +931,7 @@ These tests verify that the `use_microphysics=True` path produces the same evolu
 - `test_microphysics_wiring_equivalence.py`
 - `test_microphysics_scaffold.py`
 
-At the integration snapshot corresponding to this paper revision, the full integration suite is recorded as **37 passed**, with the newly added entanglement + photon equivalence checks reported as **6/6 PASS**. This is the main evidence that the cross-sector unified-equation narrative is not only conceptual prose, but also faithfully implemented.
+At the integration snapshot corresponding to this paper revision, the full integration suite is recorded as **37 passed**, with the newly added entanglement + photon equivalence checks reported as **6/6 OK**. This is the main evidence that the cross-sector unified-equation narrative is not only conceptual prose, but also faithfully implemented.
 
 ### Boxed long form (what the one-line hides)
 
@@ -1097,7 +1126,7 @@ In other words: a model can be **correct/useful as a detector/template family** 
 
 ### 1.3.3 Completion snapshot (this draft)
 - **EM sector:** re-run under the updated CurvedCube (v6) configuration using LEP Bhabha (Table 18) with an imported baseline curve. Under a preregistered, scan-free bridge, full-covariance runs show $\Delta\chi^2>0$ for $A=+10^5$ and a strong sign-flip falsifier; pivot-centered holdouts (diag_total shown) also pass. No discovery claim is made; robustness upgrades (full-cov pivot holdouts + cross-channel transfer) are listed in §4.7.
-- **Mass spectrometry (real Bruker/CompassXport mzML; prereg-locked, fit-free):** scan-resolved per-scan mass estimate pipeline + setting separation; **multi-target target-specific test** with locked `good_ppm=3` yields prereg **PASS** with holdout + third-arm stability (median_abs_delta 0.116/0.119; rank_corr_abs 0.965; MAD rank_corr 0.836; third-arm rank_corr 0.853; 12/12 nonzero targets). See §4.9.10 and signed artefacts under `out/particle_specific_final_goodppm3_lock/`.
+- **Mass spectrometry (real Bruker/CompassXport mzML; prereg-locked, fit-free):** scan-resolved per-scan mass estimate pipeline + setting separation; **multi-target target-specific test** with locked `good_ppm=3` yields prereg **performance pass** with holdout + third-arm stability (median_abs_delta 0.116/0.119; rank_corr_abs 0.965; MAD rank_corr 0.836; third-arm rank_corr 0.853; 12/12 nonzero targets). See §4.9.10 and signed artefacts under `out/particle_specific_final_goodppm3_lock/`.
 - Entanglement sector — preregistered Bell/CHSH audit on NIST run4 (Bridge-E0, no-fit); HDF5-export path passes with GLOBAL_CHSH ≈ 2.455 and z ≈ 1.991 (see §4.10).
 - Photon-decay / propagation bridge sector — preregistered cosmic birefringence accumulation and sky-fold falsifier tests (no-fit); current locked results are null-compatible and constrain the effect (see §4.11).
 - **GW sector:** ringdown-only pipeline + cubic-lattice response implemented; *detection-grade exploration* is underway. A separate localization-grade claim is explicitly deferred (see §6.7).
@@ -2504,7 +2533,7 @@ Until (1)-(2) are completed, the EM sector is best labeled as **not established 
 - $p_{\mathrm{success}}(g)$: near-target success probability as a function of ion-load proxy $g$,
 - $\mathrm{MAD}_{\mathrm{success}}(g)$: robust width among successes.
 
-A preregistered lock is applied (not tuned per-target), and a **final PASS/FAIL verdict** is produced under fixed criteria (C1–C3). This section supersedes earlier toy-only demonstrations and is the canonical Mass Spectrometer write-up in this document.
+A preregistered lock is applied (not tuned per-target), and a **final performance pass / not established verdict** is produced under fixed criteria (C1–C3). This section supersedes earlier toy-only demonstrations and is the canonical Mass Spectrometer write-up in this document.
 
 ### 4.9.1 Real-data validation (Bruker mzML) — setting separation and target-specific multi-target test (fit-free)
 
@@ -2591,7 +2620,7 @@ Empirically, for this dataset family:
 
 ### Results (locked, fit-free; real mzML)
 
-**Paper-ready results paragraph.** Using CompassXport-exported Bruker full‑scan mzML runs (A1–B2 discovery; A1–B3 holdout; A2–B3 third‑arm), we applied a strictly **no‑fit** preregistered multi‑target signature test. For each target m/z, scans are binned by the normalized ion‑load proxy $g$ (quantile anchors from TIC), and we compute $p_{\mathrm{success}}(g)$—the fraction of scans meeting the locked “good” gate `good_ppm=3` within `window_ppm=30`—along with a width proxy (MAD among successes). With `topK=12` auto‑targets, the target‑wise signature is stable across holdout and third‑arm checks: median $|\Delta p_{\mathrm{success}}|$=0.116 (A1–B2) and 0.119 (A1–B3), holdout rank correlation 0.965; MAD rank correlation 0.836 with the same top‑MAD target (T01); and third‑arm rank correlations 0.853/0.853 with the same top target (T03). Under preregistered criteria C1–C3 this yields a final verdict **PASS**, with signed artifacts written to `out/particle_specific_final_goodppm3_lock/`.
+**Paper-ready results paragraph.** Using CompassXport-exported Bruker full‑scan mzML runs (A1–B2 discovery; A1–B3 holdout; A2–B3 third‑arm), we applied a strictly **no‑fit** preregistered multi‑target signature test. For each target m/z, scans are binned by the normalized ion‑load proxy $g$ (quantile anchors from TIC), and we compute $p_{\mathrm{success}}(g)$—the fraction of scans meeting the locked “good” gate `good_ppm=3` within `window_ppm=30`—along with a width proxy (MAD among successes). With `topK=12` auto‑targets, the target‑wise signature is stable across holdout and third‑arm checks: median $|\Delta p_{\mathrm{success}}|$=0.116 (A1–B2) and 0.119 (A1–B3), holdout rank correlation 0.965; MAD rank correlation 0.836 with the same top‑MAD target (T01); and third‑arm rank correlations 0.853/0.853 with the same top target (T03). Under preregistered criteria C1–C3 this yields a final verdict **performance pass**, with signed artifacts written to `out/particle_specific_final_goodppm3_lock/`.
 
 Using `topK=12` targets and the lock above, the run outputs (written under `out/particle_specific_final_goodppm3_lock/`) report:
 
@@ -2602,7 +2631,7 @@ Using `topK=12` targets and the lock above, the run outputs (written under `out/
 - **Width (MAD) stability:** rank correlation $0.836364$ and the top-MAD target matches (T01 vs T01)
 - **Third-arm consistency** (A2–B3): rank correlations $0.853147/0.853147$; top target matches across all three arms (T03)
 
-**Preregistered final verdict (good_ppm=3): PASS.**
+**Preregistered final verdict (good_ppm=3): performance pass.**
 
 #### What this does and does not mean
 
@@ -2626,7 +2655,7 @@ These parameters are now part of the prereg lock:
 
 - `good_ppm = 3`
 - `window_ppm = 30`
-- `tail3_ppm = -300000` (diagnostic only; does not decide PASS/FAIL)
+- `tail3_ppm = -300000` (diagnostic only; does not decide performance pass / not established)
 - `min_n = 8`
 - `max_bins = 8`
 - Target set: `out/particle_specific_cytofull_A1_B2_direct/targets_used.csv` (12 targets)
@@ -2646,7 +2675,7 @@ For each target $t$, compute:
 - $\Delta p_{\mathrm{success}}(t) = \mathrm{median}_b\left[p_{\mathrm{success}}^{(B)}(t,b) - p_{\mathrm{success}}^{(A)}(t,b)\right]$
 - A width/robustness metric from successful scans, $\mathrm{MAD}_{\mathrm{success}}(t,b)$, and its target-wise stability across runs via the log-ratio summary used in §4.9.10.
 
-#### Decision rule (PASS/FAIL; preregistered)
+#### Decision rule (performance pass / not established; preregistered)
 Using the same gate as the locked final artefact:
 
 **C1 (p_success signature + holdout stability)**
@@ -2665,7 +2694,7 @@ Using the same gate as the locked final artefact:
 - rank correlations $\ge 0.80$ between discovery↔third-arm and holdout↔third-arm,
 - the top-$|\Delta p_{\mathrm{success}}|$ target matches across all three arms.
 
-Final verdict: **PASS** iff C1 & C2 & C3 are all true; otherwise **FAIL**.
+Final verdict: **performance pass** iff C1 & C2 & C3 are all true; otherwise **not established**.
 
 #### Reproducible commands (real mzML -> target-specific verdict)
 
@@ -2678,7 +2707,7 @@ Use **Section 8** for the current canonical performance commands:
 
 ### 4.9.12 Internal occupancy-gate and two-center boundary addendum (derived from the same locked real-mzML export; diagnostic-only)
 
-This addendum extends the canonical real-mzML target-specific PASS with a locked internal branch test performed on the derived real-data points exports (from the same locked real-mzML export stream) and the frozen target registry. It is included here because it now survives the current internal falsification ladder, but it remains a diagnostic-only Mass Spectrometer extension. It is not a new sector, and it does not replace the primary real-mzML result above.
+This addendum extends the canonical real-mzML target-specific performance pass with a locked internal branch test performed on the derived real-data points exports (from the same locked real-mzML export stream) and the frozen target registry. It is included here because it now survives the current internal falsification ladder, but it remains a diagnostic-only Mass Spectrometer extension. It is not a new sector, and it does not replace the primary real-mzML result above.
 
 #### (A) Minimal adapter hook into the unified equation (explicit attachment)
 
@@ -2822,7 +2851,7 @@ Under four separate rebuild runs (`A1_B2 ModeA`, `A1_B2 ModeB`, `A1_B2_direct Mo
 - `classification_changes = 0`
 - `confidence_changes = 1`
 - `shell_monotonicity = OK`
-- verdict: `PASS-DIAGNOSTIC-REBUILD`
+- verdict: `OK-DIAGNOSTIC-REBUILD`
 
 The explicit rollup answer was that the observed two-center skeleton is not only a pooled-data effect; the same classification skeleton survives in each arm individually.
 
@@ -4031,7 +4060,7 @@ $$
 
 **Rapora / jüri diline tek satır DM verdict (copy-paste)**
 
-DM (SPARC/RAR) — PASS (scan-free): Fixed A=0.1778279410, α=0.001, kfold=5, seed=2026; all folds have Δχ²_test > 0. Thread/STIFFGATE decoupled in galaxy regime (gate@S_hi≈1e−6) and gives identical Δχ² as env_model=none → DM pass does not rely on auxiliary DOF.
+DM (SPARC/RAR) — performance pass (scan-free): Fixed A=0.1778279410, α=0.001, kfold=5, seed=2026; all folds have Δχ²_test > 0. Thread/STIFFGATE decoupled in galaxy regime (gate@S_hi≈1e−6) and gives identical Δχ² as env_model=none → DM pass does not rely on auxiliary DOF.
 
 **Locked run commands (no scan)**
 
@@ -4269,7 +4298,7 @@ Some GW configurations enable an auxiliary DOF layer (“gauge plane”) with it
 - **WEAK:** `TOTAL SCORE > 0`
 - **STRONG:** net `Delta chi2 total > 0` (sigma_tot + rho combined)
 - **DM:** `telemetry.all_folds_delta_test_positive = true` (k-fold test improvement)
-- **MS:** prereg final verdict `PASS` and dynamics stateful integrity true
+- **MS:** prereg final verdict `PASS` (performance) and dynamics stateful integrity true
 - **LIGO:** canonical exact GW170814 branch has strong null p-metrics (key: `p_joint_abs_and_minabs`)
 
 ---
@@ -4422,7 +4451,7 @@ py -3 .\run_dm_paper_run.py `
 
 ##### Why performance pass
 Final prereg file shows:
-- `final_verdict = "PASS"`
+- `final_verdict = "PASS"` (performance)
 - `C1_psuccess = true`
 - `C2_mad = true`
 - `C3_thirdarm = true`
@@ -4524,7 +4553,7 @@ py -3 .\ms_dynamics_integrity_aggregate_v1_DROPIN.py --run_id $runId
 In-session validated:
 
 ###### Final prereg
-- `final_verdict = "PASS"`
+- `final_verdict = "PASS"` (performance)
 - `C1_psuccess = true`
 - `C2_mad = true`
 - `C3_thirdarm = true`
