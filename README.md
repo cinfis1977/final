@@ -1,20 +1,129 @@
 # New Master Equation With Gauge Structure
 
-This repository is a reproducibility workspace for a locked, cross-sector draft:
-WEAK / EM / STRONG / DM / GW + entanglement + photon/birefringence + FT-ICR target-specific mass spectrometry (real Bruker mzML addendum).
+This repository is a reproducibility workspace for a locked, cross-sector draft spanning:
 
-Scope note: `PASS` means not falsified under preregistered tests for the specific tested panels; `PENDING` means internal/pipeline support exists but a key calibration, holdout, or paper embedding is still open. Neither label is a universal proof.
+- **WEAK** (T2K / NOvA / MINOS)
+- **EM** (LEP Bhabha / MuMu)
+- **STRONG**
+- **DM / SPARC**
+- **GW / LIGO ringdown**
+- **FT-ICR target-specific mass spectrometry**
+- **Entanglement / Bell audit**
+- **Photon / birefringence bridge**
 
-Terminology note: the paper now uses **unified equation** (instead of “master equation”) and treats the FT-ICR line as **target-specific / cross-domain robustness**. Legacy runner filenames still use `particle_specific` and are intentionally preserved for reproducibility.
+## Status semantics (important)
+
+This repository now uses the following status labels:
+
+- **performance pass**  
+  Use this **only** when a sector has a locked performance-style result under the project’s current prereg / evaluation convention.
+
+- **not established**  
+  Use this when a tested branch does **not** currently establish a positive performance result.
+
+- **audit-positive**  
+  Use this for sectors where the repo has a functioning audit / diagnostic / data-side result, but **not** a first-principles dynamic performance closure.
+
+- **not scored here**  
+  Use this when a sector is intentionally outside the current performance scoreboard.
+
+These labels are **not** universal proof claims. They are repository-local status labels tied to the current locked evaluation structure.
+
+## Current project snapshot
+
+### Performance-pass sectors
+The current performance-pass line is:
+
+- **WEAK**
+- **STRONG**
+- **DM**
+- **GW / LIGO**
+- **FT-ICR target-specific mass spectrometry**
+
+### Not-established performance sector
+- **EM**
+
+### Audit / bridge sectors (not performance-scored yet)
+- **Entanglement** — audit-positive, **not scored here**
+- **Photon / birefringence** — bridge/audit functioning, **not scored here**
+
+## What is established right now
+
+### WEAK
+Weak-sector locked runs currently support a positive performance result under the project’s current evaluation convention.
+
+### STRONG
+Strong-sector locked runs currently support a net-positive performance result, with mixed internal branch quality that should still be described honestly in-paper.
+
+### DM
+Current DM reruns support a positive locked criterion.
+
+### GW / LIGO
+The canonical exact GW branch is locally re-confirmed as a passing performance result on the current exact run path.
+
+### FT-ICR mass spectrometry
+This remains a **target-specific / cross-domain robustness** result, not a fundamental-particle claim. The locked prereg branch is treated as a performance-pass sector under the repo’s current scoreboard.
+
+### EM
+EM is **not established** as a performance-pass sector in the current branch.
+
+### Entanglement
+The repo now has three distinct executable layers:
+
+1. **CHSH/NIST audit wrapper**  
+   Current executable wrapper reports observed \(|S| = 2.455041357825164\) against a **decorrelation surrogate null** centered near 0.  
+   This is a functioning audit, **not** a Bell-bound significance proof.
+
+2. **Preregistered “memory-statistic” diagnostic**  
+   Current rerun reports:
+   - `z_p95 = 1.9363439433203153`
+   - `z_worst = 1.9914293684831685`  
+   This is a diagnostic / empirical-template holdout test, **not** a first-principles Bell derivation.
+
+3. **Data-side CH/Eberhard audit**  
+   The **fully re-verified paper-facing branch** is currently the `slots 4–8` branch, where:
+   - `01_11 -> J = 550`
+   - `02_54 -> J = 176`
+   - `03_43 -> J = 151`
+
+   This is the strongest current data-side Bell-inequality result in the repo.  
+   It is **audit-positive**, but it is **not yet** a first-principles dynamic performance closure.
+
+### Photon / birefringence
+Photon currently has a working bridge / falsification layer based on the accumulation observable:
+
+\[
+\alpha(z) = \beta I(z)
+\]
+
+with locked accumulation-law and sky-fold style tests producing **null-compatible** outputs.  
+This establishes a functioning bridge observable and audit layer, **not** a first-principles propagation closure.
+
+## What is *not* yet established
+
+### Entanglement
+The repo does **not** yet have a locked first-principles Bell forward model that:
+
+- defines \(H_s\) and \(\mathcal{D}_s\),
+- generates model-side \(J_{\mathrm{model}}\) or \(E^{\mathrm{model}}_{ab}\),
+- runs no-fit multi-run / multi-window scorecards,
+- and closes the Bell sector as a dynamic performance-pass result.
+
+### Photon
+The repo does **not** yet have a substrate-generated first-principles photon propagation model that replaces bridge-only \(\alpha(z)=\beta I(z)\) usage with a locked forward theory prediction.
+
+---
 
 ## Current Paper Files (Active)
 
 - **Canonical / stable names** (recommended for sharing):
-  - `paper/paper_final.md` (should be the current locked draft)
-  - `paper/paper_final.html` (render of the same)
-- **Versioned locked snapshots** (historical, audit-friendly):
+  - `paper/paper_final.md`
+  - `paper/paper_final.html`
+
+- **Versioned locked snapshots** (historical / audit-friendly):
   - `paper/paper_LOCKED_mathfixed_v452_CHATRUNS_ONEFORALL_LIGOpatternonly__massspec_REALDATA_particlespecific.md`
   - `paper/paper_LOCKED_mathfixed_v452_massspec_REALDATA_particlespecific.html`
+
 - Cube structure animation (HTML):
   - `paper/dual_cube_gauge_planes_animation.html`
 
@@ -55,23 +164,60 @@ python .\tools\verdict_group_eval.py
 python .\tools\make_fig_strong_deltachi2.py
 ```
 
-## Performance-pass reproducibility (updated, project-relative)
+## Performance-pass reproducibility (current scoreboard)
 
-Canonical performance runbook is now:
+Canonical performance runbook:
 
 - [paper/PERFORMANCE_RUNBOOK_20260305_UPDATED.md](paper/PERFORMANCE_RUNBOOK_20260305_UPDATED.md)
 
-This runbook has been normalized to this project layout (no `bundle/CODE` command paths):
+### Canonical run-command reference
+For **all current reproducibility run commands across all sectors**, see:
+
+- `verdict_reproducer_commands_master.md`
+
+This is the single master command list for:
+- WEAK
+- STRONG
+- EM
+- DM
+- GW / LIGO
+- FT-ICR mass spectrometry
+- Entanglement
+- Photon
+
+Use `paper/PERFORMANCE_RUNBOOK_20260305_UPDATED.md` for the current performance-runbook framing, and use `verdict_reproducer_commands_master.md` when you need the **full command reference**.
+
+This runbook is normalized to this project layout (no `bundle/CODE` command paths):
 
 - project root scripts: `./*.py`
 - real datasets: `./data/*` and `./t2k_release_extract/*`
 - run outputs: `./LOCAL_RUNS/*` and `./out/*`
 
-Included sector coverage:
+### Sectors currently covered by the performance runbook
+- WEAK
+- STRONG
+- EM
+- DM
+- MS
+- LIGO
 
-- WEAK, STRONG, EM, DM, MS, LIGO
+### Important note
+- **EM is included in the runbook but is not currently established as performance-pass.**
+- **Entanglement and Photon are not current performance-pass sectors and should not be reported as such from this runbook.**
 
-Important: LIGO commands in this updated runbook are also project-relative now (`./data/gw/...`, `./out/LIGO/...`).
+
+### Additional command catalog for entanglement / photon
+A separate command catalog should be maintained for the current **audit / bridge / prereg** lines of Entanglement and Photon.
+
+Recommended file:
+- `verdict_reproducer_commands_v2_ENT_PHOTON_ADDED.md`
+
+This catalog should include:
+- CHSH / coincidence export / memory diagnostic commands,
+- data-side CH/Eberhard J audit commands,
+- photon accumulation / CMB / sky-fold prereg commands,
+
+and should be kept **separate** from the main performance-pass runbook, because these sectors are currently **not scored here** and do not yet constitute first-principles dynamic performance closure.
 
 ## Integration equivalence evidence (paper-grade)
 
@@ -90,38 +236,38 @@ python -m pytest -q integration_artifacts/mastereq/tests
 
 The shared unified-equation framework and microphysics hook wiring (`use_microphysics=True`, `Γ=nσv`, `γ=Γ/c`) are integrated under:
 
-- `integration_artifacts/mastereq/` (core GKSL/unified-equation modules)
+- `integration_artifacts/mastereq/`
 - `integration_artifacts/mastereq/microphysics.py`
 - `integration_artifacts/mastereq/defaults.py`
 
 The integration tests check both:
-1. **Runner declared-math equivalence** (golden/equivalence outputs), and  
-2. **Microphysics wiring equivalence** (derived \(\gamma\) path matches explicit-\(\gamma\) path).
+1. **Runner declared-math equivalence**, and
+2. **Microphysics wiring equivalence**.
 
-### Entanglement + photon/birefringence (new bridge integration)
+### Entanglement + photon bridge integration
 
-The bridge pack and new GKSL-compatible sector hooks are now integrated under:
+The bridge pack and sector hooks are integrated under:
 
 - `integration_artifacts/entanglement_photon_bridge/`
 - `integration_artifacts/mastereq/entanglement_sector.py`
 - `integration_artifacts/mastereq/photon_sector.py`
 
-New deterministic equivalence tests:
+Deterministic equivalence tests:
 
 - `integration_artifacts/mastereq/tests/test_equivalence_entanglement_runner.py`
 - `integration_artifacts/mastereq/tests/test_equivalence_photon_birefringence_runner.py`
 
-Run only the new bridge equivalence tests:
+Run only the bridge equivalence tests:
 
 ```powershell
 python -m pytest -q integration_artifacts/mastereq/tests/test_equivalence_entanglement_runner.py integration_artifacts/mastereq/tests/test_equivalence_photon_birefringence_runner.py
 ```
 
-Latest snapshot for these new tests: **6 passed**.
+### Important boundary
+These equivalence tests show **wiring / reproducibility consistency**.  
+They do **not by themselves** establish first-principles entanglement or photon performance closure.
 
-Current full-suite snapshot (after path + solver fallback fixes): **37 passed**.
-
-Bridge prereg/audit reruns are written under:
+Bridge prereg / audit reruns are typically written under:
 
 - `integration_artifacts/out/entanglement_photon/`
 
@@ -130,26 +276,20 @@ Example produced files:
 - `integration_artifacts/out/entanglement_photon/coinc_audit_summary_v1.csv`
 - `integration_artifacts/out/entanglement_photon/birefringence_accumulation_prereg_v1.csv`
 
-Note on full-suite command:
+## Baselines and evaluation metrics
 
-- Latest local run:
-  - `python -m pytest -q integration_artifacts/mastereq/tests`
-  - result: **37 passed**.
+The phrase **baseline** is sector-specific. Not every panel is a literal Standard Model fit.
 
-## Baselines and evaluation metrics (what “SM baseline” means here)
+- **Weak (neutrino):** standard 3-flavor oscillation baseline under the runner’s metric.
+- **EM (LEP Bhabha / MuMu):** standard imported curve / table baseline for the same observable.
+- **Strong:** standard reference curve / table under the runner’s metric.
+- **GW (ringdown):** some runs are sim-only; real-compare runs use GWOSC strain against the selected GR/null reference.
+- **DM (SPARC/RAR):** standard reference relation under the runner’s metric.
+- **Mass spectrometry:** this is **not** an SM-vs-model fit; the baseline is a frozen no-correction reference.
+- **Entanglement:** current strong result is a **data-side CH/Eberhard audit branch** at `slots 4–8`; this is not yet a model-side Bell predictor.
+- **Photon:** current line is a **bridge accumulation observable**, not yet a substrate-to-propagation first-principles closure.
 
-The phrase **“SM baseline”** is used in a _sector-specific_ sense. Not every panel is a literal “Standard Model fit” in the same way.
-
-- **Weak (neutrino):** the baseline is the standard 3-flavor oscillation description evaluated with the sector’s chosen metric (typically Δχ² with a fixed convention). Some checks are “scan-free” (no parameter sweeps) and are compared to the corresponding baseline under the _same metric_.
-- **EM (LEP Bhabha):** the baseline is the standard QED/Bhabha prediction for the same binned table (often via an imported baseline curve such as BHAGEN-derived tables). Evaluation is done on the same binned observable (e.g., χ² / residual structure).
-- **Strong (σ_tot, ρ):** the baseline is the standard reference curve/table used in that runner (PDG/experiment tables and their standard parametrizations). The runner’s metric (Δχ² or residual score) is the authority.
-- **GW (ringdown):** some runs are **sim-only** (internal consistency), while “real-compare” runs use GWOSC strain and compare against the chosen GR/null reference within that script’s metric.
-- **DM (SPARC/RAR):** the baseline is the standard reference relation used in that runner (RAR/MOND-style or the declared baseline in the script). Again, the script’s metric is the authority.
-- **Mass spectrometry (Bruker mzML):** this is **not an SM-vs-model fit**. The baseline is a frozen **do-nothing / no-correction reference** (legacy labels may say “SM” but it means baseline). The prereg verdict is based on locked, fit-free statistics (e.g., target-dependent p_success/MAD stability across holdout/third-arm).
-
-**Takeaway:** Many panels are compared against a sector baseline under the same metric, but some panels are **internal consistency / null** tests. Use `repro/REPORT_VERDICT.md` and the runner logs as the authoritative definitions for each panel.
-
-## Quick way to reproduce the PASS/TENSION/FAIL table
+## Quick way to reproduce the current PASS / NOT-ESTABLISHED table
 
 1. Run the verdict batch:
 
@@ -164,21 +304,25 @@ python .\tools\make_repro_report.py
 python .\tools\verdict_group_eval.py
 ```
 
-3. Read the final summary:
+3. Read the final summaries:
 
-- `repro/REPORT_VERDICT.md` (human-readable verdict table)
-- `repro/run_summary.csv` (per-command run log)
+- `repro/REPORT_VERDICT.md`
+- `repro/run_summary.csv`
 
-If you want to rerun only a subset, use `-StartIndex` / `-EndIndex` with the same command list `tools/verdict_commands.txt`.
+### Important scope note
+This verdict batch summarizes the **current performance scoreboard sectors**.  
+Entanglement and Photon need separate audit / bridge / first-principles status reporting.
 
 ## Mass spectrometry: where the mzML files go
 
-mzML files are typically **not committed** to git due to size and licensing/data policies. To reproduce the mass-spec runs, you must:
+mzML files are typically **not committed** to git due to size and licensing/data policies.
 
-- Place your Bruker/CompassXport mzML exports in a local folder (commonly under `data/`), **or**
-- Set the mzML paths explicitly in the mass-spec runner commands you execute.
+To reproduce the mass-spec runs, you must:
 
-The paper section and runner examples use a “cyto_full” style folder convention (e.g., `data/cyto_full/*.mzML`), but the exact location is not required as long as the runner paths point to the files.
+- place your Bruker/CompassXport mzML exports in a local folder (commonly under `data/`), or
+- set the mzML paths explicitly in the mass-spec runner commands you execute.
+
+The paper section and runner examples often use a `data/cyto_full/*.mzML` style convention, but the exact location is not required as long as the runner paths point to the files.
 
 ## Repro Entry Points
 
@@ -186,13 +330,15 @@ The paper section and runner examples use a “cyto_full” style folder convent
   - `tools/run_verdict.ps1`
 - Command list consumed by verdict runner:
   - `tools/verdict_commands.txt`
-- Curated manual command sets (current):
+- Curated manual command sets:
   - [paper/PERFORMANCE_RUNBOOK_20260305_UPDATED.md](paper/PERFORMANCE_RUNBOOK_20260305_UPDATED.md)
-- Legacy/archival command lists (reference only):
-  - `verdict_reproducer_commands_v1.md`
-  - `CODEX_FINAL_RUN_COMMANDS.md`
-  - `CODEX_FINAL_RUN_COMMANDS_v2.txt`
-  - `CODEX_FINAL_RUN_COMMANDS_v3.txt`
+
+Legacy / archival command lists (reference only):
+- `verdict_reproducer_commands_v1.md`
+- `CODEX_FINAL_RUN_COMMANDS.md`
+- `CODEX_FINAL_RUN_COMMANDS_v2.txt`
+- `CODEX_FINAL_RUN_COMMANDS_v3.txt`
+
 - Data allowlist used by runner checks:
   - `tools/data_allowlist.txt`
 
@@ -221,7 +367,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\run_verdict.ps1 -App
 Terminology: this sector is described in the paper as **target-specific FT-ICR** (cross-domain robustness check). Script names below keep the legacy `particle_specific` naming.
 
 What it does: produces locked final verdict artefacts (JSON+MD) from already-generated run outputs.
-It does not rerun mzML conversion or the multi-target analysis.
+It does **not** rerun mzML conversion or the multi-target analysis.
 
 Runner path:
 
@@ -243,30 +389,35 @@ Expected final artefacts:
 - `out/particle_specific_final_goodppm3_lock/prereg_lock_and_final_verdict_goodppm3.json`
 - `out/particle_specific_final_goodppm3_lock/FINAL_VERDICT_REPORT_goodppm3.md`
 
-## Future Work (paper + release priorities)
+## Future work (updated priorities)
 
-Most remaining work is **calibration / framing / paper embedding**, not a reset of the framework.
+### Priority 1 — paper-facing performance sectors
+1. **GW frequency calibration closure**
+2. **EM strongest full-cov holdout completion**
+3. **Paper structure cleanup / figure embedding**
 
-### Priority 1 — publication blockers
-1. **GW frequency calibration closure** (align the frequency scale to the ringdown band and embed the calibration figures).
-2. **EM strongest full-cov holdout completion** (finish and embed the covariance-preserving holdout presentation).
-3. **Paper structure cleanup** (section order/numbering consistency and moving long CLI catalogs to a technical supplement).
+### Priority 2 — entanglement / photon correctness work
+1. **Entanglement Bell first-principles specification**
+   - define and lock the Bell forward model
+   - specify \(H_s\), \(\mathcal{D}_s\), and the measurement map
+   - separate data-side audit from model-side prediction
 
-### Priority 2 — strengthens the paper substantially
-1. **FT-ICR framing cleanup** in prose (`target-specific` wording, cross-domain robustness framing).
-2. **Independent weak-sector validation for `du_phase`** on a separate public dataset / holdout profile.
-3. **Fill remaining figure placeholders** from existing run outputs.
+2. **Entanglement Bell forward solver**
+   - generate model-side \(J_{\mathrm{model}}\) or \(E^{\mathrm{model}}_{ab}\)
+   - no data-derived template / no seed / no fit
+   - evaluate on the 3-run × 3-window matrix
 
-### Priority 3 — deeper theory work (not required for current release)
-1. **Substrate-to-operator derivation** for sector hooks.
-2. **CT/RT dual-tension dimensional analysis**.
-3. **Stronger microphysics derivations** for sector-specific \((n,\sigma,v)\) mappings.
+3. **Photon first-principles propagation closure**
+   - derive propagation amplitude from substrate variables
+   - replace bridge-only \(\alpha(z)=\beta I(z)\) usage with a theory-generated forward model
+   - run a locked multi-catalog / holdout scorecard
 
-### Data requirement note
-Nearly all items above can be completed with the **existing code and existing public datasets**.  
-The only likely extra public-data step is the weak-sector independent validation for `du_phase`.
+### Priority 3 — broader theory work
+1. **Substrate-to-operator derivation**
+2. **CT/RT dual-tension dimensional analysis**
+3. **Stronger sector-specific microphysics derivations**
 
-## Main Output Locations
+## Main output locations
 
 - Sector outputs:
   - `out/WEAK/`
@@ -283,19 +434,18 @@ The only likely extra public-data step is the weak-sector independent validation
   - `repro/verdict_groups.csv`
   - `repro/REPORT_VERDICT.md`
 
-## Data And Packaging Notes
+## Data and packaging notes
 
 Some datasets are intentionally duplicated across:
-
 - repo root
 - `data/hepdata/`
-- sector-specific subfolders (for example `data/hepdata/em_bhabha_pack/`)
+- sector-specific subfolders
 
 Use the paths referenced by `tools/verdict_commands.txt` as canonical for runs.
 
 Large data files may not be tracked in git depending on your clone/source; verify local data availability before running full verdict batches.
 
-## Repo Layout
+## Repo layout
 
 ```text
 data/           datasets
